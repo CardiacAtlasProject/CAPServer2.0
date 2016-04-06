@@ -1,7 +1,4 @@
-IF EXISTS (SELECT * FROM CAPUSERS.Users
-           WHERE username='ADMIN') THEN
-  DELETE FROM CAPUSERS.Users WHERE username='ADMIN';
-END IF;
+DELETE FROM CAPUSERS.Users WHERE username='ADMIN';
 
 INSERT INTO CAPUSERS.Users
     (username,
