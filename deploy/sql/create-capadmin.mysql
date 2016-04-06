@@ -1,4 +1,9 @@
-insert into CAPUSERS.Users
+IF EXISTS (SELECT * FROM CAPUSERS.Users
+           WHERE username='ADMIN') THEN
+  DELETE FROM CAPUSERS.Users WHERE username='ADMIN';
+END IF;
+
+INSERT INTO CAPUSERS.Users
     (username,
      name,
      passwd,
