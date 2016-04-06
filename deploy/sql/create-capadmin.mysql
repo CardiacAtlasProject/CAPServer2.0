@@ -1,0 +1,14 @@
+insert into CAPUSERS.Users
+    (username,
+     name,
+     passwd,
+     userdescription,
+     lastlogin,
+     lastpasswordchange)
+VALUES
+    ('ADMIN',
+     'CAP Administrator',
+     PASSWORD('admin1234'),
+     'Super user',
+     CURTIME(),
+     CURTIME());

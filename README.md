@@ -42,7 +42,18 @@ mysql> grant all on CAPUSERS.* to 'cap2.0'@'%' identified by 'cap2.0';
 ```
    Note for some reason, it needs root user.
 
-4. Install OpenJDK 7.
+4. Initiating ADMIN user for CAP2.0 access.
+
+   CAPServer 2.0 uses two databases (`CAP` and `CAPUSERS`) on top of PACS database. You need to create a user ADMIN in order to manage these databases by using the CAPServer 2.0 web front-end.
+
+   Edit `create-capadmin.mysql` and change the admin password there from `admin1234` to your choice.
+
+   Run the script:
+   ```
+   > mysql -ucap2.0 -pcap2.0 < create-capadmin.mysql
+   ```
+
+5. Install OpenJDK 7.
 
    Make sure the correct version of java is used. You can check it by
   ```
@@ -51,4 +62,4 @@ java version "1.7.0_99"
 ```
   it should give you version 1.7.xxx. If you have multiple java versions, you must modify the `standalone.conf` or `domain.conf` file to refer the correct JDK environment.
 
-5. Install JBoss Application Server 7.1
+6. Install JBoss Application Server 7.1
