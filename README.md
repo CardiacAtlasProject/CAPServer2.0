@@ -14,18 +14,18 @@ Installation:
 
 2. We need to create three databases in MySQL server: `pacsdb`, `CAP` and `CAPUSERS` databases. The `pacsdb` database follows standard open PACS table relationship, which we will use [`dcm4chee`](https://dcm4che.atlassian.net/wiki/display/ee2/MySQL) script to create it.
 
-   Create pacsdb database:
+  Create pacsdb database:
 ```
 > mysql -u root -p
 mysql> create database pacsdb;
 mysql> grant all on pacsdb.* to 'pacs'@'localhost' identified by 'pacs';
 mysql> \q
 ```
-Run `pacsdb` database creation setup script from `deploy/sql` directory.
+  Run `pacsdb` database creation setup script from `deploy/sql` directory.
 ```{bash}
 > mysql -upacs -ppacs < create-pacsdb.mysql
 ```
-This will create a database called `pacsdb` and a user `pacs` who has access and privileges to do anything only if it accesses the database from localhost. The password for user `pacs` is `pacs`.
+  This will create a database called `pacsdb` and a user `pacs` who has access and privileges to do anything only if it accesses the database from localhost. The password for user `pacs` is `pacs`.
 
 3. Create `CAP` and `CAPUSERS` databases with user `cap2.0` to manage them.
 ```
