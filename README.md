@@ -37,9 +37,10 @@ mysql> grant all on CAPUSERS.* to 'cap2.0'@'%' identified by 'cap2.0';
 ```
   Run database creation setup scripts from `deploy/sql` directory.
   ```{bash}
-> mysql -ucap2.0 -pcap2.0 < create-capdb.mysql
-> mysql -ucap2.0 -pcap2.0 < create-capusers.mysql
+> mysql -uroot -p < create-capdb.mysql
+> mysql -uroot -p < create-capusers.mysql
 ```
+   Note for some reason, it needs root user.
 
 4. Install OpenJDK 7.
 
