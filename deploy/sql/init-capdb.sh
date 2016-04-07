@@ -17,8 +17,8 @@ fi
 # CREATE CAP & CAPUSERS DATABASES
 echo 'Creating CAP database...'
 echo 'Please enter root password to mysql'
-mysql -uroot -p << create-capdb.mysql
+mysql -uroot -p < create-capdb.mysql
 
 echo 'Creating CAPUSERS database...'
 echo 'Please enter root password to mysql'
-mysql -uroot -p << create-capusers.mysql
+mysql -uroot -p < create-capusers.mysql
