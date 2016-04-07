@@ -14,19 +14,22 @@ then
     exit 1
 fi
 
+read -s -p 'Please enter root password for mysql: ' rootpass
+echo
+
 # CREATE CAP & CAPUSERS DATABASES
 echo 'Creating CAP database...'
-echo 'Please enter root password to mysql'
-mysql -uroot -p < create-capdb.mysql
+echo 'IGNORE THE WARNING'
+mysql -uroot -p$rootpass < create-capdb.mysql
 
 echo 'Creating CAPUSERS database...'
-echo 'Please enter root password to mysql'
-mysql -uroot -p < create-capusers.mysql
+echo 'IGNORE THE WARNING'
+mysql -uroot -p$rootpass < create-capusers.mysql
 
 # CREATE ADMIN PASSWORD
 echo 'Creating ADMIN password'
-echo 'Please enter again root password to mysql'
-mysql -uroot -p << EOFSQL
+echo 'IGNORE THE WARNING'
+mysql -uroot -p$rootpass << EOFSQL
 DELETE FROM CAPUSERS.Users WHERE username='ADMIN';
 
 INSERT INTO CAPUSERS.Users
