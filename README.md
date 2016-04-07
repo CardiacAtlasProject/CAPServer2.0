@@ -27,6 +27,14 @@ mysql> \q
 ```
   This will create a database called `pacsdb` and a user `pacs` who has access and privileges to do anything only if it accesses the database from localhost. The password for user `pacs` is `pacs`.
 
+3. Initialise `CAP` and `CAPUSERS` databases.
+
+   **Warning: this will drop all existing CAP and CAPUSERS data.**
+
+   ```
+   > ./init-capdb.sh
+   ```
+
 3. Create `CAP` and `CAPUSERS` databases with user `cap2.0` to manage them.
   ```
 > mysql -u root -p
