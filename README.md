@@ -23,8 +23,9 @@ mysql> \q
 ```
   Run `pacsdb` database creation setup script from `deploy/sql` directory.
   ```{bash}
-> mysql -upacs -ppacs < create-pacsdb.mysql
-```
+  > cd deploy/sql
+  > mysql -upacs -ppacs < create-pacsdb.mysql
+  ```
   This will create a database called `pacsdb` and a user `pacs` who has access and privileges to do anything only if it accesses the database from localhost. The password for user `pacs` is `pacs`.
 
 3. Initialise `CAP` and `CAPUSERS` databases.
@@ -35,33 +36,7 @@ mysql> \q
    > ./init-capdb.sh
    ```
 
-3. Create `CAP` and `CAPUSERS` databases with user `cap2.0` to manage them.
-  ```
-> mysql -u root -p
-mysql> create database CAP;
-mysql> grant all on CAP.* to 'cap2.0'@'%' identified by 'cap2.0';
-mysql> create database CAPUSERS;
-mysql> grant all on CAPUSERS.* to 'cap2.0'@'%' identified by 'cap2.0';
-```
-  Run database creation setup scripts from `deploy/sql` directory.
-  ```{bash}
-> mysql -uroot -p < create-capdb.mysql
-> mysql -uroot -p < create-capusers.mysql
-```
-   Note for some reason, it needs root user.
-
-4. Initiating ADMIN user for CAP2.0 access.
-
-   CAPServer 2.0 uses two databases (`CAP` and `CAPUSERS`) on top of PACS database. You need to create a user ADMIN in order to manage these databases by using the CAPServer 2.0 web front-end.
-
-   Edit `create-capadmin.mysql` and change the admin password there from `admin1234` to your choice.
-
-   Run the script:
-   ```
-   > mysql -ucap2.0 -pcap2.0 < create-capadmin.mysql
-   ```
-
-5. Install OpenJDK 7.
+4. Install OpenJDK 7.
 
    Make sure the correct version of java is used. You can check it by
   ```
@@ -70,4 +45,12 @@ java version "1.7.0_99"
 ```
   it should give you version 1.7.xxx. If you have multiple java versions, you must modify the `standalone.conf` or `domain.conf` file to refer the correct JDK environment.
 
-6. Install JBoss Application Server 7.1
+5. Install JBoss Application Server 7.1
+
+   You can download the zip file from:
+   ```
+    wget http://download.jboss.org/jbossas/7.1/jboss-as-7.1.1.Final/jboss-as-7.1.1.Final.zip
+    ```
+
+    Some tutorials on JBoss AS 7.1 installation:
+    * [Installation on CentOS 6](https://www.opensourcearchitect.co/tutorials/installing-jboss-7-1-on-centos-6).
