@@ -43,7 +43,29 @@ java version "1.7.0_80"
    * [Installation on CentOS 6](https://www.opensourcearchitect.co/tutorials/installing-jboss-7-1-on-centos-6).
    * [Installation on CentOS by David Ghelini.](http://www.davidghedini.com/pg/entry/install_jboss_7_on_centos)
 
-5. We need to create two databases in MySQL server:`CAP` and `CAPUSERS` databases.
+   **Important notes**
+   * Since port 8080 has been used by DCM4CHEE, you must change this port to, e.g. 8181. Edit `$JBOSS_HOME/standalone/configuration/standalone.xml` and replace
+   ```
+   <socket-binding name="http" port="8080"/>
+   ```
+   to
+   ```
+   <socket-binding name="http" port="8181"/>
+   ```
+
+   * By default, JBoss web service is only accessible on local host (127.0.0.1). To allow it accessible through the internet, edit the same `standalone.xml` and replace the IP address
+   ```
+   <interface name="public">
+      <inet-address value="${jboss.bind.address:127.0.0.1}"/>
+   </interface>
+   ```
+   to your public IP address.
+
+5. Install additional modules to JBoss:
+
+   Extract `abi-jboss-modules.com.tar.gz` and `mysql-jboss-modules-com.tar.gz` from `libs/jboss-as-7` folder to `$JBOSS_HOME/modules/com` folder.
+
+6. We need to create two databases in MySQL server:`CAP` and `CAPUSERS` databases.
 
    **Warning: this will drop all existing CAP and CAPUSERS data.**
 

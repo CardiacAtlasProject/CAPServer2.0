@@ -47,3 +47,6 @@ VALUES
      CURTIME(),
      CURTIME());
 EOFSQL
+
+# POPULATE CAPAdministration TABLE
+mysql -ucap2.0 -pcap2.0 CAP < populate-capadministration.mysql
