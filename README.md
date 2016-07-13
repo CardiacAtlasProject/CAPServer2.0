@@ -59,7 +59,12 @@ java version "1.7.0_80"
       <inet-address value="${jboss.bind.address:127.0.0.1}"/>
    </interface>
    ```
-   to your public IP address.
+   to your public IP address, or using the following to use any IP address:
+   ```
+   <interface name="public">
+       <any-ipv4-address/>
+   </interface>   
+   ```
 
 5. Install additional modules to JBoss:
 
@@ -72,3 +77,43 @@ java version "1.7.0_80"
    ```
    > ./init-capdb.sh
    ```
+
+7. Set JNDI connection in the `standalone.xml` file.
+
+   Find `<datasource jndi-name="java:jboss/datasources/ExampleDS"> ... </datasource>` block and replace it with:
+   ```
+   <xa-datasource jndi-name="java:jboss/xa-datasources/CAPAccess" pool-name="CAPAccess" enabled="true" use-java-context="true">
+        <xa-datasource-property name="URL">
+            jdbc:mysql://127.0.0.1:3306/CAPUSERS?zeroDateTimeBehavior=convertToNull&autoReconnect=true&characterEncoding=UTF-8&characterSetResults=UTF-8
+        </xa-datasource-property>
+        <xa-datasource-property name="User">
+            cap2.0
+        </xa-datasource-property>
+        <xa-datasource-property name="Password">
+            cap2.0
+        </xa-datasource-property>
+        <xa-datasource-class>com.mysql.jdbc.jdbc2.optional.MysqlXADataSource</xa-datasource-class>
+        <driver>com.mysql</driver>
+    </xa-datasource>
+
+    <xa-datasource jndi-name="java:jboss/xa-datasources/CAPDS" pool-name="CAPDS" enabled="true" use-java-context="true">
+        <xa-datasource-property name="URL">
+            jdbc:mysql://127.0.0.1:3306/CAP?zeroDateTimeBehavior=convertToNull&autoReconnect=true&characterEncoding=UTF-8&characterSetResults=UTF-8
+        </xa-datasource-property>
+        <xa-datasource-property name="User">
+            cap2.0
+        </xa-datasource-property>
+        <xa-datasource-property name="Password">
+            cap2.0
+        </xa-datasource-property>
+        <xa-datasource-class>com.mysql.jdbc.jdbc2.optional.MysqlXADataSource</xa-datasource-class>
+        <driver>com.mysql</driver>
+        </xa-datasource>
+    ```
+
+    Find `<driver name="h2" module="com.h2database.h2">` and replace it with:
+    ```
+    <driver name="com.mysql" module="com.mysql">
+        <xa-datasource-class>com.mysql.jdbc.jdbc2.optional.MysqlXADataSource</xa-datasource-class>
+    </driver>
+    ```

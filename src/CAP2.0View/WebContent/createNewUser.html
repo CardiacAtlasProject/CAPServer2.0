@@ -1,0 +1,61 @@
+<div data-role="page" id="CreateNewUserDialog">
+	<div data-role="header">
+		<h1>New CAP User</h1>
+	</div>
+	<div data-role="content">
+		<div style="margin: 0 auto;">
+			<div class="ui-field-contain" data-type="horizontal">
+				<label for="createnewuseruserID" style="width: 11em">USER ID</label> <input data-mini="true" type="text" name="createnewuseruserID" id="createnewuseruserID"
+					placeholder="loginid" value="">
+				<div id="useriderror" class="uierror" style="display:none">
+					<a href="#createnewuseruserIDpopupInfo" data-rel="popup" data-transition="pop"
+						class="my-tooltip-btn ui-btn ui-alt-icon ui-nodisc-icon ui-btn-inline ui-icon-info ui-btn-icon-notext" title="Error">Error</a>
+					<div data-role="popup" id="createnewuseruserIDpopupInfo" class="ui-content" data-theme="a" style="max-width: 350px;">
+						<p>Set a unique user identifier( 5 characters or more).</p>
+					</div>
+				</div>
+			</div>
+			<div class="ui-field-contain" data-type="horizontal">
+				<label for="createnewuseruserName" style="width: 11em">USER NAME</label> <input data-mini="true" type="text" name="createnewuseruserName"
+					id="createnewuseruserName" placeholder="Descriptive Name" value="">
+				<div id="usernameerror" class="uierror" style="display:none">
+					<a href="#createnewuseruserNamepopupInfo" data-rel="popup" data-transition="pop"
+						class="my-tooltip-btn ui-btn ui-alt-icon ui-nodisc-icon ui-btn-inline ui-icon-info ui-btn-icon-notext" title="Error">Error</a>
+					<div data-role="popup" id="createnewuseruserNamepopupInfo" class="ui-content" data-theme="a" style="max-width: 350px;">
+						<p>Provide a descriptive name( 5 characters or more).</p>
+					</div>
+				</div>
+			</div>
+			<div class="ui-field-contain" data-type="horizontal">
+				<label for="createnewuseruserDesc" style="width: 11em">Description</label>
+				<textarea data-mini="true" name="createnewuseruserDesc" id="createnewuseruserDesc" cols="40" rows="8" name="textarea" id="textarea"></textarea>
+				<div id="userdescerror" class="uierror" style="display:none">
+					<a href="#createnewuseruserDescpopupInfo" data-rel="popup" data-transition="pop"
+						class="my-tooltip-btn ui-btn ui-alt-icon ui-nodisc-icon ui-btn-inline ui-icon-info ui-btn-icon-notext" title="Error">Error</a>
+					<div data-role="popup" id="createnewuseruserDescpopupInfo" class="ui-content" data-theme="a" style="max-width: 350px;">
+						<p>Provide some actionable description of the user( 5 characters or more).</p>
+					</div>
+				</div>
+			</div>
+			<div class="ui-field-contain" data-type="horizontal">
+				<label for="createnewuseruserPass" style="width: 11em">Password</label> <input data-mini="true" type="password" name="createnewuseruserPass"
+					id="createnewuseruserPass" value="">
+				<div id="userpasserror" class="uierror" style="display:none">
+					<a href="#createnewuseruserPasspopupInfo" data-rel="popup" data-transition="pop"
+						class="my-tooltip-btn ui-btn ui-alt-icon ui-nodisc-icon ui-btn-inline ui-icon-info ui-btn-icon-notext" title="Error">Error</a>
+					<div data-role="popup" id="createnewuseruserPasspopupInfo" class="ui-content" data-theme="a" style="max-width: 350px;">
+						<p>Passwords should be atleast 6 characters long.</p>
+					</div>
+				</div>
+			</div>
+			<div style="margin: 0 auto;">
+				<fieldset data-role="controlgroup" data-type="horizontal" data-role="fieldcontain">
+					<legend>Role:</legend>
+					<input type="checkbox" name="createnewuserAuthor" id="createnewuserAuthor"> <label for="createnewuserAuthor">AUTHOR</label> <input type="checkbox"
+						name="createnewuserAdmin" id="createnewuserAdmin"> <label for="createnewuserAdmin">ADMIN</label>
+				</fieldset>
+			</div>
+			<button type="submit" id="createnewuserform" value="" onclick="createnewuser(this);">Create</button>
+		</div>
+	</div>
+</div>

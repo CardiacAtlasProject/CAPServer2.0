@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/application_6.xsd" version="6">
+  <display-name>CAP2.0EJB</display-name>
+  <module>
+    <ejb>CAP2.0Application.jar</ejb>
+  </module>
+  <module>
+    <web>
+      <web-uri>CAP2.0View.war</web-uri>
+      <context-root>CAP2.0View</context-root>
+    </web>
+  </module>
+  <module>
+    <web>
+      <web-uri>CAPWebServicesTest.war</web-uri>
+      <context-root>CAPWebServicesTest</context-root>
+    </web>
+  </module>
+</application>

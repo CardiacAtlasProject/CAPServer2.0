@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+  <display-name>CAP</display-name>
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+  <session-config>
+    <session-timeout>15</session-timeout>
+  </session-config>
+  <security-constraint>
+    <web-resource-collection>
+      <web-resource-name>Login</web-resource-name>
+      <url-pattern>/Login.jsp/*</url-pattern>
+    </web-resource-collection>
+  </security-constraint>
+  <security-constraint>
+    <web-resource-collection>
+      <web-resource-name>Secure Resource</web-resource-name>
+      <url-pattern>/*</url-pattern>
+     </web-resource-collection>
+    <auth-constraint>
+      <role-name>CAPREADER</role-name>
+    </auth-constraint>
+  </security-constraint>
+  <security-constraint>
+    <web-resource-collection>
+      <web-resource-name>Author Resource</web-resource-name>
+      <url-pattern>/upload*</url-pattern>
+      <url-pattern>/CAPStudy/*</url-pattern>
+      <url-pattern>/CAPModel/*</url-pattern>
+      <url-pattern>/UserRequests/*</url-pattern>
+    </web-resource-collection>
+    <auth-constraint>
+      <role-name>CAPAUTHOR</role-name>
+    </auth-constraint>
+  </security-constraint>
+  <security-constraint>
+    <web-resource-collection>
+      <web-resource-name>Admin Resource</web-resource-name>
+      <url-pattern>/CAPUserServices/*</url-pattern>
+      <url-pattern>/admin/*</url-pattern>
+      <url-pattern>/UserRequests/*</url-pattern>
+    </web-resource-collection>
+    <auth-constraint>
+      <role-name>CAPADMIN</role-name>
+    </auth-constraint>
+  </security-constraint>
+  <security-role>
+    <role-name>CAPREADER</role-name>
+  </security-role>
+  <security-role>
+    <role-name>CAPAUTHOR</role-name>
+  </security-role>
+  <security-role>
+    <role-name>CAPADMIN</role-name>
+  </security-role>
+  <login-config>
+    <auth-method>FORM</auth-method>
+    <realm-name>SHA1USERPassword</realm-name>
+    <form-login-config>
+      <form-login-page>/Login.jsp?action=protected</form-login-page>
+      <form-error-page>/Login.jsp?action=error</form-error-page>
+    </form-login-config>
+  </login-config>
+</web-app>

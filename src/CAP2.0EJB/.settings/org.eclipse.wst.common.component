@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="CAP2.0EJB">
+        <wb-resource deploy-path="/" source-path="/EarContent" tag="defaultRootSource"/>
+        <dependent-module archiveName="CAP2.0Application.jar" deploy-path="/" handle="module:/resource/CAP2.0Application/CAP2.0Application">
+            <dependent-object/>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="CAP2.0View.war" deploy-path="/" handle="module:/resource/CAP2.0View/CAP2.0View">
+            <dependent-object/>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="CAPWebServicesTest.war" deploy-path="/" handle="module:/resource/CAPWebServicesTest/CAPWebServicesTest">
+            <dependent-object/>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+    </wb-module>
+</project-modules>
