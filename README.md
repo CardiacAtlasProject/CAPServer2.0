@@ -11,7 +11,7 @@ Both databases are implemented in MySQL database server.
 ![pacs](dbase/schema/2.18.x Database Scheme.jpg)
 
 **XPACS schema (ver 0.2)**
-![xpacs](dbase/schema/XPACS-schema-0.2.png)
+![xpacs](dbase/schema/xpacs-schema-0.2.png)
 
 Two main tables defined in XPACS:
 
