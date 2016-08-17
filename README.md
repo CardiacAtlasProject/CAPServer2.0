@@ -10,8 +10,8 @@ Both databases are implemented in MySQL database server.
 **PACS schema (ver 2.18)**
 ![pacs](dbase/schema/2.18.x Database Scheme.jpg)
 
-**XPACS schema (ver 0.1)**
-![xpacs](dbase/schema/XPACS-schema-0.1.png)
+**XPACS schema (ver 0.2)**
+![xpacs](dbase/schema/XPACS-schema-0.2.png)
 
 Two main tables defined in XPACS:
 
