@@ -10,26 +10,18 @@ Both databases are implemented in MySQL database server.
 **PACS schema (ver 2.18)**
 ![pacs](dbase/schema/2.18.x Database Scheme.jpg)
 
-**XPACS schema (ver 0.2)**
-![xpacs](dbase/schema/xpacs-schema-0.2.png)
+**XPACS schema (ver 0.3)**
+![xpacs](dbase/schema/xpacs-schema-0.3.png)
 
-Table description:
+This schema is centralised by the `PATIENT_HISTORY` table, which holds events of patients. An event is either imaging session exam, GP visit, cath lab, etc. All are identified by CAP's patient_id. The column PACS_study_iuid links to an imaging session in the STUDY table of the PACS schema (see above). If an event is not an imaging exam, this column will be NULL.
 
-1. **PATIENT_INFO** contains unique PatientID list. The PatientID is the first 8 digits of CAP IDs because the last 2 digits of CAP IDs contains follow up imaging sessions. For examples, XYZ0001501, XYZ0001502 are the same patient with ID = XYZ00015. This patient has 2 imaging sessions in the PACS database.PATIENT_INFO only stores one row for this patient.
+A list of patients are stored in the table `PATIENT_INFO` that holds persistence data of a single patient. These values are constant at each event.
 
-   There is a link to the first chain of PATIENT_HISTORY table with `first_history_id` column (NULL is allowed).
-
-1. **PATIENT_HISTORY** contains double-linked chains of events with `Next_id` and `Prev_id` columns (NULL value states the end of the chain). Each event may contain a clinical note (CLINICAL_NOTE), auxiliary file (AUX_FILE) or imaging session (STUDY_PACS).
-
-1. **CLINICAL_NOTE*** contains an event diagnostic notes. It is generic table.
-
-1. **AUX_FILE** contains links to external files. It can be PDF notes, echocardiography, etc.
-
-1. **STUDY_PACS** which links to study_iud row in the PACS' STUDY table (see above). This is not a complete list of studies from PACS database, but as an attachment of either an event in the PATIENT_HISTORY table, or a heart model in the CAP_MODEL table, or a baseline diagostic in the BASELINE_DIAGNOSIS table.
-
-1. **CAP_MODEL** contains a model of the heart. This table is generic to hold any model format. The definition is in the `ModelData` column which is a binary ZIP file and model's XML metadata information is stored in the `XMLData` column.
-
-1. **BASELINE_DIAGNOSIS** contains some common lab report attached to an imaging session.
+Four tables are linked to `PATIENT_HISTORY` :
+* `CLINICAL_NOTE`
+* `AUX_FILE`, which contains links to [URI] of files stored externally.
+* `CAP_MODEL` that defines a heart model.
+* `BASELINE_DIAGNOSIS`
 
 
 <!-- URLs -->
