@@ -11,7 +11,7 @@ Both databases are implemented in MySQL database server.
 ![pacs](dbase/schema/2.18.x Database Scheme.jpg)
 
 **XPACS schema (ver 0.3)**
-![xpacs](dbase/schema/xpacs-schema-0.3.png)
+![xpacs](dbase/schema/xpacs-schema.png)
 
 This schema is centralised by the `PATIENT_HISTORY` table, which holds events of patients. An event is either imaging session exam, GP visit, cath lab, etc. All are identified by CAP's patient_id. The column PACS_study_iuid links to an imaging session in the STUDY table of the PACS schema (see above). If an event is not an imaging exam, this column will be NULL.
 
