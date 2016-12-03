@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+    <head>
+        <title>XPACS Administration</title>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="/css/main.css" th:href="@{/css/main.css}" />
+    </head>
+    <body>
+        <div th:fragment="logout" class="logout" sec:authorize="isAuthenticated()">
+            Logged in user: <span sec:authentication="name"></span> |
+            Roles: <span sec:authentication="principal.authorities"></span>
+            <div>
+                <form action="#" th:action="@{/logout}" method="post">
+                    <input type="submit" value="Logout" />
+                </form>
+            </div>
+        </div>
+        <h1>Hello!</h1>
+        <p>This is the index.html under development page.</p>
+        
+        <h1>Login page</h1>
+        <p>Example user: user / password</p>
+        
+        <!-- This is really cool. See: MainController/getLoginError -->
+        <p th:if="${loginError}" class="error">Wrong user or password</p>
+        
+        <form th:action="@{/index}" method="post">
+            <label for="username">Username</label>:
+            <input type="text" id="username" name="username" autofocus="autofocus" /> <br />
+            <label for="password">Password</label>:
+            <input type="password" id="password" name="password" /> <br />
+            <input type="submit" value="Log in" />
+        </form>
+    </body>
+</html>
