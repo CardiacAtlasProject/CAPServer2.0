@@ -9,16 +9,17 @@ Requirement for development:
 * [Vagrant](https://www.vagrantup.com/)
 * [Spring suite IDE](http://spring.io/) (can be Eclipse with STS plugin)
 
-After vagrant installation, add vbguest plugin:
-```
-$ vagrant plugin install vagrant-vbguest
-```
-
 Running up:
 ```
 $ cd CAPServer2.0
 $ vagrant up
 ```
+
+**Note** if there is an error of unable to create shared folder, you need to install this:
+```
+$ vagrant plugin install vagrant-vbguest
+```
+and call `vagrant up` again. Do that probably twice also for two VMs. This is still a bit of bug from vagrant and VirtualBox.
 
 That's it. You have two virtual machines: web and db.
 To go to each vm:

@@ -7,10 +7,6 @@ sudo yum -y install vim
 sudo yum -y install epel-release
 sudo yum -y groupinstall "Development tools"
 
-# fix vbox guest addition
-#sudo yum -y install dkms
-#sudo /etc/init.d/vboxadd setup
-
 # install JDK 1.8
 sudo yum -y install java-1.8.0-openjdk-devel
 sudo echo -e "export JAVA_HOME=/etc/alternatives/java_sdk_1.8.0" >  /etc/profile.d/jdk1.8.0.sh

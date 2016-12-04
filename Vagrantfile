@@ -79,9 +79,10 @@ Vagrant.configure("2") do |config|
   end
 
   # for the database end
-#  config.vm.define "db" do |db|
-#      db.vm.box = "bento/centos-6.7"
-#      db.vm.synced_folder "./dbase", "/home/vagrant/xpacs-db"
-#      db.vm.provision :shell, path: "vagrant/dbserver-bootstrap.sh"
-#  end
+  config.vm.define "db" do |db|
+      db.vm.box = "bento/centos-6.7"
+      db.vm.synced_folder "./dbase", "/home/vagrant/xpacs-db"
+      db.vm.provision :shell, path: "vagrant/dbserver-bootstrap.sh"
+      db.vm.network "private_network", ip: "192.168.56.201"
+  end
 end
