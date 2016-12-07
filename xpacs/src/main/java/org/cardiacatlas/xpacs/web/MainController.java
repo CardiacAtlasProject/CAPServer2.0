@@ -17,9 +17,4 @@ public class MainController {
 		return "index";
 	}
 	
-	@RequestMapping("/login-error")
-	public String getLoginError(Model model) {
-		model.addAttribute("loginError", true);
-		return "index";
-	}
 }
