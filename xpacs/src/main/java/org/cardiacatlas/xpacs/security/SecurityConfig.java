@@ -1,5 +1,9 @@
 package org.cardiacatlas.xpacs.security;
 
+public class SecurityConfig {
+	
+}
+/*
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -17,7 +21,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/view/**").hasRole("USER")
 				.and()
 			.formLogin()
-				.loginPage("/login").failureUrl("/login-error");
+				.loginPage("/login")
+				.failureUrl("/login-error");
 	}
 	
 	@Autowired
@@ -28,3 +33,4 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	}
 
 }
+*/

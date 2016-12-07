@@ -37,3 +37,7 @@ else
     echo "CAP user is: cap, password: *CapUser*"
 
 fi
+
+# Initiate the XPACS schema
+echo "Create XPACS schema"
+mysql -uroot -pxpacsdbadmin < ./xpacs-db/schema/xpacs-create-schema.sql

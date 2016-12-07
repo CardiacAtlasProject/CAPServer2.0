@@ -74,6 +74,7 @@ Vagrant.configure("2") do |config|
   config.vm.define "web" do |web|
       web.vm.box = "bento/centos-6.7"
       web.vm.synced_folder "./xpacs", "/home/vagrant/xpacs"
+      web.vm.synced_folder "./scratch", "/home/vagrant/scratch"
       web.vm.provision :shell, path: "vagrant/webserver-bootstrap.sh"
       web.vm.network "forwarded_port", guest: 8585, host: 8585
   end
