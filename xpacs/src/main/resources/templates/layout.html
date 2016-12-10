@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<title>Layout</title>
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"
+	href="../../css/bootstrap.min.css" />
+<link rel="stylesheet" th:href="@{/css/main.css}"
+	href="../../css/main.css" />
+</head>
+<body>
+
+<nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <!-- This button section will show up as 3 bars when the browser size shrinks -->
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">XPACS</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse"  layout:fragment="navbar">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Menu</a></li>
+            <li><a href="#about">Menu</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li role="separator" class="divider"></li>
+                <li class="dropdown-header">Nav header</li>
+                <li><a href="#">Separated link</a></li>
+                <li><a href="#">One more separated link</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#">Login</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+    
+	<div class="container">
+	<!-- 
+		<div class="navbar">
+			<div class="navbar-inner">
+				<a class="brand"
+					href="https://github.com/ultraq/thymeleaf-layout-dialect">
+					XPACS </a>
+				<ul class="nav">
+					<li><a th:href="@{/}" href="index.html"> Home </a></li>
+				</ul>
+			</div>
+		</div>
+	 -->
+		<h1 layout:fragment="header">Layout</h1>
+		<div layout:fragment="content">Fake content</div>
+	</div>
+	
+	<!-- Put this script on the bottom to make loading faster -->
+	<!-- IMPORTANT: JQUERY must be loaded before BOOTSTRAP. Otherwise it won't work!! -->
+	<script th:src="@{/js/jquery-1.12.4.min.js}" src="../../js/jquery-1.12.4.min.js"></script>
+	<script th:src="@{/js/bootstrap.min.js}" src="../../js/bootstrap.min.js"></script>
+</body>
+</html>
