@@ -1,12 +1,13 @@
 # Development
 
 * Java SDK 1.8
-* Eclipse Neon
 * Maven 3.3.9
-* Spring framework
-* JOOQ
+* [Spring boot 1.4.2](https://projects.spring.io/spring-boot/)
 * MySQL database connection
 * Embedded Tomcat server, currently Apache Tomcat/8.0.36
+* [Thymeleaf 3.0.2](http://www.thymeleaf.org/)
+* [Layout 2.1.1](https://github.com/ultraq/thymeleaf-layout-dialect)
+* [Bootstrap 3.3.7](http://getbootstrap.com/)
 
 # Quick start
 
