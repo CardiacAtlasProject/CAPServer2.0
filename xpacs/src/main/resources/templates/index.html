@@ -1,21 +1,22 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorate="layout">
+	layout:decorate="~{layouts/simple_content}">
 <head>
 <title>XPACS:Home</title>
 </head>
-<body>
-	<div id="navbar" class="navbar-collapse collapse" layout:fragment="navbar">
-		<ul class="nav navbar-nav navbar-right">
-			<li><a href="#">Login</a></li>
+<body>	
+	<h1 layout:fragment="title">Welcome to XPACS web-based viewer</h1>
+	
+	<div layout:fragment="text">
+		<p><i>This is still in development.</i></p>
+		
+		<h3>User pages</h3>
+		<ul>
+			<li><a th:href="@{/user/patients}" href="../user/patients">Show list of patients</a></li>
 		</ul>
-	</div>
-	<h1 layout:fragment="header">Welcome</h1>
-	<div layout:fragment="content" class="container">
-		<div>
-			<p>This is the main homepage</p>
-		</div>
+		
+		<h3>Admin pages</h3>
 	</div>
 </body>
 </html>

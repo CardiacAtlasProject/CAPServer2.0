@@ -1,13 +1,14 @@
 # Development
 
 * Java SDK 1.8
-* Maven 3.3.9
-* [Spring boot 1.4.2](https://projects.spring.io/spring-boot/)
+* Maven 3.3.9 for dependency management
+* [Spring boot 1.4.2](https://projects.spring.io/spring-boot/), for the best Java web framework
 * MySQL database connection
-* Embedded Tomcat server, currently Apache Tomcat/8.0.36
-* [Thymeleaf 3.0.2](http://www.thymeleaf.org/)
-* [Layout 2.1.1](https://github.com/ultraq/thymeleaf-layout-dialect)
-* [Bootstrap 3.3.7](http://getbootstrap.com/)
+* Embedded Tomcat server, currently Apache Tomcat/8.0.36, for the backend web server
+* [Thymeleaf 3.0.2](http://www.thymeleaf.org/) for the web viewer
+* [Layout 2.1.1](https://github.com/ultraq/thymeleaf-layout-dialect) for Thymeleaf template reusable 
+* [Bootstrap 3.3.7](http://getbootstrap.com/) for UI layout
+* [Lombok 1.16.4](https://projectlombok.org/) for auto setter/getter
 
 # Quick start
 
@@ -15,10 +16,10 @@ In the root project folder:
 
 ```bash
 $ mvn dependency:tree
-$ mvn spring-boot:run
+$ mvn spring-boot:run -Djava.security.egd=file:/dev/urandom
 ```
 
-Open [http://localhost:8585](http://localhost:8585).
+Open [http://localhost:8585/xpacs-web](http://localhost:8585/xpacs-web).
 
 If you want to create start/stop service, instead of run, you can call `mvn spring-boot:start` and `mvn spring:boot-stop`.
 
@@ -31,8 +32,6 @@ $ mvn package
 $ java -jar target/[OUTPUT_JAR_FILE].jar
 ```
 
-Open [http://localhost:8585](http://localhost:8585).
-
 # Import to Eclipse
 
 In the root project folder:
@@ -43,5 +42,3 @@ $ mvn eclipse:eclipse
 
 * Open Eclipse -> Import Maven project.
 * Run application
-
-Open [http://localhost:8585](http://localhost:8585).
