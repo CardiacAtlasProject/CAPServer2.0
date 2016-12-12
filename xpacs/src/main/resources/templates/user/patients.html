@@ -14,7 +14,6 @@
 			<thead>
 				<tr>
 					<td>PatientID</td>
-					<td>Age</td>
 					<td>Gender</td>
 					<td>Cohort</td>
 					<td>Ethnicity</td>
@@ -23,12 +22,11 @@
 			</thead>
 			<tbody>
 				<tr th:if="${patients.empty}">
-					<td colspan="6">No patients stored in XPACS</td>
+					<td colspan="5"><i>No patients stored in XPACS</i></td>
 				</tr>
 				
 				<tr th:each="patient : ${patients}">
-					<td th:text=${patient.PACS_patient_id}>PAT000000</td>
-					<td th:text=${patient.Age}>10</td>
+					<td th:text=${patient.PACS_Patient_Id}>PAT000000</td>
 					<td th:text=${patient.Gender}>Female</td>
 					<td th:text=${patient.Cohort}>A Study</td>
 					<td th:text=${patient.Ethnicity}>Asian</td>
