@@ -39,7 +39,7 @@ $ vagrant ssh web
 [vagrant@localhost xpacs]$ mvn spring-boot:run
 ```
 
-Fire up your web browser and open http://localhost:8585/xpacs-web/
+Fire up your web browser and open [http://localhost:8585/xpacs-web/](http://localhost:8585/xpacs-web/)
 
 ## Database
 

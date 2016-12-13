@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/simple_content}">
+<head>
+<title>XPACS:Patient list</title>
+</head>
+<body>	
+	<h1 layout:fragment="title">PATIENT INFO</h1>
+	
+	<div layout:fragment="text" class="container">
+	
+		<table class="table table-bordered table-striped">
+			<thead>
+				<tr>
+					<td>PatientID</td>
+					<td>Gender</td>
+					<td>Cohort</td>
+					<td>Ethnicity</td>
+					<td>Primary Diagnosis</td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:if="${patients.empty}">
+					<td colspan="5"><i>No patients stored in XPACS</i></td>
+				</tr>
+				
+				<tr th:each="patient : ${patients}">
+					<td th:text=${patient.PACS_Patient_Id}>PAT000000</td>
+					<td th:text=${patient.Gender}>Female</td>
+					<td th:text=${patient.Cohort}>A Study</td>
+					<td th:text=${patient.Ethnicity}>Asian</td>
+					<td th:text=${patient.PrimaryDiagnosis}>Nothing wrong with this patients</td>
+				</tr>
+			</tbody>
+		</table>
+	
+	</div>
+</body>
+</html>

@@ -9,15 +9,15 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping("/user")
-public class PatientInfoController {
+public class UserController {
 	
 	private final PatientInfoRepository patientInfoRepository;
 	
-	public PatientInfoController(PatientInfoRepository patientInfoRepository) {
+	public UserController(PatientInfoRepository patientInfoRepository) {
 		this.patientInfoRepository = patientInfoRepository;
 	}
 	
-	@GetMapping("patients")
+	@GetMapping
 	public ModelAndView patientsListAll() {
 		Iterable<PatientInfo> allPatients = patientInfoRepository.findAll();
 		

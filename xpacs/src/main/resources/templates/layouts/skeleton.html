@@ -20,14 +20,38 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#">XPACS</a>
+				<a class="navbar-brand" th:href="@{/}" href="../">XPACS</a>
 			</div>
 
-			<!-- Homepage navigation bar: not logged in yet 
-			     Later, we have to think to put logic here, differentiate between
-			     unlogged, user and admin access -->
-			
 			<div id="navbar" class="navbar-collapse collapse">
+			
+				<ul class="nav navbar-nav">
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown" role="button" aria-haspopup="true"
+						aria-expanded="false">User <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a th:href="@{/user}" href="../user">Manage patients</a></li>
+							<li><a href="#">Patient summary</a></li>
+							<li><a href="#">Add new history form</a></li>
+						</ul></li>
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown" role="button" aria-haspopup="true"
+						aria-expanded="false">Admin <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="#">Manage users</a></li>
+						</ul></li>
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown" role="button" aria-haspopup="true"
+						aria-expanded="false">SQL <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li role="separator" class="divider"></li>
+							<li class="dropdown-header">Table contents</li>
+							<li><a th:href="@{/sql/show_patient_info}" href="../sql/show_patient_info">PATIENT_INFO</a></li>
+							<li><a href="#">PATIENT_HISTORY</a></li>
+							<li><a href="#">USER</a></li>
+						</ul></li>
+				</ul>
+
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="#">Login</a></li>
 				</ul>

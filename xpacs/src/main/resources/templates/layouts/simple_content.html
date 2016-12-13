@@ -11,7 +11,9 @@
 </head>
 <body>	
 	<div class="container" layout:fragment="main_content">
-		<h1 layout:fragment="title"></h1>
+		<div class="page-header">
+  			<h1 layout:fragment="title">Title<small layout:fragment="subtitle"></small></h1>
+		</div>
 		<div layout:fragment="text"></div>
 	</div>
 </body>
