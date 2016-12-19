@@ -19,9 +19,4 @@ public class PatientInfoController {
 		return new ModelAndView("/user/patient_info_table", "patients", patientInfoRepository.findAll());
 	}
 
-	@GetMapping("/user/manage_patients")
-	public ModelAndView managePatients() {
-		return new ModelAndView("/user/manage_patients", "patients", patientInfoRepository.findAll());
-	}
-	
 }
