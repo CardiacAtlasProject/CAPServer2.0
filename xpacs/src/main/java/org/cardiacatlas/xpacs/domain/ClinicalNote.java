@@ -1,7 +1,9 @@
 package org.cardiacatlas.xpacs.domain;
 
 import java.io.Serializable;
+import java.sql.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
@@ -24,15 +26,20 @@ public class ClinicalNote implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
-	private Float Age;
-	private String Weight;
-	private String Height;
-	private String Diagnosis;
-	private String Notes;
+	@Column(nullable = false)
+	private Date assessment_date;
+	
+	private Float age;
+	private String weight;
+	private String height;
+	private String diagnosis;
+	
+	@Column(nullable = false)
+	private String notes;
 	
 	@ManyToOne
-	@JoinColumn(name = "PATIENT_HISTORY_Id", foreignKey = @ForeignKey(name = "FK_CLINICAL_NOTE_PATIENT_HISTORY_Id"))
-	private PatientHistory patientHistory;
+	@JoinColumn(name = "patient_id", foreignKey = @ForeignKey(name = "FK_CLINICAL_NOTE_PATIENT_INFO_Id"))
+	private PatientInfo patientInfo;
 	
 	protected ClinicalNote() {}
 		

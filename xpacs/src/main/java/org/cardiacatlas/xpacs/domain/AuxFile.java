@@ -1,6 +1,7 @@
 package org.cardiacatlas.xpacs.domain;
 
 import java.io.Serializable;
+import java.sql.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -26,21 +27,24 @@ public class AuxFile implements Serializable {
 	private Long id;
 
 	@Column(nullable = false)
-	private String URI;
+	private String uri;
 	
 	@Column(nullable = false)
-	private String Filename;
+	private String filename;
 	
-	private String Descriptor;
+	@Column(nullable = false)
+	private Date created_date;
+	
+	private String description;
 	
 	@ManyToOne
-	@JoinColumn(name = "PATIENT_HISTORY_Id", foreignKey = @ForeignKey(name = "FK_AUX_FILE_PATIENT_HISTORY_Id"))
-	private PatientHistory patientHistory;
+	@JoinColumn(name = "patient_id", foreignKey = @ForeignKey(name = "FK_AUX_FILE_PATIENT_INFO_Id"))
+	private PatientInfo patientInfo;
 	
 	protected AuxFile() {}
 	
 	public String toString() {
-		return this.URI + "/" + this.Filename + ": " + this.Descriptor;
+		return this.uri + "/" + this.filename + ": " + this.description;
 	}
 	
 }

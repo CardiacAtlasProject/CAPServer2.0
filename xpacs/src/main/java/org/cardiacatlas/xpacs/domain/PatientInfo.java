@@ -4,8 +4,6 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -19,33 +17,24 @@ public class PatientInfo implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
-	
-	@Column(unique = true, nullable = false)
-	private String PACS_Patient_Id;
+	private String patient_id;
 	
 	@Column(nullable = false)
-	private String Gender;
+	private String gender;
 	
-	private String Ethnicity = null;
+	private String ethnicity = null;
 	
 	@Column(nullable = false)
-	private String Cohort;
+	private String cohort;
 	
-	private String PrimaryDiagnosis = null;
+	private String primary_diagnosis = null;
 	
 	// no inheritance
 	protected PatientInfo() {}
 	
-	public PatientInfo(String PACS_patient_id, String Gender) {
-		this.PACS_Patient_Id = PACS_patient_id;
-		this.Gender = Gender;
-	}
-	
 	@Override
 	public String toString() {
-		return this.PACS_Patient_Id + "," + this.Gender + "," + this.Cohort;
+		return this.patient_id + "," + this.gender + "," + this.cohort;
 	}
 	
 }

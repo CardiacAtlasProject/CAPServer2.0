@@ -1,6 +1,7 @@
 package org.cardiacatlas.xpacs.web;
 
 import org.cardiacatlas.xpacs.service.PatientHistoryRepository;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;

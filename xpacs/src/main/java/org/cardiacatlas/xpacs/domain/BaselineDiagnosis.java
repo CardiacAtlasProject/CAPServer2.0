@@ -1,6 +1,7 @@
 package org.cardiacatlas.xpacs.domain;
 
 import java.io.Serializable;
+import java.sql.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -26,20 +27,23 @@ public class BaselineDiagnosis implements Serializable {
 	@Column(name = "id")
 	private Long id;
 	
-	private Float Age;
-	private String Height;
-	private String Weight;
-	private String SBP;
-	private String DBP;
-	private String HeartRate;
-	private String HistoryOfHypertension;
-	private String HistoryOfDiabetes;
-	private String HistoryOfAlcohol;
-	private String HistoryOfSmoking;
+	@Column(nullable = false)
+	private Date diagnosis_date;
+	
+	private Float age;
+	private String height;
+	private String weight;
+	private String sbp;
+	private String dbp;
+	private String heart_rate;
+	private String history_of_hypertension;
+	private String history_of_diabetes;
+	private String history_of_alcohol;
+	private String history_of_smoking;
 	
 	@ManyToOne
-	@JoinColumn(name = "PATIENT_HISTORY_Id", foreignKey = @ForeignKey(name = "FK_BASELINE_DIAGNOSIS_PATIENT_HISTORY_Id"))
-	private PatientHistory patientHistory;
+	@JoinColumn(name = "patient_id", foreignKey = @ForeignKey(name = "FK_BASELINE_DIAGNOSIS_PATIENT_INFO_Id"))
+	private PatientInfo patientInfo;
 	
 	protected BaselineDiagnosis() {}
 }
