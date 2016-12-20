@@ -47,4 +47,8 @@ public class AuxFile implements Serializable {
 		return this.uri + "/" + this.filename + ": " + this.description;
 	}
 	
+	public String getPatientId() {
+		return this.patientInfo.getPatient_id();
+	}
+	
 }

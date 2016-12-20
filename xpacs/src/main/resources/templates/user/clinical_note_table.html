@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/simple_content}">
+<head>
+<title>XPACS:CLINICAL_NOTE table</title>
+</head>
+<body>	
+	<h1 layout:fragment="title">CLINICAL NOTE</h1>
+	
+	<div layout:fragment="text" class="container">
+	
+		<table class="table table-bordered table-striped">
+			<thead>
+				<tr>
+					<td>PatientID</td>
+					<td>Assessment Date</td>
+					<td>Age</td>
+					<td>Weight</td>
+					<td>Height</td>
+					<td>Notes</td>
+					<td>Diagnosis</td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:if="${cnotes.empty}">
+					<td colspan="7"><i>Empty</i></td>
+				</tr>
+				
+				<tr th:each="note : ${cnotes}">
+					<td th:text=${note.getPatientId()}>ID</td>
+					<td th:text=${note.assessment_date}>1999-10-01</td>
+					<td th:text=${note.age}>20</td>
+					<td th:text=${note.weight}>30</td>
+					<td th:text=${note.height}>40</td>
+					<td th:text=${note.notes}>Notes</td>
+					<td th:text=${note.diagnosis}>Diagnosis</td>
+				</tr>
+			</tbody>
+		</table>
+	
+	</div>
+</body>
+</html>

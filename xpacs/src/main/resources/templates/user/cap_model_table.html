@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/simple_content}">
+<head>
+<title>XPACS:CAP_MODEL table</title>
+</head>
+<body>	
+	<h1 layout:fragment="title">CAP MODEL</h1>
+	
+	<div layout:fragment="text" class="container">
+	
+		<table class="table table-bordered table-striped">
+			<thead>
+				<tr>
+					<td>PatientID</td>
+					<td>Creation Date</td>
+					<td>Name</td>
+					<td>Type</td>
+					<td>XML Data</td>
+					<td>Model Data</td>
+					<td>Comment</td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:if="${models.empty}">
+					<td colspan="7"><i>Empty</i></td>
+				</tr>
+				
+				<tr th:each="m : ${models}">
+					<td th:text=${m.getPatientId()}>ID</td>
+					<td th:text=${m.created_date}>1999-10-01</td>
+					<td th:text=${m.name}>Name</td>
+					<td th:text=${m.type}>type</td>
+					<td th:text=${m.xml_data}>XML</td>
+					<td th:text=${m.model_data}>Model</td>
+					<td th:text=${m.comment}>Comment</td>
+				</tr>
+			</tbody>
+		</table>
+	
+	</div>
+</body>
+</html>

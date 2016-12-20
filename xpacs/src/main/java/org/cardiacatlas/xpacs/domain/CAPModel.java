@@ -46,4 +46,6 @@ public class CAPModel implements Serializable {
 	
 	protected CAPModel() {}
 	
+	public String getPatientId() { return this.patientInfo.getPatient_id(); }
+	
 }

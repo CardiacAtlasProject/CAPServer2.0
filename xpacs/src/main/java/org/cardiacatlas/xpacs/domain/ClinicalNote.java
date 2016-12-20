@@ -42,5 +42,7 @@ public class ClinicalNote implements Serializable {
 	private PatientInfo patientInfo;
 	
 	protected ClinicalNote() {}
+	
+	public String getPatientId() { return this.patientInfo.getPatient_id(); }
 		
 }

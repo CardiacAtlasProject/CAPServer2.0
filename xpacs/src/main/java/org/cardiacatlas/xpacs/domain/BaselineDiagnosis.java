@@ -46,4 +46,6 @@ public class BaselineDiagnosis implements Serializable {
 	private PatientInfo patientInfo;
 	
 	protected BaselineDiagnosis() {}
+	
+	public String getPatientId() { return this.patientInfo.getPatient_id(); }
 }

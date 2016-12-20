@@ -26,11 +26,11 @@
 				</tr>
 				
 				<tr th:each="patient : ${patients}">
-					<td th:text=${patient.PACS_Patient_Id}>PAT000000</td>
-					<td th:text=${patient.Gender}>Female</td>
-					<td th:text=${patient.Cohort}>A Study</td>
-					<td th:text=${patient.Ethnicity}>Asian</td>
-					<td th:text=${patient.PrimaryDiagnosis}>Nothing wrong with this patients</td>
+					<td th:text=${patient.patient_id}>PAT000000</td>
+					<td th:text=${patient.gender}>Female</td>
+					<td th:text=${patient.cohort}>A Study</td>
+					<td th:text=${patient.ethnicity}>Asian</td>
+					<td th:text=${patient.primary_diagnosis}>Nothing wrong with this patients</td>
 				</tr>
 			</tbody>
 		</table>
