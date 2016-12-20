@@ -6,7 +6,7 @@
 * MySQL database connection
 * Embedded Tomcat server, currently Apache Tomcat/8.0.36, for the backend web server
 * [Thymeleaf 3.0.2](http://www.thymeleaf.org/) for the web viewer
-* [Layout 2.1.1](https://github.com/ultraq/thymeleaf-layout-dialect) for Thymeleaf template reusable 
+* [Layout 2.1.1](https://github.com/ultraq/thymeleaf-layout-dialect) for Thymeleaf template reusable
 * [Bootstrap 3.3.7](http://getbootstrap.com/) for UI layout
 * [Lombok 1.16.4](https://projectlombok.org/) for auto setter/getter
 
@@ -16,7 +16,7 @@ In the root project folder:
 
 ```bash
 $ mvn dependency:tree
-$ mvn spring-boot:run -Djava.security.egd=file:/dev/urandom
+$ ./run.sh
 ```
 
 Open [http://localhost:8585/xpacs-web](http://localhost:8585/xpacs-web).
