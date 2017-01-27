@@ -12,16 +12,11 @@ Requirement for development:
 Running up:
 ```
 $ cd CAPServer2.0
+$ vagrant plugin install vagrant-vbguest
 $ vagrant up
 ```
 
-**Note** if there is an error of unable to create shared folder, you need to install this:
-```
-$ vagrant plugin install vagrant-vbguest
-```
-and call `vagrant up` again. Do that probably twice also for two VMs. This is still a bit of bug from vagrant and VirtualBox.
-
-That's it. You have two virtual machines: web and db.
+You will have two virtual machines: `web` and `db`.
 To go to each vm:
 ```
 $ vagrant ssh web
@@ -29,6 +24,8 @@ $ vagrant ssh db
 ```
 
 Read [Vagrant documentation](https://www.vagrantup.com/docs/) for more details and commands.
+
+Install MySQL server manually: read README.md
 
 Both `xpacs` and `dbase` folders are shared to the corresponding VMs. You can modify the source codes using Spring IDE natively, then run the web service from the `web` vm. The port forwarding, and all other configurations, are written in `Vagrantfile` file.
 

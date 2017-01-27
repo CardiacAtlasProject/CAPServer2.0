@@ -2,7 +2,6 @@
 
 # prepare necessary packages
 sudo yum -y update
-sudo yum -y install man
 sudo yum -y install vim
 sudo yum -y install epel-release
 sudo yum -y groupinstall "Development tools"
