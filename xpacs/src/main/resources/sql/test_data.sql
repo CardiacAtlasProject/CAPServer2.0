@@ -1,8 +1,9 @@
 /* INITIALIZES USERS */
+/* DONT FORGET THE MYSQL PASSWORD POLICY !!! */
 INSERT INTO USER (username, password, role, enabled)
 VALUES
-	('capuser', PASSWORD('capuser'), 'USER', 1),
-	('capadmin', PASSWORD('capadmin'), 'ADMIN', 1);
+	('capuser', PASSWORD('XPACSc@pus3r'), 'USER', 1),
+	('capadmin', PASSWORD('XPACSc@padm1n'), 'ADMIN', 1);
 
 /* INITIALIZES PATIENT_INFO */
 INSERT INTO PATIENT_INFO (cohort, ethnicity, gender, patient_id, primary_diagnosis)

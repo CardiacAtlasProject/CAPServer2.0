@@ -22,3 +22,11 @@ else
 
     sudo echo -e "export PATH=\$PATH:/opt/apache-maven-3.3.9/bin"  > /etc/profile.d/mvn.sh
 fi
+
+# FINISH
+echo "VM is ready."
+echo "You can login by '$ vagrant ssh'"
+echo "Starting/stopping vm by '$ vagrant up' and '$ vagrant halt' commands"
+echo "Destroying the vm by '$ vagrant destroy' command"
+echo "NOTE: The MySQL database has not been installed."
+echo "      Read instruction from ~/dbase/README.md file."

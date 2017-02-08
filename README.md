@@ -1,10 +1,8 @@
 # CAPServer2.0
 
-## XPACS
+## Setting up the development environment
 
-XPACS is an auXiliarry PACS database support for non-DICOM data. The source is written under the `xpacs` folder.
-
-Requirement for development:
+Requirements for development:
 * [Oracle VM VirtualBox](https://www.virtualbox.org/)
 * [Vagrant](https://www.vagrantup.com/)
 * [Spring suite IDE](http://spring.io/) (can be Eclipse with STS plugin)
@@ -16,22 +14,22 @@ $ vagrant plugin install vagrant-vbguest
 $ vagrant up
 ```
 
-You will have two virtual machines: `web` and `db`.
-To go to each vm:
+Your VM is setup. To go to the vm do:
 ```
-$ vagrant ssh web
-$ vagrant ssh db
+$ vagrant ssh
 ```
 
 Read [Vagrant documentation](https://www.vagrantup.com/docs/) for more details and commands.
 
-Install MySQL server manually: read README.md
+## Install MySQL server
 
-Both `xpacs` and `dbase` folders are shared to the corresponding VMs. You can modify the source codes using Spring IDE natively, then run the web service from the `web` vm. The port forwarding, and all other configurations, are written in `Vagrantfile` file.
+This should be done manually. See dbase/README.md.
+
+Both `xpacs` and `dbase` folders are shared to the corresponding VMs. You can modify the source codes using Spring IDE natively, then run the web service from the vm. The port forwarding, and all other configurations, are written in `Vagrantfile` file.
 
 Starting up the service:
 ```
-$ vagrant ssh web
+$ vagrant ssh
 [vagrant@localhost ~]$ cd xpacs
 [vagrant@localhost xpacs]$ mvn spring-boot:run
 ```

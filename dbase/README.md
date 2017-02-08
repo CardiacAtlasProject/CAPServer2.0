@@ -5,7 +5,7 @@ when you install by default.
 
 1. Install MySQL 5.7 package
    ```
-   $ sudo rpm -ivh ~/xpacs-db/mysql/mysql57-community-release-el7-9.noarch.rpm
+   $ sudo rpm -ivh ~/dbase/mysql/mysql57-community-release-el7-9.noarch.rpm
    ```
 
 2. Install the server
@@ -13,11 +13,6 @@ when you install by default.
    $ sudo yum -y install mysql-server
    ```
 
-   Replace the configuration file
-   ```
-   $ sudo cp ~/xpacs-db/mysql/my.cnf /etc/my.cnf
-   ```
-   
 3. Start MySQL server
 
    ```
@@ -31,10 +26,22 @@ when you install by default.
 
    You should see status containing `Active: active (running)`.
 
-4. Configuring MySQL
+4. Initializing root password
 
-   Run the init script
+   During the installation process, a temporary password is generated for the MySQL root user. Locate it in the `mysqld.log` with this command:
    ```
-   $ cd ~/xpacs-db/mysql
-   $ ./mysql-init.sh
+   $ sudo grep 'temporary password' /var/log/mysqld.log
    ```
+
+   Make a note of that password before running MySQL secure initialization for the first time:
+   ```
+   $ sudo mysql_secure_installation
+   ```
+
+   Enter a new 12-character password that contains at least one uppercase letter, one lowercase letter, one number and one special character. Re-enter it when prompted.
+
+ 5. Initialize the XPACS database
+
+    ```
+    $ mysql -uroot -p < ~/dbase/mysql/initdb.sql
+    ```

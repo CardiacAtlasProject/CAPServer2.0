@@ -12,7 +12,7 @@ Vagrant.configure("2") do |config|
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://atlas.hashicorp.com/search.
-  # config.vm.box = "base"
+  config.vm.box = "centos/7"
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
@@ -22,11 +22,11 @@ Vagrant.configure("2") do |config|
   # Create a forwarded port mapping which allows access to a specific port
   # within the machine from a port on the host machine. In the example below,
   # accessing "localhost:8080" will access port 80 on the guest machine.
-  #config.vm.network "forwarded_port", guest: 80, host: 8585
+  config.vm.network "forwarded_port", guest: 8585, host: 8585
 
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
-  # config.vm.network "private_network", ip: "192.168.33.10"
+  config.vm.network "private_network", ip: "192.168.56.201", auto_config: false
 
   # Create a public network, which generally matched to bridged network.
   # Bridged networks make the machine appear as another physical device on
@@ -38,6 +38,9 @@ Vagrant.configure("2") do |config|
   # the path on the guest to mount the folder. And the optional third
   # argument is a set of non-required options.
   config.vm.synced_folder ".", "/vagrant", disabled: true
+  config.vm.synced_folder "./dbase", "/home/vagrant/dbase"
+  config.vm.synced_folder "./xpacs", "/home/vagrant/xpacs"
+  config.vm.synced_folder "./scratch", "/home/vagrant/scratch"
 
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.
@@ -68,22 +71,6 @@ Vagrant.configure("2") do |config|
   #   apt-get update
   #   apt-get install -y apache2
   # SHELL
-
-  # for the database end
-  config.vm.define "db" do |db|
-      db.vm.box = "centos/7"
-      db.vm.synced_folder "./dbase", "/home/vagrant/xpacs-db"
-      db.vm.provision :shell, path: "vagrant/dbserver-bootstrap.sh"
-      db.vm.network "private_network", ip: "192.168.56.201"
-  end
-
-  # for the spring web
-  config.vm.define "web" do |web|
-      web.vm.box = "centos/7"
-      web.vm.synced_folder "./xpacs", "/home/vagrant/xpacs"
-      web.vm.synced_folder "./scratch", "/home/vagrant/scratch"
-      web.vm.provision :shell, path: "vagrant/webserver-bootstrap.sh"
-      web.vm.network "forwarded_port", guest: 8585, host: 8585
-  end
+  config.vm.provision :shell, path: "vagrant/bootstrap.sh"
 
 end
