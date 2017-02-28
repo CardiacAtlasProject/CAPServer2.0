@@ -14,20 +14,15 @@ $ vagrant plugin install vagrant-vbguest
 $ vagrant up
 ```
 
-Your VM is setup. To go to the vm do:
+Your VM is ready. To go to the vm do:
 ```
 $ vagrant ssh
+[vagrant@localhost ~]$
 ```
 
 Both `xpacs` and `dbase` folders are shared to the corresponding VMs. You can modify the source codes using Spring IDE natively, then run the web service from the vm. The port forwarding, and all other configurations, are written in `Vagrantfile` file.
 
 Read [Vagrant documentation](https://www.vagrantup.com/docs/) for more details and commands. Common commands:
-
-* Login to the VM:
-```
-$ vagrant ssh
-[vagrant@localhost ~]$
-```
 
 * Stopping the VM:
 ```

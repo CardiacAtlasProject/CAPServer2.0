@@ -15,13 +15,36 @@ if hash mvn 2>/dev/null; then
     echo "Package mvn has already been installed"
 else
     echo "DOWNLOAD & INSTALLING MAVEN"
-    curl -s -o /tmp/apache-maven-3.3.9-bin.tar.gz http://www-eu.apache.org/dist/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.tar.gz
+    curl -sS -o /tmp/apache-maven-3.3.9-bin.tar.gz http://www-eu.apache.org/dist/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.tar.gz
 
     sudo tar -C /opt -xzf /tmp/apache-maven-3.3.9-bin.tar.gz
     rm -rf /tmp/apache-maven-3.3.9-bin.tar.gz
 
     sudo echo -e "export PATH=\$PATH:/opt/apache-maven-3.3.9/bin"  > /etc/profile.d/mvn.sh
 fi
+
+# installing node.js
+if hash npm 2>/dev/null; then
+    echo "Package node.js has already been installed"
+else
+    echo "DOWNLOAD & INSTALLING Node.js"
+    curl -sS -o /tmp/node-v6.10.0-linux-x64.tar.xz https://nodejs.org/dist/v6.10.0/node-v6.10.0-linux-x64.tar.xz
+
+    sudo tar -C /opt -xvf /tmp/node-v6.10.0-linux-x64.tar.xz
+    rm -rf /tmp/node-v6.10.0-linux-x64.tar.xz
+
+    sudo echo -e "export PATH=\$PATH:/opt/node-v6.10.0-linux-x64/bin"  > /etc/profile.d/node.sh
+fi
+
+# installing yarn
+if hash yarn 2>/dev/null; then
+    echo "Package yarn has already been installed"
+else
+    echo "DOWNLOAD & INSTALLING yarn"
+    sudo wget https://dl.yarnpkg.com/rpm/yarn.repo -O /etc/yum.repos.d/yarn.repo
+    sudo yum -y install yarn
+fi
+
 
 # FINISH
 echo "VM is ready."
