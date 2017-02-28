@@ -1,0 +1,50 @@
+
+<div>
+    <h2><span>Cap Model</span> {{vm.capModel.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row jh-entity-details">
+        <dt><span data-translate="xpacswebApp.capModel.creation_date">Creation Date</span></dt>
+        <dd>
+            <span>{{vm.capModel.creation_date | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span>Name</span></dt>
+        <dd>
+            <span>{{vm.capModel.name}}</span>
+        </dd>
+        <dt><span>Type</span></dt>
+        <dd>
+            <span>{{vm.capModel.type}}</span>
+        </dd>
+        <dt><span>Comment</span></dt>
+        <dd>
+            <span>{{vm.capModel.comment}}</span>
+        </dd>
+        <dt><span data-translate="xpacswebApp.capModel.xml_file">Xml File</span></dt>
+        <dd>
+            <span>{{vm.capModel.xml_file}}</span>
+        </dd>
+        <dt><span data-translate="xpacswebApp.capModel.model_file">Model File</span></dt>
+        <dd>
+            <div ng-if="vm.capModel.model_file">
+                <a ng-click="vm.openFile(vm.capModel.model_fileContentType, vm.capModel.model_file)">open</a>
+                {{vm.capModel.model_fileContentType}}, {{vm.byteSize(vm.capModel.model_file)}}
+            </div>
+        </dd>
+        <dt><span>Patient Info FK</span></dt>
+        <dd>
+            <a ui-sref="patient-info-detail({id:vm.capModel.patientInfoFK.id})">{{vm.capModel.patientInfoFK.patient_id}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button" ui-sref="cap-model-detail.edit({id:vm.capModel.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down"> Edit</span>
+    </button>
+</div>

@@ -1,0 +1,76 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()" show-validation>
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myPatientInfoLabel">Create or edit a Patient Info</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.patientInfo.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.patientInfo.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="xpacswebApp.patientInfo.patient_id" for="field_patient_id">Patient Id</label>
+            <input type="text" class="form-control" name="patient_id" id="field_patient_id"
+                    ng-model="vm.patientInfo.patient_id"
+                    required/>
+            <div ng-show="editForm.patient_id.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.patient_id.$error.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_cohort">Cohort</label>
+            <input type="text" class="form-control" name="cohort" id="field_cohort"
+                    ng-model="vm.patientInfo.cohort"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_ethnicity">Ethnicity</label>
+            <input type="text" class="form-control" name="ethnicity" id="field_ethnicity"
+                    ng-model="vm.patientInfo.ethnicity"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_gender">Gender</label>
+            <select class="form-control" name="gender" ng-model="vm.patientInfo.gender" id="field_gender" required>
+                <option value="male">male</option>
+                <option value="female">female</option>
+                <option value="unknown">unknown</option>
+            </select>
+            <div ng-show="editForm.gender.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.gender.$error.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="xpacswebApp.patientInfo.primary_diagnosis" for="field_primary_diagnosis">Primary Diagnosis</label>
+            <input type="text" class="form-control" name="primary_diagnosis" id="field_primary_diagnosis"
+                    ng-model="vm.patientInfo.primary_diagnosis"
+                    ng-maxlength="255"/>
+            <div ng-show="editForm.primary_diagnosis.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.primary_diagnosis.$error.maxlength">
+                    This field cannot be longer than 255 characters.
+                </p>
+            </div>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

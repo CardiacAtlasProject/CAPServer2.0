@@ -1,0 +1,101 @@
+<div>
+    <h2>Baseline Diagnoses</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="baseline-diagnosis.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span class="hidden-xs-down" >
+                        Create new Baseline Diagnosis
+                    </span>
+                </button>
+            </div>
+            <div class="col-xs-8 no-padding-right">
+                <form name="searchForm" class="form-inline">
+                    <div class="input-group pull-right" >
+                        <input type="text" class="form-control" ng-model="vm.searchQuery" id="searchQuery" placeholder="Query">
+                        <span  class="input-group-btn width-min" >
+                            <button class="btn btn-info" ng-click="vm.search(vm.searchQuery)">
+                                <span class="glyphicon glyphicon-search"></span>
+                            </button>
+                        </span>
+                        <span class="input-group-btn width-min" ng-if="vm.currentSearch">
+                            <button class="btn btn-info" ng-click="vm.clear()">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </button>
+                        </span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
+                    <th jh-sort-by="id"><span>ID</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="diagnosis_date"><span data-translate="xpacswebApp.baselineDiagnosis.diagnosis_date">Diagnosis Date</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="age"><span>Age</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="height"><span>Height</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="weight"><span>Weight</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="heart_rate"><span data-translate="xpacswebApp.baselineDiagnosis.heart_rate">Heart Rate</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="dbp"><span>Dbp</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="sbp"><span>Sbp</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="history_of_alcohol"><span data-translate="xpacswebApp.baselineDiagnosis.history_of_alcohol">History Of Alcohol</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="history_of_diabetes"><span data-translate="xpacswebApp.baselineDiagnosis.history_of_diabetes">History Of Diabetes</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="history_of_hypertension"><span data-translate="xpacswebApp.baselineDiagnosis.history_of_hypertension">History Of Hypertension</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="history_of_smoking"><span data-translate="xpacswebApp.baselineDiagnosis.history_of_smoking">History Of Smoking</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="patientInfoFK.patient_id"><span>Patient Info FK</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="baselineDiagnosis in vm.baselineDiagnoses track by baselineDiagnosis.id">
+                    <td><a ui-sref="baseline-diagnosis-detail({id:baselineDiagnosis.id})">{{baselineDiagnosis.id}}</a></td>
+                        <td>{{baselineDiagnosis.diagnosis_date | date:'mediumDate'}}</td>
+                    <td>{{baselineDiagnosis.age}}</td>
+                    <td>{{baselineDiagnosis.height}}</td>
+                    <td>{{baselineDiagnosis.weight}}</td>
+                    <td>{{baselineDiagnosis.heart_rate}}</td>
+                    <td>{{baselineDiagnosis.dbp}}</td>
+                    <td>{{baselineDiagnosis.sbp}}</td>
+                    <td>{{baselineDiagnosis.history_of_alcohol}}</td>
+                    <td>{{baselineDiagnosis.history_of_diabetes}}</td>
+                    <td>{{baselineDiagnosis.history_of_hypertension}}</td>
+                    <td>{{baselineDiagnosis.history_of_smoking}}</td>
+                    <td>
+                        <a ui-sref="patient-info-detail({id:baselineDiagnosis.patientInfoFK.id})">{{baselineDiagnosis.patientInfoFK.patient_id}}</a>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="baseline-diagnosis-detail({id:baselineDiagnosis.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-sm-down"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="baseline-diagnosis.edit({id:baselineDiagnosis.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-sm-down"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="baseline-diagnosis.delete({id:baselineDiagnosis.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-sm-down"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="text-center">
+        <jhi-item-count page="vm.page" total="vm.queryCount" items-per-page="vm.itemsPerPage"></jhi-item-count>
+        <uib-pagination class="pagination-sm" total-items="vm.totalItems" items-per-page="vm.itemsPerPage" ng-model="vm.page" ng-change="vm.transition()"></uib-pagination>
+    </div>
+</div>

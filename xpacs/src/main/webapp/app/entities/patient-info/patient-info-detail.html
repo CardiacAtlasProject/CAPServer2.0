@@ -1,0 +1,39 @@
+
+<div>
+    <h2><span>Patient Info</span> {{vm.patientInfo.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row jh-entity-details">
+        <dt><span data-translate="xpacswebApp.patientInfo.patient_id">Patient Id</span></dt>
+        <dd>
+            <span>{{vm.patientInfo.patient_id}}</span>
+        </dd>
+        <dt><span>Cohort</span></dt>
+        <dd>
+            <span>{{vm.patientInfo.cohort}}</span>
+        </dd>
+        <dt><span>Ethnicity</span></dt>
+        <dd>
+            <span>{{vm.patientInfo.ethnicity}}</span>
+        </dd>
+        <dt><span>Gender</span></dt>
+        <dd>
+            <span>{{vm.patientInfo.gender}}</span>
+        </dd>
+        <dt><span data-translate="xpacswebApp.patientInfo.primary_diagnosis">Primary Diagnosis</span></dt>
+        <dd>
+            <span>{{vm.patientInfo.primary_diagnosis}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button" ui-sref="patient-info-detail.edit({id:vm.patientInfo.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down"> Edit</span>
+    </button>
+</div>
