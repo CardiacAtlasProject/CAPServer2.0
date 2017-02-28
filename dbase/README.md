@@ -62,14 +62,14 @@ when you install by default.
 
    Enter a new 12-character password that contains at least one uppercase letter, one lowercase letter, one number and one special character. Re-enter it when prompted.
 
- 6. Create XPACS database
+6. Create XPACS database
 
     ```
     $ mysql -uroot -p
     mysql> CREATE DATABASE xpacs;
     ```
 
- 5. Create user
+5. Create user
 
    This user will be used in the code to connect to both XPACS and PACS database. It is recommended that you use the same password and privileges for both database. Instructions to install the PACS database can be seen from [DCM4CHEE installation on MySQL](https://github.com/dcm4che/dcm4chee-arc-light/wiki/Installation#mysql-and-mariadb).
 
