@@ -4,7 +4,9 @@ import org.cardiacatlas.xpacs.XpacswebApp;
 import org.cardiacatlas.xpacs.domain.PersistentToken;
 import org.cardiacatlas.xpacs.domain.User;
 import org.cardiacatlas.xpacs.repository.PersistentTokenRepository;
+import org.cardiacatlas.xpacs.config.Constants;
 import org.cardiacatlas.xpacs.repository.UserRepository;
+import org.cardiacatlas.xpacs.service.dto.UserDTO;
 import java.time.ZonedDateTime;
 import org.cardiacatlas.xpacs.service.util.RandomUtil;
 import java.time.LocalDate;
@@ -15,6 +17,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import java.util.Optional;
 import java.util.List;
 
@@ -141,5 +145,14 @@ public class UserServiceIntTest {
         token.setIpAddress("127.0.0.1");
         token.setUserAgent("Test agent");
         persistentTokenRepository.saveAndFlush(token);
+    }
+
+    @Test
+    public void assertThatAnonymousUserIsNotGet() {
+        final PageRequest pageable = new PageRequest(0, (int) userRepository.count());
+        final Page<UserDTO> allManagedUsers = userService.getAllManagedUsers(pageable);
+        assertThat(allManagedUsers.getContent().stream()
+            .noneMatch(user -> Constants.ANONYMOUS_USER.equals(user.getLogin())))
+            .isTrue();
     }
 }

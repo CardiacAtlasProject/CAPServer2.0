@@ -4,6 +4,7 @@ import org.cardiacatlas.xpacs.domain.Authority;
 import org.cardiacatlas.xpacs.domain.User;
 import org.cardiacatlas.xpacs.repository.AuthorityRepository;
 import org.cardiacatlas.xpacs.repository.PersistentTokenRepository;
+import org.cardiacatlas.xpacs.config.Constants;
 import org.cardiacatlas.xpacs.repository.UserRepository;
 import org.cardiacatlas.xpacs.repository.search.UserSearchRepository;
 import org.cardiacatlas.xpacs.security.AuthoritiesConstants;
@@ -204,7 +205,7 @@ public class UserService {
 
     @Transactional(readOnly = true)    
     public Page<UserDTO> getAllManagedUsers(Pageable pageable) {
-        return userRepository.findAll(pageable).map(UserDTO::new);
+        return userRepository.findAllByLoginNot(pageable, Constants.ANONYMOUS_USER).map(UserDTO::new);
     }
 
     @Transactional(readOnly = true)
