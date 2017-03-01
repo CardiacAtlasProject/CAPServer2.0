@@ -332,7 +332,6 @@ public class ClinicalNoteResourceIntTest {
     }
 
     @Test
-    @Transactional
     public void equalsVerifier() throws Exception {
         TestUtil.equalsVerifier(ClinicalNote.class);
     }

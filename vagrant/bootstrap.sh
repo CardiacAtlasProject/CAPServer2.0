@@ -5,6 +5,7 @@ sudo yum -y update
 sudo yum -y install vim
 sudo yum -y install epel-release
 sudo yum -y groupinstall "Development tools"
+sudo yum -y install wget
 
 # install JDK 1.8
 sudo yum -y install java-1.8.0-openjdk-devel
@@ -28,12 +29,12 @@ if hash npm 2>/dev/null; then
     echo "Package node.js has already been installed"
 else
     echo "DOWNLOAD & INSTALLING Node.js"
-    curl -sS -o /tmp/node-v6.10.0-linux-x64.tar.xz https://nodejs.org/dist/v6.10.0/node-v6.10.0-linux-x64.tar.xz
+    curl -sS -o /tmp/node-v7.7.0-linux-x64.tar.gz https://nodejs.org/dist/v7.7.0/node-v7.7.0-linux-x64.tar.gz
 
-    sudo tar -C /opt -xvf /tmp/node-v6.10.0-linux-x64.tar.xz
-    rm -rf /tmp/node-v6.10.0-linux-x64.tar.xz
+    sudo tar -C /opt -xvf /tmp/node-v7.7.0-linux-x64.tar.gz
+    rm -rf /tmp/node-v7.7.0-linux-x64.tar.gz
 
-    sudo echo -e "export PATH=\$PATH:/opt/node-v6.10.0-linux-x64/bin"  > /etc/profile.d/node.sh
+    sudo echo -e "export PATH=\$PATH:/opt/node-v7.7.0-linux-x64/bin"  > /etc/profile.d/node.sh
 fi
 
 # installing yarn
@@ -43,6 +44,8 @@ else
     echo "DOWNLOAD & INSTALLING yarn"
     sudo wget https://dl.yarnpkg.com/rpm/yarn.repo -O /etc/yum.repos.d/yarn.repo
     sudo yum -y install yarn
+
+    yarn global upgrade generator-jhipster
 fi
 
 

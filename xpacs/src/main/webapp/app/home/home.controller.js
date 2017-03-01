@@ -29,7 +29,5 @@
         function register () {
             $state.go('register');
         }
-
     }
-    
 })();

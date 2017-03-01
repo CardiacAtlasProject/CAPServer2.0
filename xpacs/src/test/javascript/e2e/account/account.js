@@ -12,7 +12,7 @@ describe('account', function () {
     });
 
     it('should fail to login with bad password', function () {
-        const expect1 = /Web-based XPACS viewer/;
+        const expect1 = /Welcome, Java Hipster!/;
         element.all(by.css('h1')).first().getText().then((value) => {
             expect(value).toMatch(expect1);
         });
