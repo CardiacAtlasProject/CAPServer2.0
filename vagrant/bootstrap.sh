@@ -43,6 +43,13 @@ else
     echo "DOWNLOAD & INSTALLING yarn"
     sudo wget https://dl.yarnpkg.com/rpm/yarn.repo -O /etc/yum.repos.d/yarn.repo
     sudo yum -y install yarn
+
+    sudo echo -e "export PATH=\$PATH:`yarn global bin`:\$HOME/.config/yarn/global/node_modules/.bin" > /etc/profile.d/yarn.sh
+
+    yarn global add yo
+    yarn global add bower
+    yarn global add gulp-cli
+    yarn global add generator-jhipster
 fi
 
 
