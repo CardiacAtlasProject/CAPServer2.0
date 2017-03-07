@@ -4,7 +4,7 @@
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
                 ng-click="vm.clear()">&times;</button>
-        <h4 class="modal-title" id="myPatientInfoLabel">Create or edit a Patient Info</h4>
+        <h4 class="modal-title" id="myPatientInfoLabel">Create new Patient Info</h4>
     </div>
     <div class="modal-body">
         <jhi-alert-error></jhi-alert-error>
@@ -14,9 +14,9 @@
                     ng-model="vm.patientInfo.id" readonly />
         </div>
         <div class="form-group">
-            <label class="control-label" data-translate="xpacswebApp.patientInfo.patient_id" for="field_patient_id">Patient Id</label>
+            <label class="control-label" data-translate="xpacswebApp.patientInfo.patient_id" for="field_patient_id">PatientID</label>
             <input type="text" class="form-control" name="patient_id" id="field_patient_id"
-                    ng-model="vm.patientInfo.patient_id"
+                    ng-model="vm.patientInfo.patient_id" ng-model-options="{ updateOn: 'blur'}"
                     required/>
             <div ng-show="editForm.patient_id.$invalid">
                 <p class="help-block"

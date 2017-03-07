@@ -14,7 +14,7 @@
             url: '/patient-info?page&sort&search',
             data: {
                 authorities: ['ROLE_USER'],
-                pageTitle: 'PatientInfos'
+                pageTitle: 'Patient Info'
             },
             views: {
                 'content@': {
