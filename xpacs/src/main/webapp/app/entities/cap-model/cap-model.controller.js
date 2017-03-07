@@ -5,9 +5,9 @@
         .module('xpacswebApp')
         .controller('CapModelController', CapModelController);
 
-    CapModelController.$inject = ['DataUtils', 'CapModel', 'CapModelSearch', 'ParseLinks', 'AlertService', 'paginationConstants', 'pagingParams'];
+    CapModelController.$inject = ['$state', 'DataUtils', 'CapModel', 'CapModelSearch', 'ParseLinks', 'AlertService', 'paginationConstants', 'pagingParams'];
 
-    function CapModelController(DataUtils, CapModel, CapModelSearch, ParseLinks, AlertService, paginationConstants, pagingParams) {
+    function CapModelController($state, DataUtils, CapModel, CapModelSearch, ParseLinks, AlertService, paginationConstants, pagingParams) {
 
         var vm = this;
 

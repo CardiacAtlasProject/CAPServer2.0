@@ -20,15 +20,5 @@
 
     <cache alias="org.cardiacatlas.xpacs.domain.User.persistentTokens" uses-template="simple"/>
 
-    <cache alias="org.cardiacatlas.xpacs.domain.PatientInfo" uses-template="simple"/>
-
-    <cache alias="org.cardiacatlas.xpacs.domain.ClinicalNote" uses-template="simple"/>
-
-    <cache alias="org.cardiacatlas.xpacs.domain.CapModel" uses-template="simple"/>
-
-    <cache alias="org.cardiacatlas.xpacs.domain.AuxFile" uses-template="simple"/>
-
-    <cache alias="org.cardiacatlas.xpacs.domain.BaselineDiagnosis" uses-template="simple"/>
-
     <!-- jhipster-needle-ehcache-add-entry -->
 </config>

@@ -5,9 +5,9 @@
         .module('xpacswebApp')
         .controller('AuxFileController', AuxFileController);
 
-    AuxFileController.$inject = ['DataUtils', 'AuxFile', 'AuxFileSearch', 'ParseLinks', 'AlertService', 'paginationConstants', 'pagingParams'];
+    AuxFileController.$inject = ['$state', 'DataUtils', 'AuxFile', 'AuxFileSearch', 'ParseLinks', 'AlertService', 'paginationConstants', 'pagingParams'];
 
-    function AuxFileController(DataUtils, AuxFile, AuxFileSearch, ParseLinks, AlertService, paginationConstants, pagingParams) {
+    function AuxFileController($state, DataUtils, AuxFile, AuxFileSearch, ParseLinks, AlertService, paginationConstants, pagingParams) {
 
         var vm = this;
 

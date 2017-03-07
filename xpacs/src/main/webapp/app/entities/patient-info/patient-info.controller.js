@@ -5,9 +5,9 @@
         .module('xpacswebApp')
         .controller('PatientInfoController', PatientInfoController);
 
-    PatientInfoController.$inject = ['PatientInfo', 'PatientInfoSearch', 'ParseLinks', 'AlertService', 'paginationConstants', 'pagingParams'];
+    PatientInfoController.$inject = ['$state', 'PatientInfo', 'PatientInfoSearch', 'ParseLinks', 'AlertService', 'paginationConstants', 'pagingParams'];
 
-    function PatientInfoController(PatientInfo, PatientInfoSearch, ParseLinks, AlertService, paginationConstants, pagingParams) {
+    function PatientInfoController($state, PatientInfo, PatientInfoSearch, ParseLinks, AlertService, paginationConstants, pagingParams) {
 
         var vm = this;
 

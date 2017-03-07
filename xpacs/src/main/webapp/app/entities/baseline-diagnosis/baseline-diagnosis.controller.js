@@ -5,9 +5,9 @@
         .module('xpacswebApp')
         .controller('BaselineDiagnosisController', BaselineDiagnosisController);
 
-    BaselineDiagnosisController.$inject = ['BaselineDiagnosis', 'BaselineDiagnosisSearch', 'ParseLinks', 'AlertService', 'paginationConstants', 'pagingParams'];
+    BaselineDiagnosisController.$inject = ['$state', 'BaselineDiagnosis', 'BaselineDiagnosisSearch', 'ParseLinks', 'AlertService', 'paginationConstants', 'pagingParams'];
 
-    function BaselineDiagnosisController(BaselineDiagnosis, BaselineDiagnosisSearch, ParseLinks, AlertService, paginationConstants, pagingParams) {
+    function BaselineDiagnosisController($state, BaselineDiagnosis, BaselineDiagnosisSearch, ParseLinks, AlertService, paginationConstants, pagingParams) {
 
         var vm = this;
 

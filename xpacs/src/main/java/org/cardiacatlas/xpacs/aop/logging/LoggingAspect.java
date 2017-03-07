@@ -35,7 +35,7 @@ public class LoggingAspect {
      */
     @Pointcut("within(org.cardiacatlas.xpacs.repository..*) || within(org.cardiacatlas.xpacs.service..*) || within(org.cardiacatlas.xpacs.web.rest..*)")
     public void loggingPointcut() {
-        // Method is empty as this is just a Poincut, the implementations are in the advices.
+        // Method is empty as this is just a Pointcut, the implementations are in the advices.
     }
 
     /**

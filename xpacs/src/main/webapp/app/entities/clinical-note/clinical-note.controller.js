@@ -5,9 +5,9 @@
         .module('xpacswebApp')
         .controller('ClinicalNoteController', ClinicalNoteController);
 
-    ClinicalNoteController.$inject = ['DataUtils', 'ClinicalNote', 'ClinicalNoteSearch', 'ParseLinks', 'AlertService', 'paginationConstants', 'pagingParams'];
+    ClinicalNoteController.$inject = ['$state', 'DataUtils', 'ClinicalNote', 'ClinicalNoteSearch', 'ParseLinks', 'AlertService', 'paginationConstants', 'pagingParams'];
 
-    function ClinicalNoteController(DataUtils, ClinicalNote, ClinicalNoteSearch, ParseLinks, AlertService, paginationConstants, pagingParams) {
+    function ClinicalNoteController($state, DataUtils, ClinicalNote, ClinicalNoteSearch, ParseLinks, AlertService, paginationConstants, pagingParams) {
 
         var vm = this;
 
