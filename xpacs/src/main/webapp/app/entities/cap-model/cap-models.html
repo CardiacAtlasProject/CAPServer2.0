@@ -1,5 +1,5 @@
 <div>
-    <h2>Cap Models</h2>
+    <h2>CAP MODEL</h2>
     <jhi-alert></jhi-alert>
     <div class="container-fluid">
         <div class="row">
@@ -7,7 +7,7 @@
                 <button class="btn btn-primary" ui-sref="cap-model.new" >
                     <span class="glyphicon glyphicon-plus"></span>
                     <span class="hidden-xs-down" >
-                        Create new Cap Model
+                        ADD ENTRY
                     </span>
                 </button>
             </div>
@@ -35,21 +35,23 @@
         <table class="jh-table table table-striped">
             <thead>
                 <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
-                    <th jh-sort-by="id"><span>ID</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="creation_date"><span data-translate="xpacswebApp.capModel.creation_date">Creation Date</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <!-- <th jh-sort-by="id"><span>ID</span> <span class="glyphicon glyphicon-sort"></span></th> -->
+                    <th jh-sort-by="creation_date"><span data-translate="xpacswebApp.capModel.creation_date">Date</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="name"><span>Name</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="type"><span>Type</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="comment"><span>Comment</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="xml_file"><span data-translate="xpacswebApp.capModel.xml_file">Xml File</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="xml_file"><span data-translate="xpacswebApp.capModel.xml_file">XML File</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="model_file"><span data-translate="xpacswebApp.capModel.model_file">Model File</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="patientInfoFK.patient_id"><span>Patient Info FK</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="patientInfoFK.patient_id"><span>PatientID</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
                 <tr ng-repeat="capModel in vm.capModels track by capModel.id">
-                    <td><a ui-sref="cap-model-detail({id:capModel.id})">{{capModel.id}}</a></td>
-                        <td>{{capModel.creation_date | date:'mediumDate'}}</td>
+                    <!-- <td><a ui-sref="cap-model-detail({id:capModel.id})">{{capModel.id}}</a></td> -->
+                    <td><a ui-sref="cap-model-detail({id:capModel.id})">
+                        {{capModel.creation_date | date:'mediumDate'}}
+                    </a></td>
                     <td>{{capModel.name}}</td>
                     <td>{{capModel.type}}</td>
                     <td>{{capModel.comment}}</td>

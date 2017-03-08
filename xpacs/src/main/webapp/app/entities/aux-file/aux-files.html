@@ -1,5 +1,5 @@
 <div>
-    <h2>Aux Files</h2>
+    <h2>AUX FILE</h2>
     <jhi-alert></jhi-alert>
     <div class="container-fluid">
         <div class="row">
@@ -7,7 +7,7 @@
                 <button class="btn btn-primary" ui-sref="aux-file.new" >
                     <span class="glyphicon glyphicon-plus"></span>
                     <span class="hidden-xs-down" >
-                        Create new Aux File
+                        ADD ENTRY
                     </span>
                 </button>
             </div>
@@ -35,18 +35,20 @@
         <table class="jh-table table table-striped">
             <thead>
                 <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
-                    <th jh-sort-by="id"><span>ID</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <!-- <th jh-sort-by="id"><span>ID</span> <span class="glyphicon glyphicon-sort"></span></th> -->
                     <th jh-sort-by="creation_date"><span data-translate="xpacswebApp.auxFile.creation_date">Creation Date</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="description"><span>Description</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="file"><span>File</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="patientInfoFK.patient_id"><span>Patient Info FK</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="patientInfoFK.patient_id"><span>PatientID</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
                 <tr ng-repeat="auxFile in vm.auxFiles track by auxFile.id">
-                    <td><a ui-sref="aux-file-detail({id:auxFile.id})">{{auxFile.id}}</a></td>
-                        <td>{{auxFile.creation_date | date:'mediumDate'}}</td>
+                    <!-- <td><a ui-sref="aux-file-detail({id:auxFile.id})">{{auxFile.id}}</a></td> -->
+                    <td><a ui-sref="aux-file-detail({id:auxFile.id})">
+                        {{auxFile.creation_date | date:'mediumDate'}}
+                    </a></td>
                     <td>{{auxFile.description}}</td>
                     <td>
                         <a ng-if="auxFile.file" ng-click="vm.openFile(auxFile.fileContentType, auxFile.file)">open</a>

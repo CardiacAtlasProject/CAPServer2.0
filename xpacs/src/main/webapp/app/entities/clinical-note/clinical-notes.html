@@ -1,5 +1,5 @@
 <div>
-    <h2>Clinical Notes</h2>
+    <h2>CLINICAL NOTE</h2>
     <jhi-alert></jhi-alert>
     <div class="container-fluid">
         <div class="row">
@@ -7,7 +7,7 @@
                 <button class="btn btn-primary" ui-sref="clinical-note.new" >
                     <span class="glyphicon glyphicon-plus"></span>
                     <span class="hidden-xs-down" >
-                        Create new Clinical Note
+                        ADD ENTRY
                     </span>
                 </button>
             </div>
@@ -35,21 +35,23 @@
         <table class="jh-table table table-striped">
             <thead>
                 <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
-                    <th jh-sort-by="id"><span>ID</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <!-- <th jh-sort-by="id"><span>ID</span> <span class="glyphicon glyphicon-sort"></span></th> -->
                     <th jh-sort-by="assessment_date"><span data-translate="xpacswebApp.clinicalNote.assessment_date">Assessment Date</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="age"><span>Age</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="height"><span>Height</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="weight"><span>Weight</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="diagnosis"><span>Diagnosis</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="note"><span>Note</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="patientInfoFK.patient_id"><span>Patient Info FK</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="patientInfoFK.patient_id"><span>PatientID</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
                 <tr ng-repeat="clinicalNote in vm.clinicalNotes track by clinicalNote.id">
-                    <td><a ui-sref="clinical-note-detail({id:clinicalNote.id})">{{clinicalNote.id}}</a></td>
-                        <td>{{clinicalNote.assessment_date | date:'mediumDate'}}</td>
+                    <!-- <td><a ui-sref="clinical-note-detail({id:clinicalNote.id})">{{clinicalNote.id}}</a></td> -->
+                    <td><a ui-sref="clinical-note-detail({id:clinicalNote.id})">
+                        {{clinicalNote.assessment_date | date:'mediumDate'}}
+                    </a></td>
                     <td>{{clinicalNote.age}}</td>
                     <td>{{clinicalNote.height}}</td>
                     <td>{{clinicalNote.weight}}</td>
