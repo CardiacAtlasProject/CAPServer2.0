@@ -38,14 +38,17 @@
                 <constraints nullable="true" />
             </column>
 
-            <column name="xml_file" type="clob">
-                <constraints nullable="true" />
-            </column>
-
             <column name="model_file" type="longblob">
                 <constraints nullable="true" />
             </column>
             <column name="model_file_content_type" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="xml_file" type="longblob">
+                <constraints nullable="true" />
+            </column>
+            <column name="xml_file_content_type" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
 

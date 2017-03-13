@@ -67,7 +67,7 @@ class CapModelGatlingTest extends Simulation {
             .exec(http("Create new capModel")
             .post("/api/cap-models")
             .headers(headers_http_authenticated)
-            .body(StringBody("""{"id":null, "creation_date":"2020-01-01T00:00:00.000Z", "name":"SAMPLE_TEXT", "type":"SAMPLE_TEXT", "comment":"SAMPLE_TEXT", "xml_file":null, "model_file":null}""")).asJSON
+            .body(StringBody("""{"id":null, "creation_date":"2020-01-01T00:00:00.000Z", "name":"SAMPLE_TEXT", "type":"SAMPLE_TEXT", "comment":"SAMPLE_TEXT", "model_file":null, "xml_file":null}""")).asJSON
             .check(status.is(201))
             .check(headerRegex("Location", "(.*)").saveAs("new_capModel_url"))).exitHereIfFailed
             .pause(10)

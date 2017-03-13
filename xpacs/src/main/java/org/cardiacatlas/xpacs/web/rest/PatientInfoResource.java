@@ -36,7 +36,7 @@ public class PatientInfoResource {
     private final Logger log = LoggerFactory.getLogger(PatientInfoResource.class);
 
     private static final String ENTITY_NAME = "patientInfo";
-        
+
     private final PatientInfoService patientInfoService;
 
     public PatientInfoResource(PatientInfoService patientInfoService) {
@@ -134,7 +134,7 @@ public class PatientInfoResource {
      * SEARCH  /_search/patient-infos?query=:query : search for the patientInfo corresponding
      * to the query.
      *
-     * @param query the query of the patientInfo search 
+     * @param query the query of the patientInfo search
      * @param pageable the pagination information
      * @return the result of the search
      * @throws URISyntaxException if there is an error to generate the pagination HTTP headers

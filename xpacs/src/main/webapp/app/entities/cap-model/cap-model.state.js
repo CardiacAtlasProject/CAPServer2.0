@@ -119,9 +119,10 @@
                                 name: null,
                                 type: null,
                                 comment: null,
-                                xml_file: null,
                                 model_file: null,
                                 model_fileContentType: null,
+                                xml_file: null,
+                                xml_fileContentType: null,
                                 id: null
                             };
                         }

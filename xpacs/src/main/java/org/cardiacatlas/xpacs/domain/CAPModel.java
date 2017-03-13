@@ -40,15 +40,18 @@ public class CapModel implements Serializable {
     private String comment;
 
     @Lob
-    @Column(name = "xml_file")
-    private String xml_file;
-
-    @Lob
     @Column(name = "model_file")
     private byte[] model_file;
 
     @Column(name = "model_file_content_type")
     private String model_fileContentType;
+
+    @Lob
+    @Column(name = "xml_file")
+    private byte[] xml_file;
+
+    @Column(name = "xml_file_content_type")
+    private String xml_fileContentType;
 
     @ManyToOne(optional = false)
     @NotNull
@@ -114,19 +117,6 @@ public class CapModel implements Serializable {
         this.comment = comment;
     }
 
-    public String getXml_file() {
-        return xml_file;
-    }
-
-    public CapModel xml_file(String xml_file) {
-        this.xml_file = xml_file;
-        return this;
-    }
-
-    public void setXml_file(String xml_file) {
-        this.xml_file = xml_file;
-    }
-
     public byte[] getModel_file() {
         return model_file;
     }
@@ -151,6 +141,32 @@ public class CapModel implements Serializable {
 
     public void setModel_fileContentType(String model_fileContentType) {
         this.model_fileContentType = model_fileContentType;
+    }
+
+    public byte[] getXml_file() {
+        return xml_file;
+    }
+
+    public CapModel xml_file(byte[] xml_file) {
+        this.xml_file = xml_file;
+        return this;
+    }
+
+    public void setXml_file(byte[] xml_file) {
+        this.xml_file = xml_file;
+    }
+
+    public String getXml_fileContentType() {
+        return xml_fileContentType;
+    }
+
+    public CapModel xml_fileContentType(String xml_fileContentType) {
+        this.xml_fileContentType = xml_fileContentType;
+        return this;
+    }
+
+    public void setXml_fileContentType(String xml_fileContentType) {
+        this.xml_fileContentType = xml_fileContentType;
     }
 
     public PatientInfo getPatientInfoFK() {
@@ -194,9 +210,10 @@ public class CapModel implements Serializable {
             ", name='" + name + "'" +
             ", type='" + type + "'" +
             ", comment='" + comment + "'" +
-            ", xml_file='" + xml_file + "'" +
             ", model_file='" + model_file + "'" +
             ", model_fileContentType='" + model_fileContentType + "'" +
+            ", xml_file='" + xml_file + "'" +
+            ", xml_fileContentType='" + xml_fileContentType + "'" +
             '}';
     }
 }

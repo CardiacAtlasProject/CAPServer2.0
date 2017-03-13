@@ -54,13 +54,15 @@ public class CapModelResourceIntTest {
     private static final String DEFAULT_COMMENT = "AAAAAAAAAA";
     private static final String UPDATED_COMMENT = "BBBBBBBBBB";
 
-    private static final String DEFAULT_XML_FILE = "AAAAAAAAAA";
-    private static final String UPDATED_XML_FILE = "BBBBBBBBBB";
-
     private static final byte[] DEFAULT_MODEL_FILE = TestUtil.createByteArray(1, "0");
     private static final byte[] UPDATED_MODEL_FILE = TestUtil.createByteArray(2, "1");
     private static final String DEFAULT_MODEL_FILE_CONTENT_TYPE = "image/jpg";
     private static final String UPDATED_MODEL_FILE_CONTENT_TYPE = "image/png";
+
+    private static final byte[] DEFAULT_XML_FILE = TestUtil.createByteArray(1, "0");
+    private static final byte[] UPDATED_XML_FILE = TestUtil.createByteArray(2, "1");
+    private static final String DEFAULT_XML_FILE_CONTENT_TYPE = "image/jpg";
+    private static final String UPDATED_XML_FILE_CONTENT_TYPE = "image/png";
 
     @Autowired
     private CapModelRepository capModelRepository;
@@ -106,9 +108,10 @@ public class CapModelResourceIntTest {
                 .name(DEFAULT_NAME)
                 .type(DEFAULT_TYPE)
                 .comment(DEFAULT_COMMENT)
-                .xml_file(DEFAULT_XML_FILE)
                 .model_file(DEFAULT_MODEL_FILE)
-                .model_fileContentType(DEFAULT_MODEL_FILE_CONTENT_TYPE);
+                .model_fileContentType(DEFAULT_MODEL_FILE_CONTENT_TYPE)
+                .xml_file(DEFAULT_XML_FILE)
+                .xml_fileContentType(DEFAULT_XML_FILE_CONTENT_TYPE);
         // Add required entity
         PatientInfo patientInfoFK = PatientInfoResourceIntTest.createEntity(em);
         em.persist(patientInfoFK);
@@ -143,9 +146,10 @@ public class CapModelResourceIntTest {
         assertThat(testCapModel.getName()).isEqualTo(DEFAULT_NAME);
         assertThat(testCapModel.getType()).isEqualTo(DEFAULT_TYPE);
         assertThat(testCapModel.getComment()).isEqualTo(DEFAULT_COMMENT);
-        assertThat(testCapModel.getXml_file()).isEqualTo(DEFAULT_XML_FILE);
         assertThat(testCapModel.getModel_file()).isEqualTo(DEFAULT_MODEL_FILE);
         assertThat(testCapModel.getModel_fileContentType()).isEqualTo(DEFAULT_MODEL_FILE_CONTENT_TYPE);
+        assertThat(testCapModel.getXml_file()).isEqualTo(DEFAULT_XML_FILE);
+        assertThat(testCapModel.getXml_fileContentType()).isEqualTo(DEFAULT_XML_FILE_CONTENT_TYPE);
 
         // Validate the CapModel in Elasticsearch
         CapModel capModelEs = capModelSearchRepository.findOne(testCapModel.getId());
@@ -223,9 +227,10 @@ public class CapModelResourceIntTest {
             .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())))
             .andExpect(jsonPath("$.[*].type").value(hasItem(DEFAULT_TYPE.toString())))
             .andExpect(jsonPath("$.[*].comment").value(hasItem(DEFAULT_COMMENT.toString())))
-            .andExpect(jsonPath("$.[*].xml_file").value(hasItem(DEFAULT_XML_FILE.toString())))
             .andExpect(jsonPath("$.[*].model_fileContentType").value(hasItem(DEFAULT_MODEL_FILE_CONTENT_TYPE)))
-            .andExpect(jsonPath("$.[*].model_file").value(hasItem(Base64Utils.encodeToString(DEFAULT_MODEL_FILE))));
+            .andExpect(jsonPath("$.[*].model_file").value(hasItem(Base64Utils.encodeToString(DEFAULT_MODEL_FILE))))
+            .andExpect(jsonPath("$.[*].xml_fileContentType").value(hasItem(DEFAULT_XML_FILE_CONTENT_TYPE)))
+            .andExpect(jsonPath("$.[*].xml_file").value(hasItem(Base64Utils.encodeToString(DEFAULT_XML_FILE))));
     }
 
     @Test
@@ -243,9 +248,10 @@ public class CapModelResourceIntTest {
             .andExpect(jsonPath("$.name").value(DEFAULT_NAME.toString()))
             .andExpect(jsonPath("$.type").value(DEFAULT_TYPE.toString()))
             .andExpect(jsonPath("$.comment").value(DEFAULT_COMMENT.toString()))
-            .andExpect(jsonPath("$.xml_file").value(DEFAULT_XML_FILE.toString()))
             .andExpect(jsonPath("$.model_fileContentType").value(DEFAULT_MODEL_FILE_CONTENT_TYPE))
-            .andExpect(jsonPath("$.model_file").value(Base64Utils.encodeToString(DEFAULT_MODEL_FILE)));
+            .andExpect(jsonPath("$.model_file").value(Base64Utils.encodeToString(DEFAULT_MODEL_FILE)))
+            .andExpect(jsonPath("$.xml_fileContentType").value(DEFAULT_XML_FILE_CONTENT_TYPE))
+            .andExpect(jsonPath("$.xml_file").value(Base64Utils.encodeToString(DEFAULT_XML_FILE)));
     }
 
     @Test
@@ -271,9 +277,10 @@ public class CapModelResourceIntTest {
                 .name(UPDATED_NAME)
                 .type(UPDATED_TYPE)
                 .comment(UPDATED_COMMENT)
-                .xml_file(UPDATED_XML_FILE)
                 .model_file(UPDATED_MODEL_FILE)
-                .model_fileContentType(UPDATED_MODEL_FILE_CONTENT_TYPE);
+                .model_fileContentType(UPDATED_MODEL_FILE_CONTENT_TYPE)
+                .xml_file(UPDATED_XML_FILE)
+                .xml_fileContentType(UPDATED_XML_FILE_CONTENT_TYPE);
 
         restCapModelMockMvc.perform(put("/api/cap-models")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -288,9 +295,10 @@ public class CapModelResourceIntTest {
         assertThat(testCapModel.getName()).isEqualTo(UPDATED_NAME);
         assertThat(testCapModel.getType()).isEqualTo(UPDATED_TYPE);
         assertThat(testCapModel.getComment()).isEqualTo(UPDATED_COMMENT);
-        assertThat(testCapModel.getXml_file()).isEqualTo(UPDATED_XML_FILE);
         assertThat(testCapModel.getModel_file()).isEqualTo(UPDATED_MODEL_FILE);
         assertThat(testCapModel.getModel_fileContentType()).isEqualTo(UPDATED_MODEL_FILE_CONTENT_TYPE);
+        assertThat(testCapModel.getXml_file()).isEqualTo(UPDATED_XML_FILE);
+        assertThat(testCapModel.getXml_fileContentType()).isEqualTo(UPDATED_XML_FILE_CONTENT_TYPE);
 
         // Validate the CapModel in Elasticsearch
         CapModel capModelEs = capModelSearchRepository.findOne(testCapModel.getId());
@@ -353,9 +361,10 @@ public class CapModelResourceIntTest {
             .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())))
             .andExpect(jsonPath("$.[*].type").value(hasItem(DEFAULT_TYPE.toString())))
             .andExpect(jsonPath("$.[*].comment").value(hasItem(DEFAULT_COMMENT.toString())))
-            .andExpect(jsonPath("$.[*].xml_file").value(hasItem(DEFAULT_XML_FILE.toString())))
             .andExpect(jsonPath("$.[*].model_fileContentType").value(hasItem(DEFAULT_MODEL_FILE_CONTENT_TYPE)))
-            .andExpect(jsonPath("$.[*].model_file").value(hasItem(Base64Utils.encodeToString(DEFAULT_MODEL_FILE))));
+            .andExpect(jsonPath("$.[*].model_file").value(hasItem(Base64Utils.encodeToString(DEFAULT_MODEL_FILE))))
+            .andExpect(jsonPath("$.[*].xml_fileContentType").value(hasItem(DEFAULT_XML_FILE_CONTENT_TYPE)))
+            .andExpect(jsonPath("$.[*].xml_file").value(hasItem(Base64Utils.encodeToString(DEFAULT_XML_FILE))));
     }
 
     @Test

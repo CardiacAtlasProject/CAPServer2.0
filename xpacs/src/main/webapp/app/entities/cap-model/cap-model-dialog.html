@@ -53,11 +53,6 @@
                     ng-model="vm.capModel.comment"
                     />
         </div>
-        <div class="form-group">
-            <label class="control-label" data-translate="xpacswebApp.capModel.xml_file" for="field_xml_file">Xml File</label>
-                <textarea class="form-control" name="xml_file" id="field_xml_file"
-                    ng-model="vm.capModel.xml_file" ></textarea>
-        </div>
         <div class="form-group" ngf-drop ngf-change="vm.setModel_file($file, vm.capModel)">
             <label class="control-label" data-translate="xpacswebApp.capModel.model_file" for="field_model_file">Model File</label>
             <div>
@@ -79,6 +74,28 @@
                     />
             <input type="hidden" class="form-control" name="model_fileContentType" id="field_model_fileContentType"
                     ng-model="vm.capModel.model_fileContentType" />
+        </div>
+        <div class="form-group" ngf-drop ngf-change="vm.setXml_file($file, vm.capModel)">
+            <label class="control-label" data-translate="xpacswebApp.capModel.xml_file" for="field_xml_file">Xml File</label>
+            <div>
+                <div ng-if="vm.capModel.xml_file" class="help-block clearfix">
+                    <a class="pull-left" ng-click="vm.openFile(vm.capModel.xml_fileContentType, vm.capModel.xml_file)">open</a><br>
+                    <span class="pull-left">{{vm.capModel.xml_fileContentType}}, {{vm.byteSize(vm.capModel.xml_file)}}</span>
+                    <button type="button" ng-click="vm.capModel.xml_file=null;vm.capModel.xml_fileContentType=null;"
+                            class="btn btn-default btn-xs pull-right">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </button>
+                </div>
+                <button type="button" ngf-select class="btn btn-default btn-block"
+                        ngf-change="vm.setXml_file($file, vm.capModel)">
+                    Add blob
+                </button>
+            </div>
+            <input type="hidden" class="form-control" name="xml_file" id="field_xml_file"
+                    ng-model="vm.capModel.xml_file"
+                    />
+            <input type="hidden" class="form-control" name="xml_fileContentType" id="field_xml_fileContentType"
+                    ng-model="vm.capModel.xml_fileContentType" />
         </div>
 
         <div class="form-group">

@@ -59,6 +59,17 @@
             }
         };
 
+        vm.setXml_file = function ($file, capModel) {
+            if ($file) {
+                DataUtils.toBase64($file, function(base64Data) {
+                    $scope.$apply(function() {
+                        capModel.xml_file = base64Data;
+                        capModel.xml_fileContentType = $file.type;
+                    });
+                });
+            }
+        };
+
         function openCalendar (date) {
             vm.datePickerOpenStatus[date] = true;
         }

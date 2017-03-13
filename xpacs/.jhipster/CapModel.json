@@ -35,12 +35,12 @@
             "fieldType": "String"
         },
         {
-            "fieldName": "xml_file",
+            "fieldName": "model_file",
             "fieldType": "byte[]",
-            "fieldTypeBlobContent": "text"
+            "fieldTypeBlobContent": "any"
         },
         {
-            "fieldName": "model_file",
+            "fieldName": "xml_file",
             "fieldType": "byte[]",
             "fieldTypeBlobContent": "any"
         }
