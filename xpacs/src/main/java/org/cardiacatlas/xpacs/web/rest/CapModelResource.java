@@ -1,7 +1,7 @@
 package org.cardiacatlas.xpacs.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
-import org.cardiacatlas.xpacs.domain.CapModel;
+import org.cardiacatlas.xpacs.domain.CAPModel;
 
 import org.cardiacatlas.xpacs.repository.CapModelRepository;
 import org.cardiacatlas.xpacs.repository.search.CapModelSearchRepository;
@@ -57,12 +57,12 @@ public class CapModelResource {
      */
     @PostMapping("/cap-models")
     @Timed
-    public ResponseEntity<CapModel> createCapModel(@Valid @RequestBody CapModel capModel) throws URISyntaxException {
+    public ResponseEntity<CAPModel> createCapModel(@Valid @RequestBody CAPModel capModel) throws URISyntaxException {
         log.debug("REST request to save CapModel : {}", capModel);
         if (capModel.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new capModel cannot already have an ID")).body(null);
         }
-        CapModel result = capModelRepository.save(capModel);
+        CAPModel result = capModelRepository.save(capModel);
         capModelSearchRepository.save(result);
         return ResponseEntity.created(new URI("/api/cap-models/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
@@ -80,12 +80,12 @@ public class CapModelResource {
      */
     @PutMapping("/cap-models")
     @Timed
-    public ResponseEntity<CapModel> updateCapModel(@Valid @RequestBody CapModel capModel) throws URISyntaxException {
+    public ResponseEntity<CAPModel> updateCapModel(@Valid @RequestBody CAPModel capModel) throws URISyntaxException {
         log.debug("REST request to update CapModel : {}", capModel);
         if (capModel.getId() == null) {
             return createCapModel(capModel);
         }
-        CapModel result = capModelRepository.save(capModel);
+        CAPModel result = capModelRepository.save(capModel);
         capModelSearchRepository.save(result);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, capModel.getId().toString()))
@@ -101,10 +101,10 @@ public class CapModelResource {
      */
     @GetMapping("/cap-models")
     @Timed
-    public ResponseEntity<List<CapModel>> getAllCapModels(@ApiParam Pageable pageable)
+    public ResponseEntity<List<CAPModel>> getAllCapModels(@ApiParam Pageable pageable)
         throws URISyntaxException {
         log.debug("REST request to get a page of CapModels");
-        Page<CapModel> page = capModelRepository.findAll(pageable);
+        Page<CAPModel> page = capModelRepository.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/cap-models");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
@@ -117,9 +117,9 @@ public class CapModelResource {
      */
     @GetMapping("/cap-models/{id}")
     @Timed
-    public ResponseEntity<CapModel> getCapModel(@PathVariable Long id) {
+    public ResponseEntity<CAPModel> getCapModel(@PathVariable Long id) {
         log.debug("REST request to get CapModel : {}", id);
-        CapModel capModel = capModelRepository.findOne(id);
+        CAPModel capModel = capModelRepository.findOne(id);
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(capModel));
     }
 
@@ -149,10 +149,10 @@ public class CapModelResource {
      */
     @GetMapping("/_search/cap-models")
     @Timed
-    public ResponseEntity<List<CapModel>> searchCapModels(@RequestParam String query, @ApiParam Pageable pageable)
+    public ResponseEntity<List<CAPModel>> searchCapModels(@RequestParam String query, @ApiParam Pageable pageable)
         throws URISyntaxException {
         log.debug("REST request to search for a page of CapModels for query {}", query);
-        Page<CapModel> page = capModelSearchRepository.search(queryStringQuery(query), pageable);
+        Page<CAPModel> page = capModelSearchRepository.search(queryStringQuery(query), pageable);
         HttpHeaders headers = PaginationUtil.generateSearchPaginationHttpHeaders(query, page, "/api/_search/cap-models");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
