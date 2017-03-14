@@ -24,3 +24,6 @@ hs_err_pid*
 */.factorypath
 */node_modules/*
 */yarn.lock
+
+# others
+*.pyc
