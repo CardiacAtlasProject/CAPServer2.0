@@ -43,7 +43,7 @@ public class CacheConfiguration {
             cm.createCache(org.cardiacatlas.xpacs.domain.PersistentToken.class.getName(), jcacheConfiguration);
             cm.createCache(org.cardiacatlas.xpacs.domain.User.class.getName() + ".persistentTokens", jcacheConfiguration);
             cm.createCache(org.cardiacatlas.xpacs.domain.PatientInfo.class.getName(), jcacheConfiguration);
-            cm.createCache(org.cardiacatlas.xpacs.domain.CapModel.class.getName(), jcacheConfiguration);
+            cm.createCache(org.cardiacatlas.xpacs.domain.CAPModel.class.getName(), jcacheConfiguration);
             cm.createCache(org.cardiacatlas.xpacs.domain.AuxFile.class.getName(), jcacheConfiguration);
             cm.createCache(org.cardiacatlas.xpacs.domain.BaselineDiagnosis.class.getName(), jcacheConfiguration);
             cm.createCache(org.cardiacatlas.xpacs.domain.ClinicalNote.class.getName(), jcacheConfiguration);

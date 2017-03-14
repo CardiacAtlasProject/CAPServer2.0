@@ -15,6 +15,14 @@ Scripts are written in python with some required modules:
    $ pip install docopt
    ```
 
+3. Install [magic](https://github.com/ahupp/python-magic) module to determine file's content type:
+
+   ```bash
+   $ pip install python-magic
+   ```
+
+   Note you need to install the dependencies for running this module.
+
 ## Pre-requisites
 
 1. Make sure you have created the XPACS schema.

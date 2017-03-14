@@ -2,7 +2,7 @@ package org.cardiacatlas.xpacs.web.rest;
 
 import org.cardiacatlas.xpacs.XpacswebApp;
 
-import org.cardiacatlas.xpacs.domain.CapModel;
+import org.cardiacatlas.xpacs.domain.CAPModel;
 import org.cardiacatlas.xpacs.domain.PatientInfo;
 import org.cardiacatlas.xpacs.repository.CapModelRepository;
 import org.cardiacatlas.xpacs.repository.search.CapModelSearchRepository;
@@ -84,7 +84,7 @@ public class CapModelResourceIntTest {
 
     private MockMvc restCapModelMockMvc;
 
-    private CapModel capModel;
+    private CAPModel capModel;
 
     @Before
     public void setup() {
@@ -102,8 +102,8 @@ public class CapModelResourceIntTest {
      * This is a static method, as tests for other entities might also need it,
      * if they test an entity which requires the current entity.
      */
-    public static CapModel createEntity(EntityManager em) {
-        CapModel capModel = new CapModel()
+    public static CAPModel createEntity(EntityManager em) {
+        CAPModel capModel = new CAPModel()
                 .creation_date(DEFAULT_CREATION_DATE)
                 .name(DEFAULT_NAME)
                 .type(DEFAULT_TYPE)
@@ -139,9 +139,9 @@ public class CapModelResourceIntTest {
             .andExpect(status().isCreated());
 
         // Validate the CapModel in the database
-        List<CapModel> capModelList = capModelRepository.findAll();
+        List<CAPModel> capModelList = capModelRepository.findAll();
         assertThat(capModelList).hasSize(databaseSizeBeforeCreate + 1);
-        CapModel testCapModel = capModelList.get(capModelList.size() - 1);
+        CAPModel testCapModel = capModelList.get(capModelList.size() - 1);
         assertThat(testCapModel.getCreation_date()).isEqualTo(DEFAULT_CREATION_DATE);
         assertThat(testCapModel.getName()).isEqualTo(DEFAULT_NAME);
         assertThat(testCapModel.getType()).isEqualTo(DEFAULT_TYPE);
@@ -152,7 +152,7 @@ public class CapModelResourceIntTest {
         assertThat(testCapModel.getXml_fileContentType()).isEqualTo(DEFAULT_XML_FILE_CONTENT_TYPE);
 
         // Validate the CapModel in Elasticsearch
-        CapModel capModelEs = capModelSearchRepository.findOne(testCapModel.getId());
+        CAPModel capModelEs = capModelSearchRepository.findOne(testCapModel.getId());
         assertThat(capModelEs).isEqualToComparingFieldByField(testCapModel);
     }
 
@@ -162,7 +162,7 @@ public class CapModelResourceIntTest {
         int databaseSizeBeforeCreate = capModelRepository.findAll().size();
 
         // Create the CapModel with an existing ID
-        CapModel existingCapModel = new CapModel();
+        CAPModel existingCapModel = new CAPModel();
         existingCapModel.setId(1L);
 
         // An entity with an existing ID cannot be created, so this API call must fail
@@ -172,7 +172,7 @@ public class CapModelResourceIntTest {
             .andExpect(status().isBadRequest());
 
         // Validate the Alice in the database
-        List<CapModel> capModelList = capModelRepository.findAll();
+        List<CAPModel> capModelList = capModelRepository.findAll();
         assertThat(capModelList).hasSize(databaseSizeBeforeCreate);
     }
 
@@ -190,7 +190,7 @@ public class CapModelResourceIntTest {
             .content(TestUtil.convertObjectToJsonBytes(capModel)))
             .andExpect(status().isBadRequest());
 
-        List<CapModel> capModelList = capModelRepository.findAll();
+        List<CAPModel> capModelList = capModelRepository.findAll();
         assertThat(capModelList).hasSize(databaseSizeBeforeTest);
     }
 
@@ -208,7 +208,7 @@ public class CapModelResourceIntTest {
             .content(TestUtil.convertObjectToJsonBytes(capModel)))
             .andExpect(status().isBadRequest());
 
-        List<CapModel> capModelList = capModelRepository.findAll();
+        List<CAPModel> capModelList = capModelRepository.findAll();
         assertThat(capModelList).hasSize(databaseSizeBeforeTest);
     }
 
@@ -271,7 +271,7 @@ public class CapModelResourceIntTest {
         int databaseSizeBeforeUpdate = capModelRepository.findAll().size();
 
         // Update the capModel
-        CapModel updatedCapModel = capModelRepository.findOne(capModel.getId());
+        CAPModel updatedCapModel = capModelRepository.findOne(capModel.getId());
         updatedCapModel
                 .creation_date(UPDATED_CREATION_DATE)
                 .name(UPDATED_NAME)
@@ -288,9 +288,9 @@ public class CapModelResourceIntTest {
             .andExpect(status().isOk());
 
         // Validate the CapModel in the database
-        List<CapModel> capModelList = capModelRepository.findAll();
+        List<CAPModel> capModelList = capModelRepository.findAll();
         assertThat(capModelList).hasSize(databaseSizeBeforeUpdate);
-        CapModel testCapModel = capModelList.get(capModelList.size() - 1);
+        CAPModel testCapModel = capModelList.get(capModelList.size() - 1);
         assertThat(testCapModel.getCreation_date()).isEqualTo(UPDATED_CREATION_DATE);
         assertThat(testCapModel.getName()).isEqualTo(UPDATED_NAME);
         assertThat(testCapModel.getType()).isEqualTo(UPDATED_TYPE);
@@ -301,7 +301,7 @@ public class CapModelResourceIntTest {
         assertThat(testCapModel.getXml_fileContentType()).isEqualTo(UPDATED_XML_FILE_CONTENT_TYPE);
 
         // Validate the CapModel in Elasticsearch
-        CapModel capModelEs = capModelSearchRepository.findOne(testCapModel.getId());
+        CAPModel capModelEs = capModelSearchRepository.findOne(testCapModel.getId());
         assertThat(capModelEs).isEqualToComparingFieldByField(testCapModel);
     }
 
@@ -319,7 +319,7 @@ public class CapModelResourceIntTest {
             .andExpect(status().isCreated());
 
         // Validate the CapModel in the database
-        List<CapModel> capModelList = capModelRepository.findAll();
+        List<CAPModel> capModelList = capModelRepository.findAll();
         assertThat(capModelList).hasSize(databaseSizeBeforeUpdate + 1);
     }
 
@@ -341,7 +341,7 @@ public class CapModelResourceIntTest {
         assertThat(capModelExistsInEs).isFalse();
 
         // Validate the database is empty
-        List<CapModel> capModelList = capModelRepository.findAll();
+        List<CAPModel> capModelList = capModelRepository.findAll();
         assertThat(capModelList).hasSize(databaseSizeBeforeDelete - 1);
     }
 
@@ -369,6 +369,6 @@ public class CapModelResourceIntTest {
 
     @Test
     public void equalsVerifier() throws Exception {
-        TestUtil.equalsVerifier(CapModel.class);
+        TestUtil.equalsVerifier(CAPModel.class);
     }
 }

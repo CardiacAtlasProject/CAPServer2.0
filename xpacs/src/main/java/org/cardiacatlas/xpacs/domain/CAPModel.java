@@ -17,7 +17,7 @@ import java.util.Objects;
 @Table(name = "cap_model")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 @Document(indexName = "capmodel")
-public class CapModel implements Serializable {
+public class CAPModel implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -69,7 +69,7 @@ public class CapModel implements Serializable {
         return creation_date;
     }
 
-    public CapModel creation_date(LocalDate creation_date) {
+    public CAPModel creation_date(LocalDate creation_date) {
         this.creation_date = creation_date;
         return this;
     }
@@ -82,7 +82,7 @@ public class CapModel implements Serializable {
         return name;
     }
 
-    public CapModel name(String name) {
+    public CAPModel name(String name) {
         this.name = name;
         return this;
     }
@@ -95,7 +95,7 @@ public class CapModel implements Serializable {
         return type;
     }
 
-    public CapModel type(String type) {
+    public CAPModel type(String type) {
         this.type = type;
         return this;
     }
@@ -108,7 +108,7 @@ public class CapModel implements Serializable {
         return comment;
     }
 
-    public CapModel comment(String comment) {
+    public CAPModel comment(String comment) {
         this.comment = comment;
         return this;
     }
@@ -121,7 +121,7 @@ public class CapModel implements Serializable {
         return model_file;
     }
 
-    public CapModel model_file(byte[] model_file) {
+    public CAPModel model_file(byte[] model_file) {
         this.model_file = model_file;
         return this;
     }
@@ -134,7 +134,7 @@ public class CapModel implements Serializable {
         return model_fileContentType;
     }
 
-    public CapModel model_fileContentType(String model_fileContentType) {
+    public CAPModel model_fileContentType(String model_fileContentType) {
         this.model_fileContentType = model_fileContentType;
         return this;
     }
@@ -147,7 +147,7 @@ public class CapModel implements Serializable {
         return xml_file;
     }
 
-    public CapModel xml_file(byte[] xml_file) {
+    public CAPModel xml_file(byte[] xml_file) {
         this.xml_file = xml_file;
         return this;
     }
@@ -160,7 +160,7 @@ public class CapModel implements Serializable {
         return xml_fileContentType;
     }
 
-    public CapModel xml_fileContentType(String xml_fileContentType) {
+    public CAPModel xml_fileContentType(String xml_fileContentType) {
         this.xml_fileContentType = xml_fileContentType;
         return this;
     }
@@ -173,7 +173,7 @@ public class CapModel implements Serializable {
         return patientInfoFK;
     }
 
-    public CapModel patientInfoFK(PatientInfo patientInfo) {
+    public CAPModel patientInfoFK(PatientInfo patientInfo) {
         this.patientInfoFK = patientInfo;
         return this;
     }
@@ -190,7 +190,7 @@ public class CapModel implements Serializable {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        CapModel capModel = (CapModel) o;
+        CAPModel capModel = (CAPModel) o;
         if (capModel.id == null || id == null) {
             return false;
         }
