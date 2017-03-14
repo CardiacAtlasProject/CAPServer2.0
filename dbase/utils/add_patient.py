@@ -12,6 +12,16 @@ Options:
     -u <user>               User name.
     --password=<password>   User password.
     --db=<database>         Database name. Default is xpacs.
+    -f <csv_file>           Read list of patients from a CSV file (see below)
+
+Batch addition of patients
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+If -f option is given, then patients are added in from a CSV file in a batch
+mode. This file should have the following headers:
+'patient_id', 'gender', 'cohort', 'ethnicity', 'primary_diagnosis
+
+If there are existing patient_ids in the database, then the existing rows
+will be updated.
 
 Author: Avan Suinesiaputra - University of Auckland (2017)
 """
@@ -21,6 +31,8 @@ import docopt
 import getpass
 import mysql.connector
 import termutils as tu
+import sqlutils as su
+
 
 if __name__ == '__main__':
 
@@ -68,52 +80,75 @@ except mysql.connector.Error as err:
     print(err)
     exit()
 
-# First question: who is the patient?
-patientID = raw_input('Patient ID: ')
+existing_patients = su.get_all_patient_ids(cnx)
 
-# This should be unique. Have to check it first.
-query = "SELECT * FROM patient_info WHERE patient_id = '" + patientID + "'"
-if arguments['--debug']:
-    tu.debug(query)
 
-cursor = cnx.cursor(buffered=True)
-cursor.execute(query)
-isexist = cursor.rowcount>0
-if arguments['--debug']:
-    tu.debug("Number of rows = " + str(cursor.rowcount))
-cursor.close()
+# it's either by CSV file or interactive
+if arguments['-f'] is None:
 
-if isexist:
-    tu.error("Patient " + patientID + " already exists.")
+    # First question: who is the patient?
+    patientID = raw_input('Patient ID: ')
+    if patientID in existing_patients:
+        tu.error("Patient " + patientID + " already exists.")
+        exit()
 
-else:
     # Remaining questions
     cohort = raw_input('Cohort [press <enter> to skip]: ')
     ethnicity = raw_input('Ethnicity [press <enter> to skip]: ')
     gender = raw_input('Cohort [M/F/U=unknown (default)]: ')
-    if str.lower(gender)=='f':
+    if str.lower(gender) == 'f':
         gender = 'female'
-    elif str.lower(gender)=='m':
+    elif str.lower(gender) == 'm':
         gender = 'male'
     else:
         gender = 'unknown'
     primary_diagnosis = raw_input('Primary diagnosis [press <enter> to skip]: ')
 
-    # insert
-    add_patient = ("INSERT INTO patient_info "
-                   "(patient_id, cohort, ethnicity, gender, primary_diagnosis) "
-                   "VALUES (%s, %s, %s, %s, %s)")
+    query = su.insert_new_patient_info(cnx, {
+        'patient_id': patientID,
+        'cohort': cohort,
+        'ethnicity': ethnicity,
+        'gender': gender,
+        'primary_diagnosis': primary_diagnosis
+    })
 
-    try:
-        cursor = cnx.cursor()
-        cursor.execute(add_patient, (patientID, cohort, ethnicity, gender, primary_diagnosis))
-        cnx.commit()
-        cursor.close()
-    except mysql.connector.Error as err:
-        tu.error(str(err))
-        exit()
-
+    if arguments['--debug']:
+        tu.debug(query)
     tu.ok("Patient " + patientID + " added to the database")
 
-# don't forget to close the connection
-cnx.close()
+    # don't forget to close the connection
+    cnx.close()
+
+else:
+
+    try:
+        for row in su.read_csv(arguments['-f']):
+            # fix gender
+            g = str.lower(row['gender'])
+            if g == 'male' or g == 'm':
+                row['gender'] = 'male'
+            elif g == 'female' or g == 'f':
+                row['gender'] = 'female'
+            else:
+                row['gender'] = 'unknown'
+
+            # update or insert
+            if row['patient_id'] in existing_patients:
+                if arguments['--debug']:
+                    tu.warn('Updating ' + row['patient_id'])
+                query = su.update_patient_info(cnx, row)
+
+            else:
+                if arguments['--debug']:
+                    tu.debug('Inserting ' + row['patient_id'])
+                query = su.insert_new_patient_info(cnx, row)
+
+            if arguments['--debug']:
+                print query
+
+
+    except Exception, e:
+        tu.error(str(e))
+        exit()
+
+    tu.ok("SUCCESS")
