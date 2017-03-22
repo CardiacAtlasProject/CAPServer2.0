@@ -11,5 +11,5 @@ import java.util.List;
  */
 @SuppressWarnings("unused")
 public interface PatientInfoRepository extends JpaRepository<PatientInfo,Long> {
-	
+
 }

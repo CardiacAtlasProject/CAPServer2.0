@@ -97,12 +97,10 @@ public class ClinicalNoteResource {
      *
      * @param pageable the pagination information
      * @return the ResponseEntity with status 200 (OK) and the list of clinicalNotes in body
-     * @throws URISyntaxException if there is an error to generate the pagination HTTP headers
      */
     @GetMapping("/clinical-notes")
     @Timed
-    public ResponseEntity<List<ClinicalNote>> getAllClinicalNotes(@ApiParam Pageable pageable)
-        throws URISyntaxException {
+    public ResponseEntity<List<ClinicalNote>> getAllClinicalNotes(@ApiParam Pageable pageable) {
         log.debug("REST request to get a page of ClinicalNotes");
         Page<ClinicalNote> page = clinicalNoteRepository.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/clinical-notes");
@@ -145,12 +143,10 @@ public class ClinicalNoteResource {
      * @param query the query of the clinicalNote search 
      * @param pageable the pagination information
      * @return the result of the search
-     * @throws URISyntaxException if there is an error to generate the pagination HTTP headers
      */
     @GetMapping("/_search/clinical-notes")
     @Timed
-    public ResponseEntity<List<ClinicalNote>> searchClinicalNotes(@RequestParam String query, @ApiParam Pageable pageable)
-        throws URISyntaxException {
+    public ResponseEntity<List<ClinicalNote>> searchClinicalNotes(@RequestParam String query, @ApiParam Pageable pageable) {
         log.debug("REST request to search for a page of ClinicalNotes for query {}", query);
         Page<ClinicalNote> page = clinicalNoteSearchRepository.search(queryStringQuery(query), pageable);
         HttpHeaders headers = PaginationUtil.generateSearchPaginationHttpHeaders(query, page, "/api/_search/clinical-notes");

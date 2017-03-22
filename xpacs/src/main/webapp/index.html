@@ -28,13 +28,7 @@
             <!-- Angular views -->
         </div>
 
-        <div class="footer" ui-view="footer" ng-cloak>
-            <!-- See app/layouts/footer folder -->
-        </div>
-
-        <!-- <div class="footer" ng-cloak>
-            <p data-translate="footer">This is your footer</p>
-        </div> -->
+        <div class="footer" ui-view="footer"></div>
     </div>
 
     <!-- Google Analytics: uncomment and change UA-XXXXX-X to be your site's ID.
@@ -201,6 +195,9 @@
     <script src="app/account/account.state.js"></script>
     <!-- endinject -->
     <!-- endbuild -->
+
+    <!-- additional js -->
+    <script src="app/layouts/footer/footer.controller.js"></script>
 
 </body>
 </html>

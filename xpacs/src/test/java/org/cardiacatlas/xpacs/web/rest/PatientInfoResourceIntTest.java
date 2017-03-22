@@ -98,11 +98,11 @@ public class PatientInfoResourceIntTest {
      */
     public static PatientInfo createEntity(EntityManager em) {
         PatientInfo patientInfo = new PatientInfo()
-                .patient_id(DEFAULT_PATIENT_ID)
-                .cohort(DEFAULT_COHORT)
-                .ethnicity(DEFAULT_ETHNICITY)
-                .gender(DEFAULT_GENDER)
-                .primary_diagnosis(DEFAULT_PRIMARY_DIAGNOSIS);
+            .patient_id(DEFAULT_PATIENT_ID)
+            .cohort(DEFAULT_COHORT)
+            .ethnicity(DEFAULT_ETHNICITY)
+            .gender(DEFAULT_GENDER)
+            .primary_diagnosis(DEFAULT_PRIMARY_DIAGNOSIS);
         return patientInfo;
     }
 
@@ -118,7 +118,6 @@ public class PatientInfoResourceIntTest {
         int databaseSizeBeforeCreate = patientInfoRepository.findAll().size();
 
         // Create the PatientInfo
-
         restPatientInfoMockMvc.perform(post("/api/patient-infos")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(patientInfo)))
@@ -145,13 +144,12 @@ public class PatientInfoResourceIntTest {
         int databaseSizeBeforeCreate = patientInfoRepository.findAll().size();
 
         // Create the PatientInfo with an existing ID
-        PatientInfo existingPatientInfo = new PatientInfo();
-        existingPatientInfo.setId(1L);
+        patientInfo.setId(1L);
 
         // An entity with an existing ID cannot be created, so this API call must fail
         restPatientInfoMockMvc.perform(post("/api/patient-infos")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(existingPatientInfo)))
+            .content(TestUtil.convertObjectToJsonBytes(patientInfo)))
             .andExpect(status().isBadRequest());
 
         // Validate the Alice in the database
@@ -250,11 +248,11 @@ public class PatientInfoResourceIntTest {
         // Update the patientInfo
         PatientInfo updatedPatientInfo = patientInfoRepository.findOne(patientInfo.getId());
         updatedPatientInfo
-                .patient_id(UPDATED_PATIENT_ID)
-                .cohort(UPDATED_COHORT)
-                .ethnicity(UPDATED_ETHNICITY)
-                .gender(UPDATED_GENDER)
-                .primary_diagnosis(UPDATED_PRIMARY_DIAGNOSIS);
+            .patient_id(UPDATED_PATIENT_ID)
+            .cohort(UPDATED_COHORT)
+            .ethnicity(UPDATED_ETHNICITY)
+            .gender(UPDATED_GENDER)
+            .primary_diagnosis(UPDATED_PRIMARY_DIAGNOSIS);
 
         restPatientInfoMockMvc.perform(put("/api/patient-infos")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -335,6 +333,7 @@ public class PatientInfoResourceIntTest {
     }
 
     @Test
+    @Transactional
     public void equalsVerifier() throws Exception {
         TestUtil.equalsVerifier(PatientInfo.class);
     }

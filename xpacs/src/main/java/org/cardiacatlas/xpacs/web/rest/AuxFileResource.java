@@ -97,12 +97,10 @@ public class AuxFileResource {
      *
      * @param pageable the pagination information
      * @return the ResponseEntity with status 200 (OK) and the list of auxFiles in body
-     * @throws URISyntaxException if there is an error to generate the pagination HTTP headers
      */
     @GetMapping("/aux-files")
     @Timed
-    public ResponseEntity<List<AuxFile>> getAllAuxFiles(@ApiParam Pageable pageable)
-        throws URISyntaxException {
+    public ResponseEntity<List<AuxFile>> getAllAuxFiles(@ApiParam Pageable pageable) {
         log.debug("REST request to get a page of AuxFiles");
         Page<AuxFile> page = auxFileRepository.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/aux-files");
@@ -145,12 +143,10 @@ public class AuxFileResource {
      * @param query the query of the auxFile search 
      * @param pageable the pagination information
      * @return the result of the search
-     * @throws URISyntaxException if there is an error to generate the pagination HTTP headers
      */
     @GetMapping("/_search/aux-files")
     @Timed
-    public ResponseEntity<List<AuxFile>> searchAuxFiles(@RequestParam String query, @ApiParam Pageable pageable)
-        throws URISyntaxException {
+    public ResponseEntity<List<AuxFile>> searchAuxFiles(@RequestParam String query, @ApiParam Pageable pageable) {
         log.debug("REST request to search for a page of AuxFiles for query {}", query);
         Page<AuxFile> page = auxFileSearchRepository.search(queryStringQuery(query), pageable);
         HttpHeaders headers = PaginationUtil.generateSearchPaginationHttpHeaders(query, page, "/api/_search/aux-files");
