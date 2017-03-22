@@ -85,7 +85,7 @@ public class ClinicalNoteResourceIntTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-            ClinicalNoteResource clinicalNoteResource = new ClinicalNoteResource(clinicalNoteRepository, clinicalNoteSearchRepository);
+        ClinicalNoteResource clinicalNoteResource = new ClinicalNoteResource(clinicalNoteRepository, clinicalNoteSearchRepository);
         this.restClinicalNoteMockMvc = MockMvcBuilders.standaloneSetup(clinicalNoteResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)
@@ -100,12 +100,12 @@ public class ClinicalNoteResourceIntTest {
      */
     public static ClinicalNote createEntity(EntityManager em) {
         ClinicalNote clinicalNote = new ClinicalNote()
-                .assessment_date(DEFAULT_ASSESSMENT_DATE)
-                .age(DEFAULT_AGE)
-                .height(DEFAULT_HEIGHT)
-                .weight(DEFAULT_WEIGHT)
-                .diagnosis(DEFAULT_DIAGNOSIS)
-                .note(DEFAULT_NOTE);
+            .assessment_date(DEFAULT_ASSESSMENT_DATE)
+            .age(DEFAULT_AGE)
+            .height(DEFAULT_HEIGHT)
+            .weight(DEFAULT_WEIGHT)
+            .diagnosis(DEFAULT_DIAGNOSIS)
+            .note(DEFAULT_NOTE);
         // Add required entity
         PatientInfo patientInfoFK = PatientInfoResourceIntTest.createEntity(em);
         em.persist(patientInfoFK);
@@ -126,7 +126,6 @@ public class ClinicalNoteResourceIntTest {
         int databaseSizeBeforeCreate = clinicalNoteRepository.findAll().size();
 
         // Create the ClinicalNote
-
         restClinicalNoteMockMvc.perform(post("/api/clinical-notes")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(clinicalNote)))
@@ -154,13 +153,12 @@ public class ClinicalNoteResourceIntTest {
         int databaseSizeBeforeCreate = clinicalNoteRepository.findAll().size();
 
         // Create the ClinicalNote with an existing ID
-        ClinicalNote existingClinicalNote = new ClinicalNote();
-        existingClinicalNote.setId(1L);
+        clinicalNote.setId(1L);
 
         // An entity with an existing ID cannot be created, so this API call must fail
         restClinicalNoteMockMvc.perform(post("/api/clinical-notes")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(existingClinicalNote)))
+            .content(TestUtil.convertObjectToJsonBytes(clinicalNote)))
             .andExpect(status().isBadRequest());
 
         // Validate the Alice in the database
@@ -243,12 +241,12 @@ public class ClinicalNoteResourceIntTest {
         // Update the clinicalNote
         ClinicalNote updatedClinicalNote = clinicalNoteRepository.findOne(clinicalNote.getId());
         updatedClinicalNote
-                .assessment_date(UPDATED_ASSESSMENT_DATE)
-                .age(UPDATED_AGE)
-                .height(UPDATED_HEIGHT)
-                .weight(UPDATED_WEIGHT)
-                .diagnosis(UPDATED_DIAGNOSIS)
-                .note(UPDATED_NOTE);
+            .assessment_date(UPDATED_ASSESSMENT_DATE)
+            .age(UPDATED_AGE)
+            .height(UPDATED_HEIGHT)
+            .weight(UPDATED_WEIGHT)
+            .diagnosis(UPDATED_DIAGNOSIS)
+            .note(UPDATED_NOTE);
 
         restClinicalNoteMockMvc.perform(put("/api/clinical-notes")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -332,6 +330,7 @@ public class ClinicalNoteResourceIntTest {
     }
 
     @Test
+    @Transactional
     public void equalsVerifier() throws Exception {
         TestUtil.equalsVerifier(ClinicalNote.class);
     }

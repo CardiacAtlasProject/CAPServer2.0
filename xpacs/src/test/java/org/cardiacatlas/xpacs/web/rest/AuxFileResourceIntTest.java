@@ -78,7 +78,7 @@ public class AuxFileResourceIntTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-            AuxFileResource auxFileResource = new AuxFileResource(auxFileRepository, auxFileSearchRepository);
+        AuxFileResource auxFileResource = new AuxFileResource(auxFileRepository, auxFileSearchRepository);
         this.restAuxFileMockMvc = MockMvcBuilders.standaloneSetup(auxFileResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)
@@ -93,10 +93,10 @@ public class AuxFileResourceIntTest {
      */
     public static AuxFile createEntity(EntityManager em) {
         AuxFile auxFile = new AuxFile()
-                .creation_date(DEFAULT_CREATION_DATE)
-                .description(DEFAULT_DESCRIPTION)
-                .file(DEFAULT_FILE)
-                .fileContentType(DEFAULT_FILE_CONTENT_TYPE);
+            .creation_date(DEFAULT_CREATION_DATE)
+            .description(DEFAULT_DESCRIPTION)
+            .file(DEFAULT_FILE)
+            .fileContentType(DEFAULT_FILE_CONTENT_TYPE);
         // Add required entity
         PatientInfo patientInfoFK = PatientInfoResourceIntTest.createEntity(em);
         em.persist(patientInfoFK);
@@ -117,7 +117,6 @@ public class AuxFileResourceIntTest {
         int databaseSizeBeforeCreate = auxFileRepository.findAll().size();
 
         // Create the AuxFile
-
         restAuxFileMockMvc.perform(post("/api/aux-files")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(auxFile)))
@@ -143,13 +142,12 @@ public class AuxFileResourceIntTest {
         int databaseSizeBeforeCreate = auxFileRepository.findAll().size();
 
         // Create the AuxFile with an existing ID
-        AuxFile existingAuxFile = new AuxFile();
-        existingAuxFile.setId(1L);
+        auxFile.setId(1L);
 
         // An entity with an existing ID cannot be created, so this API call must fail
         restAuxFileMockMvc.perform(post("/api/aux-files")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(existingAuxFile)))
+            .content(TestUtil.convertObjectToJsonBytes(auxFile)))
             .andExpect(status().isBadRequest());
 
         // Validate the Alice in the database
@@ -246,10 +244,10 @@ public class AuxFileResourceIntTest {
         // Update the auxFile
         AuxFile updatedAuxFile = auxFileRepository.findOne(auxFile.getId());
         updatedAuxFile
-                .creation_date(UPDATED_CREATION_DATE)
-                .description(UPDATED_DESCRIPTION)
-                .file(UPDATED_FILE)
-                .fileContentType(UPDATED_FILE_CONTENT_TYPE);
+            .creation_date(UPDATED_CREATION_DATE)
+            .description(UPDATED_DESCRIPTION)
+            .file(UPDATED_FILE)
+            .fileContentType(UPDATED_FILE_CONTENT_TYPE);
 
         restAuxFileMockMvc.perform(put("/api/aux-files")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -329,6 +327,7 @@ public class AuxFileResourceIntTest {
     }
 
     @Test
+    @Transactional
     public void equalsVerifier() throws Exception {
         TestUtil.equalsVerifier(AuxFile.class);
     }

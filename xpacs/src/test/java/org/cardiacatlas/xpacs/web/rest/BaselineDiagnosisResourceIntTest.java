@@ -99,7 +99,7 @@ public class BaselineDiagnosisResourceIntTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-            BaselineDiagnosisResource baselineDiagnosisResource = new BaselineDiagnosisResource(baselineDiagnosisRepository, baselineDiagnosisSearchRepository);
+        BaselineDiagnosisResource baselineDiagnosisResource = new BaselineDiagnosisResource(baselineDiagnosisRepository, baselineDiagnosisSearchRepository);
         this.restBaselineDiagnosisMockMvc = MockMvcBuilders.standaloneSetup(baselineDiagnosisResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)
@@ -114,17 +114,17 @@ public class BaselineDiagnosisResourceIntTest {
      */
     public static BaselineDiagnosis createEntity(EntityManager em) {
         BaselineDiagnosis baselineDiagnosis = new BaselineDiagnosis()
-                .diagnosis_date(DEFAULT_DIAGNOSIS_DATE)
-                .age(DEFAULT_AGE)
-                .height(DEFAULT_HEIGHT)
-                .weight(DEFAULT_WEIGHT)
-                .heart_rate(DEFAULT_HEART_RATE)
-                .dbp(DEFAULT_DBP)
-                .sbp(DEFAULT_SBP)
-                .history_of_alcohol(DEFAULT_HISTORY_OF_ALCOHOL)
-                .history_of_diabetes(DEFAULT_HISTORY_OF_DIABETES)
-                .history_of_hypertension(DEFAULT_HISTORY_OF_HYPERTENSION)
-                .history_of_smoking(DEFAULT_HISTORY_OF_SMOKING);
+            .diagnosis_date(DEFAULT_DIAGNOSIS_DATE)
+            .age(DEFAULT_AGE)
+            .height(DEFAULT_HEIGHT)
+            .weight(DEFAULT_WEIGHT)
+            .heart_rate(DEFAULT_HEART_RATE)
+            .dbp(DEFAULT_DBP)
+            .sbp(DEFAULT_SBP)
+            .history_of_alcohol(DEFAULT_HISTORY_OF_ALCOHOL)
+            .history_of_diabetes(DEFAULT_HISTORY_OF_DIABETES)
+            .history_of_hypertension(DEFAULT_HISTORY_OF_HYPERTENSION)
+            .history_of_smoking(DEFAULT_HISTORY_OF_SMOKING);
         // Add required entity
         PatientInfo patientInfoFK = PatientInfoResourceIntTest.createEntity(em);
         em.persist(patientInfoFK);
@@ -145,7 +145,6 @@ public class BaselineDiagnosisResourceIntTest {
         int databaseSizeBeforeCreate = baselineDiagnosisRepository.findAll().size();
 
         // Create the BaselineDiagnosis
-
         restBaselineDiagnosisMockMvc.perform(post("/api/baseline-diagnoses")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(baselineDiagnosis)))
@@ -178,13 +177,12 @@ public class BaselineDiagnosisResourceIntTest {
         int databaseSizeBeforeCreate = baselineDiagnosisRepository.findAll().size();
 
         // Create the BaselineDiagnosis with an existing ID
-        BaselineDiagnosis existingBaselineDiagnosis = new BaselineDiagnosis();
-        existingBaselineDiagnosis.setId(1L);
+        baselineDiagnosis.setId(1L);
 
         // An entity with an existing ID cannot be created, so this API call must fail
         restBaselineDiagnosisMockMvc.perform(post("/api/baseline-diagnoses")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(existingBaselineDiagnosis)))
+            .content(TestUtil.convertObjectToJsonBytes(baselineDiagnosis)))
             .andExpect(status().isBadRequest());
 
         // Validate the Alice in the database
@@ -277,17 +275,17 @@ public class BaselineDiagnosisResourceIntTest {
         // Update the baselineDiagnosis
         BaselineDiagnosis updatedBaselineDiagnosis = baselineDiagnosisRepository.findOne(baselineDiagnosis.getId());
         updatedBaselineDiagnosis
-                .diagnosis_date(UPDATED_DIAGNOSIS_DATE)
-                .age(UPDATED_AGE)
-                .height(UPDATED_HEIGHT)
-                .weight(UPDATED_WEIGHT)
-                .heart_rate(UPDATED_HEART_RATE)
-                .dbp(UPDATED_DBP)
-                .sbp(UPDATED_SBP)
-                .history_of_alcohol(UPDATED_HISTORY_OF_ALCOHOL)
-                .history_of_diabetes(UPDATED_HISTORY_OF_DIABETES)
-                .history_of_hypertension(UPDATED_HISTORY_OF_HYPERTENSION)
-                .history_of_smoking(UPDATED_HISTORY_OF_SMOKING);
+            .diagnosis_date(UPDATED_DIAGNOSIS_DATE)
+            .age(UPDATED_AGE)
+            .height(UPDATED_HEIGHT)
+            .weight(UPDATED_WEIGHT)
+            .heart_rate(UPDATED_HEART_RATE)
+            .dbp(UPDATED_DBP)
+            .sbp(UPDATED_SBP)
+            .history_of_alcohol(UPDATED_HISTORY_OF_ALCOHOL)
+            .history_of_diabetes(UPDATED_HISTORY_OF_DIABETES)
+            .history_of_hypertension(UPDATED_HISTORY_OF_HYPERTENSION)
+            .history_of_smoking(UPDATED_HISTORY_OF_SMOKING);
 
         restBaselineDiagnosisMockMvc.perform(put("/api/baseline-diagnoses")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -381,6 +379,7 @@ public class BaselineDiagnosisResourceIntTest {
     }
 
     @Test
+    @Transactional
     public void equalsVerifier() throws Exception {
         TestUtil.equalsVerifier(BaselineDiagnosis.class);
     }

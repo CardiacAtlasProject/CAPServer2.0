@@ -97,12 +97,10 @@ public class BaselineDiagnosisResource {
      *
      * @param pageable the pagination information
      * @return the ResponseEntity with status 200 (OK) and the list of baselineDiagnoses in body
-     * @throws URISyntaxException if there is an error to generate the pagination HTTP headers
      */
     @GetMapping("/baseline-diagnoses")
     @Timed
-    public ResponseEntity<List<BaselineDiagnosis>> getAllBaselineDiagnoses(@ApiParam Pageable pageable)
-        throws URISyntaxException {
+    public ResponseEntity<List<BaselineDiagnosis>> getAllBaselineDiagnoses(@ApiParam Pageable pageable) {
         log.debug("REST request to get a page of BaselineDiagnoses");
         Page<BaselineDiagnosis> page = baselineDiagnosisRepository.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/baseline-diagnoses");
@@ -145,12 +143,10 @@ public class BaselineDiagnosisResource {
      * @param query the query of the baselineDiagnosis search 
      * @param pageable the pagination information
      * @return the result of the search
-     * @throws URISyntaxException if there is an error to generate the pagination HTTP headers
      */
     @GetMapping("/_search/baseline-diagnoses")
     @Timed
-    public ResponseEntity<List<BaselineDiagnosis>> searchBaselineDiagnoses(@RequestParam String query, @ApiParam Pageable pageable)
-        throws URISyntaxException {
+    public ResponseEntity<List<BaselineDiagnosis>> searchBaselineDiagnoses(@RequestParam String query, @ApiParam Pageable pageable) {
         log.debug("REST request to search for a page of BaselineDiagnoses for query {}", query);
         Page<BaselineDiagnosis> page = baselineDiagnosisSearchRepository.search(queryStringQuery(query), pageable);
         HttpHeaders headers = PaginationUtil.generateSearchPaginationHttpHeaders(query, page, "/api/_search/baseline-diagnoses");
