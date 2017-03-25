@@ -26,7 +26,7 @@ spring:
         serialization.indent_output: true
     datasource:
         type: com.zaxxer.hikari.HikariDataSource
-        url: jdbc:h2:file:./target/h2db/db/xpacsweb;DB_CLOSE_DELAY=-1
+        url: jdbc:h2:mem:xpacsweb;DB_CLOSE_DELAY=-1
         username: xpacsweb
         password:
     h2:
@@ -99,7 +99,7 @@ jhipster:
     security:
         remember-me:
             # security key (this key should be unique for your application, and kept secret)
-            key: fc12a15ef06859fdf77c8a03817c8988fd51e1b7
+            key: 2fdb04f41e9528828ccb83f358ebe6091b069b57
     mail: # specific JHipster mail property, for standard properties see MailProperties
         from: xpacsweb@localhost
         base-url: http://127.0.0.1:8080

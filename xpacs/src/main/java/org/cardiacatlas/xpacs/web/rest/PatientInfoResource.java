@@ -2,7 +2,9 @@ package org.cardiacatlas.xpacs.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import org.cardiacatlas.xpacs.domain.PatientInfo;
-import org.cardiacatlas.xpacs.service.PatientInfoService;
+
+import org.cardiacatlas.xpacs.repository.PatientInfoRepository;
+import org.cardiacatlas.xpacs.repository.search.PatientInfoSearchRepository;
 import org.cardiacatlas.xpacs.web.rest.util.HeaderUtil;
 import org.cardiacatlas.xpacs.web.rest.util.PaginationUtil;
 import io.swagger.annotations.ApiParam;
@@ -37,10 +39,13 @@ public class PatientInfoResource {
 
     private static final String ENTITY_NAME = "patientInfo";
         
-    private final PatientInfoService patientInfoService;
+    private final PatientInfoRepository patientInfoRepository;
 
-    public PatientInfoResource(PatientInfoService patientInfoService) {
-        this.patientInfoService = patientInfoService;
+    private final PatientInfoSearchRepository patientInfoSearchRepository;
+
+    public PatientInfoResource(PatientInfoRepository patientInfoRepository, PatientInfoSearchRepository patientInfoSearchRepository) {
+        this.patientInfoRepository = patientInfoRepository;
+        this.patientInfoSearchRepository = patientInfoSearchRepository;
     }
 
     /**
@@ -57,7 +62,8 @@ public class PatientInfoResource {
         if (patientInfo.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new patientInfo cannot already have an ID")).body(null);
         }
-        PatientInfo result = patientInfoService.save(patientInfo);
+        PatientInfo result = patientInfoRepository.save(patientInfo);
+        patientInfoSearchRepository.save(result);
         return ResponseEntity.created(new URI("/api/patient-infos/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);
@@ -79,7 +85,8 @@ public class PatientInfoResource {
         if (patientInfo.getId() == null) {
             return createPatientInfo(patientInfo);
         }
-        PatientInfo result = patientInfoService.save(patientInfo);
+        PatientInfo result = patientInfoRepository.save(patientInfo);
+        patientInfoSearchRepository.save(result);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, patientInfo.getId().toString()))
             .body(result);
@@ -95,7 +102,7 @@ public class PatientInfoResource {
     @Timed
     public ResponseEntity<List<PatientInfo>> getAllPatientInfos(@ApiParam Pageable pageable) {
         log.debug("REST request to get a page of PatientInfos");
-        Page<PatientInfo> page = patientInfoService.findAll(pageable);
+        Page<PatientInfo> page = patientInfoRepository.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/patient-infos");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
@@ -110,7 +117,7 @@ public class PatientInfoResource {
     @Timed
     public ResponseEntity<PatientInfo> getPatientInfo(@PathVariable Long id) {
         log.debug("REST request to get PatientInfo : {}", id);
-        PatientInfo patientInfo = patientInfoService.findOne(id);
+        PatientInfo patientInfo = patientInfoRepository.findOne(id);
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(patientInfo));
     }
 
@@ -124,7 +131,8 @@ public class PatientInfoResource {
     @Timed
     public ResponseEntity<Void> deletePatientInfo(@PathVariable Long id) {
         log.debug("REST request to delete PatientInfo : {}", id);
-        patientInfoService.delete(id);
+        patientInfoRepository.delete(id);
+        patientInfoSearchRepository.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
 
@@ -140,7 +148,7 @@ public class PatientInfoResource {
     @Timed
     public ResponseEntity<List<PatientInfo>> searchPatientInfos(@RequestParam String query, @ApiParam Pageable pageable) {
         log.debug("REST request to search for a page of PatientInfos for query {}", query);
-        Page<PatientInfo> page = patientInfoService.search(query, pageable);
+        Page<PatientInfo> page = patientInfoSearchRepository.search(queryStringQuery(query), pageable);
         HttpHeaders headers = PaginationUtil.generateSearchPaginationHttpHeaders(query, page, "/api/_search/patient-infos");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }

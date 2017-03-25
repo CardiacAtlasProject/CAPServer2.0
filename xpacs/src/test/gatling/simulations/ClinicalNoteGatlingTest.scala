@@ -67,7 +67,7 @@ class ClinicalNoteGatlingTest extends Simulation {
             .exec(http("Create new clinicalNote")
             .post("/api/clinical-notes")
             .headers(headers_http_authenticated)
-            .body(StringBody("""{"id":null, "assessment_date":"2020-01-01T00:00:00.000Z", "age":null, "height":"SAMPLE_TEXT", "weight":"SAMPLE_TEXT", "diagnosis":"SAMPLE_TEXT", "note":null}""")).asJSON
+            .body(StringBody("""{"id":null, "assessment_date":"2020-01-01T00:00:00.000Z", "age":null, "height":"SAMPLE_TEXT", "weight":"SAMPLE_TEXT", "diagnosis":null, "note":null}""")).asJSON
             .check(status.is(201))
             .check(headerRegex("Location", "(.*)").saveAs("new_clinicalNote_url"))).exitHereIfFailed
             .pause(10)

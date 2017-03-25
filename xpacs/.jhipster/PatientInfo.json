@@ -34,9 +34,9 @@
             "fieldValidateRulesMaxlength": "255"
         }
     ],
-    "changelogDate": "20170219223541",
+    "changelogDate": "20170325104542",
     "dto": "no",
-    "service": "serviceClass",
+    "service": "no",
     "entityTableName": "patient_info",
     "pagination": "pagination"
 }

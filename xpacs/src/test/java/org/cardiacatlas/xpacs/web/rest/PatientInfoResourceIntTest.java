@@ -4,7 +4,6 @@ import org.cardiacatlas.xpacs.XpacswebApp;
 
 import org.cardiacatlas.xpacs.domain.PatientInfo;
 import org.cardiacatlas.xpacs.repository.PatientInfoRepository;
-import org.cardiacatlas.xpacs.service.PatientInfoService;
 import org.cardiacatlas.xpacs.repository.search.PatientInfoSearchRepository;
 import org.cardiacatlas.xpacs.web.rest.errors.ExceptionTranslator;
 
@@ -59,9 +58,6 @@ public class PatientInfoResourceIntTest {
     private PatientInfoRepository patientInfoRepository;
 
     @Autowired
-    private PatientInfoService patientInfoService;
-
-    @Autowired
     private PatientInfoSearchRepository patientInfoSearchRepository;
 
     @Autowired
@@ -83,7 +79,7 @@ public class PatientInfoResourceIntTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        PatientInfoResource patientInfoResource = new PatientInfoResource(patientInfoService);
+        PatientInfoResource patientInfoResource = new PatientInfoResource(patientInfoRepository, patientInfoSearchRepository);
         this.restPatientInfoMockMvc = MockMvcBuilders.standaloneSetup(patientInfoResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)
@@ -241,8 +237,8 @@ public class PatientInfoResourceIntTest {
     @Transactional
     public void updatePatientInfo() throws Exception {
         // Initialize the database
-        patientInfoService.save(patientInfo);
-
+        patientInfoRepository.saveAndFlush(patientInfo);
+        patientInfoSearchRepository.save(patientInfo);
         int databaseSizeBeforeUpdate = patientInfoRepository.findAll().size();
 
         // Update the patientInfo
@@ -296,8 +292,8 @@ public class PatientInfoResourceIntTest {
     @Transactional
     public void deletePatientInfo() throws Exception {
         // Initialize the database
-        patientInfoService.save(patientInfo);
-
+        patientInfoRepository.saveAndFlush(patientInfo);
+        patientInfoSearchRepository.save(patientInfo);
         int databaseSizeBeforeDelete = patientInfoRepository.findAll().size();
 
         // Get the patientInfo
@@ -318,7 +314,8 @@ public class PatientInfoResourceIntTest {
     @Transactional
     public void searchPatientInfo() throws Exception {
         // Initialize the database
-        patientInfoService.save(patientInfo);
+        patientInfoRepository.saveAndFlush(patientInfo);
+        patientInfoSearchRepository.save(patientInfo);
 
         // Search the patientInfo
         restPatientInfoMockMvc.perform(get("/api/_search/patient-infos?query=id:" + patientInfo.getId()))

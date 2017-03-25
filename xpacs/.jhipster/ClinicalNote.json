@@ -33,11 +33,13 @@
         },
         {
             "fieldName": "weight",
-            "fieldType": "String"
+            "fieldType": "String",
+            "fieldValidateRules": []
         },
         {
             "fieldName": "diagnosis",
-            "fieldType": "String"
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "text"
         },
         {
             "fieldName": "note",
@@ -45,7 +47,7 @@
             "fieldTypeBlobContent": "text"
         }
     ],
-    "changelogDate": "20170221095825",
+    "changelogDate": "20170325105116",
     "dto": "no",
     "service": "no",
     "entityTableName": "clinical_note",

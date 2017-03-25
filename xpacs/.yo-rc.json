@@ -1,6 +1,9 @@
 {
   "generator-jhipster": {
-    "jhipsterVersion": "4.1.0",
+    "promptValues": {
+      "packageName": "org.cardiacatlas.xpacs"
+    },
+    "jhipsterVersion": "4.1.1",
     "baseName": "xpacsweb",
     "packageName": "org.cardiacatlas.xpacs",
     "packageFolder": "org/cardiacatlas/xpacs",
@@ -10,14 +13,14 @@
     "clusteredHttpSession": false,
     "websocket": false,
     "databaseType": "sql",
-    "devDatabaseType": "h2Disk",
+    "devDatabaseType": "h2Memory",
     "prodDatabaseType": "mysql",
     "searchEngine": "elasticsearch",
     "messageBroker": false,
     "serviceDiscoveryType": false,
     "buildTool": "maven",
     "enableSocialSignIn": false,
-    "rememberMeKey": "fc12a15ef06859fdf77c8a03817c8988fd51e1b7",
+    "rememberMeKey": "2fdb04f41e9528828ccb83f358ebe6091b069b57",
     "clientFramework": "angular1",
     "useSass": false,
     "clientPackageManager": "yarn",

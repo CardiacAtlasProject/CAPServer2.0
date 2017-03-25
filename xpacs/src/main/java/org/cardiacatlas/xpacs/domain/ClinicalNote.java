@@ -39,6 +39,7 @@ public class ClinicalNote implements Serializable {
     @Column(name = "weight")
     private String weight;
 
+    @Lob
     @Column(name = "diagnosis")
     private String diagnosis;
 
