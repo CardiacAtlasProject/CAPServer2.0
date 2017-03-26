@@ -11,9 +11,9 @@
 
     <groupId>org.cardiacatlas.xpacs</groupId>
     <artifactId>xpacsweb</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.2.0-SNAPSHOT</version>
     <packaging>war</packaging>
-    <name>Xpacsweb</name>
+    <name>XPACS-WEB</name>
 
     <prerequisites>
         <maven>${maven.version}</maven>
