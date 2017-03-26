@@ -21,9 +21,9 @@ spring:
             enabled: false
     datasource:
         type: com.zaxxer.hikari.HikariDataSource
-        url: jdbc:mysql://localhost:3306/xpacsweb?useUnicode=true&characterEncoding=utf8&useSSL=false
-        username: root
-        password:
+        url: jdbc:mysql://130.216.161.114:3306/xpacs?useUnicode=true&characterEncoding=utf8&useSSL=false
+        username: cap
+        password: "*CapUser*1234"
         hikari:
             data-source-properties:
                 cachePrepStmts: true
@@ -97,7 +97,7 @@ jhipster:
     security:
         remember-me:
             # security key (this key should be unique for your application, and kept secret)
-            key: 2fdb04f41e9528828ccb83f358ebe6091b069b57
+            key: fc12a15ef06859fdf77c8a03817c8988fd51e1b7
     mail: # specific JHipster mail property, for standard properties see MailProperties
         from: xpacsweb@localhost
         base-url: http://my-server-url-to-change # Modify according to your server's URL
