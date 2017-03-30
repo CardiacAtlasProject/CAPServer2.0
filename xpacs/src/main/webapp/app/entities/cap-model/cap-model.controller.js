@@ -5,9 +5,9 @@
         .module('xpacswebApp')
         .controller('CapModelController', CapModelController);
 
-    CapModelController.$inject = ['$state', 'DataUtils', 'CapModel', 'CapModelSearch', 'ParseLinks', 'AlertService', 'paginationConstants', 'pagingParams'];
+    CapModelController.$inject = ['$state', 'DataUtils', 'CapModel', 'ParseLinks', 'AlertService', 'paginationConstants', 'pagingParams'];
 
-    function CapModelController($state, DataUtils, CapModel, CapModelSearch, ParseLinks, AlertService, paginationConstants, pagingParams) {
+    function CapModelController($state, DataUtils, CapModel, ParseLinks, AlertService, paginationConstants, pagingParams) {
 
         var vm = this;
 
@@ -16,31 +16,17 @@
         vm.reverse = pagingParams.ascending;
         vm.transition = transition;
         vm.itemsPerPage = paginationConstants.itemsPerPage;
-        vm.clear = clear;
-        vm.search = search;
-        vm.loadAll = loadAll;
-        vm.searchQuery = pagingParams.search;
-        vm.currentSearch = pagingParams.search;
         vm.openFile = DataUtils.openFile;
         vm.byteSize = DataUtils.byteSize;
 
         loadAll();
 
         function loadAll () {
-            if (pagingParams.search) {
-                CapModelSearch.query({
-                    query: pagingParams.search,
-                    page: pagingParams.page - 1,
-                    size: vm.itemsPerPage,
-                    sort: sort()
-                }, onSuccess, onError);
-            } else {
-                CapModel.query({
-                    page: pagingParams.page - 1,
-                    size: vm.itemsPerPage,
-                    sort: sort()
-                }, onSuccess, onError);
-            }
+            CapModel.query({
+                page: pagingParams.page - 1,
+                size: vm.itemsPerPage,
+                sort: sort()
+            }, onSuccess, onError);
             function sort() {
                 var result = [vm.predicate + ',' + (vm.reverse ? 'asc' : 'desc')];
                 if (vm.predicate !== 'id') {
@@ -71,27 +57,6 @@
                 sort: vm.predicate + ',' + (vm.reverse ? 'asc' : 'desc'),
                 search: vm.currentSearch
             });
-        }
-
-        function search(searchQuery) {
-            if (!searchQuery){
-                return vm.clear();
-            }
-            vm.links = null;
-            vm.page = 1;
-            vm.predicate = '_score';
-            vm.reverse = false;
-            vm.currentSearch = searchQuery;
-            vm.transition();
-        }
-
-        function clear() {
-            vm.links = null;
-            vm.page = 1;
-            vm.predicate = 'id';
-            vm.reverse = true;
-            vm.currentSearch = null;
-            vm.transition();
         }
     }
 })();

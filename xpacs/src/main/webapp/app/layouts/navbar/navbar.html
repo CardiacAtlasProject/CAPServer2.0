@@ -9,7 +9,7 @@
             </button>
             <a class="navbar-brand logo" href="#/" ng-click="vm.collapseNavbar()">
                 <img class="logo-img" src="content/images/cap-logo.png" alt="logo"/>
-                <span>XPACS-WEB</span> <span class="navbar-version">v{{VERSION}}</span>
+                <span>Xpacsweb</span> <span class="navbar-version">v{{VERSION}}</span>
             </a>
         </div>
         <div class="navbar-collapse" uib-collapse="vm.isNavbarCollapsed" ng-switch="vm.isAuthenticated()">
@@ -41,19 +41,19 @@
                         <li ui-sref-active="active">
                                 <a ui-sref="clinical-note" ng-click="vm.collapseNavbar()">
                                     <span class="glyphicon glyphicon-asterisk"></span>&nbsp;
-                                    <span >Clinical Notes</span>
-                                </a>
-                            </li>
-                        <li ui-sref-active="active">
-                                <a ui-sref="cap-model" ng-click="vm.collapseNavbar()">
-                                    <span class="glyphicon glyphicon-asterisk"></span>&nbsp;
-                                    <span >CAP Models</span>
+                                    <span >Clinical Note</span>
                                 </a>
                             </li>
                         <li ui-sref-active="active">
                                 <a ui-sref="aux-file" ng-click="vm.collapseNavbar()">
                                     <span class="glyphicon glyphicon-asterisk"></span>&nbsp;
-                                    <span >Auxiliary Files</span>
+                                    <span >Aux File</span>
+                                </a>
+                            </li>
+                        <li ui-sref-active="active">
+                                <a ui-sref="cap-model" ng-click="vm.collapseNavbar()">
+                                    <span class="glyphicon glyphicon-asterisk"></span>&nbsp;
+                                    <span >Cap Model</span>
                                 </a>
                             </li>
                         <li ui-sref-active="active">

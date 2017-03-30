@@ -5,7 +5,6 @@ import org.cardiacatlas.xpacs.XpacswebApp;
 import org.cardiacatlas.xpacs.domain.BaselineDiagnosis;
 import org.cardiacatlas.xpacs.domain.PatientInfo;
 import org.cardiacatlas.xpacs.repository.BaselineDiagnosisRepository;
-import org.cardiacatlas.xpacs.repository.search.BaselineDiagnosisSearchRepository;
 import org.cardiacatlas.xpacs.web.rest.errors.ExceptionTranslator;
 
 import org.junit.Before;
@@ -78,9 +77,6 @@ public class BaselineDiagnosisResourceIntTest {
     private BaselineDiagnosisRepository baselineDiagnosisRepository;
 
     @Autowired
-    private BaselineDiagnosisSearchRepository baselineDiagnosisSearchRepository;
-
-    @Autowired
     private MappingJackson2HttpMessageConverter jacksonMessageConverter;
 
     @Autowired
@@ -99,7 +95,7 @@ public class BaselineDiagnosisResourceIntTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        BaselineDiagnosisResource baselineDiagnosisResource = new BaselineDiagnosisResource(baselineDiagnosisRepository, baselineDiagnosisSearchRepository);
+        BaselineDiagnosisResource baselineDiagnosisResource = new BaselineDiagnosisResource(baselineDiagnosisRepository);
         this.restBaselineDiagnosisMockMvc = MockMvcBuilders.standaloneSetup(baselineDiagnosisResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)
@@ -135,7 +131,6 @@ public class BaselineDiagnosisResourceIntTest {
 
     @Before
     public void initTest() {
-        baselineDiagnosisSearchRepository.deleteAll();
         baselineDiagnosis = createEntity(em);
     }
 
@@ -165,10 +160,6 @@ public class BaselineDiagnosisResourceIntTest {
         assertThat(testBaselineDiagnosis.getHistory_of_diabetes()).isEqualTo(DEFAULT_HISTORY_OF_DIABETES);
         assertThat(testBaselineDiagnosis.getHistory_of_hypertension()).isEqualTo(DEFAULT_HISTORY_OF_HYPERTENSION);
         assertThat(testBaselineDiagnosis.getHistory_of_smoking()).isEqualTo(DEFAULT_HISTORY_OF_SMOKING);
-
-        // Validate the BaselineDiagnosis in Elasticsearch
-        BaselineDiagnosis baselineDiagnosisEs = baselineDiagnosisSearchRepository.findOne(testBaselineDiagnosis.getId());
-        assertThat(baselineDiagnosisEs).isEqualToComparingFieldByField(testBaselineDiagnosis);
     }
 
     @Test
@@ -269,7 +260,6 @@ public class BaselineDiagnosisResourceIntTest {
     public void updateBaselineDiagnosis() throws Exception {
         // Initialize the database
         baselineDiagnosisRepository.saveAndFlush(baselineDiagnosis);
-        baselineDiagnosisSearchRepository.save(baselineDiagnosis);
         int databaseSizeBeforeUpdate = baselineDiagnosisRepository.findAll().size();
 
         // Update the baselineDiagnosis
@@ -307,10 +297,6 @@ public class BaselineDiagnosisResourceIntTest {
         assertThat(testBaselineDiagnosis.getHistory_of_diabetes()).isEqualTo(UPDATED_HISTORY_OF_DIABETES);
         assertThat(testBaselineDiagnosis.getHistory_of_hypertension()).isEqualTo(UPDATED_HISTORY_OF_HYPERTENSION);
         assertThat(testBaselineDiagnosis.getHistory_of_smoking()).isEqualTo(UPDATED_HISTORY_OF_SMOKING);
-
-        // Validate the BaselineDiagnosis in Elasticsearch
-        BaselineDiagnosis baselineDiagnosisEs = baselineDiagnosisSearchRepository.findOne(testBaselineDiagnosis.getId());
-        assertThat(baselineDiagnosisEs).isEqualToComparingFieldByField(testBaselineDiagnosis);
     }
 
     @Test
@@ -336,7 +322,6 @@ public class BaselineDiagnosisResourceIntTest {
     public void deleteBaselineDiagnosis() throws Exception {
         // Initialize the database
         baselineDiagnosisRepository.saveAndFlush(baselineDiagnosis);
-        baselineDiagnosisSearchRepository.save(baselineDiagnosis);
         int databaseSizeBeforeDelete = baselineDiagnosisRepository.findAll().size();
 
         // Get the baselineDiagnosis
@@ -344,38 +329,9 @@ public class BaselineDiagnosisResourceIntTest {
             .accept(TestUtil.APPLICATION_JSON_UTF8))
             .andExpect(status().isOk());
 
-        // Validate Elasticsearch is empty
-        boolean baselineDiagnosisExistsInEs = baselineDiagnosisSearchRepository.exists(baselineDiagnosis.getId());
-        assertThat(baselineDiagnosisExistsInEs).isFalse();
-
         // Validate the database is empty
         List<BaselineDiagnosis> baselineDiagnosisList = baselineDiagnosisRepository.findAll();
         assertThat(baselineDiagnosisList).hasSize(databaseSizeBeforeDelete - 1);
-    }
-
-    @Test
-    @Transactional
-    public void searchBaselineDiagnosis() throws Exception {
-        // Initialize the database
-        baselineDiagnosisRepository.saveAndFlush(baselineDiagnosis);
-        baselineDiagnosisSearchRepository.save(baselineDiagnosis);
-
-        // Search the baselineDiagnosis
-        restBaselineDiagnosisMockMvc.perform(get("/api/_search/baseline-diagnoses?query=id:" + baselineDiagnosis.getId()))
-            .andExpect(status().isOk())
-            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-            .andExpect(jsonPath("$.[*].id").value(hasItem(baselineDiagnosis.getId().intValue())))
-            .andExpect(jsonPath("$.[*].diagnosis_date").value(hasItem(DEFAULT_DIAGNOSIS_DATE.toString())))
-            .andExpect(jsonPath("$.[*].age").value(hasItem(DEFAULT_AGE.doubleValue())))
-            .andExpect(jsonPath("$.[*].height").value(hasItem(DEFAULT_HEIGHT.toString())))
-            .andExpect(jsonPath("$.[*].weight").value(hasItem(DEFAULT_WEIGHT.toString())))
-            .andExpect(jsonPath("$.[*].heart_rate").value(hasItem(DEFAULT_HEART_RATE.toString())))
-            .andExpect(jsonPath("$.[*].dbp").value(hasItem(DEFAULT_DBP.toString())))
-            .andExpect(jsonPath("$.[*].sbp").value(hasItem(DEFAULT_SBP.toString())))
-            .andExpect(jsonPath("$.[*].history_of_alcohol").value(hasItem(DEFAULT_HISTORY_OF_ALCOHOL.toString())))
-            .andExpect(jsonPath("$.[*].history_of_diabetes").value(hasItem(DEFAULT_HISTORY_OF_DIABETES.toString())))
-            .andExpect(jsonPath("$.[*].history_of_hypertension").value(hasItem(DEFAULT_HISTORY_OF_HYPERTENSION.toString())))
-            .andExpect(jsonPath("$.[*].history_of_smoking").value(hasItem(DEFAULT_HISTORY_OF_SMOKING.toString())));
     }
 
     @Test

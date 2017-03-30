@@ -4,7 +4,6 @@ import com.codahale.metrics.annotation.Timed;
 import org.cardiacatlas.xpacs.domain.AuxFile;
 
 import org.cardiacatlas.xpacs.repository.AuxFileRepository;
-import org.cardiacatlas.xpacs.repository.search.AuxFileSearchRepository;
 import org.cardiacatlas.xpacs.web.rest.util.HeaderUtil;
 import org.cardiacatlas.xpacs.web.rest.util.PaginationUtil;
 import io.swagger.annotations.ApiParam;
@@ -23,10 +22,6 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
-
-import static org.elasticsearch.index.query.QueryBuilders.*;
 
 /**
  * REST controller for managing AuxFile.
@@ -41,11 +36,8 @@ public class AuxFileResource {
         
     private final AuxFileRepository auxFileRepository;
 
-    private final AuxFileSearchRepository auxFileSearchRepository;
-
-    public AuxFileResource(AuxFileRepository auxFileRepository, AuxFileSearchRepository auxFileSearchRepository) {
+    public AuxFileResource(AuxFileRepository auxFileRepository) {
         this.auxFileRepository = auxFileRepository;
-        this.auxFileSearchRepository = auxFileSearchRepository;
     }
 
     /**
@@ -63,7 +55,6 @@ public class AuxFileResource {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new auxFile cannot already have an ID")).body(null);
         }
         AuxFile result = auxFileRepository.save(auxFile);
-        auxFileSearchRepository.save(result);
         return ResponseEntity.created(new URI("/api/aux-files/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);
@@ -86,7 +77,6 @@ public class AuxFileResource {
             return createAuxFile(auxFile);
         }
         AuxFile result = auxFileRepository.save(auxFile);
-        auxFileSearchRepository.save(result);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, auxFile.getId().toString()))
             .body(result);
@@ -132,26 +122,7 @@ public class AuxFileResource {
     public ResponseEntity<Void> deleteAuxFile(@PathVariable Long id) {
         log.debug("REST request to delete AuxFile : {}", id);
         auxFileRepository.delete(id);
-        auxFileSearchRepository.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
-
-    /**
-     * SEARCH  /_search/aux-files?query=:query : search for the auxFile corresponding
-     * to the query.
-     *
-     * @param query the query of the auxFile search 
-     * @param pageable the pagination information
-     * @return the result of the search
-     */
-    @GetMapping("/_search/aux-files")
-    @Timed
-    public ResponseEntity<List<AuxFile>> searchAuxFiles(@RequestParam String query, @ApiParam Pageable pageable) {
-        log.debug("REST request to search for a page of AuxFiles for query {}", query);
-        Page<AuxFile> page = auxFileSearchRepository.search(queryStringQuery(query), pageable);
-        HttpHeaders headers = PaginationUtil.generateSearchPaginationHttpHeaders(query, page, "/api/_search/aux-files");
-        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
-    }
-
 
 }

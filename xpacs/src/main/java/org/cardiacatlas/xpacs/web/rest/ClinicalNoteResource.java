@@ -4,7 +4,6 @@ import com.codahale.metrics.annotation.Timed;
 import org.cardiacatlas.xpacs.domain.ClinicalNote;
 
 import org.cardiacatlas.xpacs.repository.ClinicalNoteRepository;
-import org.cardiacatlas.xpacs.repository.search.ClinicalNoteSearchRepository;
 import org.cardiacatlas.xpacs.web.rest.util.HeaderUtil;
 import org.cardiacatlas.xpacs.web.rest.util.PaginationUtil;
 import io.swagger.annotations.ApiParam;
@@ -23,10 +22,6 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
-
-import static org.elasticsearch.index.query.QueryBuilders.*;
 
 /**
  * REST controller for managing ClinicalNote.
@@ -41,11 +36,8 @@ public class ClinicalNoteResource {
         
     private final ClinicalNoteRepository clinicalNoteRepository;
 
-    private final ClinicalNoteSearchRepository clinicalNoteSearchRepository;
-
-    public ClinicalNoteResource(ClinicalNoteRepository clinicalNoteRepository, ClinicalNoteSearchRepository clinicalNoteSearchRepository) {
+    public ClinicalNoteResource(ClinicalNoteRepository clinicalNoteRepository) {
         this.clinicalNoteRepository = clinicalNoteRepository;
-        this.clinicalNoteSearchRepository = clinicalNoteSearchRepository;
     }
 
     /**
@@ -63,7 +55,6 @@ public class ClinicalNoteResource {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new clinicalNote cannot already have an ID")).body(null);
         }
         ClinicalNote result = clinicalNoteRepository.save(clinicalNote);
-        clinicalNoteSearchRepository.save(result);
         return ResponseEntity.created(new URI("/api/clinical-notes/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);
@@ -86,7 +77,6 @@ public class ClinicalNoteResource {
             return createClinicalNote(clinicalNote);
         }
         ClinicalNote result = clinicalNoteRepository.save(clinicalNote);
-        clinicalNoteSearchRepository.save(result);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, clinicalNote.getId().toString()))
             .body(result);
@@ -132,26 +122,7 @@ public class ClinicalNoteResource {
     public ResponseEntity<Void> deleteClinicalNote(@PathVariable Long id) {
         log.debug("REST request to delete ClinicalNote : {}", id);
         clinicalNoteRepository.delete(id);
-        clinicalNoteSearchRepository.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
-
-    /**
-     * SEARCH  /_search/clinical-notes?query=:query : search for the clinicalNote corresponding
-     * to the query.
-     *
-     * @param query the query of the clinicalNote search 
-     * @param pageable the pagination information
-     * @return the result of the search
-     */
-    @GetMapping("/_search/clinical-notes")
-    @Timed
-    public ResponseEntity<List<ClinicalNote>> searchClinicalNotes(@RequestParam String query, @ApiParam Pageable pageable) {
-        log.debug("REST request to search for a page of ClinicalNotes for query {}", query);
-        Page<ClinicalNote> page = clinicalNoteSearchRepository.search(queryStringQuery(query), pageable);
-        HttpHeaders headers = PaginationUtil.generateSearchPaginationHttpHeaders(query, page, "/api/_search/clinical-notes");
-        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
-    }
-
 
 }

@@ -4,7 +4,6 @@ import com.codahale.metrics.annotation.Timed;
 import org.cardiacatlas.xpacs.domain.CapModel;
 
 import org.cardiacatlas.xpacs.repository.CapModelRepository;
-import org.cardiacatlas.xpacs.repository.search.CapModelSearchRepository;
 import org.cardiacatlas.xpacs.web.rest.util.HeaderUtil;
 import org.cardiacatlas.xpacs.web.rest.util.PaginationUtil;
 import io.swagger.annotations.ApiParam;
@@ -23,10 +22,6 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
-
-import static org.elasticsearch.index.query.QueryBuilders.*;
 
 /**
  * REST controller for managing CapModel.
@@ -41,11 +36,8 @@ public class CapModelResource {
         
     private final CapModelRepository capModelRepository;
 
-    private final CapModelSearchRepository capModelSearchRepository;
-
-    public CapModelResource(CapModelRepository capModelRepository, CapModelSearchRepository capModelSearchRepository) {
+    public CapModelResource(CapModelRepository capModelRepository) {
         this.capModelRepository = capModelRepository;
-        this.capModelSearchRepository = capModelSearchRepository;
     }
 
     /**
@@ -63,7 +55,6 @@ public class CapModelResource {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new capModel cannot already have an ID")).body(null);
         }
         CapModel result = capModelRepository.save(capModel);
-        capModelSearchRepository.save(result);
         return ResponseEntity.created(new URI("/api/cap-models/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);
@@ -86,7 +77,6 @@ public class CapModelResource {
             return createCapModel(capModel);
         }
         CapModel result = capModelRepository.save(capModel);
-        capModelSearchRepository.save(result);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, capModel.getId().toString()))
             .body(result);
@@ -132,26 +122,7 @@ public class CapModelResource {
     public ResponseEntity<Void> deleteCapModel(@PathVariable Long id) {
         log.debug("REST request to delete CapModel : {}", id);
         capModelRepository.delete(id);
-        capModelSearchRepository.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
-
-    /**
-     * SEARCH  /_search/cap-models?query=:query : search for the capModel corresponding
-     * to the query.
-     *
-     * @param query the query of the capModel search 
-     * @param pageable the pagination information
-     * @return the result of the search
-     */
-    @GetMapping("/_search/cap-models")
-    @Timed
-    public ResponseEntity<List<CapModel>> searchCapModels(@RequestParam String query, @ApiParam Pageable pageable) {
-        log.debug("REST request to search for a page of CapModels for query {}", query);
-        Page<CapModel> page = capModelSearchRepository.search(queryStringQuery(query), pageable);
-        HttpHeaders headers = PaginationUtil.generateSearchPaginationHttpHeaders(query, page, "/api/_search/cap-models");
-        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
-    }
-
 
 }

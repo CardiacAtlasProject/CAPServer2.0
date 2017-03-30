@@ -5,7 +5,6 @@ import org.cardiacatlas.xpacs.XpacswebApp;
 import org.cardiacatlas.xpacs.domain.ClinicalNote;
 import org.cardiacatlas.xpacs.domain.PatientInfo;
 import org.cardiacatlas.xpacs.repository.ClinicalNoteRepository;
-import org.cardiacatlas.xpacs.repository.search.ClinicalNoteSearchRepository;
 import org.cardiacatlas.xpacs.web.rest.errors.ExceptionTranslator;
 
 import org.junit.Before;
@@ -64,9 +63,6 @@ public class ClinicalNoteResourceIntTest {
     private ClinicalNoteRepository clinicalNoteRepository;
 
     @Autowired
-    private ClinicalNoteSearchRepository clinicalNoteSearchRepository;
-
-    @Autowired
     private MappingJackson2HttpMessageConverter jacksonMessageConverter;
 
     @Autowired
@@ -85,7 +81,7 @@ public class ClinicalNoteResourceIntTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        ClinicalNoteResource clinicalNoteResource = new ClinicalNoteResource(clinicalNoteRepository, clinicalNoteSearchRepository);
+        ClinicalNoteResource clinicalNoteResource = new ClinicalNoteResource(clinicalNoteRepository);
         this.restClinicalNoteMockMvc = MockMvcBuilders.standaloneSetup(clinicalNoteResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)
@@ -116,7 +112,6 @@ public class ClinicalNoteResourceIntTest {
 
     @Before
     public void initTest() {
-        clinicalNoteSearchRepository.deleteAll();
         clinicalNote = createEntity(em);
     }
 
@@ -141,10 +136,6 @@ public class ClinicalNoteResourceIntTest {
         assertThat(testClinicalNote.getWeight()).isEqualTo(DEFAULT_WEIGHT);
         assertThat(testClinicalNote.getDiagnosis()).isEqualTo(DEFAULT_DIAGNOSIS);
         assertThat(testClinicalNote.getNote()).isEqualTo(DEFAULT_NOTE);
-
-        // Validate the ClinicalNote in Elasticsearch
-        ClinicalNote clinicalNoteEs = clinicalNoteSearchRepository.findOne(testClinicalNote.getId());
-        assertThat(clinicalNoteEs).isEqualToComparingFieldByField(testClinicalNote);
     }
 
     @Test
@@ -235,7 +226,6 @@ public class ClinicalNoteResourceIntTest {
     public void updateClinicalNote() throws Exception {
         // Initialize the database
         clinicalNoteRepository.saveAndFlush(clinicalNote);
-        clinicalNoteSearchRepository.save(clinicalNote);
         int databaseSizeBeforeUpdate = clinicalNoteRepository.findAll().size();
 
         // Update the clinicalNote
@@ -263,10 +253,6 @@ public class ClinicalNoteResourceIntTest {
         assertThat(testClinicalNote.getWeight()).isEqualTo(UPDATED_WEIGHT);
         assertThat(testClinicalNote.getDiagnosis()).isEqualTo(UPDATED_DIAGNOSIS);
         assertThat(testClinicalNote.getNote()).isEqualTo(UPDATED_NOTE);
-
-        // Validate the ClinicalNote in Elasticsearch
-        ClinicalNote clinicalNoteEs = clinicalNoteSearchRepository.findOne(testClinicalNote.getId());
-        assertThat(clinicalNoteEs).isEqualToComparingFieldByField(testClinicalNote);
     }
 
     @Test
@@ -292,7 +278,6 @@ public class ClinicalNoteResourceIntTest {
     public void deleteClinicalNote() throws Exception {
         // Initialize the database
         clinicalNoteRepository.saveAndFlush(clinicalNote);
-        clinicalNoteSearchRepository.save(clinicalNote);
         int databaseSizeBeforeDelete = clinicalNoteRepository.findAll().size();
 
         // Get the clinicalNote
@@ -300,33 +285,9 @@ public class ClinicalNoteResourceIntTest {
             .accept(TestUtil.APPLICATION_JSON_UTF8))
             .andExpect(status().isOk());
 
-        // Validate Elasticsearch is empty
-        boolean clinicalNoteExistsInEs = clinicalNoteSearchRepository.exists(clinicalNote.getId());
-        assertThat(clinicalNoteExistsInEs).isFalse();
-
         // Validate the database is empty
         List<ClinicalNote> clinicalNoteList = clinicalNoteRepository.findAll();
         assertThat(clinicalNoteList).hasSize(databaseSizeBeforeDelete - 1);
-    }
-
-    @Test
-    @Transactional
-    public void searchClinicalNote() throws Exception {
-        // Initialize the database
-        clinicalNoteRepository.saveAndFlush(clinicalNote);
-        clinicalNoteSearchRepository.save(clinicalNote);
-
-        // Search the clinicalNote
-        restClinicalNoteMockMvc.perform(get("/api/_search/clinical-notes?query=id:" + clinicalNote.getId()))
-            .andExpect(status().isOk())
-            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-            .andExpect(jsonPath("$.[*].id").value(hasItem(clinicalNote.getId().intValue())))
-            .andExpect(jsonPath("$.[*].assessment_date").value(hasItem(DEFAULT_ASSESSMENT_DATE.toString())))
-            .andExpect(jsonPath("$.[*].age").value(hasItem(DEFAULT_AGE.doubleValue())))
-            .andExpect(jsonPath("$.[*].height").value(hasItem(DEFAULT_HEIGHT.toString())))
-            .andExpect(jsonPath("$.[*].weight").value(hasItem(DEFAULT_WEIGHT.toString())))
-            .andExpect(jsonPath("$.[*].diagnosis").value(hasItem(DEFAULT_DIAGNOSIS.toString())))
-            .andExpect(jsonPath("$.[*].note").value(hasItem(DEFAULT_NOTE.toString())));
     }
 
     @Test

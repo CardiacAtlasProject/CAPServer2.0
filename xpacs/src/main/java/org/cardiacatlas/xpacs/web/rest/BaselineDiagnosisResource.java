@@ -4,7 +4,6 @@ import com.codahale.metrics.annotation.Timed;
 import org.cardiacatlas.xpacs.domain.BaselineDiagnosis;
 
 import org.cardiacatlas.xpacs.repository.BaselineDiagnosisRepository;
-import org.cardiacatlas.xpacs.repository.search.BaselineDiagnosisSearchRepository;
 import org.cardiacatlas.xpacs.web.rest.util.HeaderUtil;
 import org.cardiacatlas.xpacs.web.rest.util.PaginationUtil;
 import io.swagger.annotations.ApiParam;
@@ -23,10 +22,6 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
-
-import static org.elasticsearch.index.query.QueryBuilders.*;
 
 /**
  * REST controller for managing BaselineDiagnosis.
@@ -41,11 +36,8 @@ public class BaselineDiagnosisResource {
         
     private final BaselineDiagnosisRepository baselineDiagnosisRepository;
 
-    private final BaselineDiagnosisSearchRepository baselineDiagnosisSearchRepository;
-
-    public BaselineDiagnosisResource(BaselineDiagnosisRepository baselineDiagnosisRepository, BaselineDiagnosisSearchRepository baselineDiagnosisSearchRepository) {
+    public BaselineDiagnosisResource(BaselineDiagnosisRepository baselineDiagnosisRepository) {
         this.baselineDiagnosisRepository = baselineDiagnosisRepository;
-        this.baselineDiagnosisSearchRepository = baselineDiagnosisSearchRepository;
     }
 
     /**
@@ -63,7 +55,6 @@ public class BaselineDiagnosisResource {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new baselineDiagnosis cannot already have an ID")).body(null);
         }
         BaselineDiagnosis result = baselineDiagnosisRepository.save(baselineDiagnosis);
-        baselineDiagnosisSearchRepository.save(result);
         return ResponseEntity.created(new URI("/api/baseline-diagnoses/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);
@@ -86,7 +77,6 @@ public class BaselineDiagnosisResource {
             return createBaselineDiagnosis(baselineDiagnosis);
         }
         BaselineDiagnosis result = baselineDiagnosisRepository.save(baselineDiagnosis);
-        baselineDiagnosisSearchRepository.save(result);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, baselineDiagnosis.getId().toString()))
             .body(result);
@@ -132,26 +122,7 @@ public class BaselineDiagnosisResource {
     public ResponseEntity<Void> deleteBaselineDiagnosis(@PathVariable Long id) {
         log.debug("REST request to delete BaselineDiagnosis : {}", id);
         baselineDiagnosisRepository.delete(id);
-        baselineDiagnosisSearchRepository.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
-
-    /**
-     * SEARCH  /_search/baseline-diagnoses?query=:query : search for the baselineDiagnosis corresponding
-     * to the query.
-     *
-     * @param query the query of the baselineDiagnosis search 
-     * @param pageable the pagination information
-     * @return the result of the search
-     */
-    @GetMapping("/_search/baseline-diagnoses")
-    @Timed
-    public ResponseEntity<List<BaselineDiagnosis>> searchBaselineDiagnoses(@RequestParam String query, @ApiParam Pageable pageable) {
-        log.debug("REST request to search for a page of BaselineDiagnoses for query {}", query);
-        Page<BaselineDiagnosis> page = baselineDiagnosisSearchRepository.search(queryStringQuery(query), pageable);
-        HttpHeaders headers = PaginationUtil.generateSearchPaginationHttpHeaders(query, page, "/api/_search/baseline-diagnoses");
-        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
-    }
-
 
 }

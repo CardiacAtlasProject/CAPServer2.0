@@ -5,7 +5,6 @@ import org.cardiacatlas.xpacs.XpacswebApp;
 import org.cardiacatlas.xpacs.domain.CapModel;
 import org.cardiacatlas.xpacs.domain.PatientInfo;
 import org.cardiacatlas.xpacs.repository.CapModelRepository;
-import org.cardiacatlas.xpacs.repository.search.CapModelSearchRepository;
 import org.cardiacatlas.xpacs.web.rest.errors.ExceptionTranslator;
 
 import org.junit.Before;
@@ -68,9 +67,6 @@ public class CapModelResourceIntTest {
     private CapModelRepository capModelRepository;
 
     @Autowired
-    private CapModelSearchRepository capModelSearchRepository;
-
-    @Autowired
     private MappingJackson2HttpMessageConverter jacksonMessageConverter;
 
     @Autowired
@@ -89,7 +85,7 @@ public class CapModelResourceIntTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        CapModelResource capModelResource = new CapModelResource(capModelRepository, capModelSearchRepository);
+        CapModelResource capModelResource = new CapModelResource(capModelRepository);
         this.restCapModelMockMvc = MockMvcBuilders.standaloneSetup(capModelResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)
@@ -122,7 +118,6 @@ public class CapModelResourceIntTest {
 
     @Before
     public void initTest() {
-        capModelSearchRepository.deleteAll();
         capModel = createEntity(em);
     }
 
@@ -149,10 +144,6 @@ public class CapModelResourceIntTest {
         assertThat(testCapModel.getModel_fileContentType()).isEqualTo(DEFAULT_MODEL_FILE_CONTENT_TYPE);
         assertThat(testCapModel.getXml_file()).isEqualTo(DEFAULT_XML_FILE);
         assertThat(testCapModel.getXml_fileContentType()).isEqualTo(DEFAULT_XML_FILE_CONTENT_TYPE);
-
-        // Validate the CapModel in Elasticsearch
-        CapModel capModelEs = capModelSearchRepository.findOne(testCapModel.getId());
-        assertThat(capModelEs).isEqualToComparingFieldByField(testCapModel);
     }
 
     @Test
@@ -265,7 +256,6 @@ public class CapModelResourceIntTest {
     public void updateCapModel() throws Exception {
         // Initialize the database
         capModelRepository.saveAndFlush(capModel);
-        capModelSearchRepository.save(capModel);
         int databaseSizeBeforeUpdate = capModelRepository.findAll().size();
 
         // Update the capModel
@@ -297,10 +287,6 @@ public class CapModelResourceIntTest {
         assertThat(testCapModel.getModel_fileContentType()).isEqualTo(UPDATED_MODEL_FILE_CONTENT_TYPE);
         assertThat(testCapModel.getXml_file()).isEqualTo(UPDATED_XML_FILE);
         assertThat(testCapModel.getXml_fileContentType()).isEqualTo(UPDATED_XML_FILE_CONTENT_TYPE);
-
-        // Validate the CapModel in Elasticsearch
-        CapModel capModelEs = capModelSearchRepository.findOne(testCapModel.getId());
-        assertThat(capModelEs).isEqualToComparingFieldByField(testCapModel);
     }
 
     @Test
@@ -326,7 +312,6 @@ public class CapModelResourceIntTest {
     public void deleteCapModel() throws Exception {
         // Initialize the database
         capModelRepository.saveAndFlush(capModel);
-        capModelSearchRepository.save(capModel);
         int databaseSizeBeforeDelete = capModelRepository.findAll().size();
 
         // Get the capModel
@@ -334,35 +319,9 @@ public class CapModelResourceIntTest {
             .accept(TestUtil.APPLICATION_JSON_UTF8))
             .andExpect(status().isOk());
 
-        // Validate Elasticsearch is empty
-        boolean capModelExistsInEs = capModelSearchRepository.exists(capModel.getId());
-        assertThat(capModelExistsInEs).isFalse();
-
         // Validate the database is empty
         List<CapModel> capModelList = capModelRepository.findAll();
         assertThat(capModelList).hasSize(databaseSizeBeforeDelete - 1);
-    }
-
-    @Test
-    @Transactional
-    public void searchCapModel() throws Exception {
-        // Initialize the database
-        capModelRepository.saveAndFlush(capModel);
-        capModelSearchRepository.save(capModel);
-
-        // Search the capModel
-        restCapModelMockMvc.perform(get("/api/_search/cap-models?query=id:" + capModel.getId()))
-            .andExpect(status().isOk())
-            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-            .andExpect(jsonPath("$.[*].id").value(hasItem(capModel.getId().intValue())))
-            .andExpect(jsonPath("$.[*].creation_date").value(hasItem(DEFAULT_CREATION_DATE.toString())))
-            .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())))
-            .andExpect(jsonPath("$.[*].type").value(hasItem(DEFAULT_TYPE.toString())))
-            .andExpect(jsonPath("$.[*].comment").value(hasItem(DEFAULT_COMMENT.toString())))
-            .andExpect(jsonPath("$.[*].model_fileContentType").value(hasItem(DEFAULT_MODEL_FILE_CONTENT_TYPE)))
-            .andExpect(jsonPath("$.[*].model_file").value(hasItem(Base64Utils.encodeToString(DEFAULT_MODEL_FILE))))
-            .andExpect(jsonPath("$.[*].xml_fileContentType").value(hasItem(DEFAULT_XML_FILE_CONTENT_TYPE)))
-            .andExpect(jsonPath("$.[*].xml_file").value(hasItem(Base64Utils.encodeToString(DEFAULT_XML_FILE))));
     }
 
     @Test

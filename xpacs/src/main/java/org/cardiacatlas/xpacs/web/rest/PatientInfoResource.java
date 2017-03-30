@@ -4,7 +4,6 @@ import com.codahale.metrics.annotation.Timed;
 import org.cardiacatlas.xpacs.domain.PatientInfo;
 
 import org.cardiacatlas.xpacs.repository.PatientInfoRepository;
-import org.cardiacatlas.xpacs.repository.search.PatientInfoSearchRepository;
 import org.cardiacatlas.xpacs.web.rest.util.HeaderUtil;
 import org.cardiacatlas.xpacs.web.rest.util.PaginationUtil;
 import io.swagger.annotations.ApiParam;
@@ -23,10 +22,6 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
-
-import static org.elasticsearch.index.query.QueryBuilders.*;
 
 /**
  * REST controller for managing PatientInfo.
@@ -41,11 +36,8 @@ public class PatientInfoResource {
         
     private final PatientInfoRepository patientInfoRepository;
 
-    private final PatientInfoSearchRepository patientInfoSearchRepository;
-
-    public PatientInfoResource(PatientInfoRepository patientInfoRepository, PatientInfoSearchRepository patientInfoSearchRepository) {
+    public PatientInfoResource(PatientInfoRepository patientInfoRepository) {
         this.patientInfoRepository = patientInfoRepository;
-        this.patientInfoSearchRepository = patientInfoSearchRepository;
     }
 
     /**
@@ -63,7 +55,6 @@ public class PatientInfoResource {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new patientInfo cannot already have an ID")).body(null);
         }
         PatientInfo result = patientInfoRepository.save(patientInfo);
-        patientInfoSearchRepository.save(result);
         return ResponseEntity.created(new URI("/api/patient-infos/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);
@@ -86,7 +77,6 @@ public class PatientInfoResource {
             return createPatientInfo(patientInfo);
         }
         PatientInfo result = patientInfoRepository.save(patientInfo);
-        patientInfoSearchRepository.save(result);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, patientInfo.getId().toString()))
             .body(result);
@@ -132,26 +122,7 @@ public class PatientInfoResource {
     public ResponseEntity<Void> deletePatientInfo(@PathVariable Long id) {
         log.debug("REST request to delete PatientInfo : {}", id);
         patientInfoRepository.delete(id);
-        patientInfoSearchRepository.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
-
-    /**
-     * SEARCH  /_search/patient-infos?query=:query : search for the patientInfo corresponding
-     * to the query.
-     *
-     * @param query the query of the patientInfo search 
-     * @param pageable the pagination information
-     * @return the result of the search
-     */
-    @GetMapping("/_search/patient-infos")
-    @Timed
-    public ResponseEntity<List<PatientInfo>> searchPatientInfos(@RequestParam String query, @ApiParam Pageable pageable) {
-        log.debug("REST request to search for a page of PatientInfos for query {}", query);
-        Page<PatientInfo> page = patientInfoSearchRepository.search(queryStringQuery(query), pageable);
-        HttpHeaders headers = PaginationUtil.generateSearchPaginationHttpHeaders(query, page, "/api/_search/patient-infos");
-        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
-    }
-
 
 }

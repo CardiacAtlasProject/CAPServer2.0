@@ -4,7 +4,6 @@ import org.cardiacatlas.xpacs.XpacswebApp;
 
 import org.cardiacatlas.xpacs.domain.PatientInfo;
 import org.cardiacatlas.xpacs.repository.PatientInfoRepository;
-import org.cardiacatlas.xpacs.repository.search.PatientInfoSearchRepository;
 import org.cardiacatlas.xpacs.web.rest.errors.ExceptionTranslator;
 
 import org.junit.Before;
@@ -58,9 +57,6 @@ public class PatientInfoResourceIntTest {
     private PatientInfoRepository patientInfoRepository;
 
     @Autowired
-    private PatientInfoSearchRepository patientInfoSearchRepository;
-
-    @Autowired
     private MappingJackson2HttpMessageConverter jacksonMessageConverter;
 
     @Autowired
@@ -79,7 +75,7 @@ public class PatientInfoResourceIntTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        PatientInfoResource patientInfoResource = new PatientInfoResource(patientInfoRepository, patientInfoSearchRepository);
+        PatientInfoResource patientInfoResource = new PatientInfoResource(patientInfoRepository);
         this.restPatientInfoMockMvc = MockMvcBuilders.standaloneSetup(patientInfoResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)
@@ -104,7 +100,6 @@ public class PatientInfoResourceIntTest {
 
     @Before
     public void initTest() {
-        patientInfoSearchRepository.deleteAll();
         patientInfo = createEntity(em);
     }
 
@@ -128,10 +123,6 @@ public class PatientInfoResourceIntTest {
         assertThat(testPatientInfo.getEthnicity()).isEqualTo(DEFAULT_ETHNICITY);
         assertThat(testPatientInfo.getGender()).isEqualTo(DEFAULT_GENDER);
         assertThat(testPatientInfo.getPrimary_diagnosis()).isEqualTo(DEFAULT_PRIMARY_DIAGNOSIS);
-
-        // Validate the PatientInfo in Elasticsearch
-        PatientInfo patientInfoEs = patientInfoSearchRepository.findOne(testPatientInfo.getId());
-        assertThat(patientInfoEs).isEqualToComparingFieldByField(testPatientInfo);
     }
 
     @Test
@@ -238,7 +229,6 @@ public class PatientInfoResourceIntTest {
     public void updatePatientInfo() throws Exception {
         // Initialize the database
         patientInfoRepository.saveAndFlush(patientInfo);
-        patientInfoSearchRepository.save(patientInfo);
         int databaseSizeBeforeUpdate = patientInfoRepository.findAll().size();
 
         // Update the patientInfo
@@ -264,10 +254,6 @@ public class PatientInfoResourceIntTest {
         assertThat(testPatientInfo.getEthnicity()).isEqualTo(UPDATED_ETHNICITY);
         assertThat(testPatientInfo.getGender()).isEqualTo(UPDATED_GENDER);
         assertThat(testPatientInfo.getPrimary_diagnosis()).isEqualTo(UPDATED_PRIMARY_DIAGNOSIS);
-
-        // Validate the PatientInfo in Elasticsearch
-        PatientInfo patientInfoEs = patientInfoSearchRepository.findOne(testPatientInfo.getId());
-        assertThat(patientInfoEs).isEqualToComparingFieldByField(testPatientInfo);
     }
 
     @Test
@@ -293,7 +279,6 @@ public class PatientInfoResourceIntTest {
     public void deletePatientInfo() throws Exception {
         // Initialize the database
         patientInfoRepository.saveAndFlush(patientInfo);
-        patientInfoSearchRepository.save(patientInfo);
         int databaseSizeBeforeDelete = patientInfoRepository.findAll().size();
 
         // Get the patientInfo
@@ -301,32 +286,9 @@ public class PatientInfoResourceIntTest {
             .accept(TestUtil.APPLICATION_JSON_UTF8))
             .andExpect(status().isOk());
 
-        // Validate Elasticsearch is empty
-        boolean patientInfoExistsInEs = patientInfoSearchRepository.exists(patientInfo.getId());
-        assertThat(patientInfoExistsInEs).isFalse();
-
         // Validate the database is empty
         List<PatientInfo> patientInfoList = patientInfoRepository.findAll();
         assertThat(patientInfoList).hasSize(databaseSizeBeforeDelete - 1);
-    }
-
-    @Test
-    @Transactional
-    public void searchPatientInfo() throws Exception {
-        // Initialize the database
-        patientInfoRepository.saveAndFlush(patientInfo);
-        patientInfoSearchRepository.save(patientInfo);
-
-        // Search the patientInfo
-        restPatientInfoMockMvc.perform(get("/api/_search/patient-infos?query=id:" + patientInfo.getId()))
-            .andExpect(status().isOk())
-            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-            .andExpect(jsonPath("$.[*].id").value(hasItem(patientInfo.getId().intValue())))
-            .andExpect(jsonPath("$.[*].patient_id").value(hasItem(DEFAULT_PATIENT_ID.toString())))
-            .andExpect(jsonPath("$.[*].cohort").value(hasItem(DEFAULT_COHORT.toString())))
-            .andExpect(jsonPath("$.[*].ethnicity").value(hasItem(DEFAULT_ETHNICITY.toString())))
-            .andExpect(jsonPath("$.[*].gender").value(hasItem(DEFAULT_GENDER.toString())))
-            .andExpect(jsonPath("$.[*].primary_diagnosis").value(hasItem(DEFAULT_PRIMARY_DIAGNOSIS.toString())));
     }
 
     @Test

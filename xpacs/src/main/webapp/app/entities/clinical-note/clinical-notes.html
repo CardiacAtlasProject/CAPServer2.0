@@ -6,27 +6,10 @@
             <div class="col-xs-4 no-padding-left">
                 <button class="btn btn-primary" ui-sref="clinical-note.new" >
                     <span class="glyphicon glyphicon-plus"></span>
-                    <span class="hidden-xs-down" >
-                        ADD ENTRY
+                    <span >
+                        ADD NEW ENTRY
                     </span>
                 </button>
-            </div>
-            <div class="col-xs-8 no-padding-right">
-                <form name="searchForm" class="form-inline">
-                    <div class="input-group pull-right" >
-                        <input type="text" class="form-control" ng-model="vm.searchQuery" id="searchQuery" placeholder="Query">
-                        <span  class="input-group-btn width-min" >
-                            <button class="btn btn-info" ng-click="vm.search(vm.searchQuery)">
-                                <span class="glyphicon glyphicon-search"></span>
-                            </button>
-                        </span>
-                        <span class="input-group-btn width-min" ng-if="vm.currentSearch">
-                            <button class="btn btn-info" ng-click="vm.clear()">
-                                <span class="glyphicon glyphicon-trash"></span>
-                            </button>
-                        </span>
-                    </div>
-                </form>
             </div>
         </div>
     </div>
@@ -35,31 +18,29 @@
         <table class="jh-table table table-striped">
             <thead>
                 <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
-                    <!-- <th jh-sort-by="id"><span>ID</span> <span class="glyphicon glyphicon-sort"></span></th> -->
-                    <th jh-sort-by="assessment_date"><span data-translate="xpacswebApp.clinicalNote.assessment_date">Assessment Date</span> <span class="glyphicon glyphicon-sort"></span></th>
+<!--                    <th jh-sort-by="id"><span>ID</span> <span class="glyphicon glyphicon-sort"></span></th>-->
+                    <th jh-sort-by="patientInfoFK.patient_id"><span>Patient Id</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="assessment_date"><span data-translate="xpacswebApp.clinicalNote.assessment_date">Date</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="age"><span>Age</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="height"><span>Height</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="weight"><span>Weight</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="diagnosis"><span>Diagnosis</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="note"><span>Note</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="patientInfoFK.patient_id"><span>PatientID</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
                 <tr ng-repeat="clinicalNote in vm.clinicalNotes track by clinicalNote.id">
-                    <!-- <td><a ui-sref="clinical-note-detail({id:clinicalNote.id})">{{clinicalNote.id}}</a></td> -->
-                    <td><a ui-sref="clinical-note-detail({id:clinicalNote.id})">
-                        {{clinicalNote.assessment_date | date:'mediumDate'}}
-                    </a></td>
+<!--                    <td><a ui-sref="clinical-note-detail({id:clinicalNote.id})">{{clinicalNote.id}}</a></td>-->
+                    <td>
+                        <a ui-sref="patient-info-detail({id:clinicalNote.patientInfoFK.id})">{{clinicalNote.patientInfoFK.patient_id}}</a>
+                    </td>
+                    <td><a ui-sref="clinical-note-detail({id:clinicalNote.id})">{{clinicalNote.assessment_date | date:'mediumDate'}}</a></td>
                     <td>{{clinicalNote.age}}</td>
                     <td>{{clinicalNote.height}}</td>
                     <td>{{clinicalNote.weight}}</td>
                     <td>{{clinicalNote.diagnosis}}</td>
                     <td>{{clinicalNote.note}}</td>
-                    <td>
-                        <a ui-sref="patient-info-detail({id:clinicalNote.patientInfoFK.id})">{{clinicalNote.patientInfoFK.patient_id}}</a>
-                    </td>
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">
                             <button type="submit"

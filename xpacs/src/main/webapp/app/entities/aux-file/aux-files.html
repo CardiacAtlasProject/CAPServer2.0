@@ -1,32 +1,15 @@
 <div>
-    <h2>AUX FILE</h2>
+    <h2>EXTERNAL FILES</h2>
     <jhi-alert></jhi-alert>
     <div class="container-fluid">
         <div class="row">
             <div class="col-xs-4 no-padding-left">
                 <button class="btn btn-primary" ui-sref="aux-file.new" >
                     <span class="glyphicon glyphicon-plus"></span>
-                    <span class="hidden-xs-down" >
-                        ADD ENTRY
+                    <span >
+                        ADD NEW ENTRY
                     </span>
                 </button>
-            </div>
-            <div class="col-xs-8 no-padding-right">
-                <form name="searchForm" class="form-inline">
-                    <div class="input-group pull-right" >
-                        <input type="text" class="form-control" ng-model="vm.searchQuery" id="searchQuery" placeholder="Query">
-                        <span  class="input-group-btn width-min" >
-                            <button class="btn btn-info" ng-click="vm.search(vm.searchQuery)">
-                                <span class="glyphicon glyphicon-search"></span>
-                            </button>
-                        </span>
-                        <span class="input-group-btn width-min" ng-if="vm.currentSearch">
-                            <button class="btn btn-info" ng-click="vm.clear()">
-                                <span class="glyphicon glyphicon-trash"></span>
-                            </button>
-                        </span>
-                    </div>
-                </form>
             </div>
         </div>
     </div>
@@ -35,27 +18,25 @@
         <table class="jh-table table table-striped">
             <thead>
                 <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
-                    <!-- <th jh-sort-by="id"><span>ID</span> <span class="glyphicon glyphicon-sort"></span></th> -->
-                    <th jh-sort-by="creation_date"><span data-translate="xpacswebApp.auxFile.creation_date">Creation Date</span> <span class="glyphicon glyphicon-sort"></span></th>
+<!--                    <th jh-sort-by="id"><span>ID</span> <span class="glyphicon glyphicon-sort"></span></th>-->
+                    <th jh-sort-by="patientInfoFK.patient_id"><span>Patient Id</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="creation_date"><span data-translate="xpacswebApp.auxFile.creation_date">Date</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="description"><span>Description</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="file"><span>File</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="patientInfoFK.patient_id"><span>PatientID</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
                 <tr ng-repeat="auxFile in vm.auxFiles track by auxFile.id">
-                    <!-- <td><a ui-sref="aux-file-detail({id:auxFile.id})">{{auxFile.id}}</a></td> -->
-                    <td><a ui-sref="aux-file-detail({id:auxFile.id})">
-                        {{auxFile.creation_date | date:'mediumDate'}}
-                    </a></td>
+<!--                    <td><a ui-sref="aux-file-detail({id:auxFile.id})">{{auxFile.id}}</a></td>-->
+                    <td>
+                        <a ui-sref="patient-info-detail({id:auxFile.patientInfoFK.id})">{{auxFile.patientInfoFK.patient_id}}</a>
+                    </td>
+                    <td><a ui-sref="aux-file-detail({id:auxFile.id})">{{auxFile.creation_date | date:'mediumDate'}}</a></td>
                     <td>{{auxFile.description}}</td>
                     <td>
                         <a ng-if="auxFile.file" ng-click="vm.openFile(auxFile.fileContentType, auxFile.file)">open</a>
                         <span ng-if="auxFile.file">{{auxFile.fileContentType}}, {{vm.byteSize(auxFile.file)}}</span>
-                    </td>
-                    <td>
-                        <a ui-sref="patient-info-detail({id:auxFile.patientInfoFK.id})">{{auxFile.patientInfoFK.patient_id}}</a>
                     </td>
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">

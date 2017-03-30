@@ -2,7 +2,6 @@ package org.cardiacatlas.xpacs.domain;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
-import org.springframework.data.elasticsearch.annotations.Document;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
@@ -17,7 +16,6 @@ import org.cardiacatlas.xpacs.domain.enumeration.GenderType;
 @Entity
 @Table(name = "patient_info")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-@Document(indexName = "patientinfo")
 public class PatientInfo implements Serializable {
 
     private static final long serialVersionUID = 1L;

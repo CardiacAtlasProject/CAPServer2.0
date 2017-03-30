@@ -5,7 +5,6 @@ import org.cardiacatlas.xpacs.XpacswebApp;
 import org.cardiacatlas.xpacs.domain.AuxFile;
 import org.cardiacatlas.xpacs.domain.PatientInfo;
 import org.cardiacatlas.xpacs.repository.AuxFileRepository;
-import org.cardiacatlas.xpacs.repository.search.AuxFileSearchRepository;
 import org.cardiacatlas.xpacs.web.rest.errors.ExceptionTranslator;
 
 import org.junit.Before;
@@ -57,9 +56,6 @@ public class AuxFileResourceIntTest {
     private AuxFileRepository auxFileRepository;
 
     @Autowired
-    private AuxFileSearchRepository auxFileSearchRepository;
-
-    @Autowired
     private MappingJackson2HttpMessageConverter jacksonMessageConverter;
 
     @Autowired
@@ -78,7 +74,7 @@ public class AuxFileResourceIntTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        AuxFileResource auxFileResource = new AuxFileResource(auxFileRepository, auxFileSearchRepository);
+        AuxFileResource auxFileResource = new AuxFileResource(auxFileRepository);
         this.restAuxFileMockMvc = MockMvcBuilders.standaloneSetup(auxFileResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)
@@ -107,7 +103,6 @@ public class AuxFileResourceIntTest {
 
     @Before
     public void initTest() {
-        auxFileSearchRepository.deleteAll();
         auxFile = createEntity(em);
     }
 
@@ -130,10 +125,6 @@ public class AuxFileResourceIntTest {
         assertThat(testAuxFile.getDescription()).isEqualTo(DEFAULT_DESCRIPTION);
         assertThat(testAuxFile.getFile()).isEqualTo(DEFAULT_FILE);
         assertThat(testAuxFile.getFileContentType()).isEqualTo(DEFAULT_FILE_CONTENT_TYPE);
-
-        // Validate the AuxFile in Elasticsearch
-        AuxFile auxFileEs = auxFileSearchRepository.findOne(testAuxFile.getId());
-        assertThat(auxFileEs).isEqualToComparingFieldByField(testAuxFile);
     }
 
     @Test
@@ -238,7 +229,6 @@ public class AuxFileResourceIntTest {
     public void updateAuxFile() throws Exception {
         // Initialize the database
         auxFileRepository.saveAndFlush(auxFile);
-        auxFileSearchRepository.save(auxFile);
         int databaseSizeBeforeUpdate = auxFileRepository.findAll().size();
 
         // Update the auxFile
@@ -262,10 +252,6 @@ public class AuxFileResourceIntTest {
         assertThat(testAuxFile.getDescription()).isEqualTo(UPDATED_DESCRIPTION);
         assertThat(testAuxFile.getFile()).isEqualTo(UPDATED_FILE);
         assertThat(testAuxFile.getFileContentType()).isEqualTo(UPDATED_FILE_CONTENT_TYPE);
-
-        // Validate the AuxFile in Elasticsearch
-        AuxFile auxFileEs = auxFileSearchRepository.findOne(testAuxFile.getId());
-        assertThat(auxFileEs).isEqualToComparingFieldByField(testAuxFile);
     }
 
     @Test
@@ -291,7 +277,6 @@ public class AuxFileResourceIntTest {
     public void deleteAuxFile() throws Exception {
         // Initialize the database
         auxFileRepository.saveAndFlush(auxFile);
-        auxFileSearchRepository.save(auxFile);
         int databaseSizeBeforeDelete = auxFileRepository.findAll().size();
 
         // Get the auxFile
@@ -299,31 +284,9 @@ public class AuxFileResourceIntTest {
             .accept(TestUtil.APPLICATION_JSON_UTF8))
             .andExpect(status().isOk());
 
-        // Validate Elasticsearch is empty
-        boolean auxFileExistsInEs = auxFileSearchRepository.exists(auxFile.getId());
-        assertThat(auxFileExistsInEs).isFalse();
-
         // Validate the database is empty
         List<AuxFile> auxFileList = auxFileRepository.findAll();
         assertThat(auxFileList).hasSize(databaseSizeBeforeDelete - 1);
-    }
-
-    @Test
-    @Transactional
-    public void searchAuxFile() throws Exception {
-        // Initialize the database
-        auxFileRepository.saveAndFlush(auxFile);
-        auxFileSearchRepository.save(auxFile);
-
-        // Search the auxFile
-        restAuxFileMockMvc.perform(get("/api/_search/aux-files?query=id:" + auxFile.getId()))
-            .andExpect(status().isOk())
-            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-            .andExpect(jsonPath("$.[*].id").value(hasItem(auxFile.getId().intValue())))
-            .andExpect(jsonPath("$.[*].creation_date").value(hasItem(DEFAULT_CREATION_DATE.toString())))
-            .andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION.toString())))
-            .andExpect(jsonPath("$.[*].fileContentType").value(hasItem(DEFAULT_FILE_CONTENT_TYPE)))
-            .andExpect(jsonPath("$.[*].file").value(hasItem(Base64Utils.encodeToString(DEFAULT_FILE))));
     }
 
     @Test
