@@ -188,6 +188,7 @@ public class UserService {
     }
 
     public void deleteUser(String login) {
+    	log.debug("REST request to delete User: {}", login);
         userRepository.findOneByLogin(login).ifPresent(user -> {
             userRepository.delete(user);
             log.debug("Deleted User: {}", user);
