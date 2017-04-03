@@ -75,6 +75,6 @@ when you install by default.
 
    Use the same username and password, e.g.
    ```
-   mysql> CREATE USER 'cap'@'%' IDENTIFIED BY '*CapUser*1234' PASSWORD EXPIRE NEVER;
-   mysql> GRANT ALL ON xpacs.* TO 'cap'@'%' IDENTIFIED BY '*CapUser*1234';
+   mysql> CREATE USER 'cap'@'%' IDENTIFIED BY 'SOME_PASSWORD' PASSWORD EXPIRE NEVER;
+   mysql> GRANT ALL ON xpacs.* TO 'cap'@'%' IDENTIFIED BY 'SOME_PASSWORD';
    ```
