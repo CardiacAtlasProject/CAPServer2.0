@@ -55,12 +55,16 @@ public class AccountResource {
         this.persistentTokenRepository = persistentTokenRepository;
     }
 
+    
+/* XPACS DOES NOT ALLOW REGISTER USER FREELY
+   REGISTERING IS PERFORMED THROUGH ADMIN ACTION BY ADDING USER MANUALLY
+    
     /**
      * POST  /register : register the user.
      *
      * @param managedUserVM the managed user View Model
      * @return the ResponseEntity with status 201 (Created) if the user is registered or 400 (Bad Request) if the login or e-mail is already in use
-     */
+     *
     @PostMapping(path = "/register",
                     produces={MediaType.APPLICATION_JSON_VALUE, MediaType.TEXT_PLAIN_VALUE})
     @Timed
@@ -84,6 +88,8 @@ public class AccountResource {
                 })
         );
     }
+    
+*/
 
     /**
      * GET  /activate : activate the registered user.
