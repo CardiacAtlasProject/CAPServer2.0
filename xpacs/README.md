@@ -34,6 +34,10 @@ For further instructions on how to develop with JHipster, have a look at [Using 
 
 ## Building for production
 
+Make sure that you have [maven-wrapper](https://github.com/takari/maven-wrapper) package. Run:
+
+    mvn -N io.takari:maven:wrapper
+
 To optimize the xpacsweb application for production, run:
 
     ./mvnw -Pprod clean package
