@@ -67,7 +67,7 @@ class AuxFileGatlingTest extends Simulation {
             .exec(http("Create new auxFile")
             .post("/api/aux-files")
             .headers(headers_http_authenticated)
-            .body(StringBody("""{"id":null, "creation_date":"2020-01-01T00:00:00.000Z", "description":"SAMPLE_TEXT", "file":null}""")).asJSON
+            .body(StringBody("""{"id":null, "creationDate":"2020-01-01T00:00:00.000Z", "description":"SAMPLE_TEXT", "file":null}""")).asJSON
             .check(status.is(201))
             .check(headerRegex("Location", "(.*)").saveAs("new_auxFile_url"))).exitHereIfFailed
             .pause(10)

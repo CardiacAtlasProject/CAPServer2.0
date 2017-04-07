@@ -46,7 +46,7 @@
             vm.isSaving = false;
         }
 
-        vm.datePickerOpenStatus.creation_date = false;
+        vm.datePickerOpenStatus.creationDate = false;
 
         vm.setFile = function ($file, auxFile) {
             if ($file) {

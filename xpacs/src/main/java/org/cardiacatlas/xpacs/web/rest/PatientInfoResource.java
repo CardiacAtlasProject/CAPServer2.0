@@ -51,13 +51,24 @@ public class PatientInfoResource {
     @Timed
     public ResponseEntity<PatientInfo> createPatientInfo(@Valid @RequestBody PatientInfo patientInfo) throws URISyntaxException {
         log.debug("REST request to save PatientInfo : {}", patientInfo);
+        
         if (patientInfo.getId() != null) {
-            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new patientInfo cannot already have an ID")).body(null);
+            return ResponseEntity.badRequest()
+            		             .headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new patientInfo cannot already have an ID"))
+            		             .body(null);
+        } else if( patientInfoRepository.findOneByPatientId(patientInfo.getPatientId()).isPresent() ) {
+        	
+        	// cannot create patient with the same PatientID
+        	return ResponseEntity.badRequest()
+                    .headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "Entity creation failed, PatientID already in use"))
+                    .body(null);
+        	
+        } else {
+            PatientInfo result = patientInfoRepository.save(patientInfo);
+            return ResponseEntity.created(new URI("/api/patient-infos/" + result.getId()))
+                .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
+                .body(result);
         }
-        PatientInfo result = patientInfoRepository.save(patientInfo);
-        return ResponseEntity.created(new URI("/api/patient-infos/" + result.getId()))
-            .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
-            .body(result);
     }
 
     /**

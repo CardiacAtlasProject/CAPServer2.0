@@ -18,9 +18,9 @@
         <table class="jh-table table table-striped">
             <thead>
                 <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
-<!--                    <th jh-sort-by="id"><span>ID</span> <span class="glyphicon glyphicon-sort"></span></th>-->
-                    <th jh-sort-by="patientInfoFK.patient_id"><span>Patient Id</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="assessment_date"><span data-translate="xpacswebApp.clinicalNote.assessment_date">Date</span> <span class="glyphicon glyphicon-sort"></span></th>
+<!--                     <th jh-sort-by="id"><span>ID</span> <span class="glyphicon glyphicon-sort"></span></th> -->
+                    <th jh-sort-by="patientInfoFK.patientId"><span>PatientID</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="assessmentDate"><span>Assessment Date</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="age"><span>Age</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="height"><span>Height</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="weight"><span>Weight</span> <span class="glyphicon glyphicon-sort"></span></th>
@@ -31,11 +31,11 @@
             </thead>
             <tbody>
                 <tr ng-repeat="clinicalNote in vm.clinicalNotes track by clinicalNote.id">
-<!--                    <td><a ui-sref="clinical-note-detail({id:clinicalNote.id})">{{clinicalNote.id}}</a></td>-->
+<!--                     <td><a ui-sref="clinical-note-detail({id:clinicalNote.id})">{{clinicalNote.id}}</a></td> -->
                     <td>
-                        <a ui-sref="patient-info-detail({id:clinicalNote.patientInfoFK.id})">{{clinicalNote.patientInfoFK.patient_id}}</a>
+                        <a ui-sref="patient-info-detail({id:clinicalNote.patientInfoFK.id})">{{clinicalNote.patientInfoFK.patientId}}</a>
                     </td>
-                    <td><a ui-sref="clinical-note-detail({id:clinicalNote.id})">{{clinicalNote.assessment_date | date:'mediumDate'}}</a></td>
+                    <td><a ui-sref="clinical-note-detail({id:clinicalNote.id})">{{clinicalNote.assessmentDate | date:'mediumDate'}}</a></td>
                     <td>{{clinicalNote.age}}</td>
                     <td>{{clinicalNote.height}}</td>
                     <td>{{clinicalNote.weight}}</td>

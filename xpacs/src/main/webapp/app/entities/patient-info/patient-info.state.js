@@ -115,11 +115,11 @@
                     resolve: {
                         entity: function () {
                             return {
-                                patient_id: null,
+                                patientId: null,
                                 cohort: null,
                                 ethnicity: null,
                                 gender: null,
-                                primary_diagnosis: null,
+                                primaryDiagnosis: null,
                                 id: null
                             };
                         }

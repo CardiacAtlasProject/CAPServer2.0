@@ -8,12 +8,12 @@
             "relationshipValidateRules": [
                 "required"
             ],
-            "otherEntityField": "patient_id"
+            "otherEntityField": "patientId"
         }
     ],
     "fields": [
         {
-            "fieldName": "creation_date",
+            "fieldName": "creationDate",
             "fieldType": "LocalDate",
             "fieldValidateRules": [
                 "required"
@@ -35,12 +35,12 @@
             "fieldType": "String"
         },
         {
-            "fieldName": "model_file",
+            "fieldName": "modelFile",
             "fieldType": "byte[]",
             "fieldTypeBlobContent": "any"
         },
         {
-            "fieldName": "xml_file",
+            "fieldName": "xmlFile",
             "fieldType": "byte[]",
             "fieldTypeBlobContent": "any"
         }

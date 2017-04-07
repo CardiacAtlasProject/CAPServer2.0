@@ -25,7 +25,7 @@ public class CapModel implements Serializable {
 
     @NotNull
     @Column(name = "creation_date", nullable = false)
-    private LocalDate creation_date;
+    private LocalDate creationDate;
 
     @NotNull
     @Column(name = "name", nullable = false)
@@ -39,17 +39,17 @@ public class CapModel implements Serializable {
 
     @Lob
     @Column(name = "model_file")
-    private byte[] model_file;
+    private byte[] modelFile;
 
     @Column(name = "model_file_content_type")
-    private String model_fileContentType;
+    private String modelFileContentType;
 
     @Lob
     @Column(name = "xml_file")
-    private byte[] xml_file;
+    private byte[] xmlFile;
 
     @Column(name = "xml_file_content_type")
-    private String xml_fileContentType;
+    private String xmlFileContentType;
 
     @ManyToOne(optional = false)
     @NotNull
@@ -63,17 +63,17 @@ public class CapModel implements Serializable {
         this.id = id;
     }
 
-    public LocalDate getCreation_date() {
-        return creation_date;
+    public LocalDate getCreationDate() {
+        return creationDate;
     }
 
-    public CapModel creation_date(LocalDate creation_date) {
-        this.creation_date = creation_date;
+    public CapModel creationDate(LocalDate creationDate) {
+        this.creationDate = creationDate;
         return this;
     }
 
-    public void setCreation_date(LocalDate creation_date) {
-        this.creation_date = creation_date;
+    public void setCreationDate(LocalDate creationDate) {
+        this.creationDate = creationDate;
     }
 
     public String getName() {
@@ -115,56 +115,56 @@ public class CapModel implements Serializable {
         this.comment = comment;
     }
 
-    public byte[] getModel_file() {
-        return model_file;
+    public byte[] getModelFile() {
+        return modelFile;
     }
 
-    public CapModel model_file(byte[] model_file) {
-        this.model_file = model_file;
+    public CapModel modelFile(byte[] modelFile) {
+        this.modelFile = modelFile;
         return this;
     }
 
-    public void setModel_file(byte[] model_file) {
-        this.model_file = model_file;
+    public void setModelFile(byte[] modelFile) {
+        this.modelFile = modelFile;
     }
 
-    public String getModel_fileContentType() {
-        return model_fileContentType;
+    public String getModelFileContentType() {
+        return modelFileContentType;
     }
 
-    public CapModel model_fileContentType(String model_fileContentType) {
-        this.model_fileContentType = model_fileContentType;
+    public CapModel modelFileContentType(String modelFileContentType) {
+        this.modelFileContentType = modelFileContentType;
         return this;
     }
 
-    public void setModel_fileContentType(String model_fileContentType) {
-        this.model_fileContentType = model_fileContentType;
+    public void setModelFileContentType(String modelFileContentType) {
+        this.modelFileContentType = modelFileContentType;
     }
 
-    public byte[] getXml_file() {
-        return xml_file;
+    public byte[] getXmlFile() {
+        return xmlFile;
     }
 
-    public CapModel xml_file(byte[] xml_file) {
-        this.xml_file = xml_file;
+    public CapModel xmlFile(byte[] xmlFile) {
+        this.xmlFile = xmlFile;
         return this;
     }
 
-    public void setXml_file(byte[] xml_file) {
-        this.xml_file = xml_file;
+    public void setXmlFile(byte[] xmlFile) {
+        this.xmlFile = xmlFile;
     }
 
-    public String getXml_fileContentType() {
-        return xml_fileContentType;
+    public String getXmlFileContentType() {
+        return xmlFileContentType;
     }
 
-    public CapModel xml_fileContentType(String xml_fileContentType) {
-        this.xml_fileContentType = xml_fileContentType;
+    public CapModel xmlFileContentType(String xmlFileContentType) {
+        this.xmlFileContentType = xmlFileContentType;
         return this;
     }
 
-    public void setXml_fileContentType(String xml_fileContentType) {
-        this.xml_fileContentType = xml_fileContentType;
+    public void setXmlFileContentType(String xmlFileContentType) {
+        this.xmlFileContentType = xmlFileContentType;
     }
 
     public PatientInfo getPatientInfoFK() {
@@ -204,14 +204,14 @@ public class CapModel implements Serializable {
     public String toString() {
         return "CapModel{" +
             "id=" + id +
-            ", creation_date='" + creation_date + "'" +
+            ", creationDate='" + creationDate + "'" +
             ", name='" + name + "'" +
             ", type='" + type + "'" +
             ", comment='" + comment + "'" +
-            ", model_file='" + model_file + "'" +
-            ", model_fileContentType='" + model_fileContentType + "'" +
-            ", xml_file='" + xml_file + "'" +
-            ", xml_fileContentType='" + xml_fileContentType + "'" +
+            ", modelFile='" + modelFile + "'" +
+            ", modelFileContentType='" + modelFileContentType + "'" +
+            ", xmlFile='" + xmlFile + "'" +
+            ", xmlFileContentType='" + xmlFileContentType + "'" +
             '}';
     }
 }

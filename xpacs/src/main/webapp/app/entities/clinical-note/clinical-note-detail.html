@@ -4,9 +4,9 @@
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <dl class="dl-horizontal jh-entity-details">
-        <dt><span data-translate="xpacswebApp.clinicalNote.assessment_date">Assessment Date</span></dt>
+        <dt><span>Assessment Date</span></dt>
         <dd>
-            <span>{{vm.clinicalNote.assessment_date | date:'mediumDate'}}</span>
+            <span>{{vm.clinicalNote.assessmentDate | date:'mediumDate'}}</span>
         </dd>
         <dt><span>Age</span></dt>
         <dd>
@@ -30,7 +30,7 @@
         </dd>
         <dt><span>Patient Info FK</span></dt>
         <dd>
-            <a ui-sref="patient-info-detail({id:vm.clinicalNote.patientInfoFK.id})">{{vm.clinicalNote.patientInfoFK.patient_id}}</a>
+            <a ui-sref="patient-info-detail({id:vm.clinicalNote.patientInfoFK.id})">{{vm.clinicalNote.patientInfoFK.patientId}}</a>
         </dd>
     </dl>
 

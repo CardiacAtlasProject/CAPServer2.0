@@ -8,12 +8,12 @@
             "relationshipValidateRules": [
                 "required"
             ],
-            "otherEntityField": "patient_id"
+            "otherEntityField": "patientId"
         }
     ],
     "fields": [
         {
-            "fieldName": "creation_date",
+            "fieldName": "creationDate",
             "fieldType": "LocalDate",
             "fieldValidateRules": [
                 "required"
