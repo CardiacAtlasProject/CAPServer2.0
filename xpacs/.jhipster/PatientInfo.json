@@ -3,7 +3,7 @@
     "relationships": [],
     "fields": [
         {
-            "fieldName": "patient_id",
+            "fieldName": "patientId",
             "fieldType": "String",
             "fieldValidateRules": [
                 "required"
@@ -26,7 +26,7 @@
             ]
         },
         {
-            "fieldName": "primary_diagnosis",
+            "fieldName": "primaryDiagnosis",
             "fieldType": "String",
             "fieldValidateRules": [
                 "maxlength"

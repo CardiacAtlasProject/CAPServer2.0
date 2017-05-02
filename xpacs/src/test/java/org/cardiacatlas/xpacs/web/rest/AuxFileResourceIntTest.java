@@ -89,7 +89,7 @@ public class AuxFileResourceIntTest {
      */
     public static AuxFile createEntity(EntityManager em) {
         AuxFile auxFile = new AuxFile()
-            .creation_date(DEFAULT_CREATION_DATE)
+            .creationDate(DEFAULT_CREATION_DATE)
             .description(DEFAULT_DESCRIPTION)
             .file(DEFAULT_FILE)
             .fileContentType(DEFAULT_FILE_CONTENT_TYPE);
@@ -121,7 +121,7 @@ public class AuxFileResourceIntTest {
         List<AuxFile> auxFileList = auxFileRepository.findAll();
         assertThat(auxFileList).hasSize(databaseSizeBeforeCreate + 1);
         AuxFile testAuxFile = auxFileList.get(auxFileList.size() - 1);
-        assertThat(testAuxFile.getCreation_date()).isEqualTo(DEFAULT_CREATION_DATE);
+        assertThat(testAuxFile.getCreationDate()).isEqualTo(DEFAULT_CREATION_DATE);
         assertThat(testAuxFile.getDescription()).isEqualTo(DEFAULT_DESCRIPTION);
         assertThat(testAuxFile.getFile()).isEqualTo(DEFAULT_FILE);
         assertThat(testAuxFile.getFileContentType()).isEqualTo(DEFAULT_FILE_CONTENT_TYPE);
@@ -148,10 +148,10 @@ public class AuxFileResourceIntTest {
 
     @Test
     @Transactional
-    public void checkCreation_dateIsRequired() throws Exception {
+    public void checkCreationDateIsRequired() throws Exception {
         int databaseSizeBeforeTest = auxFileRepository.findAll().size();
         // set the field null
-        auxFile.setCreation_date(null);
+        auxFile.setCreationDate(null);
 
         // Create the AuxFile, which fails.
 
@@ -193,7 +193,7 @@ public class AuxFileResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(auxFile.getId().intValue())))
-            .andExpect(jsonPath("$.[*].creation_date").value(hasItem(DEFAULT_CREATION_DATE.toString())))
+            .andExpect(jsonPath("$.[*].creationDate").value(hasItem(DEFAULT_CREATION_DATE.toString())))
             .andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION.toString())))
             .andExpect(jsonPath("$.[*].fileContentType").value(hasItem(DEFAULT_FILE_CONTENT_TYPE)))
             .andExpect(jsonPath("$.[*].file").value(hasItem(Base64Utils.encodeToString(DEFAULT_FILE))));
@@ -210,7 +210,7 @@ public class AuxFileResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(auxFile.getId().intValue()))
-            .andExpect(jsonPath("$.creation_date").value(DEFAULT_CREATION_DATE.toString()))
+            .andExpect(jsonPath("$.creationDate").value(DEFAULT_CREATION_DATE.toString()))
             .andExpect(jsonPath("$.description").value(DEFAULT_DESCRIPTION.toString()))
             .andExpect(jsonPath("$.fileContentType").value(DEFAULT_FILE_CONTENT_TYPE))
             .andExpect(jsonPath("$.file").value(Base64Utils.encodeToString(DEFAULT_FILE)));
@@ -234,7 +234,7 @@ public class AuxFileResourceIntTest {
         // Update the auxFile
         AuxFile updatedAuxFile = auxFileRepository.findOne(auxFile.getId());
         updatedAuxFile
-            .creation_date(UPDATED_CREATION_DATE)
+            .creationDate(UPDATED_CREATION_DATE)
             .description(UPDATED_DESCRIPTION)
             .file(UPDATED_FILE)
             .fileContentType(UPDATED_FILE_CONTENT_TYPE);
@@ -248,7 +248,7 @@ public class AuxFileResourceIntTest {
         List<AuxFile> auxFileList = auxFileRepository.findAll();
         assertThat(auxFileList).hasSize(databaseSizeBeforeUpdate);
         AuxFile testAuxFile = auxFileList.get(auxFileList.size() - 1);
-        assertThat(testAuxFile.getCreation_date()).isEqualTo(UPDATED_CREATION_DATE);
+        assertThat(testAuxFile.getCreationDate()).isEqualTo(UPDATED_CREATION_DATE);
         assertThat(testAuxFile.getDescription()).isEqualTo(UPDATED_DESCRIPTION);
         assertThat(testAuxFile.getFile()).isEqualTo(UPDATED_FILE);
         assertThat(testAuxFile.getFileContentType()).isEqualTo(UPDATED_FILE_CONTENT_TYPE);

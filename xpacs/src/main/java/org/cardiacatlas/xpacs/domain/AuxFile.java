@@ -25,7 +25,7 @@ public class AuxFile implements Serializable {
 
     @NotNull
     @Column(name = "creation_date", nullable = false)
-    private LocalDate creation_date;
+    private LocalDate creationDate;
 
     @Column(name = "description")
     private String description;
@@ -50,17 +50,17 @@ public class AuxFile implements Serializable {
         this.id = id;
     }
 
-    public LocalDate getCreation_date() {
-        return creation_date;
+    public LocalDate getCreationDate() {
+        return creationDate;
     }
 
-    public AuxFile creation_date(LocalDate creation_date) {
-        this.creation_date = creation_date;
+    public AuxFile creationDate(LocalDate creationDate) {
+        this.creationDate = creationDate;
         return this;
     }
 
-    public void setCreation_date(LocalDate creation_date) {
-        this.creation_date = creation_date;
+    public void setCreationDate(LocalDate creationDate) {
+        this.creationDate = creationDate;
     }
 
     public String getDescription() {
@@ -139,7 +139,7 @@ public class AuxFile implements Serializable {
     public String toString() {
         return "AuxFile{" +
             "id=" + id +
-            ", creation_date='" + creation_date + "'" +
+            ", creationDate='" + creationDate + "'" +
             ", description='" + description + "'" +
             ", file='" + file + "'" +
             ", fileContentType='" + fileContentType + "'" +

@@ -16,7 +16,7 @@
         vm.login = login;
         vm.password = null;
         vm.register = register;
-        vm.rememberMe = true;
+        vm.rememberMe = false;
         vm.requestResetPassword = requestResetPassword;
         vm.username = null;
 

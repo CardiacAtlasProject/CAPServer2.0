@@ -14,17 +14,17 @@
                     ng-model="vm.baselineDiagnosis.id" readonly />
         </div>
         <div class="form-group">
-            <label class="control-label" data-translate="xpacswebApp.baselineDiagnosis.diagnosis_date" for="field_diagnosis_date">Diagnosis Date</label>
+            <label class="control-label" for="field_diagnosisDate">Diagnosis Date</label>
                 <div class="input-group">
-                    <input id="field_diagnosis_date" type="text" class="form-control" name="diagnosis_date" uib-datepicker-popup="{{dateformat}}" ng-model="vm.baselineDiagnosis.diagnosis_date" is-open="vm.datePickerOpenStatus.diagnosis_date"
+                    <input id="field_diagnosisDate" type="text" class="form-control" name="diagnosisDate" uib-datepicker-popup="{{dateformat}}" ng-model="vm.baselineDiagnosis.diagnosisDate" is-open="vm.datePickerOpenStatus.diagnosisDate"
                     required/>
                     <span class="input-group-btn">
-                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('diagnosis_date')"><i class="glyphicon glyphicon-calendar"></i></button>
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('diagnosisDate')"><i class="glyphicon glyphicon-calendar"></i></button>
                     </span>
                 </div>
-            <div ng-show="editForm.diagnosis_date.$invalid">
+            <div ng-show="editForm.diagnosisDate.$invalid">
                 <p class="help-block"
-                    ng-show="editForm.diagnosis_date.$error.required">
+                    ng-show="editForm.diagnosisDate.$error.required">
                     This field is required.
                 </p>
             </div>
@@ -58,9 +58,9 @@
                     />
         </div>
         <div class="form-group">
-            <label class="control-label" data-translate="xpacswebApp.baselineDiagnosis.heart_rate" for="field_heart_rate">Heart Rate</label>
-            <input type="text" class="form-control" name="heart_rate" id="field_heart_rate"
-                    ng-model="vm.baselineDiagnosis.heart_rate"
+            <label class="control-label" for="field_heartRate">Heart Rate</label>
+            <input type="text" class="form-control" name="heartRate" id="field_heartRate"
+                    ng-model="vm.baselineDiagnosis.heartRate"
                     />
         </div>
         <div class="form-group">
@@ -76,33 +76,33 @@
                     />
         </div>
         <div class="form-group">
-            <label class="control-label" data-translate="xpacswebApp.baselineDiagnosis.history_of_alcohol" for="field_history_of_alcohol">History Of Alcohol</label>
-            <input type="text" class="form-control" name="history_of_alcohol" id="field_history_of_alcohol"
-                    ng-model="vm.baselineDiagnosis.history_of_alcohol"
+            <label class="control-label" for="field_historyOfAlcohol">History Of Alcohol</label>
+            <input type="text" class="form-control" name="historyOfAlcohol" id="field_historyOfAlcohol"
+                    ng-model="vm.baselineDiagnosis.historyOfAlcohol"
                     />
         </div>
         <div class="form-group">
-            <label class="control-label" data-translate="xpacswebApp.baselineDiagnosis.history_of_diabetes" for="field_history_of_diabetes">History Of Diabetes</label>
-            <input type="text" class="form-control" name="history_of_diabetes" id="field_history_of_diabetes"
-                    ng-model="vm.baselineDiagnosis.history_of_diabetes"
+            <label class="control-label" for="field_historyOfDiabetes">History Of Diabetes</label>
+            <input type="text" class="form-control" name="historyOfDiabetes" id="field_historyOfDiabetes"
+                    ng-model="vm.baselineDiagnosis.historyOfDiabetes"
                     />
         </div>
         <div class="form-group">
-            <label class="control-label" data-translate="xpacswebApp.baselineDiagnosis.history_of_hypertension" for="field_history_of_hypertension">History Of Hypertension</label>
-            <input type="text" class="form-control" name="history_of_hypertension" id="field_history_of_hypertension"
-                    ng-model="vm.baselineDiagnosis.history_of_hypertension"
+            <label class="control-label" for="field_historyOfHypertension">History Of Hypertension</label>
+            <input type="text" class="form-control" name="historyOfHypertension" id="field_historyOfHypertension"
+                    ng-model="vm.baselineDiagnosis.historyOfHypertension"
                     />
         </div>
         <div class="form-group">
-            <label class="control-label" data-translate="xpacswebApp.baselineDiagnosis.history_of_smoking" for="field_history_of_smoking">History Of Smoking</label>
-            <input type="text" class="form-control" name="history_of_smoking" id="field_history_of_smoking"
-                    ng-model="vm.baselineDiagnosis.history_of_smoking"
+            <label class="control-label" for="field_historyOfSmoking">History Of Smoking</label>
+            <input type="text" class="form-control" name="historyOfSmoking" id="field_historyOfSmoking"
+                    ng-model="vm.baselineDiagnosis.historyOfSmoking"
                     />
         </div>
 
         <div class="form-group">
             <label for="field_patientInfoFK">Patient Info FK</label>
-            <select class="form-control" id="field_patientInfoFK" name="patientInfoFK" ng-model="vm.baselineDiagnosis.patientInfoFK" ng-options="patientInfo as patientInfo.patient_id for patientInfo in vm.patientinfos track by patientInfo.id" required>
+            <select class="form-control" id="field_patientInfoFK" name="patientInfoFK" ng-model="vm.baselineDiagnosis.patientInfoFK" ng-options="patientInfo as patientInfo.patientId for patientInfo in vm.patientinfos track by patientInfo.id" required>
                 <option value=""></option>
             </select>
         </div>

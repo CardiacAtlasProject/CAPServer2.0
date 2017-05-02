@@ -4,9 +4,9 @@
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <dl class="dl-horizontal jh-entity-details">
-        <dt><span data-translate="xpacswebApp.baselineDiagnosis.diagnosis_date">Diagnosis Date</span></dt>
+        <dt><span>Diagnosis Date</span></dt>
         <dd>
-            <span>{{vm.baselineDiagnosis.diagnosis_date | date:'mediumDate'}}</span>
+            <span>{{vm.baselineDiagnosis.diagnosisDate | date:'mediumDate'}}</span>
         </dd>
         <dt><span>Age</span></dt>
         <dd>
@@ -20,9 +20,9 @@
         <dd>
             <span>{{vm.baselineDiagnosis.weight}}</span>
         </dd>
-        <dt><span data-translate="xpacswebApp.baselineDiagnosis.heart_rate">Heart Rate</span></dt>
+        <dt><span>Heart Rate</span></dt>
         <dd>
-            <span>{{vm.baselineDiagnosis.heart_rate}}</span>
+            <span>{{vm.baselineDiagnosis.heartRate}}</span>
         </dd>
         <dt><span>Dbp</span></dt>
         <dd>
@@ -32,25 +32,25 @@
         <dd>
             <span>{{vm.baselineDiagnosis.sbp}}</span>
         </dd>
-        <dt><span data-translate="xpacswebApp.baselineDiagnosis.history_of_alcohol">History Of Alcohol</span></dt>
+        <dt><span>History Of Alcohol</span></dt>
         <dd>
-            <span>{{vm.baselineDiagnosis.history_of_alcohol}}</span>
+            <span>{{vm.baselineDiagnosis.historyOfAlcohol}}</span>
         </dd>
-        <dt><span data-translate="xpacswebApp.baselineDiagnosis.history_of_diabetes">History Of Diabetes</span></dt>
+        <dt><span>History Of Diabetes</span></dt>
         <dd>
-            <span>{{vm.baselineDiagnosis.history_of_diabetes}}</span>
+            <span>{{vm.baselineDiagnosis.historyOfDiabetes}}</span>
         </dd>
-        <dt><span data-translate="xpacswebApp.baselineDiagnosis.history_of_hypertension">History Of Hypertension</span></dt>
+        <dt><span>History Of Hypertension</span></dt>
         <dd>
-            <span>{{vm.baselineDiagnosis.history_of_hypertension}}</span>
+            <span>{{vm.baselineDiagnosis.historyOfHypertension}}</span>
         </dd>
-        <dt><span data-translate="xpacswebApp.baselineDiagnosis.history_of_smoking">History Of Smoking</span></dt>
+        <dt><span>History Of Smoking</span></dt>
         <dd>
-            <span>{{vm.baselineDiagnosis.history_of_smoking}}</span>
+            <span>{{vm.baselineDiagnosis.historyOfSmoking}}</span>
         </dd>
         <dt><span>Patient Info FK</span></dt>
         <dd>
-            <a ui-sref="patient-info-detail({id:vm.baselineDiagnosis.patientInfoFK.id})">{{vm.baselineDiagnosis.patientInfoFK.patient_id}}</a>
+            <a ui-sref="patient-info-detail({id:vm.baselineDiagnosis.patientInfoFK.id})">{{vm.baselineDiagnosis.patientInfoFK.patientId}}</a>
         </dd>
     </dl>
 

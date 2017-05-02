@@ -67,7 +67,7 @@ class BaselineDiagnosisGatlingTest extends Simulation {
             .exec(http("Create new baselineDiagnosis")
             .post("/api/baseline-diagnoses")
             .headers(headers_http_authenticated)
-            .body(StringBody("""{"id":null, "diagnosis_date":"2020-01-01T00:00:00.000Z", "age":null, "height":"SAMPLE_TEXT", "weight":"SAMPLE_TEXT", "heart_rate":"SAMPLE_TEXT", "dbp":"SAMPLE_TEXT", "sbp":"SAMPLE_TEXT", "history_of_alcohol":"SAMPLE_TEXT", "history_of_diabetes":"SAMPLE_TEXT", "history_of_hypertension":"SAMPLE_TEXT", "history_of_smoking":"SAMPLE_TEXT"}""")).asJSON
+            .body(StringBody("""{"id":null, "diagnosisDate":"2020-01-01T00:00:00.000Z", "age":null, "height":"SAMPLE_TEXT", "weight":"SAMPLE_TEXT", "heartRate":"SAMPLE_TEXT", "dbp":"SAMPLE_TEXT", "sbp":"SAMPLE_TEXT", "historyOfAlcohol":"SAMPLE_TEXT", "historyOfDiabetes":"SAMPLE_TEXT", "historyOfHypertension":"SAMPLE_TEXT", "historyOfSmoking":"SAMPLE_TEXT"}""")).asJSON
             .check(status.is(201))
             .check(headerRegex("Location", "(.*)").saveAs("new_baselineDiagnosis_url"))).exitHereIfFailed
             .pause(10)

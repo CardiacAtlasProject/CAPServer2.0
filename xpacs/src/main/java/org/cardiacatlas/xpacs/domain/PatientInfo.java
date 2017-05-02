@@ -26,7 +26,7 @@ public class PatientInfo implements Serializable {
 
     @NotNull
     @Column(name = "patient_id", nullable = false)
-    private String patient_id;
+    private String patientId;
 
     @Column(name = "cohort")
     private String cohort;
@@ -41,7 +41,7 @@ public class PatientInfo implements Serializable {
 
     @Size(max = 255)
     @Column(name = "primary_diagnosis", length = 255)
-    private String primary_diagnosis;
+    private String primaryDiagnosis;
 
     public Long getId() {
         return id;
@@ -51,17 +51,17 @@ public class PatientInfo implements Serializable {
         this.id = id;
     }
 
-    public String getPatient_id() {
-        return patient_id;
+    public String getPatientId() {
+        return patientId;
     }
 
-    public PatientInfo patient_id(String patient_id) {
-        this.patient_id = patient_id;
+    public PatientInfo patientId(String patientId) {
+        this.patientId = patientId;
         return this;
     }
 
-    public void setPatient_id(String patient_id) {
-        this.patient_id = patient_id;
+    public void setPatientId(String patientId) {
+        this.patientId = patientId;
     }
 
     public String getCohort() {
@@ -103,17 +103,17 @@ public class PatientInfo implements Serializable {
         this.gender = gender;
     }
 
-    public String getPrimary_diagnosis() {
-        return primary_diagnosis;
+    public String getPrimaryDiagnosis() {
+        return primaryDiagnosis;
     }
 
-    public PatientInfo primary_diagnosis(String primary_diagnosis) {
-        this.primary_diagnosis = primary_diagnosis;
+    public PatientInfo primaryDiagnosis(String primaryDiagnosis) {
+        this.primaryDiagnosis = primaryDiagnosis;
         return this;
     }
 
-    public void setPrimary_diagnosis(String primary_diagnosis) {
-        this.primary_diagnosis = primary_diagnosis;
+    public void setPrimaryDiagnosis(String primaryDiagnosis) {
+        this.primaryDiagnosis = primaryDiagnosis;
     }
 
     @Override
@@ -140,11 +140,11 @@ public class PatientInfo implements Serializable {
     public String toString() {
         return "PatientInfo{" +
             "id=" + id +
-            ", patient_id='" + patient_id + "'" +
+            ", patientId='" + patientId + "'" +
             ", cohort='" + cohort + "'" +
             ", ethnicity='" + ethnicity + "'" +
             ", gender='" + gender + "'" +
-            ", primary_diagnosis='" + primary_diagnosis + "'" +
+            ", primaryDiagnosis='" + primaryDiagnosis + "'" +
             '}';
     }
 }

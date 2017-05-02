@@ -115,7 +115,7 @@
                     resolve: {
                         entity: function () {
                             return {
-                                assessment_date: null,
+                                assessmentDate: null,
                                 age: null,
                                 height: null,
                                 weight: null,

@@ -14,13 +14,13 @@
                     ng-model="vm.patientInfo.id" readonly />
         </div>
         <div class="form-group">
-            <label class="control-label" data-translate="xpacswebApp.patientInfo.patient_id" for="field_patient_id">Patient Id</label>
-            <input type="text" class="form-control" name="patient_id" id="field_patient_id"
-                    ng-model="vm.patientInfo.patient_id"
+            <label class="control-label" for="field_patientId">Patient Id</label>
+            <input type="text" class="form-control" name="patientId" id="field_patientId"
+                    ng-model="vm.patientInfo.patientId"
                     required/>
-            <div ng-show="editForm.patient_id.$invalid">
+            <div ng-show="editForm.patientId.$invalid">
                 <p class="help-block"
-                    ng-show="editForm.patient_id.$error.required">
+                    ng-show="editForm.patientId.$error.required">
                     This field is required.
                 </p>
             </div>
@@ -52,13 +52,13 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="control-label" data-translate="xpacswebApp.patientInfo.primary_diagnosis" for="field_primary_diagnosis">Primary Diagnosis</label>
-            <input type="text" class="form-control" name="primary_diagnosis" id="field_primary_diagnosis"
-                    ng-model="vm.patientInfo.primary_diagnosis"
+            <label class="control-label" for="field_primaryDiagnosis">Primary Diagnosis</label>
+            <input type="text" class="form-control" name="primaryDiagnosis" id="field_primaryDiagnosis"
+                    ng-model="vm.patientInfo.primaryDiagnosis"
                     ng-maxlength="255"/>
-            <div ng-show="editForm.primary_diagnosis.$invalid">
+            <div ng-show="editForm.primaryDiagnosis.$invalid">
                 <p class="help-block"
-                    ng-show="editForm.primary_diagnosis.$error.maxlength">
+                    ng-show="editForm.primaryDiagnosis.$error.maxlength">
                     This field cannot be longer than 255 characters.
                 </p>
             </div>

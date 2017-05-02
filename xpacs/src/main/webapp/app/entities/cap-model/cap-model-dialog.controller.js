@@ -46,25 +46,25 @@
             vm.isSaving = false;
         }
 
-        vm.datePickerOpenStatus.creation_date = false;
+        vm.datePickerOpenStatus.creationDate = false;
 
-        vm.setModel_file = function ($file, capModel) {
+        vm.setModelFile = function ($file, capModel) {
             if ($file) {
                 DataUtils.toBase64($file, function(base64Data) {
                     $scope.$apply(function() {
-                        capModel.model_file = base64Data;
-                        capModel.model_fileContentType = $file.type;
+                        capModel.modelFile = base64Data;
+                        capModel.modelFileContentType = $file.type;
                     });
                 });
             }
         };
 
-        vm.setXml_file = function ($file, capModel) {
+        vm.setXmlFile = function ($file, capModel) {
             if ($file) {
                 DataUtils.toBase64($file, function(base64Data) {
                     $scope.$apply(function() {
-                        capModel.xml_file = base64Data;
-                        capModel.xml_fileContentType = $file.type;
+                        capModel.xmlFile = base64Data;
+                        capModel.xmlFileContentType = $file.type;
                     });
                 });
             }

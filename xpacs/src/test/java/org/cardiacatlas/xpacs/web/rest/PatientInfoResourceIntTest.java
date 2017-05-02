@@ -90,11 +90,11 @@ public class PatientInfoResourceIntTest {
      */
     public static PatientInfo createEntity(EntityManager em) {
         PatientInfo patientInfo = new PatientInfo()
-            .patient_id(DEFAULT_PATIENT_ID)
+            .patientId(DEFAULT_PATIENT_ID)
             .cohort(DEFAULT_COHORT)
             .ethnicity(DEFAULT_ETHNICITY)
             .gender(DEFAULT_GENDER)
-            .primary_diagnosis(DEFAULT_PRIMARY_DIAGNOSIS);
+            .primaryDiagnosis(DEFAULT_PRIMARY_DIAGNOSIS);
         return patientInfo;
     }
 
@@ -118,11 +118,12 @@ public class PatientInfoResourceIntTest {
         List<PatientInfo> patientInfoList = patientInfoRepository.findAll();
         assertThat(patientInfoList).hasSize(databaseSizeBeforeCreate + 1);
         PatientInfo testPatientInfo = patientInfoList.get(patientInfoList.size() - 1);
-        assertThat(testPatientInfo.getPatient_id()).isEqualTo(DEFAULT_PATIENT_ID);
+        assertThat(testPatientInfo.getPatientId()).isEqualTo(DEFAULT_PATIENT_ID);
         assertThat(testPatientInfo.getCohort()).isEqualTo(DEFAULT_COHORT);
         assertThat(testPatientInfo.getEthnicity()).isEqualTo(DEFAULT_ETHNICITY);
         assertThat(testPatientInfo.getGender()).isEqualTo(DEFAULT_GENDER);
-        assertThat(testPatientInfo.getPrimary_diagnosis()).isEqualTo(DEFAULT_PRIMARY_DIAGNOSIS);
+        assertThat(testPatientInfo.getPrimaryDiagnosis()).isEqualTo(DEFAULT_PRIMARY_DIAGNOSIS);
+        
     }
 
     @Test
@@ -143,13 +144,37 @@ public class PatientInfoResourceIntTest {
         List<PatientInfo> patientInfoList = patientInfoRepository.findAll();
         assertThat(patientInfoList).hasSize(databaseSizeBeforeCreate);
     }
+    
+    @Test
+    @Transactional
+    public void createPatientInfoWithExistingPatientId() throws Exception {
+    	// InitalizeDatabase
+    	patientInfoRepository.saveAndFlush(patientInfo);
+    	List<PatientInfo> patientInfoListBeforeCreate = patientInfoRepository.findAll();
+    	
+        PatientInfo newPatientInfo = new PatientInfo()
+                .patientId(DEFAULT_PATIENT_ID)         // this should already be there
+                .cohort(DEFAULT_COHORT)
+                .ethnicity(DEFAULT_ETHNICITY)
+                .gender(DEFAULT_GENDER)
+                .primaryDiagnosis(DEFAULT_PRIMARY_DIAGNOSIS);
+        
+        // Create the User
+        restPatientInfoMockMvc.perform(post("/api/patient-infos")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(newPatientInfo)))
+        	.andExpect(status().isBadRequest());
+    	
+        // Validate that the newPatientInfo is not inserted
+        assertThat(patientInfoRepository.findAll()).isEqualTo(patientInfoListBeforeCreate);
+    }
 
     @Test
     @Transactional
-    public void checkPatient_idIsRequired() throws Exception {
+    public void checkPatientIdIsRequired() throws Exception {
         int databaseSizeBeforeTest = patientInfoRepository.findAll().size();
         // set the field null
-        patientInfo.setPatient_id(null);
+        patientInfo.setPatientId(null);
 
         // Create the PatientInfo, which fails.
 
@@ -191,11 +216,11 @@ public class PatientInfoResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(patientInfo.getId().intValue())))
-            .andExpect(jsonPath("$.[*].patient_id").value(hasItem(DEFAULT_PATIENT_ID.toString())))
+            .andExpect(jsonPath("$.[*].patientId").value(hasItem(DEFAULT_PATIENT_ID.toString())))
             .andExpect(jsonPath("$.[*].cohort").value(hasItem(DEFAULT_COHORT.toString())))
             .andExpect(jsonPath("$.[*].ethnicity").value(hasItem(DEFAULT_ETHNICITY.toString())))
             .andExpect(jsonPath("$.[*].gender").value(hasItem(DEFAULT_GENDER.toString())))
-            .andExpect(jsonPath("$.[*].primary_diagnosis").value(hasItem(DEFAULT_PRIMARY_DIAGNOSIS.toString())));
+            .andExpect(jsonPath("$.[*].primaryDiagnosis").value(hasItem(DEFAULT_PRIMARY_DIAGNOSIS.toString())));
     }
 
     @Test
@@ -209,11 +234,11 @@ public class PatientInfoResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(patientInfo.getId().intValue()))
-            .andExpect(jsonPath("$.patient_id").value(DEFAULT_PATIENT_ID.toString()))
+            .andExpect(jsonPath("$.patientId").value(DEFAULT_PATIENT_ID.toString()))
             .andExpect(jsonPath("$.cohort").value(DEFAULT_COHORT.toString()))
             .andExpect(jsonPath("$.ethnicity").value(DEFAULT_ETHNICITY.toString()))
             .andExpect(jsonPath("$.gender").value(DEFAULT_GENDER.toString()))
-            .andExpect(jsonPath("$.primary_diagnosis").value(DEFAULT_PRIMARY_DIAGNOSIS.toString()));
+            .andExpect(jsonPath("$.primaryDiagnosis").value(DEFAULT_PRIMARY_DIAGNOSIS.toString()));
     }
 
     @Test
@@ -234,11 +259,11 @@ public class PatientInfoResourceIntTest {
         // Update the patientInfo
         PatientInfo updatedPatientInfo = patientInfoRepository.findOne(patientInfo.getId());
         updatedPatientInfo
-            .patient_id(UPDATED_PATIENT_ID)
+            .patientId(UPDATED_PATIENT_ID)
             .cohort(UPDATED_COHORT)
             .ethnicity(UPDATED_ETHNICITY)
             .gender(UPDATED_GENDER)
-            .primary_diagnosis(UPDATED_PRIMARY_DIAGNOSIS);
+            .primaryDiagnosis(UPDATED_PRIMARY_DIAGNOSIS);
 
         restPatientInfoMockMvc.perform(put("/api/patient-infos")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -249,11 +274,11 @@ public class PatientInfoResourceIntTest {
         List<PatientInfo> patientInfoList = patientInfoRepository.findAll();
         assertThat(patientInfoList).hasSize(databaseSizeBeforeUpdate);
         PatientInfo testPatientInfo = patientInfoList.get(patientInfoList.size() - 1);
-        assertThat(testPatientInfo.getPatient_id()).isEqualTo(UPDATED_PATIENT_ID);
+        assertThat(testPatientInfo.getPatientId()).isEqualTo(UPDATED_PATIENT_ID);
         assertThat(testPatientInfo.getCohort()).isEqualTo(UPDATED_COHORT);
         assertThat(testPatientInfo.getEthnicity()).isEqualTo(UPDATED_ETHNICITY);
         assertThat(testPatientInfo.getGender()).isEqualTo(UPDATED_GENDER);
-        assertThat(testPatientInfo.getPrimary_diagnosis()).isEqualTo(UPDATED_PRIMARY_DIAGNOSIS);
+        assertThat(testPatientInfo.getPrimaryDiagnosis()).isEqualTo(UPDATED_PRIMARY_DIAGNOSIS);
     }
 
     @Test

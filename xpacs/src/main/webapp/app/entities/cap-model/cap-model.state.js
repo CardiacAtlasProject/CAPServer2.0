@@ -115,14 +115,14 @@
                     resolve: {
                         entity: function () {
                             return {
-                                creation_date: null,
+                                creationDate: null,
                                 name: null,
                                 type: null,
                                 comment: null,
-                                model_file: null,
-                                model_fileContentType: null,
-                                xml_file: null,
-                                xml_fileContentType: null,
+                                modelFile: null,
+                                modelFileContentType: null,
+                                xmlFile: null,
+                                xmlFileContentType: null,
                                 id: null
                             };
                         }

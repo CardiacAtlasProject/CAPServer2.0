@@ -44,7 +44,7 @@
             vm.isSaving = false;
         }
 
-        vm.datePickerOpenStatus.diagnosis_date = false;
+        vm.datePickerOpenStatus.diagnosisDate = false;
 
         function openCalendar (date) {
             vm.datePickerOpenStatus[date] = true;

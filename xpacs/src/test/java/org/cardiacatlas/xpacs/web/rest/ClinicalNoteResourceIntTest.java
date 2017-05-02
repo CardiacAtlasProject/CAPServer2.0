@@ -96,7 +96,7 @@ public class ClinicalNoteResourceIntTest {
      */
     public static ClinicalNote createEntity(EntityManager em) {
         ClinicalNote clinicalNote = new ClinicalNote()
-            .assessment_date(DEFAULT_ASSESSMENT_DATE)
+            .assessmentDate(DEFAULT_ASSESSMENT_DATE)
             .age(DEFAULT_AGE)
             .height(DEFAULT_HEIGHT)
             .weight(DEFAULT_WEIGHT)
@@ -130,7 +130,7 @@ public class ClinicalNoteResourceIntTest {
         List<ClinicalNote> clinicalNoteList = clinicalNoteRepository.findAll();
         assertThat(clinicalNoteList).hasSize(databaseSizeBeforeCreate + 1);
         ClinicalNote testClinicalNote = clinicalNoteList.get(clinicalNoteList.size() - 1);
-        assertThat(testClinicalNote.getAssessment_date()).isEqualTo(DEFAULT_ASSESSMENT_DATE);
+        assertThat(testClinicalNote.getAssessmentDate()).isEqualTo(DEFAULT_ASSESSMENT_DATE);
         assertThat(testClinicalNote.getAge()).isEqualTo(DEFAULT_AGE);
         assertThat(testClinicalNote.getHeight()).isEqualTo(DEFAULT_HEIGHT);
         assertThat(testClinicalNote.getWeight()).isEqualTo(DEFAULT_WEIGHT);
@@ -159,10 +159,10 @@ public class ClinicalNoteResourceIntTest {
 
     @Test
     @Transactional
-    public void checkAssessment_dateIsRequired() throws Exception {
+    public void checkAssessmentDateIsRequired() throws Exception {
         int databaseSizeBeforeTest = clinicalNoteRepository.findAll().size();
         // set the field null
-        clinicalNote.setAssessment_date(null);
+        clinicalNote.setAssessmentDate(null);
 
         // Create the ClinicalNote, which fails.
 
@@ -186,7 +186,7 @@ public class ClinicalNoteResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(clinicalNote.getId().intValue())))
-            .andExpect(jsonPath("$.[*].assessment_date").value(hasItem(DEFAULT_ASSESSMENT_DATE.toString())))
+            .andExpect(jsonPath("$.[*].assessmentDate").value(hasItem(DEFAULT_ASSESSMENT_DATE.toString())))
             .andExpect(jsonPath("$.[*].age").value(hasItem(DEFAULT_AGE.doubleValue())))
             .andExpect(jsonPath("$.[*].height").value(hasItem(DEFAULT_HEIGHT.toString())))
             .andExpect(jsonPath("$.[*].weight").value(hasItem(DEFAULT_WEIGHT.toString())))
@@ -205,7 +205,7 @@ public class ClinicalNoteResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(clinicalNote.getId().intValue()))
-            .andExpect(jsonPath("$.assessment_date").value(DEFAULT_ASSESSMENT_DATE.toString()))
+            .andExpect(jsonPath("$.assessmentDate").value(DEFAULT_ASSESSMENT_DATE.toString()))
             .andExpect(jsonPath("$.age").value(DEFAULT_AGE.doubleValue()))
             .andExpect(jsonPath("$.height").value(DEFAULT_HEIGHT.toString()))
             .andExpect(jsonPath("$.weight").value(DEFAULT_WEIGHT.toString()))
@@ -231,7 +231,7 @@ public class ClinicalNoteResourceIntTest {
         // Update the clinicalNote
         ClinicalNote updatedClinicalNote = clinicalNoteRepository.findOne(clinicalNote.getId());
         updatedClinicalNote
-            .assessment_date(UPDATED_ASSESSMENT_DATE)
+            .assessmentDate(UPDATED_ASSESSMENT_DATE)
             .age(UPDATED_AGE)
             .height(UPDATED_HEIGHT)
             .weight(UPDATED_WEIGHT)
@@ -247,7 +247,7 @@ public class ClinicalNoteResourceIntTest {
         List<ClinicalNote> clinicalNoteList = clinicalNoteRepository.findAll();
         assertThat(clinicalNoteList).hasSize(databaseSizeBeforeUpdate);
         ClinicalNote testClinicalNote = clinicalNoteList.get(clinicalNoteList.size() - 1);
-        assertThat(testClinicalNote.getAssessment_date()).isEqualTo(UPDATED_ASSESSMENT_DATE);
+        assertThat(testClinicalNote.getAssessmentDate()).isEqualTo(UPDATED_ASSESSMENT_DATE);
         assertThat(testClinicalNote.getAge()).isEqualTo(UPDATED_AGE);
         assertThat(testClinicalNote.getHeight()).isEqualTo(UPDATED_HEIGHT);
         assertThat(testClinicalNote.getWeight()).isEqualTo(UPDATED_WEIGHT);

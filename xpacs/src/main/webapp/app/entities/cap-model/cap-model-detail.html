@@ -4,9 +4,9 @@
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <dl class="dl-horizontal jh-entity-details">
-        <dt><span data-translate="xpacswebApp.capModel.creation_date">Creation Date</span></dt>
+        <dt><span>Creation Date</span></dt>
         <dd>
-            <span>{{vm.capModel.creation_date | date:'mediumDate'}}</span>
+            <span>{{vm.capModel.creationDate | date:'mediumDate'}}</span>
         </dd>
         <dt><span>Name</span></dt>
         <dd>
@@ -20,23 +20,23 @@
         <dd>
             <span>{{vm.capModel.comment}}</span>
         </dd>
-        <dt><span data-translate="xpacswebApp.capModel.model_file">Model File</span></dt>
+        <dt><span>Model File</span></dt>
         <dd>
-            <div ng-if="vm.capModel.model_file">
-                <a ng-click="vm.openFile(vm.capModel.model_fileContentType, vm.capModel.model_file)">open</a>
-                {{vm.capModel.model_fileContentType}}, {{vm.byteSize(vm.capModel.model_file)}}
+            <div ng-if="vm.capModel.modelFile">
+                <a ng-click="vm.openFile(vm.capModel.modelFileContentType, vm.capModel.modelFile)">open</a>
+                {{vm.capModel.modelFileContentType}}, {{vm.byteSize(vm.capModel.modelFile)}}
             </div>
         </dd>
-        <dt><span data-translate="xpacswebApp.capModel.xml_file">Xml File</span></dt>
+        <dt><span>Xml File</span></dt>
         <dd>
-            <div ng-if="vm.capModel.xml_file">
-                <a ng-click="vm.openFile(vm.capModel.xml_fileContentType, vm.capModel.xml_file)">open</a>
-                {{vm.capModel.xml_fileContentType}}, {{vm.byteSize(vm.capModel.xml_file)}}
+            <div ng-if="vm.capModel.xmlFile">
+                <a ng-click="vm.openFile(vm.capModel.xmlFileContentType, vm.capModel.xmlFile)">open</a>
+                {{vm.capModel.xmlFileContentType}}, {{vm.byteSize(vm.capModel.xmlFile)}}
             </div>
         </dd>
         <dt><span>Patient Info FK</span></dt>
         <dd>
-            <a ui-sref="patient-info-detail({id:vm.capModel.patientInfoFK.id})">{{vm.capModel.patientInfoFK.patient_id}}</a>
+            <a ui-sref="patient-info-detail({id:vm.capModel.patientInfoFK.id})">{{vm.capModel.patientInfoFK.patientId}}</a>
         </dd>
     </dl>
 

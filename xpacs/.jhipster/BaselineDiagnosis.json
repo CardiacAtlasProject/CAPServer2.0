@@ -8,12 +8,12 @@
             "relationshipValidateRules": [
                 "required"
             ],
-            "otherEntityField": "patient_id"
+            "otherEntityField": "patientId"
         }
     ],
     "fields": [
         {
-            "fieldName": "diagnosis_date",
+            "fieldName": "diagnosisDate",
             "fieldType": "LocalDate",
             "fieldValidateRules": [
                 "required"
@@ -36,7 +36,7 @@
             "fieldType": "String"
         },
         {
-            "fieldName": "heart_rate",
+            "fieldName": "heartRate",
             "fieldType": "String"
         },
         {
@@ -48,19 +48,19 @@
             "fieldType": "String"
         },
         {
-            "fieldName": "history_of_alcohol",
+            "fieldName": "historyOfAlcohol",
             "fieldType": "String"
         },
         {
-            "fieldName": "history_of_diabetes",
+            "fieldName": "historyOfDiabetes",
             "fieldType": "String"
         },
         {
-            "fieldName": "history_of_hypertension",
+            "fieldName": "historyOfHypertension",
             "fieldType": "String"
         },
         {
-            "fieldName": "history_of_smoking",
+            "fieldName": "historyOfSmoking",
             "fieldType": "String"
         }
     ],
