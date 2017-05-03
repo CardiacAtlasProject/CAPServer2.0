@@ -67,7 +67,6 @@
         <div class="form-group">
             <label for="field_patientInfoFK">Patient Info FK</label>
             <select class="form-control" id="field_patientInfoFK" name="patientInfoFK" ng-model="vm.auxFile.patientInfoFK" ng-options="patientInfo as patientInfo.patientId for patientInfo in vm.patientinfos track by patientInfo.id" required>
-                <option value=""></option>
             </select>
         </div>
         <div ng-show="editForm.patientInfoFK.$invalid">
