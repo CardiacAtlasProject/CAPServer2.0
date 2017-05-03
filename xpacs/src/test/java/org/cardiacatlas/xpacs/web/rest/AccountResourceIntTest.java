@@ -378,7 +378,7 @@ public class AccountResourceIntTest {
             "funky-log!n",          // login <-- invalid
             "Funky",                // firstName
             "One",                  // lastName
-            "funky@example.com",    // e-mail
+            "funky@example.com",    // email
             true,                   // activated
             "http://placehold.it/50x50", //imageUrl
             "en",                   // langKey
