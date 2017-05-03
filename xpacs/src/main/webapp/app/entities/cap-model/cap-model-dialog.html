@@ -1,0 +1,122 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()" show-validation>
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myCapModelLabel">Create or edit a Cap Model</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.capModel.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.capModel.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_creationDate">Creation Date</label>
+                <div class="input-group">
+                    <input id="field_creationDate" type="text" class="form-control" name="creationDate" uib-datepicker-popup="{{dateformat}}" ng-model="vm.capModel.creationDate" is-open="vm.datePickerOpenStatus.creationDate"
+                    required/>
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('creationDate')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+            <div ng-show="editForm.creationDate.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.creationDate.$error.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_name">Name</label>
+            <input type="text" class="form-control" name="name" id="field_name"
+                    ng-model="vm.capModel.name"
+                    required/>
+            <div ng-show="editForm.name.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.name.$error.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_type">Type</label>
+            <input type="text" class="form-control" name="type" id="field_type"
+                    ng-model="vm.capModel.type"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_comment">Comment</label>
+            <input type="text" class="form-control" name="comment" id="field_comment"
+                    ng-model="vm.capModel.comment"
+                    />
+        </div>
+        <div class="form-group" ngf-drop ngf-change="vm.setModelFile($file, vm.capModel)">
+            <label class="control-label" for="field_modelFile">Model File</label>
+            <div>
+                <div ng-if="vm.capModel.modelFile" class="help-block clearfix">
+                    <a class="pull-left" ng-click="vm.openFile(vm.capModel.modelFileContentType, vm.capModel.modelFile)">open</a><br>
+                    <span class="pull-left">{{vm.capModel.modelFileContentType}}, {{vm.byteSize(vm.capModel.modelFile)}}</span>
+                    <button type="button" ng-click="vm.capModel.modelFile=null;vm.capModel.modelFileContentType=null;"
+                            class="btn btn-default btn-xs pull-right">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </button>
+                </div>
+                <button type="button" ngf-select class="btn btn-default btn-block"
+                        ngf-change="vm.setModelFile($file, vm.capModel)">
+                    Add blob
+                </button>
+            </div>
+            <input type="hidden" class="form-control" name="modelFile" id="field_modelFile"
+                    ng-model="vm.capModel.modelFile"
+                    />
+            <input type="hidden" class="form-control" name="modelFileContentType" id="field_modelFileContentType"
+                    ng-model="vm.capModel.modelFileContentType" />
+        </div>
+        <div class="form-group" ngf-drop ngf-change="vm.setXmlFile($file, vm.capModel)">
+            <label class="control-label" for="field_xmlFile">Xml File</label>
+            <div>
+                <div ng-if="vm.capModel.xmlFile" class="help-block clearfix">
+                    <a class="pull-left" ng-click="vm.openFile(vm.capModel.xmlFileContentType, vm.capModel.xmlFile)">open</a><br>
+                    <span class="pull-left">{{vm.capModel.xmlFileContentType}}, {{vm.byteSize(vm.capModel.xmlFile)}}</span>
+                    <button type="button" ng-click="vm.capModel.xmlFile=null;vm.capModel.xmlFileContentType=null;"
+                            class="btn btn-default btn-xs pull-right">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </button>
+                </div>
+                <button type="button" ngf-select class="btn btn-default btn-block"
+                        ngf-change="vm.setXmlFile($file, vm.capModel)">
+                    Add blob
+                </button>
+            </div>
+            <input type="hidden" class="form-control" name="xmlFile" id="field_xmlFile"
+                    ng-model="vm.capModel.xmlFile"
+                    />
+            <input type="hidden" class="form-control" name="xmlFileContentType" id="field_xmlFileContentType"
+                    ng-model="vm.capModel.xmlFileContentType" />
+        </div>
+
+        <div class="form-group">
+            <label for="field_patientInfoFK">Patient Info FK</label>
+            <select class="form-control" id="field_patientInfoFK" name="patientInfoFK" ng-model="vm.capModel.patientInfoFK" ng-options="patientInfo as patientInfo.patientId for patientInfo in vm.patientinfos track by patientInfo.id" required>
+                <option value=""></option>
+            </select>
+        </div>
+        <div ng-show="editForm.patientInfoFK.$invalid">
+            <p class="help-block"
+                ng-show="editForm.patientInfoFK.$error.required">
+                This field is required.
+            </p>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

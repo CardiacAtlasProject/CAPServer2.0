@@ -1,0 +1,72 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "patientInfoFK",
+            "otherEntityName": "patientInfo",
+            "relationshipType": "many-to-one",
+            "relationshipValidateRules": [
+                "required"
+            ],
+            "otherEntityField": "patientId"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "diagnosisDate",
+            "fieldType": "LocalDate",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "age",
+            "fieldType": "Float",
+            "fieldValidateRules": [
+                "min"
+            ],
+            "fieldValidateRulesMin": 0
+        },
+        {
+            "fieldName": "height",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "weight",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "heartRate",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "dbp",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "sbp",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "historyOfAlcohol",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "historyOfDiabetes",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "historyOfHypertension",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "historyOfSmoking",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20170221214051",
+    "dto": "no",
+    "service": "no",
+    "entityTableName": "baseline_diagnosis",
+    "pagination": "pagination"
+}

@@ -1,0 +1,124 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()" show-validation>
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myBaselineDiagnosisLabel">Create or edit a Baseline Diagnosis</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.baselineDiagnosis.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.baselineDiagnosis.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_diagnosisDate">Diagnosis Date</label>
+                <div class="input-group">
+                    <input id="field_diagnosisDate" type="text" class="form-control" name="diagnosisDate" uib-datepicker-popup="{{dateformat}}" ng-model="vm.baselineDiagnosis.diagnosisDate" is-open="vm.datePickerOpenStatus.diagnosisDate"
+                    required/>
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('diagnosisDate')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+            <div ng-show="editForm.diagnosisDate.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.diagnosisDate.$error.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_age">Age</label>
+            <input type="number" class="form-control" name="age" id="field_age"
+                    ng-model="vm.baselineDiagnosis.age"
+                    min="0"/>
+            <div ng-show="editForm.age.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.age.$error.min" translate-value-min="0">
+                    This field should be at least 0.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.age.$error.number">
+                    This field should be a number.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_height">Height</label>
+            <input type="text" class="form-control" name="height" id="field_height"
+                    ng-model="vm.baselineDiagnosis.height"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_weight">Weight</label>
+            <input type="text" class="form-control" name="weight" id="field_weight"
+                    ng-model="vm.baselineDiagnosis.weight"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_heartRate">Heart Rate</label>
+            <input type="text" class="form-control" name="heartRate" id="field_heartRate"
+                    ng-model="vm.baselineDiagnosis.heartRate"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_dbp">Dbp</label>
+            <input type="text" class="form-control" name="dbp" id="field_dbp"
+                    ng-model="vm.baselineDiagnosis.dbp"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_sbp">Sbp</label>
+            <input type="text" class="form-control" name="sbp" id="field_sbp"
+                    ng-model="vm.baselineDiagnosis.sbp"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_historyOfAlcohol">History Of Alcohol</label>
+            <input type="text" class="form-control" name="historyOfAlcohol" id="field_historyOfAlcohol"
+                    ng-model="vm.baselineDiagnosis.historyOfAlcohol"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_historyOfDiabetes">History Of Diabetes</label>
+            <input type="text" class="form-control" name="historyOfDiabetes" id="field_historyOfDiabetes"
+                    ng-model="vm.baselineDiagnosis.historyOfDiabetes"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_historyOfHypertension">History Of Hypertension</label>
+            <input type="text" class="form-control" name="historyOfHypertension" id="field_historyOfHypertension"
+                    ng-model="vm.baselineDiagnosis.historyOfHypertension"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_historyOfSmoking">History Of Smoking</label>
+            <input type="text" class="form-control" name="historyOfSmoking" id="field_historyOfSmoking"
+                    ng-model="vm.baselineDiagnosis.historyOfSmoking"
+                    />
+        </div>
+
+        <div class="form-group">
+            <label for="field_patientInfoFK">Patient Info FK</label>
+            <select class="form-control" id="field_patientInfoFK" name="patientInfoFK" ng-model="vm.baselineDiagnosis.patientInfoFK" ng-options="patientInfo as patientInfo.patientId for patientInfo in vm.patientinfos track by patientInfo.id" required>
+                <option value=""></option>
+            </select>
+        </div>
+        <div ng-show="editForm.patientInfoFK.$invalid">
+            <p class="help-block"
+                ng-show="editForm.patientInfoFK.$error.required">
+                This field is required.
+            </p>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

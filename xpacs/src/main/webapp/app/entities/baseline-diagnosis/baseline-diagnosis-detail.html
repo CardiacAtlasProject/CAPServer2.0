@@ -1,0 +1,67 @@
+
+<div>
+    <h2><span>Baseline Diagnosis</span> {{vm.baselineDiagnosis.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span>Diagnosis Date</span></dt>
+        <dd>
+            <span>{{vm.baselineDiagnosis.diagnosisDate | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span>Age</span></dt>
+        <dd>
+            <span>{{vm.baselineDiagnosis.age}}</span>
+        </dd>
+        <dt><span>Height</span></dt>
+        <dd>
+            <span>{{vm.baselineDiagnosis.height}}</span>
+        </dd>
+        <dt><span>Weight</span></dt>
+        <dd>
+            <span>{{vm.baselineDiagnosis.weight}}</span>
+        </dd>
+        <dt><span>Heart Rate</span></dt>
+        <dd>
+            <span>{{vm.baselineDiagnosis.heartRate}}</span>
+        </dd>
+        <dt><span>Dbp</span></dt>
+        <dd>
+            <span>{{vm.baselineDiagnosis.dbp}}</span>
+        </dd>
+        <dt><span>Sbp</span></dt>
+        <dd>
+            <span>{{vm.baselineDiagnosis.sbp}}</span>
+        </dd>
+        <dt><span>History Of Alcohol</span></dt>
+        <dd>
+            <span>{{vm.baselineDiagnosis.historyOfAlcohol}}</span>
+        </dd>
+        <dt><span>History Of Diabetes</span></dt>
+        <dd>
+            <span>{{vm.baselineDiagnosis.historyOfDiabetes}}</span>
+        </dd>
+        <dt><span>History Of Hypertension</span></dt>
+        <dd>
+            <span>{{vm.baselineDiagnosis.historyOfHypertension}}</span>
+        </dd>
+        <dt><span>History Of Smoking</span></dt>
+        <dd>
+            <span>{{vm.baselineDiagnosis.historyOfSmoking}}</span>
+        </dd>
+        <dt><span>Patient Info FK</span></dt>
+        <dd>
+            <a ui-sref="patient-info-detail({id:vm.baselineDiagnosis.patientInfoFK.id})">{{vm.baselineDiagnosis.patientInfoFK.patientId}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button" ui-sref="baseline-diagnosis-detail.edit({id:vm.baselineDiagnosis.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down"> Edit</span>
+    </button>
+</div>

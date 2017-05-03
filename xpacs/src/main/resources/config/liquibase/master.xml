@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <include file="classpath:config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170221212346_added_entity_CapModel.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170221213343_added_entity_AuxFile.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170221214051_added_entity_BaselineDiagnosis.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170325104542_added_entity_PatientInfo.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170325105116_added_entity_ClinicalNote.xml" relativeToChangelogFile="false"/>
+    <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
+    <include file="classpath:config/liquibase/changelog/20170221212346_added_entity_constraints_CapModel.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170221213343_added_entity_constraints_AuxFile.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170221214051_added_entity_constraints_BaselineDiagnosis.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170325105116_added_entity_constraints_ClinicalNote.xml" relativeToChangelogFile="false"/>
+    <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
+</databaseChangeLog>
