@@ -31,10 +31,10 @@ public class CapModel implements Serializable {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "type")
+    @Column(name = "jhi_type")
     private String type;
 
-    @Column(name = "comment")
+    @Column(name = "jhi_comment")
     private String comment;
 
     @Lob

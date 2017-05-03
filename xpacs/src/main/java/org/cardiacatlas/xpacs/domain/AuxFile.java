@@ -32,10 +32,10 @@ public class AuxFile implements Serializable {
 
     @NotNull
     @Lob
-    @Column(name = "file", nullable = false)
+    @Column(name = "jhi_file", nullable = false)
     private byte[] file;
 
-    @Column(name = "file_content_type", nullable = false)
+    @Column(name = "jhi_file_content_type", nullable = false)
     private String fileContentType;
 
     @ManyToOne(optional = false)
