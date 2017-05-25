@@ -294,5 +294,14 @@ public class ClinicalNoteResourceIntTest {
     @Transactional
     public void equalsVerifier() throws Exception {
         TestUtil.equalsVerifier(ClinicalNote.class);
+        ClinicalNote clinicalNote1 = new ClinicalNote();
+        clinicalNote1.setId(1L);
+        ClinicalNote clinicalNote2 = new ClinicalNote();
+        clinicalNote2.setId(clinicalNote1.getId());
+        assertThat(clinicalNote1).isEqualTo(clinicalNote2);
+        clinicalNote2.setId(2L);
+        assertThat(clinicalNote1).isNotEqualTo(clinicalNote2);
+        clinicalNote1.setId(null);
+        assertThat(clinicalNote1).isNotEqualTo(clinicalNote2);
     }
 }

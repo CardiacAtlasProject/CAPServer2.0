@@ -338,5 +338,14 @@ public class BaselineDiagnosisResourceIntTest {
     @Transactional
     public void equalsVerifier() throws Exception {
         TestUtil.equalsVerifier(BaselineDiagnosis.class);
+        BaselineDiagnosis baselineDiagnosis1 = new BaselineDiagnosis();
+        baselineDiagnosis1.setId(1L);
+        BaselineDiagnosis baselineDiagnosis2 = new BaselineDiagnosis();
+        baselineDiagnosis2.setId(baselineDiagnosis1.getId());
+        assertThat(baselineDiagnosis1).isEqualTo(baselineDiagnosis2);
+        baselineDiagnosis2.setId(2L);
+        assertThat(baselineDiagnosis1).isNotEqualTo(baselineDiagnosis2);
+        baselineDiagnosis1.setId(null);
+        assertThat(baselineDiagnosis1).isNotEqualTo(baselineDiagnosis2);
     }
 }
