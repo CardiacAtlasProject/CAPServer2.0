@@ -189,29 +189,29 @@ public class CapModel implements Serializable {
             return false;
         }
         CapModel capModel = (CapModel) o;
-        if (capModel.id == null || id == null) {
+        if (capModel.getId() == null || getId() == null) {
             return false;
         }
-        return Objects.equals(id, capModel.id);
+        return Objects.equals(getId(), capModel.getId());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(id);
+        return Objects.hashCode(getId());
     }
 
     @Override
     public String toString() {
         return "CapModel{" +
-            "id=" + id +
-            ", creationDate='" + creationDate + "'" +
-            ", name='" + name + "'" +
-            ", type='" + type + "'" +
-            ", comment='" + comment + "'" +
-            ", modelFile='" + modelFile + "'" +
+            "id=" + getId() +
+            ", creationDate='" + getCreationDate() + "'" +
+            ", name='" + getName() + "'" +
+            ", type='" + getType() + "'" +
+            ", comment='" + getComment() + "'" +
+            ", modelFile='" + getModelFile() + "'" +
             ", modelFileContentType='" + modelFileContentType + "'" +
-            ", xmlFile='" + xmlFile + "'" +
+            ", xmlFile='" + getXmlFile() + "'" +
             ", xmlFileContentType='" + xmlFileContentType + "'" +
-            '}';
+            "}";
     }
 }

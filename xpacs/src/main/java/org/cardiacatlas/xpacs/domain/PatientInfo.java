@@ -125,26 +125,26 @@ public class PatientInfo implements Serializable {
             return false;
         }
         PatientInfo patientInfo = (PatientInfo) o;
-        if (patientInfo.id == null || id == null) {
+        if (patientInfo.getId() == null || getId() == null) {
             return false;
         }
-        return Objects.equals(id, patientInfo.id);
+        return Objects.equals(getId(), patientInfo.getId());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(id);
+        return Objects.hashCode(getId());
     }
 
     @Override
     public String toString() {
         return "PatientInfo{" +
-            "id=" + id +
-            ", patientId='" + patientId + "'" +
-            ", cohort='" + cohort + "'" +
-            ", ethnicity='" + ethnicity + "'" +
-            ", gender='" + gender + "'" +
-            ", primaryDiagnosis='" + primaryDiagnosis + "'" +
-            '}';
+            "id=" + getId() +
+            ", patientId='" + getPatientId() + "'" +
+            ", cohort='" + getCohort() + "'" +
+            ", ethnicity='" + getEthnicity() + "'" +
+            ", gender='" + getGender() + "'" +
+            ", primaryDiagnosis='" + getPrimaryDiagnosis() + "'" +
+            "}";
     }
 }

@@ -293,5 +293,14 @@ public class AuxFileResourceIntTest {
     @Transactional
     public void equalsVerifier() throws Exception {
         TestUtil.equalsVerifier(AuxFile.class);
+        AuxFile auxFile1 = new AuxFile();
+        auxFile1.setId(1L);
+        AuxFile auxFile2 = new AuxFile();
+        auxFile2.setId(auxFile1.getId());
+        assertThat(auxFile1).isEqualTo(auxFile2);
+        auxFile2.setId(2L);
+        assertThat(auxFile1).isNotEqualTo(auxFile2);
+        auxFile1.setId(null);
+        assertThat(auxFile1).isNotEqualTo(auxFile2);
     }
 }

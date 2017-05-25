@@ -328,5 +328,14 @@ public class CapModelResourceIntTest {
     @Transactional
     public void equalsVerifier() throws Exception {
         TestUtil.equalsVerifier(CapModel.class);
+        CapModel capModel1 = new CapModel();
+        capModel1.setId(1L);
+        CapModel capModel2 = new CapModel();
+        capModel2.setId(capModel1.getId());
+        assertThat(capModel1).isEqualTo(capModel2);
+        capModel2.setId(2L);
+        assertThat(capModel1).isNotEqualTo(capModel2);
+        capModel1.setId(null);
+        assertThat(capModel1).isNotEqualTo(capModel2);
     }
 }

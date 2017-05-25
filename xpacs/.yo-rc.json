@@ -3,7 +3,7 @@
     "promptValues": {
       "packageName": "org.cardiacatlas.xpacs"
     },
-    "jhipsterVersion": "4.3.0",
+    "jhipsterVersion": "4.5.1",
     "baseName": "xpacsweb",
     "packageName": "org.cardiacatlas.xpacs",
     "packageFolder": "org/cardiacatlas/xpacs",
