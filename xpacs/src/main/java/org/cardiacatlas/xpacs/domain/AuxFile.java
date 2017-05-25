@@ -124,25 +124,25 @@ public class AuxFile implements Serializable {
             return false;
         }
         AuxFile auxFile = (AuxFile) o;
-        if (auxFile.id == null || id == null) {
+        if (auxFile.getId() == null || getId() == null) {
             return false;
         }
-        return Objects.equals(id, auxFile.id);
+        return Objects.equals(getId(), auxFile.getId());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(id);
+        return Objects.hashCode(getId());
     }
 
     @Override
     public String toString() {
         return "AuxFile{" +
-            "id=" + id +
-            ", creationDate='" + creationDate + "'" +
-            ", description='" + description + "'" +
-            ", file='" + file + "'" +
+            "id=" + getId() +
+            ", creationDate='" + getCreationDate() + "'" +
+            ", description='" + getDescription() + "'" +
+            ", file='" + getFile() + "'" +
             ", fileContentType='" + fileContentType + "'" +
-            '}';
+            "}";
     }
 }

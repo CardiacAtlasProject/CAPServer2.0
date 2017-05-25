@@ -235,32 +235,32 @@ public class BaselineDiagnosis implements Serializable {
             return false;
         }
         BaselineDiagnosis baselineDiagnosis = (BaselineDiagnosis) o;
-        if (baselineDiagnosis.id == null || id == null) {
+        if (baselineDiagnosis.getId() == null || getId() == null) {
             return false;
         }
-        return Objects.equals(id, baselineDiagnosis.id);
+        return Objects.equals(getId(), baselineDiagnosis.getId());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(id);
+        return Objects.hashCode(getId());
     }
 
     @Override
     public String toString() {
         return "BaselineDiagnosis{" +
-            "id=" + id +
-            ", diagnosisDate='" + diagnosisDate + "'" +
-            ", age='" + age + "'" +
-            ", height='" + height + "'" +
-            ", weight='" + weight + "'" +
-            ", heartRate='" + heartRate + "'" +
-            ", dbp='" + dbp + "'" +
-            ", sbp='" + sbp + "'" +
-            ", historyOfAlcohol='" + historyOfAlcohol + "'" +
-            ", historyOfDiabetes='" + historyOfDiabetes + "'" +
-            ", historyOfHypertension='" + historyOfHypertension + "'" +
-            ", historyOfSmoking='" + historyOfSmoking + "'" +
-            '}';
+            "id=" + getId() +
+            ", diagnosisDate='" + getDiagnosisDate() + "'" +
+            ", age='" + getAge() + "'" +
+            ", height='" + getHeight() + "'" +
+            ", weight='" + getWeight() + "'" +
+            ", heartRate='" + getHeartRate() + "'" +
+            ", dbp='" + getDbp() + "'" +
+            ", sbp='" + getSbp() + "'" +
+            ", historyOfAlcohol='" + getHistoryOfAlcohol() + "'" +
+            ", historyOfDiabetes='" + getHistoryOfDiabetes() + "'" +
+            ", historyOfHypertension='" + getHistoryOfHypertension() + "'" +
+            ", historyOfSmoking='" + getHistoryOfSmoking() + "'" +
+            "}";
     }
 }

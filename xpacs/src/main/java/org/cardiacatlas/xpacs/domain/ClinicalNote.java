@@ -157,27 +157,27 @@ public class ClinicalNote implements Serializable {
             return false;
         }
         ClinicalNote clinicalNote = (ClinicalNote) o;
-        if (clinicalNote.id == null || id == null) {
+        if (clinicalNote.getId() == null || getId() == null) {
             return false;
         }
-        return Objects.equals(id, clinicalNote.id);
+        return Objects.equals(getId(), clinicalNote.getId());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(id);
+        return Objects.hashCode(getId());
     }
 
     @Override
     public String toString() {
         return "ClinicalNote{" +
-            "id=" + id +
-            ", assessmentDate='" + assessmentDate + "'" +
-            ", age='" + age + "'" +
-            ", height='" + height + "'" +
-            ", weight='" + weight + "'" +
-            ", diagnosis='" + diagnosis + "'" +
-            ", note='" + note + "'" +
-            '}';
+            "id=" + getId() +
+            ", assessmentDate='" + getAssessmentDate() + "'" +
+            ", age='" + getAge() + "'" +
+            ", height='" + getHeight() + "'" +
+            ", weight='" + getWeight() + "'" +
+            ", diagnosis='" + getDiagnosis() + "'" +
+            ", note='" + getNote() + "'" +
+            "}";
     }
 }
