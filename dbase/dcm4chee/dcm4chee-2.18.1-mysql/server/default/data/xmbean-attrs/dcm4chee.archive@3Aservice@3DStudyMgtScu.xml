@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- automatically produced by XMLAttributePersistenceManager --><attribute-list date="20170714091115" id="dcm4chee.archive:service=StudyMgtScu">
+<attribute name="AcceptTimeout" type="java.lang.Integer">30000</attribute>
+<attribute name="DIMSETimeout" type="java.lang.Integer">1200000</attribute>
+<attribute name="SocketCloseDelay" type="java.lang.Integer">50</attribute>
+<attribute name="MaximumPDULength" type="java.lang.Integer">16352</attribute>
+<attribute name="TcpNoDelay" type="java.lang.Boolean">true</attribute>
+<attribute name="SendBufferSize" type="java.lang.Integer">0</attribute>
+<attribute name="ReceiveBufferSize" type="java.lang.Integer">0</attribute>
+<attribute name="TLSConfigName" type="javax.management.ObjectName">dcm4chee.archive:service=TLSConfig</attribute>
+<attribute name="ForwardingRules" type="java.lang.String">[calling=PACS_NODEXX]PACS_CENTRAL</attribute>
+<attribute name="RetryIfNoSuchSOPInstance" type="java.lang.Boolean">false</attribute>
+<attribute name="CallingAETitle" type="java.lang.String">DCM4CHEE</attribute>
+<attribute name="RetryIntervals" type="java.lang.String">5x1m,12x5m,24x1h,7x1d</attribute>
+<attribute name="Concurrency" type="java.lang.Integer">1</attribute>
+<attribute name="QueueName" type="java.lang.String">StudyMgtScu</attribute>
+<attribute name="JMSServiceName" type="javax.management.ObjectName">dcm4chee.archive:service=JMS</attribute>
+<attribute name="StudyMgtScpServiceName" type="javax.management.ObjectName">dcm4chee.archive:service=StudyMgtScp</attribute>
+</attribute-list>

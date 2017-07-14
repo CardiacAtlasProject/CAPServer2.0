@@ -1,0 +1,41 @@
+<div>
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <h2>Upload CSV file</h2>
+
+            <div class="alert alert-success" ng-show="vm.success">
+                <strong>Database was successfully populated!
+                </strong>
+            </div>
+            <div class="alert alert-danger" ng-show="vm.error" >
+                <strong>An error has occurred!</strong> Database could not be populated!
+            </div>
+           <jhi-alert-error></jhi-alert-error>
+
+            <form name="form" id="uploadForm" role="form" novalidate ng-submit="vm.save()" show-validation>
+
+                <div class="form-group fileinput fileinput-new">
+                    
+	            <label class="control-label" for="field_gender">Select the entity yo want to upload</label>
+	            <select class="form-control" name="upload_entity" ng-model="vm.upload_entity" id="upload_entity" required>
+	                <option value="patient_info">Patient Info</option>
+	                <option value="clinical_note">Clinical Note</option>
+	                <option value="aux_file">Aux File</option>
+	            </select>
+	            <div ng-show="form.$invalid">
+	                <p class="help-block"
+	                    
+	                    This field is required.
+	                </p>
+	            </div>
+        
+                    <br/><br/>
+                    <input ng-disabled="form.$invalid" id="file" name="file" class="" type="file" ng-model="vm.file"/><br/><br/>
+                    <button type="submit"  class="btn btn-primary">Save</button>
+                        
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>

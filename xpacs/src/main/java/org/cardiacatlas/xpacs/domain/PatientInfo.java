@@ -145,6 +145,7 @@ public class PatientInfo implements Serializable {
             ", ethnicity='" + ethnicity + "'" +
             ", gender='" + gender + "'" +
             ", primary_diagnosis='" + primary_diagnosis + "'" +
-            '}';
+            '}'
+            ;
     }
 }

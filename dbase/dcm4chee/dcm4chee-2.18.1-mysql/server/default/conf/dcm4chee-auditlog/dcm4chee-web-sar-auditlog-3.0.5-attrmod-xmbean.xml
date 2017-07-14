@@ -1,0 +1,23 @@
+<mbean name="dcm4chee.web:service=AttributesModificationSCU">
+<attribute name="CallingAETitle"/>
+<attribute name="CalledAETitles"/>
+<attribute name="ModifyingSystem"/>
+<attribute name="ReasonForTheAttributeModification"/>
+<attribute name="NoRetryErrorCode"/>
+<attribute name="BindToCallingAET"/>
+<attribute name="Priority"/>
+<attribute name="ConnectTimeout"/>
+<attribute name="AcceptTimeout"/>
+<attribute name="RetrieveRspTimeout"/>
+<attribute name="ReleaseTimeout"/>
+<attribute name="SocketCloseDelay"/>
+<attribute name="MaximumPDULengthReceive"/>
+<attribute name="getMaxOpsInvoked"/>
+<attribute name="TcpNoDelay"/>
+<attribute name="RetryIntervals"/>
+<attribute name="QueueName"/>
+<attribute name="TlsCfgServiceName"/>
+<attribute name="JMSServiceName"/>
+<attribute name="Concurrency"/>
+<attribute name="State"/>
+</mbean>

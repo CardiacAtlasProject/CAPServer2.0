@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- automatically produced by XMLAttributePersistenceManager --><attribute-list date="20170714091113" id="dcm4chee.archive:service=HSMMigrate">
+<attribute name="SourceFileSystem" type="java.lang.String">NONE</attribute>
+<attribute name="TargetFileSystem" type="java.lang.String">NONE</attribute>
+<attribute name="TargetFileStatus" type="java.lang.String">TO_ARCHIVE</attribute>
+<attribute name="VerifySourceTar" type="java.lang.Boolean">true</attribute>
+<attribute name="VerifyTargetTar" type="java.lang.Boolean">true</attribute>
+<attribute name="RemoveSrcOnTargetFileStatus" type="java.lang.String">NONE</attribute>
+<attribute name="QueryStatusMode" type="java.lang.String">ON_WRONG</attribute>
+<attribute name="MigrationTaskInterval" type="java.lang.String">NEVER</attribute>
+<attribute name="RetryTaskInterval" type="java.lang.String">NEVER</attribute>
+<attribute name="RemoveTaskInterval" type="java.lang.String">NEVER</attribute>
+<attribute name="LastFilesFirst" type="java.lang.Boolean">true</attribute>
+<attribute name="CreateNewTargetFilename" type="java.lang.Boolean">false</attribute>
+<attribute name="NumberOfFilesPerMigrateTask" type="java.lang.Integer">100</attribute>
+<attribute name="NumberOfFilesPerRemoveTask" type="java.lang.Integer">100</attribute>
+<attribute name="Concurrency" type="java.lang.Integer">1</attribute>
+<attribute name="MaxChunkSize" type="java.lang.Long">100</attribute>
+<attribute name="TimerIDHSMMigrate" type="java.lang.String">HSMMigrate</attribute>
+<attribute name="TimerIDHSMRetry" type="java.lang.String">HSMMigrateRetry</attribute>
+<attribute name="TimerIDHSMRemove" type="java.lang.String">HSMMigrateRemove</attribute>
+<attribute name="HSMModuleServicename" type="javax.management.ObjectName">dcm4chee.archive:service=FileCopyHSMModule,type=Mapped</attribute>
+<attribute name="SchedulerServiceName" type="javax.management.ObjectName">dcm4chee.archive:service=Scheduler</attribute>
+</attribute-list>

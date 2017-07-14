@@ -1,8 +1,15 @@
 package org.cardiacatlas.xpacs.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
-import org.cardiacatlas.xpacs.domain.PatientInfo;
 
+import org.cardiacatlas.xpacs.domain.AuxFile;
+import org.cardiacatlas.xpacs.domain.BaselineDiagnosis;
+import org.cardiacatlas.xpacs.domain.ClinicalNote;
+import org.cardiacatlas.xpacs.domain.ConsolidatedInfo;
+import org.cardiacatlas.xpacs.domain.PatientInfo;
+import org.cardiacatlas.xpacs.repository.AuxFileRepository;
+import org.cardiacatlas.xpacs.repository.BaselineDiagnosisRepository;
+import org.cardiacatlas.xpacs.repository.ClinicalNoteRepository;
 import org.cardiacatlas.xpacs.repository.PatientInfoRepository;
 import org.cardiacatlas.xpacs.web.rest.util.HeaderUtil;
 import org.cardiacatlas.xpacs.web.rest.util.PaginationUtil;
@@ -10,8 +17,11 @@ import io.swagger.annotations.ApiParam;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -35,9 +45,14 @@ public class PatientInfoResource {
     private static final String ENTITY_NAME = "patientInfo";
         
     private final PatientInfoRepository patientInfoRepository;
-
-    public PatientInfoResource(PatientInfoRepository patientInfoRepository) {
+    private final ClinicalNoteRepository clinicalNoteRepository;
+    private final BaselineDiagnosisRepository baselineDiagnosisRepository;
+    private final AuxFileRepository auxFileRepository;
+    public PatientInfoResource(PatientInfoRepository patientInfoRepository,ClinicalNoteRepository clinicalNoteRepository,BaselineDiagnosisRepository baselineDiagnosisRepository,AuxFileRepository auxFileRepository) {
         this.patientInfoRepository = patientInfoRepository;
+        this.clinicalNoteRepository = clinicalNoteRepository;
+        this.baselineDiagnosisRepository =  baselineDiagnosisRepository;
+        this.auxFileRepository= auxFileRepository;
     }
 
     /**
@@ -103,12 +118,28 @@ public class PatientInfoResource {
      * @param id the id of the patientInfo to retrieve
      * @return the ResponseEntity with status 200 (OK) and with body the patientInfo, or with status 404 (Not Found)
      */
+    /*
     @GetMapping("/patient-infos/{id}")
     @Timed
     public ResponseEntity<PatientInfo> getPatientInfo(@PathVariable Long id) {
         log.debug("REST request to get PatientInfo : {}", id);
         PatientInfo patientInfo = patientInfoRepository.findOne(id);
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(patientInfo));
+    }
+    */
+    @GetMapping("/patient-infos/{id}")
+    @Timed
+    public ResponseEntity<ConsolidatedInfo> getPatientInfo(@PathVariable Long id) {
+        log.debug("REST request to get PatientInfo : {}", id);
+        PatientInfo patientInfo = patientInfoRepository.findOne(id);
+        
+		ClinicalNote clinicalNote = clinicalNoteRepository.findOne(id);
+		BaselineDiagnosis baselineDiagnosis = baselineDiagnosisRepository.findOne(id);
+		AuxFile auxFile = auxFileRepository.findOne(id) ;
+		ConsolidatedInfo consolidatedInfo = new ConsolidatedInfo(id,patientInfo,clinicalNote,baselineDiagnosis,auxFile);
+		
+		log.debug("REST is  ",clinicalNote);
+        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(consolidatedInfo));
     }
 
     /**

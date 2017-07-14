@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- automatically produced by XMLAttributePersistenceManager --><attribute-list date="20170714091115" id="dcm4chee.archive:service=UPSScp">
+<attribute name="CalledAETitles" type="java.lang.String">DCM4CHEE</attribute>
+<attribute name="CallingAETitles" type="java.lang.String">ANY</attribute>
+<attribute name="WorklistLabel" type="java.lang.String">Worklist</attribute>
+<attribute name="SupplementIssuerOfPatientID" type="java.lang.Boolean">true</attribute>
+<attribute name="SupplementByHostName" type="java.lang.Boolean">false</attribute>
+<attribute name="SupplementByHostAddress" type="java.lang.Boolean">false</attribute>
+<attribute name="PatientMatching" type="java.lang.String">pid,issuer?[familyname,givenname,middlename?,birthdate]</attribute>
+<attribute name="NoMatchForNoValue" type="java.lang.Boolean">true</attribute>
+<attribute name="AcceptedSOPClasses" type="java.lang.String">             UnifiedProcedureStepPushSOPClass             UnifiedProcedureStepWatchSOPClass             UnifiedProcedureStepPullSOPClass             UnifiedProcedureStepEventSOPClass            </attribute>
+<attribute name="AcceptedTransferSyntax" type="java.lang.String">            ExplicitVRLittleEndian            ImplicitVRLittleEndian          </attribute>
+<attribute name="MaximumPDULength" type="java.lang.Integer">16352</attribute>
+<attribute name="MaximumOperationsInvoked" type="java.lang.Integer">1</attribute>
+<attribute name="MaximumOperationsPerformed" type="java.lang.Integer">1</attribute>
+<attribute name="AcceptTimeout" type="java.lang.Integer">10000</attribute>
+<attribute name="DIMSETimeout" type="java.lang.Integer">60000</attribute>
+<attribute name="SocketCloseDelay" type="java.lang.Integer">50</attribute>
+<attribute name="TcpNoDelay" type="java.lang.Boolean">true</attribute>
+<attribute name="SendBufferSize" type="java.lang.Integer">0</attribute>
+<attribute name="ReceiveBufferSize" type="java.lang.Integer">0</attribute>
+<attribute name="AccessBlobAsLongVarBinary" type="java.lang.Boolean">true</attribute>
+<attribute name="TransactionIsolationLevel" type="java.lang.String">DEFAULT</attribute>
+<attribute name="RetryIntervals" type="java.lang.String">NEVER</attribute>
+<attribute name="Concurrency" type="java.lang.Integer">1</attribute>
+<attribute name="FetchSize" type="java.lang.Integer">50</attribute>
+<attribute name="QueueName" type="java.lang.String">UPSScp</attribute>
+<attribute name="JMSServiceName" type="javax.management.ObjectName">dcm4chee.archive:service=JMS</attribute>
+<attribute name="DcmServerName" type="javax.management.ObjectName">dcm4chee.archive:service=DcmServer</attribute>
+<attribute name="AEServiceName" type="javax.management.ObjectName">dcm4chee.archive:service=AE</attribute>
+<attribute name="TLSConfigName" type="javax.management.ObjectName">dcm4chee.archive:service=TLSConfig</attribute>
+</attribute-list>

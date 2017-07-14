@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- automatically produced by XMLAttributePersistenceManager --><attribute-list date="20170714091113" id="dcm4chee.archive:service=MPPSEmulator">
+<attribute name="ModalityAETitles" type="java.lang.String">MOD_AET</attribute>
+<attribute name="MPPSDelay" type="java.lang.String">5m</attribute>
+<attribute name="PollInterval" type="java.lang.String">NEVER</attribute>
+<attribute name="CalledAETitle" type="java.lang.String">DCM4CHEE</attribute>
+<attribute name="IgnoreReqAttrIfNoStudyAccNo" type="java.lang.Boolean">false</attribute>
+<attribute name="TimerIDCheckSeriesWithoutMPPS" type="java.lang.String">CheckSeriesWithoutMPPS</attribute>
+<attribute name="MppsScuServiceName" type="javax.management.ObjectName">dcm4chee.archive:service=MPPSScu</attribute>
+<attribute name="SchedulerServiceName" type="javax.management.ObjectName">dcm4chee.archive:service=Scheduler</attribute>
+</attribute-list>

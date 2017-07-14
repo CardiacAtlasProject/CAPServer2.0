@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- automatically produced by XMLAttributePersistenceManager --><attribute-list date="20170714091123" id="dcm4chee.web:service=Web3MwlSCU">
+<attribute name="CallingAETitle" type="java.lang.String">DCM4CHEE</attribute>
+<attribute name="WorklistProviders" type="java.lang.String">NONE</attribute>
+<attribute name="DefaultWorklistProvider" type="java.lang.String">&lt;intern&gt;</attribute>
+<attribute name="BindToCallingAET" type="java.lang.Boolean">true</attribute>
+<attribute name="Priority" type="java.lang.String">MEDIUM</attribute>
+<attribute name="ConnectTimeout" type="java.lang.Integer">0</attribute>
+<attribute name="AcceptTimeout" type="java.lang.Integer">10000</attribute>
+<attribute name="DimseRspTimeout" type="java.lang.Integer">60000</attribute>
+<attribute name="ReleaseTimeout" type="java.lang.Integer">5000</attribute>
+<attribute name="SocketCloseDelay" type="java.lang.Integer">50</attribute>
+<attribute name="MaximumPDULengthReceive" type="java.lang.Integer">16352</attribute>
+<attribute name="getMaxOpsInvoked" type="java.lang.Integer">0</attribute>
+<attribute name="TcpNoDelay" type="java.lang.Boolean">true</attribute>
+<attribute name="TlsCfgServiceName" type="javax.management.ObjectName">dcm4chee.web:service=TlsConfig</attribute>
+</attribute-list>

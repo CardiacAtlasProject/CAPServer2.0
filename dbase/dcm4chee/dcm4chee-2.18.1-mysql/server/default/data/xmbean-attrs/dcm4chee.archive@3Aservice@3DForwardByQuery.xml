@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- automatically produced by XMLAttributePersistenceManager --><attribute-list date="20170714091112" id="dcm4chee.archive:service=ForwardByQuery">
+<attribute name="CalledAETitle" type="java.lang.String">STORE1</attribute>
+<attribute name="PollInterval" type="java.lang.String">NEVER</attribute>
+<attribute name="Query" type="java.lang.String">SELECT DISTINCT series.series_iuid, series.retrieve_aets, series.pk            FROM series INNER JOIN series_req ON series.pk = series_req.series_fk            WHERE series.series_status = 0 AND series.ext_retr_aet IS NULL             AND series.updated_time &lt; ? ORDER BY series.pk</attribute>
+<attribute name="Delay" type="java.lang.String">1h</attribute>
+<attribute name="Limit" type="java.lang.Integer">2000</attribute>
+<attribute name="ForwardPriority" type="java.lang.String">MEDIUM</attribute>
+<attribute name="TimerIDForwardByQuery" type="java.lang.String">TimerIDForwardByQuery</attribute>
+<attribute name="MoveScuServiceName" type="javax.management.ObjectName">dcm4chee.archive:service=MoveScu</attribute>
+<attribute name="SchedulerServiceName" type="javax.management.ObjectName">dcm4chee.archive:service=Scheduler</attribute>
+</attribute-list>

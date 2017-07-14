@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- automatically produced by XMLAttributePersistenceManager --><attribute-list date="20170714091112" id="dcm4chee.archive:service=Forward2">
+<attribute name="ConfigDirectory" type="java.lang.String">conf/dcm4chee-ae</attribute>
+<attribute name="ForwardOnInstanceLevelFromAETitles" type="java.lang.String">NONE</attribute>
+<attribute name="IgnoreNotLocalRetrievable" type="java.lang.Boolean">true</attribute>
+<attribute name="LogForwardPriorXML" type="java.lang.Boolean">false</attribute>
+<attribute name="StoreScpServiceName" type="javax.management.ObjectName">dcm4chee.archive:service=StoreScp</attribute>
+<attribute name="MoveScuServiceName" type="javax.management.ObjectName">dcm4chee.archive:service=MoveScu</attribute>
+<attribute name="TemplatesServiceName" type="javax.management.ObjectName">dcm4chee.archive:service=Templates</attribute>
+</attribute-list>

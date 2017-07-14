@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- automatically produced by XMLAttributePersistenceManager --><attribute-list date="20170714091114" id="dcm4chee.archive:service=RejectionNoteStored">
+<attribute name="RejectionNoteCodes" type="java.lang.String">       (113001, DCM, "Rejected for Quality Reasons")       (113037, DCM, "Rejected for Patient Safety Reasons")       </attribute>
+<attribute name="CheckCallingAET" type="java.lang.Boolean">true</attribute>
+<attribute name="DeletionDelay" type="java.lang.String">1m</attribute>
+<attribute name="KeepRejectionNote" type="java.lang.Boolean">true</attribute>
+<attribute name="RetryIntervalsForJmsOrder" type="java.lang.String">5x1m,1x1h,1x1d</attribute>
+<attribute name="QueueName" type="java.lang.String">RejectionNoteStored</attribute>
+<attribute name="JMSServiceName" type="javax.management.ObjectName">dcm4chee.archive:service=JMS</attribute>
+<attribute name="ContentEditServiceName" type="javax.management.ObjectName">dcm4chee.archive:service=ContentEditService</attribute>
+<attribute name="StoreScpServiceName" type="javax.management.ObjectName">dcm4chee.archive:service=StoreScp</attribute>
+</attribute-list>

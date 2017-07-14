@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- automatically produced by XMLAttributePersistenceManager --><attribute-list date="20170714091112" id="dcm4chee.archive:service=FileCopyByQuery">
+<attribute name="PollInterval" type="java.lang.String">NEVER</attribute>
+<attribute name="Query" type="java.lang.String">SELECT DISTINCT series.pk FROM series, instance, files            WHERE series.series_status = 0 AND series.pk = instance.series_fk AND instance.pk = files.instance_fk             AND series.updated_time &lt; ?            AND NOT EXISTS (SELECT pk FROM files WHERE files.instance_fk=instance.pk AND files.filesystem_fk=2)</attribute>
+<attribute name="Delay" type="java.lang.String">1h</attribute>
+<attribute name="Limit" type="java.lang.Integer">2000</attribute>
+<attribute name="FetchSize" type="java.lang.Integer">50</attribute>
+<attribute name="TimerIDFilecopyByQuery" type="java.lang.String">TimerIDFilecopyByQuery</attribute>
+<attribute name="FilecopyServiceName" type="javax.management.ObjectName">dcm4chee.archive:service=FileCopy</attribute>
+<attribute name="SchedulerServiceName" type="javax.management.ObjectName">dcm4chee.archive:service=Scheduler</attribute>
+</attribute-list>

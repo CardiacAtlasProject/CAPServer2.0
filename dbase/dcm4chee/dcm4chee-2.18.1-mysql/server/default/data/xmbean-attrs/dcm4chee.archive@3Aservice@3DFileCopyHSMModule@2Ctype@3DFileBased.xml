@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- automatically produced by XMLAttributePersistenceManager --><attribute-list date="20170714091113" id="dcm4chee.archive:service=FileCopyHSMModule,type=FileBased">
+<attribute name="RetentionTime" type="java.lang.String">3y</attribute>
+<attribute name="AccessTimeCmd" type="java.lang.String">touch -a -t %d %f</attribute>
+<attribute name="DatePattern" type="java.lang.String">yyyyMMddhhmm</attribute>
+<attribute name="StatusExtensions" type="java.lang.String">             .archived=ARCHIVED           NONE          </attribute>
+<attribute name="CheckMD5forStatusChange" type="java.lang.Boolean">false</attribute>
+<attribute name="MountFailedCheckFile" type="java.lang.String">NO_MOUNT</attribute>
+<attribute name="FileCopyServiceName" type="javax.management.ObjectName">dcm4chee.archive:service=FileCopy</attribute>
+</attribute-list>

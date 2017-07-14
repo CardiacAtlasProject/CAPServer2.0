@@ -1,0 +1,24 @@
+<mbean name="dcm4chee.web:service=HL7SendV2">
+<attribute name="Receiver"/>
+<attribute name="SendingApplication"/>
+<attribute name="SendingFacility"/>
+<attribute name="BindAddress"/>
+<attribute name="LinkMsgType"/>
+<attribute name="UnlinkMsgType"/>
+<attribute name="ConfigDirectory"/>
+<attribute name="XslFilenames"/>
+<attribute name="CharsetName"/>
+<attribute name="Dcm2To14XSL"/>
+<attribute name="RetryIntervals"/>
+<attribute name="LogHL7Message"/>
+<attribute name="LogXMLHL7Message"/>
+<attribute name="AcceptTimeout"/>
+<attribute name="SocketCloseDelay"/>
+<attribute name="QueueName"/>
+<attribute name="Concurrency"/>
+<attribute name="TlsCfgServiceName"/>
+<attribute name="JMSServiceName"/>
+<attribute name="ContentEditServiceName"/>
+<attribute name="TemplatesServiceName"/>
+<attribute name="State"/>
+</mbean>
