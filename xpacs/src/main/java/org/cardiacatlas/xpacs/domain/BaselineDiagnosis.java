@@ -25,7 +25,7 @@ public class BaselineDiagnosis implements Serializable {
 
     @NotNull
     @Column(name = "diagnosis_date", nullable = false)
-    private LocalDate diagnosis_date;
+    private LocalDate diagnosisDate;
 
     @DecimalMin(value = "0")
     @Column(name = "age")
@@ -38,7 +38,7 @@ public class BaselineDiagnosis implements Serializable {
     private String weight;
 
     @Column(name = "heart_rate")
-    private String heart_rate;
+    private String heartRate;
 
     @Column(name = "dbp")
     private String dbp;
@@ -47,16 +47,16 @@ public class BaselineDiagnosis implements Serializable {
     private String sbp;
 
     @Column(name = "history_of_alcohol")
-    private String history_of_alcohol;
+    private String historyOfAlcohol;
 
     @Column(name = "history_of_diabetes")
-    private String history_of_diabetes;
+    private String historyOfDiabetes;
 
     @Column(name = "history_of_hypertension")
-    private String history_of_hypertension;
+    private String historyOfHypertension;
 
     @Column(name = "history_of_smoking")
-    private String history_of_smoking;
+    private String historyOfSmoking;
 
     @ManyToOne(optional = false)
     @NotNull
@@ -70,17 +70,17 @@ public class BaselineDiagnosis implements Serializable {
         this.id = id;
     }
 
-    public LocalDate getDiagnosis_date() {
-        return diagnosis_date;
+    public LocalDate getDiagnosisDate() {
+        return diagnosisDate;
     }
 
-    public BaselineDiagnosis diagnosis_date(LocalDate diagnosis_date) {
-        this.diagnosis_date = diagnosis_date;
+    public BaselineDiagnosis diagnosisDate(LocalDate diagnosisDate) {
+        this.diagnosisDate = diagnosisDate;
         return this;
     }
 
-    public void setDiagnosis_date(LocalDate diagnosis_date) {
-        this.diagnosis_date = diagnosis_date;
+    public void setDiagnosisDate(LocalDate diagnosisDate) {
+        this.diagnosisDate = diagnosisDate;
     }
 
     public Float getAge() {
@@ -122,17 +122,17 @@ public class BaselineDiagnosis implements Serializable {
         this.weight = weight;
     }
 
-    public String getHeart_rate() {
-        return heart_rate;
+    public String getHeartRate() {
+        return heartRate;
     }
 
-    public BaselineDiagnosis heart_rate(String heart_rate) {
-        this.heart_rate = heart_rate;
+    public BaselineDiagnosis heartRate(String heartRate) {
+        this.heartRate = heartRate;
         return this;
     }
 
-    public void setHeart_rate(String heart_rate) {
-        this.heart_rate = heart_rate;
+    public void setHeartRate(String heartRate) {
+        this.heartRate = heartRate;
     }
 
     public String getDbp() {
@@ -161,56 +161,56 @@ public class BaselineDiagnosis implements Serializable {
         this.sbp = sbp;
     }
 
-    public String getHistory_of_alcohol() {
-        return history_of_alcohol;
+    public String getHistoryOfAlcohol() {
+        return historyOfAlcohol;
     }
 
-    public BaselineDiagnosis history_of_alcohol(String history_of_alcohol) {
-        this.history_of_alcohol = history_of_alcohol;
+    public BaselineDiagnosis historyOfAlcohol(String historyOfAlcohol) {
+        this.historyOfAlcohol = historyOfAlcohol;
         return this;
     }
 
-    public void setHistory_of_alcohol(String history_of_alcohol) {
-        this.history_of_alcohol = history_of_alcohol;
+    public void setHistoryOfAlcohol(String historyOfAlcohol) {
+        this.historyOfAlcohol = historyOfAlcohol;
     }
 
-    public String getHistory_of_diabetes() {
-        return history_of_diabetes;
+    public String getHistoryOfDiabetes() {
+        return historyOfDiabetes;
     }
 
-    public BaselineDiagnosis history_of_diabetes(String history_of_diabetes) {
-        this.history_of_diabetes = history_of_diabetes;
+    public BaselineDiagnosis historyOfDiabetes(String historyOfDiabetes) {
+        this.historyOfDiabetes = historyOfDiabetes;
         return this;
     }
 
-    public void setHistory_of_diabetes(String history_of_diabetes) {
-        this.history_of_diabetes = history_of_diabetes;
+    public void setHistoryOfDiabetes(String historyOfDiabetes) {
+        this.historyOfDiabetes = historyOfDiabetes;
     }
 
-    public String getHistory_of_hypertension() {
-        return history_of_hypertension;
+    public String getHistoryOfHypertension() {
+        return historyOfHypertension;
     }
 
-    public BaselineDiagnosis history_of_hypertension(String history_of_hypertension) {
-        this.history_of_hypertension = history_of_hypertension;
+    public BaselineDiagnosis historyOfHypertension(String historyOfHypertension) {
+        this.historyOfHypertension = historyOfHypertension;
         return this;
     }
 
-    public void setHistory_of_hypertension(String history_of_hypertension) {
-        this.history_of_hypertension = history_of_hypertension;
+    public void setHistoryOfHypertension(String historyOfHypertension) {
+        this.historyOfHypertension = historyOfHypertension;
     }
 
-    public String getHistory_of_smoking() {
-        return history_of_smoking;
+    public String getHistoryOfSmoking() {
+        return historyOfSmoking;
     }
 
-    public BaselineDiagnosis history_of_smoking(String history_of_smoking) {
-        this.history_of_smoking = history_of_smoking;
+    public BaselineDiagnosis historyOfSmoking(String historyOfSmoking) {
+        this.historyOfSmoking = historyOfSmoking;
         return this;
     }
 
-    public void setHistory_of_smoking(String history_of_smoking) {
-        this.history_of_smoking = history_of_smoking;
+    public void setHistoryOfSmoking(String historyOfSmoking) {
+        this.historyOfSmoking = historyOfSmoking;
     }
 
     public PatientInfo getPatientInfoFK() {
@@ -235,32 +235,32 @@ public class BaselineDiagnosis implements Serializable {
             return false;
         }
         BaselineDiagnosis baselineDiagnosis = (BaselineDiagnosis) o;
-        if (baselineDiagnosis.id == null || id == null) {
+        if (baselineDiagnosis.getId() == null || getId() == null) {
             return false;
         }
-        return Objects.equals(id, baselineDiagnosis.id);
+        return Objects.equals(getId(), baselineDiagnosis.getId());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(id);
+        return Objects.hashCode(getId());
     }
 
     @Override
     public String toString() {
         return "BaselineDiagnosis{" +
-            "id=" + id +
-            ", diagnosis_date='" + diagnosis_date + "'" +
-            ", age='" + age + "'" +
-            ", height='" + height + "'" +
-            ", weight='" + weight + "'" +
-            ", heart_rate='" + heart_rate + "'" +
-            ", dbp='" + dbp + "'" +
-            ", sbp='" + sbp + "'" +
-            ", history_of_alcohol='" + history_of_alcohol + "'" +
-            ", history_of_diabetes='" + history_of_diabetes + "'" +
-            ", history_of_hypertension='" + history_of_hypertension + "'" +
-            ", history_of_smoking='" + history_of_smoking + "'" +
-            '}';
+            "id=" + getId() +
+            ", diagnosisDate='" + getDiagnosisDate() + "'" +
+            ", age='" + getAge() + "'" +
+            ", height='" + getHeight() + "'" +
+            ", weight='" + getWeight() + "'" +
+            ", heartRate='" + getHeartRate() + "'" +
+            ", dbp='" + getDbp() + "'" +
+            ", sbp='" + getSbp() + "'" +
+            ", historyOfAlcohol='" + getHistoryOfAlcohol() + "'" +
+            ", historyOfDiabetes='" + getHistoryOfDiabetes() + "'" +
+            ", historyOfHypertension='" + getHistoryOfHypertension() + "'" +
+            ", historyOfSmoking='" + getHistoryOfSmoking() + "'" +
+            "}";
     }
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- automatically produced by XMLAttributePersistenceManager --><attribute-list date="20170714091113" id="dcm4chee.archive:service=MPPS2ORM">
+<!-- automatically produced by XMLAttributePersistenceManager --><attribute-list date="20170714094004" id="dcm4chee.archive:service=MPPS2ORM">
 <attribute name="MPPSReceivedEnabled" type="java.lang.Boolean">false</attribute>
 <attribute name="ReceivingApplication" type="java.lang.String">DCM4CHEE</attribute>
 <attribute name="ReceivingFacility" type="java.lang.String">DCM4CHEE</attribute>

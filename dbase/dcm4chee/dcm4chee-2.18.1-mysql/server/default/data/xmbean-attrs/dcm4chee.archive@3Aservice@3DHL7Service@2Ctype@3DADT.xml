@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- automatically produced by XMLAttributePersistenceManager --><attribute-list date="20170714091113" id="dcm4chee.archive:service=HL7Service,type=ADT">
+<!-- automatically produced by XMLAttributePersistenceManager --><attribute-list date="20170714094004" id="dcm4chee.archive:service=HL7Service,type=ADT">
 <attribute name="MessageTypes" type="java.lang.String">ADT^A01,ADT^A04,ADT^A05,ADT^A08,ADT^A10,ADT^A23,ADT^A28,ADT^A31,ADT^A34,ADT^A40,ADT^A47</attribute>
 <attribute name="PatientArrivingMessageType" type="java.lang.String">ADT^A10</attribute>
 <attribute name="DeletePatientMessageType" type="java.lang.String">ADT^A23</attribute>

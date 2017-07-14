@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- automatically produced by XMLAttributePersistenceManager --><attribute-list date="20170714091113" id="dcm4chee.archive:service=GPWLFeed2">
+<!-- automatically produced by XMLAttributePersistenceManager --><attribute-list date="20170714094004" id="dcm4chee.archive:service=GPWLFeed2">
 <attribute name="LogStationAETitles" type="java.lang.String">MESA_MOD\MODALITY1\MR3T</attribute>
 <attribute name="PGPStationAETitles" type="java.lang.String">MESA_MOD\MODALITY1\MR3T</attribute>
 <attribute name="AppendCaseStationAETitles" type="java.lang.String">MESA_MOD\MODALITY1\MR3T</attribute>

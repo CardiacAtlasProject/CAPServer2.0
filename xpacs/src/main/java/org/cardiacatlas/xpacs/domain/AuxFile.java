@@ -25,17 +25,17 @@ public class AuxFile implements Serializable {
 
     @NotNull
     @Column(name = "creation_date", nullable = false)
-    private LocalDate creation_date;
+    private LocalDate creationDate;
 
     @Column(name = "description")
     private String description;
 
     @NotNull
     @Lob
-    @Column(name = "file", nullable = false)
+    @Column(name = "jhi_file", nullable = false)
     private byte[] file;
 
-    @Column(name = "file_content_type", nullable = false)
+    @Column(name = "jhi_file_content_type", nullable = false)
     private String fileContentType;
 
     @ManyToOne(optional = false)
@@ -50,17 +50,17 @@ public class AuxFile implements Serializable {
         this.id = id;
     }
 
-    public LocalDate getCreation_date() {
-        return creation_date;
+    public LocalDate getCreationDate() {
+        return creationDate;
     }
 
-    public AuxFile creation_date(LocalDate creation_date) {
-        this.creation_date = creation_date;
+    public AuxFile creationDate(LocalDate creationDate) {
+        this.creationDate = creationDate;
         return this;
     }
 
-    public void setCreation_date(LocalDate creation_date) {
-        this.creation_date = creation_date;
+    public void setCreationDate(LocalDate creationDate) {
+        this.creationDate = creationDate;
     }
 
     public String getDescription() {
@@ -124,25 +124,25 @@ public class AuxFile implements Serializable {
             return false;
         }
         AuxFile auxFile = (AuxFile) o;
-        if (auxFile.id == null || id == null) {
+        if (auxFile.getId() == null || getId() == null) {
             return false;
         }
-        return Objects.equals(id, auxFile.id);
+        return Objects.equals(getId(), auxFile.getId());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(id);
+        return Objects.hashCode(getId());
     }
 
     @Override
     public String toString() {
         return "AuxFile{" +
-            "id=" + id +
-            ", creation_date='" + creation_date + "'" +
-            ", description='" + description + "'" +
-            ", file='" + file + "'" +
+            "id=" + getId() +
+            ", creationDate='" + getCreationDate() + "'" +
+            ", description='" + getDescription() + "'" +
+            ", file='" + getFile() + "'" +
             ", fileContentType='" + fileContentType + "'" +
-            '}';
+            "}";
     }
 }

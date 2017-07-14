@@ -14,17 +14,17 @@
                     ng-model="vm.auxFile.id" readonly />
         </div>
         <div class="form-group">
-            <label class="control-label" data-translate="xpacswebApp.auxFile.creation_date" for="field_creation_date">Creation Date</label>
+            <label class="control-label" for="field_creationDate">Creation Date</label>
                 <div class="input-group">
-                    <input id="field_creation_date" type="text" class="form-control" name="creation_date" uib-datepicker-popup="{{dateformat}}" ng-model="vm.auxFile.creation_date" is-open="vm.datePickerOpenStatus.creation_date"
+                    <input id="field_creationDate" type="text" class="form-control" name="creationDate" uib-datepicker-popup="{{dateformat}}" ng-model="vm.auxFile.creationDate" is-open="vm.datePickerOpenStatus.creationDate"
                     required/>
                     <span class="input-group-btn">
-                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('creation_date')"><i class="glyphicon glyphicon-calendar"></i></button>
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('creationDate')"><i class="glyphicon glyphicon-calendar"></i></button>
                     </span>
                 </div>
-            <div ng-show="editForm.creation_date.$invalid">
+            <div ng-show="editForm.creationDate.$invalid">
                 <p class="help-block"
-                    ng-show="editForm.creation_date.$error.required">
+                    ng-show="editForm.creationDate.$error.required">
                     This field is required.
                 </p>
             </div>
@@ -66,8 +66,7 @@
 
         <div class="form-group">
             <label for="field_patientInfoFK">Patient Info FK</label>
-            <select class="form-control" id="field_patientInfoFK" name="patientInfoFK" ng-model="vm.auxFile.patientInfoFK" ng-options="patientInfo as patientInfo.patient_id for patientInfo in vm.patientinfos track by patientInfo.id" required>
-                <option value=""></option>
+            <select class="form-control" id="field_patientInfoFK" name="patientInfoFK" ng-model="vm.auxFile.patientInfoFK" ng-options="patientInfo as patientInfo.patientId for patientInfo in vm.patientinfos track by patientInfo.id" required>
             </select>
         </div>
         <div ng-show="editForm.patientInfoFK.$invalid">

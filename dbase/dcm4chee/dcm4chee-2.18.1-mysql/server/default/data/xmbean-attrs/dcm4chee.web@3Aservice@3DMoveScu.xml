@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- automatically produced by XMLAttributePersistenceManager --><attribute-list date="20170714091123" id="dcm4chee.web:service=MoveScu">
+<!-- automatically produced by XMLAttributePersistenceManager --><attribute-list date="20170714094009" id="dcm4chee.web:service=MoveScu">
 <attribute name="CallingAETitle" type="java.lang.String">DCM4CHEE</attribute>
 <attribute name="CalledAETitle" type="java.lang.String">DCM4CHEE</attribute>
 <attribute name="RelationalQR" type="java.lang.Boolean">true</attribute>

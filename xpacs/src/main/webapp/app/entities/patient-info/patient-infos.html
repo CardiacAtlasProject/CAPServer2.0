@@ -18,23 +18,23 @@
         <table class="jh-table table table-striped">
             <thead>
                 <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
-<!--                    <th jh-sort-by="id"><span>ID</span> <span class="glyphicon glyphicon-sort"></span></th>-->
-                    <th jh-sort-by="patient_id"><span data-translate="xpacswebApp.patientInfo.patient_id">Patient Id</span> <span class="glyphicon glyphicon-sort"></span><br><input type="text" id="text" name="text_name" style="width: 80%;"></input></th>
-                    <th jh-sort-by="cohort"><span>Cohort</span> <span class="glyphicon glyphicon-sort"></span><input type="text" id="text" name="text_name" style="width: 80%;"></input></th>
-                    <th jh-sort-by="ethnicity"><span>Ethnicity</span> <span class="glyphicon glyphicon-sort"></span><input type="text" id="text" name="text_name" style="width: 80%;"></input></th>
-                    <th jh-sort-by="gender"><span>Gender</span> <span class="glyphicon glyphicon-sort"></span><input type="text" id="text" name="text_name" style="width: 80%;"></input></th>
-                    <th jh-sort-by="primary_diagnosis"><span data-translate="xpacswebApp.patientInfo.primary_diagnosis">Primary Diagnosis</span> <span class="glyphicon glyphicon-sort"><input type="text" id="text" name="text_name" style="width: 80%;"></input></span></th>
+<!--                     <th jh-sort-by="id"><span>ID</span> <span class="glyphicon glyphicon-sort"></span></th> -->
+                    <th jh-sort-by="patientId"><span>PatientID</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="cohort"><span>Cohort</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="ethnicity"><span>Ethnicity</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="gender"><span>Gender</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="primaryDiagnosis"><span>Primary Diagnosis</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
                 <tr ng-repeat="patientInfo in vm.patientInfos track by patientInfo.id">
-<!--                    <td><a ui-sref="patient-info-detail({id:patientInfo.id})">{{patientInfo.id}}</a></td>-->
-                    <td><a ui-sref="patient-info-detail({id:patientInfo.id})">{{patientInfo.patient_id}}</a></td>
+<!--                     <td><a ui-sref="patient-info-detail({id:patientInfo.id})">{{patientInfo.id}}</a></td> -->
+                    <td><a ui-sref="patient-info-detail({id:patientInfo.id})">{{patientInfo.patientId}}</a></td>
                     <td>{{patientInfo.cohort}}</td>
                     <td>{{patientInfo.ethnicity}}</td>
                     <td>{{patientInfo.gender}}</td>
-                    <td>{{patientInfo.primary_diagnosis}}</td>
+                    <td>{{patientInfo.primaryDiagnosis}}</td>
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">
                             <button type="submit"

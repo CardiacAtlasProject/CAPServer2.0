@@ -39,11 +39,11 @@ public class ConsolidatedInfo {
 	public String toString(){
 		return "PatientInfo{" +
 	            "id=" + patientInfo.getId() +
-	            ", patient_id='" + patientInfo.getPatient_id() + "'" +
+	            ", patient_id='" + patientInfo.getPatientId() + "'" +
 	            ", cohort='" + patientInfo.getCohort() + "'" +
 	            ", ethnicity='" + patientInfo.getEthnicity() + "'" +
 	            ", gender='" + patientInfo.getGender() + "'" +
-	            ", primary_diagnosis='" + patientInfo.getPrimary_diagnosis() + "'" +
+	            ", primary_diagnosis='" + patientInfo.getPrimaryDiagnosis() + "'" +
 	            '}'
 	            ;
 	}

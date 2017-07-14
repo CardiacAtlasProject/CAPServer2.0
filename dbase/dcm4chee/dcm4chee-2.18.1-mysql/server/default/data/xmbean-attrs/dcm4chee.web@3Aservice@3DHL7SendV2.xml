@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- automatically produced by XMLAttributePersistenceManager --><attribute-list date="20170714091123" id="dcm4chee.web:service=HL7SendV2">
+<!-- automatically produced by XMLAttributePersistenceManager --><attribute-list date="20170714094009" id="dcm4chee.web:service=HL7SendV2">
 <attribute name="Receiver" type="java.lang.String">NONE</attribute>
 <attribute name="SendingApplication" type="java.lang.String">DCM4CHEE</attribute>
 <attribute name="SendingFacility" type="java.lang.String">DCM4CHEE</attribute>

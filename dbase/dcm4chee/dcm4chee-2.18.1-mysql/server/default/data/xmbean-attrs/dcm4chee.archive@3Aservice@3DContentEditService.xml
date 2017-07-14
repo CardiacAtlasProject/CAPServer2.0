@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- automatically produced by XMLAttributePersistenceManager --><attribute-list date="20170714091112" id="dcm4chee.archive:service=ContentEditService">
+<!-- automatically produced by XMLAttributePersistenceManager --><attribute-list date="20170714094003" id="dcm4chee.archive:service=ContentEditService">
 <attribute name="ReceivingApplication" type="java.lang.String">DCM4CHEE</attribute>
 <attribute name="ReceivingFacility" type="java.lang.String">DCM4CHEE</attribute>
 <attribute name="SendingApplication" type="java.lang.String">DCM4CHEE</attribute>

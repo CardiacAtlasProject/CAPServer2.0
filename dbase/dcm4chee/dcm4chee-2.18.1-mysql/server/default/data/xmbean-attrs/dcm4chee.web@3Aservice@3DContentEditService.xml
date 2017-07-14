@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- automatically produced by XMLAttributePersistenceManager --><attribute-list date="20170714091123" id="dcm4chee.web:service=ContentEditService">
+<!-- automatically produced by XMLAttributePersistenceManager --><attribute-list date="20170714094009" id="dcm4chee.web:service=ContentEditService">
 <attribute name="UIDRoot" type="java.lang.String">1.2.40.0.13.1.1</attribute>
 <attribute name="RejectionNoteCode" type="java.lang.String">(113001, DCM, "Rejected for Quality Reasons")</attribute>
 <attribute name="enableRejNote" type="java.lang.Boolean">true</attribute>

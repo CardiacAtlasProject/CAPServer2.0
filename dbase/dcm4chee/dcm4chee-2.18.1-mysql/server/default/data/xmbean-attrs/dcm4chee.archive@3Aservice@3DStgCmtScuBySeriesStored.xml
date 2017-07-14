@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- automatically produced by XMLAttributePersistenceManager --><attribute-list date="20170714091115" id="dcm4chee.archive:service=StgCmtScuBySeriesStored">
+<!-- automatically produced by XMLAttributePersistenceManager --><attribute-list date="20170714094005" id="dcm4chee.archive:service=StgCmtScuBySeriesStored">
 <attribute name="RequestStgCmtOnReceiveFromAETs" type="java.lang.String">NONE</attribute>
 <attribute name="NoStgCmtIfExternalRetrieveAET" type="java.lang.String">NONE</attribute>
 <attribute name="Delay" type="java.lang.Integer">0</attribute>

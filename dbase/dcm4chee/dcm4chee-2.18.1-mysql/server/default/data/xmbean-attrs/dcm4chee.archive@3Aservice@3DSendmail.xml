@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- automatically produced by XMLAttributePersistenceManager --><attribute-list date="20170714091115" id="dcm4chee.archive:service=Sendmail">
+<!-- automatically produced by XMLAttributePersistenceManager --><attribute-list date="20170714094005" id="dcm4chee.archive:service=Sendmail">
 <attribute name="SmtpHost" type="java.lang.String">localhost</attribute>
 <attribute name="SmtpPort" type="java.lang.Integer">25</attribute>
 <attribute name="SmtpAuthentication" type="java.lang.Boolean">false</attribute>

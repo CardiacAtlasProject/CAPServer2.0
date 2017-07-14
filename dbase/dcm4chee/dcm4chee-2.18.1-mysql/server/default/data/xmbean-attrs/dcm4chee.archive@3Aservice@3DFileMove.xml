@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- automatically produced by XMLAttributePersistenceManager --><attribute-list date="20170714091112" id="dcm4chee.archive:service=FileMove">
+<!-- automatically produced by XMLAttributePersistenceManager --><attribute-list date="20170714094003" id="dcm4chee.archive:service=FileMove">
 <attribute name="SourceFileSystemGroupID" type="java.lang.String">NONE</attribute>
 <attribute name="DestinationFileSystemGroupID" type="java.lang.String">NONE</attribute>
 <attribute name="MoveThresholdsOnSource" type="java.lang.String">7:1h;19:24h</attribute>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- automatically produced by XMLAttributePersistenceManager --><attribute-list date="20170714091123" id="dcm4chee.web:service=EchoService">
+<!-- automatically produced by XMLAttributePersistenceManager --><attribute-list date="20170714094009" id="dcm4chee.web:service=EchoService">
 <attribute name="CallingAETitle" type="java.lang.String">DCM4CHEE</attribute>
 <attribute name="BindToCallingAET" type="java.lang.Boolean">true</attribute>
 <attribute name="ConnectTimeout" type="java.lang.Integer">0</attribute>

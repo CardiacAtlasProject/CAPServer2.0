@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- automatically produced by XMLAttributePersistenceManager --><attribute-list date="20170714091115" id="dcm4chee.archive:service=UpgradeToEnhancedMF">
+<!-- automatically produced by XMLAttributePersistenceManager --><attribute-list date="20170714094005" id="dcm4chee.archive:service=UpgradeToEnhancedMF">
 <attribute name="ConfigDirectory" type="java.lang.String">conf/dcm4chee-ae</attribute>
 <attribute name="FileSystemGroupID" type="java.lang.String">ONLINE_STORAGE</attribute>
 <attribute name="MergePatientStudySeriesAttributesFromDB" type="java.lang.Boolean">true</attribute>

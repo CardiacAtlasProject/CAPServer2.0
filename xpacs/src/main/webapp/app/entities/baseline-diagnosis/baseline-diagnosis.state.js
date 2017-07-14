@@ -115,17 +115,17 @@
                     resolve: {
                         entity: function () {
                             return {
-                                diagnosis_date: null,
+                                diagnosisDate: null,
                                 age: null,
                                 height: null,
                                 weight: null,
-                                heart_rate: null,
+                                heartRate: null,
                                 dbp: null,
                                 sbp: null,
-                                history_of_alcohol: null,
-                                history_of_diabetes: null,
-                                history_of_hypertension: null,
-                                history_of_smoking: null,
+                                historyOfAlcohol: null,
+                                historyOfDiabetes: null,
+                                historyOfHypertension: null,
+                                historyOfSmoking: null,
                                 id: null
                             };
                         }

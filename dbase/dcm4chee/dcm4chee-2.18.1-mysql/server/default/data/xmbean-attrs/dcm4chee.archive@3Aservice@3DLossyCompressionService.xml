@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- automatically produced by XMLAttributePersistenceManager --><attribute-list date="20170714091113" id="dcm4chee.archive:service=LossyCompressionService">
+<!-- automatically produced by XMLAttributePersistenceManager --><attribute-list date="20170714094004" id="dcm4chee.archive:service=LossyCompressionService">
 <attribute name="SourceFileSystemGroupID" type="java.lang.String">ONLINE_STORAGE</attribute>
 <attribute name="DestinationFileSystemGroupID" type="java.lang.String">LOSSY_STORAGE</attribute>
 <attribute name="TaskInterval" type="java.lang.String">NEVER</attribute>

@@ -16,7 +16,7 @@
                 transformResponse: function (data) {
                     if (data) {
                         data = angular.fromJson(data);
-                        data.creation_date = DateUtils.convertLocalDateFromServer(data.creation_date);
+                        data.creationDate = DateUtils.convertLocalDateFromServer(data.creationDate);
                     }
                     return data;
                 }
@@ -25,7 +25,7 @@
                 method: 'PUT',
                 transformRequest: function (data) {
                     var copy = angular.copy(data);
-                    copy.creation_date = DateUtils.convertLocalDateToServer(copy.creation_date);
+                    copy.creationDate = DateUtils.convertLocalDateToServer(copy.creationDate);
                     return angular.toJson(copy);
                 }
             },
@@ -33,7 +33,7 @@
                 method: 'POST',
                 transformRequest: function (data) {
                     var copy = angular.copy(data);
-                    copy.creation_date = DateUtils.convertLocalDateToServer(copy.creation_date);
+                    copy.creationDate = DateUtils.convertLocalDateToServer(copy.creationDate);
                     return angular.toJson(copy);
                 }
             }

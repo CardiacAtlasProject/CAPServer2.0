@@ -25,7 +25,7 @@ public class ClinicalNote implements Serializable {
 
     @NotNull
     @Column(name = "assessment_date", nullable = false)
-    private LocalDate assessment_date;
+    private LocalDate assessmentDate;
 
     @DecimalMin(value = "0")
     @Column(name = "age")
@@ -57,17 +57,17 @@ public class ClinicalNote implements Serializable {
         this.id = id;
     }
 
-    public LocalDate getAssessment_date() {
-        return assessment_date;
+    public LocalDate getAssessmentDate() {
+        return assessmentDate;
     }
 
-    public ClinicalNote assessment_date(LocalDate assessment_date) {
-        this.assessment_date = assessment_date;
+    public ClinicalNote assessmentDate(LocalDate assessmentDate) {
+        this.assessmentDate = assessmentDate;
         return this;
     }
 
-    public void setAssessment_date(LocalDate assessment_date) {
-        this.assessment_date = assessment_date;
+    public void setAssessmentDate(LocalDate assessmentDate) {
+        this.assessmentDate = assessmentDate;
     }
 
     public Float getAge() {
@@ -157,27 +157,27 @@ public class ClinicalNote implements Serializable {
             return false;
         }
         ClinicalNote clinicalNote = (ClinicalNote) o;
-        if (clinicalNote.id == null || id == null) {
+        if (clinicalNote.getId() == null || getId() == null) {
             return false;
         }
-        return Objects.equals(id, clinicalNote.id);
+        return Objects.equals(getId(), clinicalNote.getId());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(id);
+        return Objects.hashCode(getId());
     }
 
     @Override
     public String toString() {
         return "ClinicalNote{" +
-            "id=" + id +
-            ", assessment_date='" + assessment_date + "'" +
-            ", age='" + age + "'" +
-            ", height='" + height + "'" +
-            ", weight='" + weight + "'" +
-            ", diagnosis='" + diagnosis + "'" +
-            ", note='" + note + "'" +
-            '}';
+            "id=" + getId() +
+            ", assessmentDate='" + getAssessmentDate() + "'" +
+            ", age='" + getAge() + "'" +
+            ", height='" + getHeight() + "'" +
+            ", weight='" + getWeight() + "'" +
+            ", diagnosis='" + getDiagnosis() + "'" +
+            ", note='" + getNote() + "'" +
+            "}";
     }
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- automatically produced by XMLAttributePersistenceManager --><attribute-list date="20170714091112" id="dcm4chee.archive:service=DeleteStudy">
+<!-- automatically produced by XMLAttributePersistenceManager --><attribute-list date="20170714094003" id="dcm4chee.archive:service=DeleteStudy">
 <attribute name="DeleteSeriesBySeries" type="java.lang.Boolean">false</attribute>
 <attribute name="DeleteStudyFromDB" type="java.lang.Boolean">false</attribute>
 <attribute name="DeletePatientWithoutObjects" type="java.lang.Boolean">false</attribute>

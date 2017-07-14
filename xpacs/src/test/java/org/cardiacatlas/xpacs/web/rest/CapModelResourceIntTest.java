@@ -100,14 +100,14 @@ public class CapModelResourceIntTest {
      */
     public static CapModel createEntity(EntityManager em) {
         CapModel capModel = new CapModel()
-            .creation_date(DEFAULT_CREATION_DATE)
+            .creationDate(DEFAULT_CREATION_DATE)
             .name(DEFAULT_NAME)
             .type(DEFAULT_TYPE)
             .comment(DEFAULT_COMMENT)
-            .model_file(DEFAULT_MODEL_FILE)
-            .model_fileContentType(DEFAULT_MODEL_FILE_CONTENT_TYPE)
-            .xml_file(DEFAULT_XML_FILE)
-            .xml_fileContentType(DEFAULT_XML_FILE_CONTENT_TYPE);
+            .modelFile(DEFAULT_MODEL_FILE)
+            .modelFileContentType(DEFAULT_MODEL_FILE_CONTENT_TYPE)
+            .xmlFile(DEFAULT_XML_FILE)
+            .xmlFileContentType(DEFAULT_XML_FILE_CONTENT_TYPE);
         // Add required entity
         PatientInfo patientInfoFK = PatientInfoResourceIntTest.createEntity(em);
         em.persist(patientInfoFK);
@@ -136,14 +136,14 @@ public class CapModelResourceIntTest {
         List<CapModel> capModelList = capModelRepository.findAll();
         assertThat(capModelList).hasSize(databaseSizeBeforeCreate + 1);
         CapModel testCapModel = capModelList.get(capModelList.size() - 1);
-        assertThat(testCapModel.getCreation_date()).isEqualTo(DEFAULT_CREATION_DATE);
+        assertThat(testCapModel.getCreationDate()).isEqualTo(DEFAULT_CREATION_DATE);
         assertThat(testCapModel.getName()).isEqualTo(DEFAULT_NAME);
         assertThat(testCapModel.getType()).isEqualTo(DEFAULT_TYPE);
         assertThat(testCapModel.getComment()).isEqualTo(DEFAULT_COMMENT);
-        assertThat(testCapModel.getModel_file()).isEqualTo(DEFAULT_MODEL_FILE);
-        assertThat(testCapModel.getModel_fileContentType()).isEqualTo(DEFAULT_MODEL_FILE_CONTENT_TYPE);
-        assertThat(testCapModel.getXml_file()).isEqualTo(DEFAULT_XML_FILE);
-        assertThat(testCapModel.getXml_fileContentType()).isEqualTo(DEFAULT_XML_FILE_CONTENT_TYPE);
+        assertThat(testCapModel.getModelFile()).isEqualTo(DEFAULT_MODEL_FILE);
+        assertThat(testCapModel.getModelFileContentType()).isEqualTo(DEFAULT_MODEL_FILE_CONTENT_TYPE);
+        assertThat(testCapModel.getXmlFile()).isEqualTo(DEFAULT_XML_FILE);
+        assertThat(testCapModel.getXmlFileContentType()).isEqualTo(DEFAULT_XML_FILE_CONTENT_TYPE);
     }
 
     @Test
@@ -167,10 +167,10 @@ public class CapModelResourceIntTest {
 
     @Test
     @Transactional
-    public void checkCreation_dateIsRequired() throws Exception {
+    public void checkCreationDateIsRequired() throws Exception {
         int databaseSizeBeforeTest = capModelRepository.findAll().size();
         // set the field null
-        capModel.setCreation_date(null);
+        capModel.setCreationDate(null);
 
         // Create the CapModel, which fails.
 
@@ -212,14 +212,14 @@ public class CapModelResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(capModel.getId().intValue())))
-            .andExpect(jsonPath("$.[*].creation_date").value(hasItem(DEFAULT_CREATION_DATE.toString())))
+            .andExpect(jsonPath("$.[*].creationDate").value(hasItem(DEFAULT_CREATION_DATE.toString())))
             .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())))
             .andExpect(jsonPath("$.[*].type").value(hasItem(DEFAULT_TYPE.toString())))
             .andExpect(jsonPath("$.[*].comment").value(hasItem(DEFAULT_COMMENT.toString())))
-            .andExpect(jsonPath("$.[*].model_fileContentType").value(hasItem(DEFAULT_MODEL_FILE_CONTENT_TYPE)))
-            .andExpect(jsonPath("$.[*].model_file").value(hasItem(Base64Utils.encodeToString(DEFAULT_MODEL_FILE))))
-            .andExpect(jsonPath("$.[*].xml_fileContentType").value(hasItem(DEFAULT_XML_FILE_CONTENT_TYPE)))
-            .andExpect(jsonPath("$.[*].xml_file").value(hasItem(Base64Utils.encodeToString(DEFAULT_XML_FILE))));
+            .andExpect(jsonPath("$.[*].modelFileContentType").value(hasItem(DEFAULT_MODEL_FILE_CONTENT_TYPE)))
+            .andExpect(jsonPath("$.[*].modelFile").value(hasItem(Base64Utils.encodeToString(DEFAULT_MODEL_FILE))))
+            .andExpect(jsonPath("$.[*].xmlFileContentType").value(hasItem(DEFAULT_XML_FILE_CONTENT_TYPE)))
+            .andExpect(jsonPath("$.[*].xmlFile").value(hasItem(Base64Utils.encodeToString(DEFAULT_XML_FILE))));
     }
 
     @Test
@@ -233,14 +233,14 @@ public class CapModelResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(capModel.getId().intValue()))
-            .andExpect(jsonPath("$.creation_date").value(DEFAULT_CREATION_DATE.toString()))
+            .andExpect(jsonPath("$.creationDate").value(DEFAULT_CREATION_DATE.toString()))
             .andExpect(jsonPath("$.name").value(DEFAULT_NAME.toString()))
             .andExpect(jsonPath("$.type").value(DEFAULT_TYPE.toString()))
             .andExpect(jsonPath("$.comment").value(DEFAULT_COMMENT.toString()))
-            .andExpect(jsonPath("$.model_fileContentType").value(DEFAULT_MODEL_FILE_CONTENT_TYPE))
-            .andExpect(jsonPath("$.model_file").value(Base64Utils.encodeToString(DEFAULT_MODEL_FILE)))
-            .andExpect(jsonPath("$.xml_fileContentType").value(DEFAULT_XML_FILE_CONTENT_TYPE))
-            .andExpect(jsonPath("$.xml_file").value(Base64Utils.encodeToString(DEFAULT_XML_FILE)));
+            .andExpect(jsonPath("$.modelFileContentType").value(DEFAULT_MODEL_FILE_CONTENT_TYPE))
+            .andExpect(jsonPath("$.modelFile").value(Base64Utils.encodeToString(DEFAULT_MODEL_FILE)))
+            .andExpect(jsonPath("$.xmlFileContentType").value(DEFAULT_XML_FILE_CONTENT_TYPE))
+            .andExpect(jsonPath("$.xmlFile").value(Base64Utils.encodeToString(DEFAULT_XML_FILE)));
     }
 
     @Test
@@ -261,14 +261,14 @@ public class CapModelResourceIntTest {
         // Update the capModel
         CapModel updatedCapModel = capModelRepository.findOne(capModel.getId());
         updatedCapModel
-            .creation_date(UPDATED_CREATION_DATE)
+            .creationDate(UPDATED_CREATION_DATE)
             .name(UPDATED_NAME)
             .type(UPDATED_TYPE)
             .comment(UPDATED_COMMENT)
-            .model_file(UPDATED_MODEL_FILE)
-            .model_fileContentType(UPDATED_MODEL_FILE_CONTENT_TYPE)
-            .xml_file(UPDATED_XML_FILE)
-            .xml_fileContentType(UPDATED_XML_FILE_CONTENT_TYPE);
+            .modelFile(UPDATED_MODEL_FILE)
+            .modelFileContentType(UPDATED_MODEL_FILE_CONTENT_TYPE)
+            .xmlFile(UPDATED_XML_FILE)
+            .xmlFileContentType(UPDATED_XML_FILE_CONTENT_TYPE);
 
         restCapModelMockMvc.perform(put("/api/cap-models")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -279,14 +279,14 @@ public class CapModelResourceIntTest {
         List<CapModel> capModelList = capModelRepository.findAll();
         assertThat(capModelList).hasSize(databaseSizeBeforeUpdate);
         CapModel testCapModel = capModelList.get(capModelList.size() - 1);
-        assertThat(testCapModel.getCreation_date()).isEqualTo(UPDATED_CREATION_DATE);
+        assertThat(testCapModel.getCreationDate()).isEqualTo(UPDATED_CREATION_DATE);
         assertThat(testCapModel.getName()).isEqualTo(UPDATED_NAME);
         assertThat(testCapModel.getType()).isEqualTo(UPDATED_TYPE);
         assertThat(testCapModel.getComment()).isEqualTo(UPDATED_COMMENT);
-        assertThat(testCapModel.getModel_file()).isEqualTo(UPDATED_MODEL_FILE);
-        assertThat(testCapModel.getModel_fileContentType()).isEqualTo(UPDATED_MODEL_FILE_CONTENT_TYPE);
-        assertThat(testCapModel.getXml_file()).isEqualTo(UPDATED_XML_FILE);
-        assertThat(testCapModel.getXml_fileContentType()).isEqualTo(UPDATED_XML_FILE_CONTENT_TYPE);
+        assertThat(testCapModel.getModelFile()).isEqualTo(UPDATED_MODEL_FILE);
+        assertThat(testCapModel.getModelFileContentType()).isEqualTo(UPDATED_MODEL_FILE_CONTENT_TYPE);
+        assertThat(testCapModel.getXmlFile()).isEqualTo(UPDATED_XML_FILE);
+        assertThat(testCapModel.getXmlFileContentType()).isEqualTo(UPDATED_XML_FILE_CONTENT_TYPE);
     }
 
     @Test
@@ -328,5 +328,14 @@ public class CapModelResourceIntTest {
     @Transactional
     public void equalsVerifier() throws Exception {
         TestUtil.equalsVerifier(CapModel.class);
+        CapModel capModel1 = new CapModel();
+        capModel1.setId(1L);
+        CapModel capModel2 = new CapModel();
+        capModel2.setId(capModel1.getId());
+        assertThat(capModel1).isEqualTo(capModel2);
+        capModel2.setId(2L);
+        assertThat(capModel1).isNotEqualTo(capModel2);
+        capModel1.setId(null);
+        assertThat(capModel1).isNotEqualTo(capModel2);
     }
 }

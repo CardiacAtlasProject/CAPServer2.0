@@ -110,17 +110,17 @@ public class BaselineDiagnosisResourceIntTest {
      */
     public static BaselineDiagnosis createEntity(EntityManager em) {
         BaselineDiagnosis baselineDiagnosis = new BaselineDiagnosis()
-            .diagnosis_date(DEFAULT_DIAGNOSIS_DATE)
+            .diagnosisDate(DEFAULT_DIAGNOSIS_DATE)
             .age(DEFAULT_AGE)
             .height(DEFAULT_HEIGHT)
             .weight(DEFAULT_WEIGHT)
-            .heart_rate(DEFAULT_HEART_RATE)
+            .heartRate(DEFAULT_HEART_RATE)
             .dbp(DEFAULT_DBP)
             .sbp(DEFAULT_SBP)
-            .history_of_alcohol(DEFAULT_HISTORY_OF_ALCOHOL)
-            .history_of_diabetes(DEFAULT_HISTORY_OF_DIABETES)
-            .history_of_hypertension(DEFAULT_HISTORY_OF_HYPERTENSION)
-            .history_of_smoking(DEFAULT_HISTORY_OF_SMOKING);
+            .historyOfAlcohol(DEFAULT_HISTORY_OF_ALCOHOL)
+            .historyOfDiabetes(DEFAULT_HISTORY_OF_DIABETES)
+            .historyOfHypertension(DEFAULT_HISTORY_OF_HYPERTENSION)
+            .historyOfSmoking(DEFAULT_HISTORY_OF_SMOKING);
         // Add required entity
         PatientInfo patientInfoFK = PatientInfoResourceIntTest.createEntity(em);
         em.persist(patientInfoFK);
@@ -149,17 +149,17 @@ public class BaselineDiagnosisResourceIntTest {
         List<BaselineDiagnosis> baselineDiagnosisList = baselineDiagnosisRepository.findAll();
         assertThat(baselineDiagnosisList).hasSize(databaseSizeBeforeCreate + 1);
         BaselineDiagnosis testBaselineDiagnosis = baselineDiagnosisList.get(baselineDiagnosisList.size() - 1);
-        assertThat(testBaselineDiagnosis.getDiagnosis_date()).isEqualTo(DEFAULT_DIAGNOSIS_DATE);
+        assertThat(testBaselineDiagnosis.getDiagnosisDate()).isEqualTo(DEFAULT_DIAGNOSIS_DATE);
         assertThat(testBaselineDiagnosis.getAge()).isEqualTo(DEFAULT_AGE);
         assertThat(testBaselineDiagnosis.getHeight()).isEqualTo(DEFAULT_HEIGHT);
         assertThat(testBaselineDiagnosis.getWeight()).isEqualTo(DEFAULT_WEIGHT);
-        assertThat(testBaselineDiagnosis.getHeart_rate()).isEqualTo(DEFAULT_HEART_RATE);
+        assertThat(testBaselineDiagnosis.getHeartRate()).isEqualTo(DEFAULT_HEART_RATE);
         assertThat(testBaselineDiagnosis.getDbp()).isEqualTo(DEFAULT_DBP);
         assertThat(testBaselineDiagnosis.getSbp()).isEqualTo(DEFAULT_SBP);
-        assertThat(testBaselineDiagnosis.getHistory_of_alcohol()).isEqualTo(DEFAULT_HISTORY_OF_ALCOHOL);
-        assertThat(testBaselineDiagnosis.getHistory_of_diabetes()).isEqualTo(DEFAULT_HISTORY_OF_DIABETES);
-        assertThat(testBaselineDiagnosis.getHistory_of_hypertension()).isEqualTo(DEFAULT_HISTORY_OF_HYPERTENSION);
-        assertThat(testBaselineDiagnosis.getHistory_of_smoking()).isEqualTo(DEFAULT_HISTORY_OF_SMOKING);
+        assertThat(testBaselineDiagnosis.getHistoryOfAlcohol()).isEqualTo(DEFAULT_HISTORY_OF_ALCOHOL);
+        assertThat(testBaselineDiagnosis.getHistoryOfDiabetes()).isEqualTo(DEFAULT_HISTORY_OF_DIABETES);
+        assertThat(testBaselineDiagnosis.getHistoryOfHypertension()).isEqualTo(DEFAULT_HISTORY_OF_HYPERTENSION);
+        assertThat(testBaselineDiagnosis.getHistoryOfSmoking()).isEqualTo(DEFAULT_HISTORY_OF_SMOKING);
     }
 
     @Test
@@ -183,10 +183,10 @@ public class BaselineDiagnosisResourceIntTest {
 
     @Test
     @Transactional
-    public void checkDiagnosis_dateIsRequired() throws Exception {
+    public void checkDiagnosisDateIsRequired() throws Exception {
         int databaseSizeBeforeTest = baselineDiagnosisRepository.findAll().size();
         // set the field null
-        baselineDiagnosis.setDiagnosis_date(null);
+        baselineDiagnosis.setDiagnosisDate(null);
 
         // Create the BaselineDiagnosis, which fails.
 
@@ -210,17 +210,17 @@ public class BaselineDiagnosisResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(baselineDiagnosis.getId().intValue())))
-            .andExpect(jsonPath("$.[*].diagnosis_date").value(hasItem(DEFAULT_DIAGNOSIS_DATE.toString())))
+            .andExpect(jsonPath("$.[*].diagnosisDate").value(hasItem(DEFAULT_DIAGNOSIS_DATE.toString())))
             .andExpect(jsonPath("$.[*].age").value(hasItem(DEFAULT_AGE.doubleValue())))
             .andExpect(jsonPath("$.[*].height").value(hasItem(DEFAULT_HEIGHT.toString())))
             .andExpect(jsonPath("$.[*].weight").value(hasItem(DEFAULT_WEIGHT.toString())))
-            .andExpect(jsonPath("$.[*].heart_rate").value(hasItem(DEFAULT_HEART_RATE.toString())))
+            .andExpect(jsonPath("$.[*].heartRate").value(hasItem(DEFAULT_HEART_RATE.toString())))
             .andExpect(jsonPath("$.[*].dbp").value(hasItem(DEFAULT_DBP.toString())))
             .andExpect(jsonPath("$.[*].sbp").value(hasItem(DEFAULT_SBP.toString())))
-            .andExpect(jsonPath("$.[*].history_of_alcohol").value(hasItem(DEFAULT_HISTORY_OF_ALCOHOL.toString())))
-            .andExpect(jsonPath("$.[*].history_of_diabetes").value(hasItem(DEFAULT_HISTORY_OF_DIABETES.toString())))
-            .andExpect(jsonPath("$.[*].history_of_hypertension").value(hasItem(DEFAULT_HISTORY_OF_HYPERTENSION.toString())))
-            .andExpect(jsonPath("$.[*].history_of_smoking").value(hasItem(DEFAULT_HISTORY_OF_SMOKING.toString())));
+            .andExpect(jsonPath("$.[*].historyOfAlcohol").value(hasItem(DEFAULT_HISTORY_OF_ALCOHOL.toString())))
+            .andExpect(jsonPath("$.[*].historyOfDiabetes").value(hasItem(DEFAULT_HISTORY_OF_DIABETES.toString())))
+            .andExpect(jsonPath("$.[*].historyOfHypertension").value(hasItem(DEFAULT_HISTORY_OF_HYPERTENSION.toString())))
+            .andExpect(jsonPath("$.[*].historyOfSmoking").value(hasItem(DEFAULT_HISTORY_OF_SMOKING.toString())));
     }
 
     @Test
@@ -234,17 +234,17 @@ public class BaselineDiagnosisResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(baselineDiagnosis.getId().intValue()))
-            .andExpect(jsonPath("$.diagnosis_date").value(DEFAULT_DIAGNOSIS_DATE.toString()))
+            .andExpect(jsonPath("$.diagnosisDate").value(DEFAULT_DIAGNOSIS_DATE.toString()))
             .andExpect(jsonPath("$.age").value(DEFAULT_AGE.doubleValue()))
             .andExpect(jsonPath("$.height").value(DEFAULT_HEIGHT.toString()))
             .andExpect(jsonPath("$.weight").value(DEFAULT_WEIGHT.toString()))
-            .andExpect(jsonPath("$.heart_rate").value(DEFAULT_HEART_RATE.toString()))
+            .andExpect(jsonPath("$.heartRate").value(DEFAULT_HEART_RATE.toString()))
             .andExpect(jsonPath("$.dbp").value(DEFAULT_DBP.toString()))
             .andExpect(jsonPath("$.sbp").value(DEFAULT_SBP.toString()))
-            .andExpect(jsonPath("$.history_of_alcohol").value(DEFAULT_HISTORY_OF_ALCOHOL.toString()))
-            .andExpect(jsonPath("$.history_of_diabetes").value(DEFAULT_HISTORY_OF_DIABETES.toString()))
-            .andExpect(jsonPath("$.history_of_hypertension").value(DEFAULT_HISTORY_OF_HYPERTENSION.toString()))
-            .andExpect(jsonPath("$.history_of_smoking").value(DEFAULT_HISTORY_OF_SMOKING.toString()));
+            .andExpect(jsonPath("$.historyOfAlcohol").value(DEFAULT_HISTORY_OF_ALCOHOL.toString()))
+            .andExpect(jsonPath("$.historyOfDiabetes").value(DEFAULT_HISTORY_OF_DIABETES.toString()))
+            .andExpect(jsonPath("$.historyOfHypertension").value(DEFAULT_HISTORY_OF_HYPERTENSION.toString()))
+            .andExpect(jsonPath("$.historyOfSmoking").value(DEFAULT_HISTORY_OF_SMOKING.toString()));
     }
 
     @Test
@@ -265,17 +265,17 @@ public class BaselineDiagnosisResourceIntTest {
         // Update the baselineDiagnosis
         BaselineDiagnosis updatedBaselineDiagnosis = baselineDiagnosisRepository.findOne(baselineDiagnosis.getId());
         updatedBaselineDiagnosis
-            .diagnosis_date(UPDATED_DIAGNOSIS_DATE)
+            .diagnosisDate(UPDATED_DIAGNOSIS_DATE)
             .age(UPDATED_AGE)
             .height(UPDATED_HEIGHT)
             .weight(UPDATED_WEIGHT)
-            .heart_rate(UPDATED_HEART_RATE)
+            .heartRate(UPDATED_HEART_RATE)
             .dbp(UPDATED_DBP)
             .sbp(UPDATED_SBP)
-            .history_of_alcohol(UPDATED_HISTORY_OF_ALCOHOL)
-            .history_of_diabetes(UPDATED_HISTORY_OF_DIABETES)
-            .history_of_hypertension(UPDATED_HISTORY_OF_HYPERTENSION)
-            .history_of_smoking(UPDATED_HISTORY_OF_SMOKING);
+            .historyOfAlcohol(UPDATED_HISTORY_OF_ALCOHOL)
+            .historyOfDiabetes(UPDATED_HISTORY_OF_DIABETES)
+            .historyOfHypertension(UPDATED_HISTORY_OF_HYPERTENSION)
+            .historyOfSmoking(UPDATED_HISTORY_OF_SMOKING);
 
         restBaselineDiagnosisMockMvc.perform(put("/api/baseline-diagnoses")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -286,17 +286,17 @@ public class BaselineDiagnosisResourceIntTest {
         List<BaselineDiagnosis> baselineDiagnosisList = baselineDiagnosisRepository.findAll();
         assertThat(baselineDiagnosisList).hasSize(databaseSizeBeforeUpdate);
         BaselineDiagnosis testBaselineDiagnosis = baselineDiagnosisList.get(baselineDiagnosisList.size() - 1);
-        assertThat(testBaselineDiagnosis.getDiagnosis_date()).isEqualTo(UPDATED_DIAGNOSIS_DATE);
+        assertThat(testBaselineDiagnosis.getDiagnosisDate()).isEqualTo(UPDATED_DIAGNOSIS_DATE);
         assertThat(testBaselineDiagnosis.getAge()).isEqualTo(UPDATED_AGE);
         assertThat(testBaselineDiagnosis.getHeight()).isEqualTo(UPDATED_HEIGHT);
         assertThat(testBaselineDiagnosis.getWeight()).isEqualTo(UPDATED_WEIGHT);
-        assertThat(testBaselineDiagnosis.getHeart_rate()).isEqualTo(UPDATED_HEART_RATE);
+        assertThat(testBaselineDiagnosis.getHeartRate()).isEqualTo(UPDATED_HEART_RATE);
         assertThat(testBaselineDiagnosis.getDbp()).isEqualTo(UPDATED_DBP);
         assertThat(testBaselineDiagnosis.getSbp()).isEqualTo(UPDATED_SBP);
-        assertThat(testBaselineDiagnosis.getHistory_of_alcohol()).isEqualTo(UPDATED_HISTORY_OF_ALCOHOL);
-        assertThat(testBaselineDiagnosis.getHistory_of_diabetes()).isEqualTo(UPDATED_HISTORY_OF_DIABETES);
-        assertThat(testBaselineDiagnosis.getHistory_of_hypertension()).isEqualTo(UPDATED_HISTORY_OF_HYPERTENSION);
-        assertThat(testBaselineDiagnosis.getHistory_of_smoking()).isEqualTo(UPDATED_HISTORY_OF_SMOKING);
+        assertThat(testBaselineDiagnosis.getHistoryOfAlcohol()).isEqualTo(UPDATED_HISTORY_OF_ALCOHOL);
+        assertThat(testBaselineDiagnosis.getHistoryOfDiabetes()).isEqualTo(UPDATED_HISTORY_OF_DIABETES);
+        assertThat(testBaselineDiagnosis.getHistoryOfHypertension()).isEqualTo(UPDATED_HISTORY_OF_HYPERTENSION);
+        assertThat(testBaselineDiagnosis.getHistoryOfSmoking()).isEqualTo(UPDATED_HISTORY_OF_SMOKING);
     }
 
     @Test
@@ -338,5 +338,14 @@ public class BaselineDiagnosisResourceIntTest {
     @Transactional
     public void equalsVerifier() throws Exception {
         TestUtil.equalsVerifier(BaselineDiagnosis.class);
+        BaselineDiagnosis baselineDiagnosis1 = new BaselineDiagnosis();
+        baselineDiagnosis1.setId(1L);
+        BaselineDiagnosis baselineDiagnosis2 = new BaselineDiagnosis();
+        baselineDiagnosis2.setId(baselineDiagnosis1.getId());
+        assertThat(baselineDiagnosis1).isEqualTo(baselineDiagnosis2);
+        baselineDiagnosis2.setId(2L);
+        assertThat(baselineDiagnosis1).isNotEqualTo(baselineDiagnosis2);
+        baselineDiagnosis1.setId(null);
+        assertThat(baselineDiagnosis1).isNotEqualTo(baselineDiagnosis2);
     }
 }

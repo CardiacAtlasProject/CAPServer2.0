@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- automatically produced by XMLAttributePersistenceManager --><attribute-list date="20170714091112" id="dcm4chee.archive:service=DcmServer">
+<!-- automatically produced by XMLAttributePersistenceManager --><attribute-list date="20170714094003" id="dcm4chee.archive:service=DcmServer">
 <attribute name="TCPPort" type="java.lang.Integer">11112</attribute>
 <attribute name="LocalAddress" type="java.lang.String">0.0.0.0</attribute>
 <attribute name="SecurityProtocol" type="java.lang.String">dicom</attribute>

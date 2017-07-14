@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- automatically produced by XMLAttributePersistenceManager --><attribute-list date="20170714091113" id="dcm4chee.archive:service=HL7Service,type=ORM">
+<!-- automatically produced by XMLAttributePersistenceManager --><attribute-list date="20170714094004" id="dcm4chee.archive:service=HL7Service,type=ORM">
 <attribute name="MessageTypes" type="java.lang.String">ORM^O01</attribute>
 <attribute name="OrderControlOperationMap" type="java.lang.String">          NW:NW          XO:XO          XO(SC):XO(SCHEDULED)    XO(CM):XO(COMPLETED)          CA:CA          OC:CA          DC:SC(DISCONTINUED)          OD:SC(DISCONTINUED)          SC(IP):SC(STARTED)          SC(CM):SC(COMPLETED)          SC(DC):SC(DISCONTINUED)          SC(CA):CA          SC:NOOP          </attribute>
 <attribute name="CreateMissingOrderOnStatusChange" type="java.lang.Boolean">false</attribute>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- automatically produced by XMLAttributePersistenceManager --><attribute-list date="20170714091114" id="dcm4chee.archive:service=StudyPermission">
+<!-- automatically produced by XMLAttributePersistenceManager --><attribute-list date="20170714094004" id="dcm4chee.archive:service=StudyPermission">
 <attribute name="UpdateOnHl7Received" type="java.lang.Boolean">false</attribute>
 <attribute name="Hl7ReceivedStylesheet" type="java.lang.String">conf/dcm4chee-permission/hl7-permission.xsl</attribute>
 <attribute name="UpdateOnMppsCreate" type="java.lang.Boolean">false</attribute>

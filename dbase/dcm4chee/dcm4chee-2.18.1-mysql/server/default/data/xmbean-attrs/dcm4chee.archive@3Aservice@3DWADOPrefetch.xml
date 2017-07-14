@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- automatically produced by XMLAttributePersistenceManager --><attribute-list date="20170714091115" id="dcm4chee.archive:service=WADOPrefetch">
+<!-- automatically produced by XMLAttributePersistenceManager --><attribute-list date="20170714094005" id="dcm4chee.archive:service=WADOPrefetch">
 <attribute name="WadoBaseUrl" type="java.lang.String">http://localhost:8080/wado?requestType=WADO</attribute>
 <attribute name="ExportBasePath" type="java.lang.String">exported/images</attribute>
 <attribute name="CoerceConfigDirectory" type="java.lang.String">conf/dcm4chee-ae</attribute>

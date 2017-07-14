@@ -115,7 +115,7 @@
                     resolve: {
                         entity: function () {
                             return {
-                                creation_date: null,
+                                creationDate: null,
                                 description: null,
                                 file: null,
                                 fileContentType: null,
