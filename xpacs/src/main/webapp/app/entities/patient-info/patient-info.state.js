@@ -62,7 +62,9 @@
             },
             resolve: {
                 entity: ['$stateParams', 'PatientInfo', function($stateParams, PatientInfo) {
+                  console.log("lol"+PatientInfo.get({id : $stateParams.id}).$promise);
                     return PatientInfo.get({id : $stateParams.id}).$promise;
+
                 }],
                 previousState: ["$state", function ($state) {
                     var currentStateData = {

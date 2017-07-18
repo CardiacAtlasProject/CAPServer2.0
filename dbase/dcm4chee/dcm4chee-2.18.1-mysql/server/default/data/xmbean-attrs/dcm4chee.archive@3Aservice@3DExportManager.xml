@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- automatically produced by XMLAttributePersistenceManager --><attribute-list date="20170714094003" id="dcm4chee.archive:service=ExportManager">
+<attribute name="AcceptTimeout" type="java.lang.Integer">30000</attribute>
+<attribute name="DIMSETimeout" type="java.lang.Integer">1200000</attribute>
+<attribute name="SocketCloseDelay" type="java.lang.Integer">50</attribute>
+<attribute name="MaximumPDULength" type="java.lang.Integer">16352</attribute>
+<attribute name="TcpNoDelay" type="java.lang.Boolean">true</attribute>
+<attribute name="SendBufferSize" type="java.lang.Integer">0</attribute>
+<attribute name="ReceiveBufferSize" type="java.lang.Integer">0</attribute>
+<attribute name="TLSConfigName" type="javax.management.ObjectName">dcm4chee.archive:service=TLSConfig</attribute>
+<attribute name="CallingAETitle" type="java.lang.String">DCM4CHEE</attribute>
+<attribute name="PatchJpegLSwithImplementationClassUID" type="java.lang.String">1.2.40.0.13.1.1</attribute>
+<attribute name="ExportSelectorTitles" type="java.lang.String">          TCE001^IHERADTF^For Teaching File Export;          TCE002^IHERADTF^For Clinical Trial Export;          TCE007^IHERADTF^For Research Collection Export;          113019^99DCM4CHE^For Media Export</attribute>
+<attribute name="DelayReasons" type="java.lang.String">          TCE011^IHERADTF^Delay export until final report is available;          TCE012^IHERADTF^Delay export until clinical information is available;          TCE013^IHERADTF^Delay export until confirmation of diagnosis is available;          TCE014^IHERADTF^Delay export until histopathology is available;          TCE015^IHERADTF^Delay export until other laboratory results is available;          TCE016^IHERADTF^Delay export until patient is discharged;          TCE017^IHERADTF^Delay export until patient dies;          TCE018^IHERADTF^Delay export until expert review is available</attribute>
+<attribute name="DispositionConfigFile" type="java.lang.String">conf/dcm4chee-tce.conf</attribute>
+<attribute name="AutoExportConfigDirectory" type="java.lang.String">conf/dcm4chee-ae</attribute>
+<attribute name="PersonNameMapping" type="java.lang.String">NONE</attribute>
+<attribute name="FilesetIDPattern" type="java.lang.String">DISK_000</attribute>
+<attribute name="FilesetIDSeqno" type="java.lang.Integer">1</attribute>
+<attribute name="MediaURIPrefix" type="java.lang.String">cdr:</attribute>
+<attribute name="DeleteKeyObjectsAfterExport" type="java.lang.Boolean">true</attribute>
+<attribute name="MaxKeyObjectAge" type="java.lang.String">1d</attribute>
+<attribute name="ExportDelay" type="java.lang.Integer">2000</attribute>
+<attribute name="BufferSize" type="java.lang.Integer">8192</attribute>
+<attribute name="Concurrency" type="java.lang.Integer">1</attribute>
+<attribute name="FetchSize" type="java.lang.Integer">50</attribute>
+<attribute name="QueueName" type="java.lang.String">ExportManager</attribute>
+<attribute name="QueryRetrieveScpServiceName" type="javax.management.ObjectName">dcm4chee.archive:service=QueryRetrieveScp</attribute>
+<attribute name="IANScuServiceName" type="javax.management.ObjectName">dcm4chee.archive:service=IANScu</attribute>
+<attribute name="JMSServiceName" type="javax.management.ObjectName">dcm4chee.archive:service=JMS</attribute>
+<attribute name="StoreScpServiceName" type="javax.management.ObjectName">dcm4chee.archive:service=StoreScp</attribute>
+<attribute name="TemplatesServiceName" type="javax.management.ObjectName">dcm4chee.archive:service=Templates</attribute>
+</attribute-list>

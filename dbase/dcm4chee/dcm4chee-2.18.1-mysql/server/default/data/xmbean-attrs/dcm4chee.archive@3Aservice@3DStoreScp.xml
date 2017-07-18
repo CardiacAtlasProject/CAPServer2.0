@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- automatically produced by XMLAttributePersistenceManager --><attribute-list date="20170714094005" id="dcm4chee.archive:service=StoreScp">
+<attribute name="CalledAETitles" type="java.lang.String">DCM4CHEE</attribute>
+<attribute name="CallingAETitles" type="java.lang.String">ANY</attribute>
+<attribute name="UnrestrictedAppendPermissionsToAETitles" type="java.lang.String">ANY</attribute>
+<attribute name="WarnForCoercedAETitles" type="java.lang.String">NONE</attribute>
+<attribute name="AcceptMismatchAffectedSOPInstanceUIDCallingAETiles" type="java.lang.String">NONE</attribute>
+<attribute name="DefaultFileSystemGroupID" type="java.lang.String">ONLINE_STORAGE</attribute>
+<attribute name="AcceptMissingPatientID" type="java.lang.Boolean">false</attribute>
+<attribute name="AcceptMissingPatientName" type="java.lang.Boolean">false</attribute>
+<attribute name="GeneratePatientID" type="java.lang.String">PACS-##########</attribute>
+<attribute name="IssuerOfPatientIDGeneratedPatientID" type="java.lang.String">DCM4CHEE</attribute>
+<attribute name="SupplementIssuerOfPatientID" type="java.lang.Boolean">true</attribute>
+<attribute name="SupplementIssuerOfAccessionNumber" type="java.lang.Boolean">true</attribute>
+<attribute name="SupplementInstitutionName" type="java.lang.Boolean">true</attribute>
+<attribute name="SupplementInstitutionalDepartmentName" type="java.lang.Boolean">true</attribute>
+<attribute name="SupplementByHostName" type="java.lang.Boolean">false</attribute>
+<attribute name="SupplementByHostAddress" type="java.lang.Boolean">false</attribute>
+<attribute name="GeneratePatientIDForUnscheduledFromAETitles" type="java.lang.String">NONE</attribute>
+<attribute name="PatientMatching" type="java.lang.String">pid,issuer?[familyname,givenname,middlename?,birthdate]</attribute>
+<attribute name="StoreOriginalPatientIDInOtherPatientIDsSequence" type="java.lang.Boolean">false</attribute>
+<attribute name="StoreOriginalPatientIDInOriginalAttrsSeq" type="java.lang.Boolean">true</attribute>
+<attribute name="StudyDateInFilePath" type="java.lang.Boolean">false</attribute>
+<attribute name="SourceAETInFilePath" type="java.lang.Boolean">false</attribute>
+<attribute name="YearInFilePath" type="java.lang.Boolean">true</attribute>
+<attribute name="MonthInFilePath" type="java.lang.Boolean">true</attribute>
+<attribute name="DayInFilePath" type="java.lang.Boolean">true</attribute>
+<attribute name="HourInFilePath" type="java.lang.Boolean">true</attribute>
+<attribute name="ReferencedDirectoryPath" type="java.lang.String">archive</attribute>
+<attribute name="ReferencedFileSystemGroupID" type="java.lang.String">ONLINE_STORAGE</attribute>
+<attribute name="ReadReferencedFile" type="java.lang.Boolean">true</attribute>
+<attribute name="Md5sumReferencedFile" type="java.lang.Boolean">true</attribute>
+<attribute name="Md5sum" type="java.lang.Boolean">true</attribute>
+<attribute name="SyncFileBeforeCStoreRSP" type="java.lang.Boolean">true</attribute>
+<attribute name="SyncFileAfterCStoreRSP" type="java.lang.Boolean">false</attribute>
+<attribute name="StoreDuplicatesIfDifferentMD5" type="java.lang.Boolean">true</attribute>
+<attribute name="AllowDuplicateForBetterAvailabilityForAET" type="java.lang.String">NONE</attribute>
+<attribute name="AllowDiffMD5ForBetterAvailability" type="java.lang.Boolean">true</attribute>
+<attribute name="DontStoreDuplicateIfFromExternalRetrieveAET" type="java.lang.Boolean">true</attribute>
+<attribute name="StoreDuplicatesIfDifferentHost" type="java.lang.Boolean">false</attribute>
+<attribute name="CompressionRules" type="java.lang.String">[pmi=YBR_FULL_422]NONE;[calling=SAMPLE_SCU1|SAMPLE_SCU2,pmi!=RGB,imgtype!=LOCALIZER]JLSL;NONE</attribute>
+<attribute name="CheckPendingSeriesStoredInterval" type="java.lang.String">1m</attribute>
+<attribute name="SeriesStoredNotificationDelay" type="java.lang.String">1m</attribute>
+<attribute name="SerializeDBUpdate" type="java.lang.Boolean">false</attribute>
+<attribute name="UpdateDatabaseMaximumRetries" type="java.lang.Integer">2</attribute>
+<attribute name="UpdateDatabaseRetryInterval" type="java.lang.Long">0</attribute>
+<attribute name="AcceptedImageSOPClasses" type="java.lang.String">            ComputedRadiographyImageStorage            DigitalXRayImageStorageForPresentation            DigitalXRayImageStorageForProcessing            DigitalMammographyXRayImageStorageForPresentation            DigitalMammographyXRayImageStorageForProcessing            DigitalIntraoralXRayImageStorageForPresentation            DigitalIntraoralXRayImageStorageForProcessing            CTImageStorage            EnhancedCTImageStorage            UltrasoundMultiframeImageStorage            MRImageStorage            EnhancedMRImageStorage            EnhancedMRColorImageStorage            UltrasoundImageStorage            EnhancedUSVolumeStorage            SecondaryCaptureImageStorage            MultiframeSingleBitSecondaryCaptureImageStorage            MultiframeGrayscaleByteSecondaryCaptureImageStorage            MultiframeGrayscaleWordSecondaryCaptureImageStorage            MultiframeTrueColorSecondaryCaptureImageStorage            XRayAngiographicImageStorage            EnhancedXRayAngiographicImageStorage            XRayRadiofluoroscopicImageStorage            EnhancedXRayRadiofluoroscopicImageStorage            XRay3DAngiographicImageStorage            XRay3DCraniofacialImageStorage            BreastTomosynthesisImageStorage            NuclearMedicineImageStorage            VLEndoscopicImageStorage            VLMicroscopicImageStorage            VLSlideCoordinatesMicroscopicImageStorage            VLPhotographicImageStorage            OphthalmicPhotography8BitImageStorage            OphthalmicPhotography16BitImageStorage            OphthalmicTomographyImageStorage            PositronEmissionTomographyImageStorage            EnhancedPETImageStorage            RTImageStorage            HardcopyGrayscaleImageStorage            HardcopyColorImageStorage            NuclearMedicineImageStorageRetired            UltrasoundMultiframeImageStorageRetired            UltrasoundImageStorageRetired            XRayAngiographicBiPlaneImageStorageRetired            VLImageStorageRetired            VLMultiframeImageStorageRetired            PrivateGE3DModelStorage            PrivateGEPETRawDataStorage            </attribute>
+<attribute name="AcceptedTransferSyntaxForImageSOPClasses" type="java.lang.String">          ImplicitVRLittleEndian          ExplicitVRLittleEndian          JPEGLossless          JPEGLossless14          JPEGLSLossless          RLELossless          JPEG2000Lossless          JPEG2000Lossless          JPEGBaseline          JPEGExtended          JPEGLSLossy          JPEG2000Lossy          Dcm4cheURIReferenced          NoPixelData          NoPixelDataDeflate</attribute>
+<attribute name="AcceptedVideoSOPClasses" type="java.lang.String">            VideoEndoscopicImageStorage            VideoMicroscopicImageStorage            VideoPhotographicImageStorage</attribute>
+<attribute name="AcceptedTransferSyntaxForVideoSOPClasses" type="java.lang.String">            JPEGBaseline            MPEG2            MPEG2HL            MPEG4            MPEG4BD            Dcm4cheURIReferenced            NoPixelData            NoPixelDataDeflate</attribute>
+<attribute name="AcceptedWaveformSOPClasses" type="java.lang.String">            TwelveLeadECGWaveformStorage            GeneralECGWaveformStorage            AmbulatoryECGWaveformStorage            HemodynamicWaveformStorage            CardiacElectrophysiologyWaveformStorage            BasicVoiceAudioWaveformStorage            ArterialPulseWaveformStorage            RespiratoryWaveformStorage            GeneralAudioWaveform            </attribute>
+<attribute name="AcceptedTransferSyntaxForWaveformSOPClasses" type="java.lang.String">            ImplicitVRLittleEndian            ExplicitVRLittleEndian            Dcm4cheURIReferenced            </attribute>
+<attribute name="AcceptedSRSOPClasses" type="java.lang.String">            BasicTextSR            EnhancedSR            ComprehensiveSR            ProcedureLogStorage            MammographyCADSR            KeyObjectSelectionDocument            ChestCADSR            ColonCADSR            XRayRadiationDoseSR            </attribute>
+<attribute name="AcceptedTransferSyntaxForSRSOPClasses" type="java.lang.String">            ImplicitVRLittleEndian            ExplicitVRLittleEndian            DeflatedExplicitVRLittleEndian            Dcm4cheURIReferenced            </attribute>
+<attribute name="AcceptedOtherSOPClasses" type="java.lang.String">            MRSpectroscopyStorage            GrayscaleSoftcopyPresentationStateStorage            ColorSoftcopyPresentationStateStorage            PseudoColorSoftcopyPresentationStateStorage            BlendingSoftcopyPresentationStateStorage            XAXRFGrayscaleSoftcopyPresentationStateStorage            RawDataStorage            SpatialRegistrationStorage            SpatialFiducialsStorage            DeformableSpatialRegistrationStorage            SegmentationStorage            RealWorldValueMappingStorage            StereometricRelationshipStorage            EncapsulatedPDFStorage            EncapsulatedCDAStorage            RTDoseStorage            RTStructureSetStorage            RTBeamsTreatmentRecordStorage            RTPlanStorage            RTBrachyTreatmentRecordStorage            RTTreatmentSummaryRecordStorage            RTIonPlanStorage            RTIonBeamsTreatmentRecordStorage            StandaloneOverlayStorage            StandaloneCurveStorage            StandaloneModalityLUTStorage            StandaloneVOILUTStorage            StandalonePETCurveStorage            AgfaAttributePresentationState            SiemensCSANonImageStorage            Dcm4cheEncapsulatedDocumentStorage            PrivatePhillips3DPresentationStateStorage            PrivatePhillipsMRSpectrumStorage            PrivatePhillipsMRSeriesDataStorage            PrivatePhillipsMRExamcardDataStorage            </attribute>
+<attribute name="AcceptedTransferSyntaxForOtherSOPClasses" type="java.lang.String">            ImplicitVRLittleEndian            ExplicitVRLittleEndian            Dcm4cheURIReferenced          </attribute>
+<attribute name="CheckIncorrectWorklistEntry" type="java.lang.Boolean">true</attribute>
+<attribute name="OnlyWellKnownInstancesCallingAETs" type="java.lang.String">NONE</attribute>
+<attribute name="MaximumPDULength" type="java.lang.Integer">16352</attribute>
+<attribute name="MaximumOperationsInvoked" type="java.lang.Integer">1</attribute>
+<attribute name="MaximumOperationsPerformed" type="java.lang.Integer">1</attribute>
+<attribute name="MaximumValueLength" type="java.lang.Integer">67108864</attribute>
+<attribute name="BufferSize" type="java.lang.Integer">8192</attribute>
+<attribute name="LogAETitles" type="java.lang.String">NONE</attribute>
+<attribute name="CoerceConfigDirectory" type="java.lang.String">conf/dcm4chee-ae</attribute>
+<attribute name="WriteCoercionXmlLog" type="java.lang.Boolean">false</attribute>
+<attribute name="CoerceBeforeWrite" type="java.lang.Boolean">false</attribute>
+<attribute name="TimerIDCheckPendingSeriesStored" type="java.lang.String">CheckPendingSeriesStored</attribute>
+<attribute name="SchedulerServiceName" type="javax.management.ObjectName">dcm4chee.archive:service=Scheduler</attribute>
+<attribute name="FileSystemMgtServiceNamePrefix" type="java.lang.String">dcm4chee.archive:service=FileSystemMgt,group=</attribute>
+<attribute name="MwlScuServiceName" type="javax.management.ObjectName">dcm4chee.archive:service=MWLScu</attribute>
+<attribute name="DcmServerName" type="javax.management.ObjectName">dcm4chee.archive:service=DcmServer</attribute>
+<attribute name="TemplatesServiceName" type="javax.management.ObjectName">dcm4chee.archive:service=Templates</attribute>
+<attribute name="AEServiceName" type="javax.management.ObjectName">dcm4chee.archive:service=AE</attribute>
+</attribute-list>

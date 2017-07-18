@@ -75,7 +75,7 @@ public class PatientInfoResourceIntTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        PatientInfoResource patientInfoResource = new PatientInfoResource(patientInfoRepository);
+        PatientInfoResource patientInfoResource = new PatientInfoResource(patientInfoRepository, null, null, null);
         this.restPatientInfoMockMvc = MockMvcBuilders.standaloneSetup(patientInfoResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)

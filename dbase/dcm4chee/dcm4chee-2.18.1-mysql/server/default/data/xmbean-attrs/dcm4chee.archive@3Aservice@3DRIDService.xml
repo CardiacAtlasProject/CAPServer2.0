@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- automatically produced by XMLAttributePersistenceManager --><attribute-list date="20170714094004" id="dcm4chee.archive:service=RIDService">
+<attribute name="ECGSopCuids" type="java.lang.String"/>
+<attribute name="SRSopCuids" type="java.lang.String">            BasicTextSR;            EnhancedSR;            ComprehensiveSR;            ProcedureLogStorage;            MammographyCADSR;            KeyObjectSelectionDocument;            ChestCADSR;            XRayRadiationDoseSR;            StructuredReportTextStorageRetired;            StructuredReportDetailStorageRetired;            StructuredComprehensiveStorageRetired            </attribute>
+<attribute name="EncapsulatedDocumentSopCuids" type="java.lang.String">EncapsulatedPDFStorage;             EncapsulatedCDAStorage</attribute>
+<attribute name="CuidsForSummaryAll" type="java.lang.String">NONE</attribute>
+<attribute name="ConceptNameCodes" type="java.lang.String">         11522-0^LN^Echocardiography Report:A,C;         11538-6^LN^CT Chest Report:R,A;         18760-9^LN^Ultrasound Report:R,A;         18758-3^LN^PET Scan Report:R,A;         18757-5^LN^Nuclear Medicine Report:R,A;         18745-0^LN^Cardiac Catheteization Report:A,C;         11541-0^LN^MRI Head Report:R,A;         11540-2^LN^CT Abdomen Report:R,A;         18756-7^LN^MRI Spine Report:R,A;         18755-9^LN^MRI Report:R,A;         125200^DCM^Adult Echocardiography Procedure Report:A,C;         11525-3^LN^Ultrasound Obstetric and Gyn Report:R,A;         18747-6^LN^CT Report:R,A;         10001^99SUPP97^Quantitative Arteriography report:A,C;         122291^DCM^CT/MR Cardiovascular Report:A,C;         18748-4^LN^Diagnostic Imaging Report:R,A;         122292^DCM^Quantitative Ventriculography Report:A,C;         11539-4^LN^CT Head Report:R,A;         11528-7^LN^Radiology Report:R,A</attribute>
+<attribute name="DocTitlePatterns" type="java.lang.String">NONE</attribute>
+<attribute name="WadoURL" type="java.lang.String">http://localhost:8080/wado</attribute>
+<attribute name="RIDSummaryXsl" type="java.lang.String">xsl/IHEDocumentList.xsl</attribute>
+<attribute name="UseXSLInstruction" type="java.lang.Boolean">true</attribute>
+<attribute name="UseOrigFile" type="java.lang.Boolean">false</attribute>
+<attribute name="SRfixedImageRows" type="java.lang.String">NONE</attribute>
+<attribute name="WaveformCorrection" type="java.lang.Float">1.0</attribute>
+<attribute name="CoerceConfigDirectory" type="java.lang.String">conf/dcm4chee-rid</attribute>
+<attribute name="QueryRetrieveScpName" type="javax.management.ObjectName">dcm4chee.archive:service=QueryRetrieveScp</attribute>
+<attribute name="TemplatesServiceName" type="javax.management.ObjectName">dcm4chee.archive:service=Templates</attribute>
+</attribute-list>

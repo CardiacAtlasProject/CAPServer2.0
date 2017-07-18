@@ -62,6 +62,12 @@
                                     <span >Baseline Diagnosis</span>
                                 </a>
                             </li>
+                        <li ui-sref-active="active">
+                                <a ui-sref="dicom" ng-click="vm.collapseNavbar()">
+                                    <span class="glyphicon glyphicon-asterisk"></span>&nbsp;
+                                    <span>Dicom</span>
+                                </a>
+                            </li>
                         <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here -->
                     </ul>
                 </li>
@@ -82,6 +88,12 @@
                                 <span>Settings</span>
                             </a>
                         </li>
+                        <li ui-sref-active="active" ng-switch-when="true">
+                           <a ui-sref="upload" ng-click="vm.collapseNavbar()">
+                               <span class="glyphicon glyphicon-upload"></span>&nbsp;
+                               <span>Upload</span>
+                           </a>
+                       </li>
                         <li ui-sref-active="active" ng-switch-when="true">
                             <a ui-sref="password" ng-click="vm.collapseNavbar()">
                                 <span class="glyphicon glyphicon-lock"></span>&nbsp;

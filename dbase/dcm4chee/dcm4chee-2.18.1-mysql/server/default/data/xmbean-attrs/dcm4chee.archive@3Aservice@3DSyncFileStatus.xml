@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- automatically produced by XMLAttributePersistenceManager --><attribute-list date="20170714094005" id="dcm4chee.archive:service=SyncFileStatus">
+<attribute name="MonitoredFileSystem" type="java.lang.String">NONE</attribute>
+<attribute name="HSMModulServicename" type="java.lang.String">dcm4chee.archive:service=FileCopyHSMModule,type=Command</attribute>
+<attribute name="MinimumFileAge" type="java.lang.String">1w</attribute>
+<attribute name="CheckFileStatus" type="java.lang.String">TO_ARCHIVE</attribute>
+<attribute name="VerifyTar" type="java.lang.Boolean">true</attribute>
+<attribute name="SkipVerifyTarHSMStati" type="java.lang.String">NONE</attribute>
+<attribute name="InvalidTarStatus" type="java.lang.String">DEFAULT</attribute>
+<attribute name="NotInTarStatus" type="java.lang.String">DEFAULT</attribute>
+<attribute name="TaskInterval" type="java.lang.String">NEVER</attribute>
+<attribute name="NumberOfFilesPerTask" type="java.lang.Integer">1000</attribute>
+<attribute name="TimerIDCheckSyncFileStatus" type="java.lang.String">CheckSyncFileStatus</attribute>
+<attribute name="TarRetrieverName" type="javax.management.ObjectName">dcm4chee.archive:service=TarRetriever</attribute>
+<attribute name="SchedulerServiceName" type="javax.management.ObjectName">dcm4chee.archive:service=Scheduler</attribute>
+</attribute-list>

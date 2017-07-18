@@ -1,0 +1,12 @@
+<mbean name="dcm4chee.web:service=TlsConfig">
+<attribute name="KeyStoreURL"/>
+<attribute name="KeyStorePassword"/>
+<attribute name="KeyPassword"/>
+<attribute name="KeyStoreType"/>
+<attribute name="TrustStoreURL"/>
+<attribute name="TrustStorePassword"/>
+<attribute name="TrustStoreType"/>
+<attribute name="TLSProtocols" type="Security"/>
+<attribute name="NeedClientAuthentication" type="Security"/>
+<attribute name="State"/>
+</mbean>

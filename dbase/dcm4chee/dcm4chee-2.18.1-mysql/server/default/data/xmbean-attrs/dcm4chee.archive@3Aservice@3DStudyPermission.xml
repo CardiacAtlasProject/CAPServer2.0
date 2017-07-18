@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- automatically produced by XMLAttributePersistenceManager --><attribute-list date="20170714094004" id="dcm4chee.archive:service=StudyPermission">
+<attribute name="UpdateOnHl7Received" type="java.lang.Boolean">false</attribute>
+<attribute name="Hl7ReceivedStylesheet" type="java.lang.String">conf/dcm4chee-permission/hl7-permission.xsl</attribute>
+<attribute name="UpdateOnMppsCreate" type="java.lang.Boolean">false</attribute>
+<attribute name="MppsCreateStylesheet" type="java.lang.String">conf/dcm4chee-permission/mpps-permission.xsl</attribute>
+<attribute name="UpdateOnSeriesStored" type="java.lang.Boolean">false</attribute>
+<attribute name="SeriesStoredStylesheet" type="java.lang.String">conf/dcm4chee-permission/series-permission.xsl</attribute>
+<attribute name="UpdateOnNewStudy" type="java.lang.Boolean">false</attribute>
+<attribute name="UpdateOnIanNotification" type="java.lang.Boolean">false</attribute>
+<attribute name="IanNotificationStylesheet" type="java.lang.String">conf/dcm4chee-permission/ian_mpps-permission.xsl</attribute>
+<attribute name="HL7ServerName" type="javax.management.ObjectName">dcm4chee.archive:service=HL7Server</attribute>
+<attribute name="StoreScpServiceName" type="javax.management.ObjectName">dcm4chee.archive:service=StoreScp</attribute>
+<attribute name="MppsScpServiceName" type="javax.management.ObjectName">dcm4chee.archive:service=MPPSScp</attribute>
+<attribute name="ContentEditServiceName" type="javax.management.ObjectName">dcm4chee.archive:service=ContentEditService</attribute>
+<attribute name="TemplatesServiceName" type="javax.management.ObjectName">dcm4chee.archive:service=Templates</attribute>
+<attribute name="IanScuServiceName" type="javax.management.ObjectName">dcm4chee.archive:service=IANScu</attribute>
+</attribute-list>

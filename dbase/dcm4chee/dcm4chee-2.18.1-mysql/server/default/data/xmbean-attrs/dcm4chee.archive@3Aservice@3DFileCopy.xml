@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- automatically produced by XMLAttributePersistenceManager --><attribute-list date="20170714094003" id="dcm4chee.archive:service=FileCopy">
+<attribute name="DestinationFileSystem" type="java.lang.String">NONE</attribute>
+<attribute name="HSMModulServicename" type="java.lang.String">NONE</attribute>
+<attribute name="SeriesStoredDisabled" type="java.lang.Boolean">false</attribute>
+<attribute name="FileStatus" type="java.lang.String">TO_ARCHIVE</attribute>
+<attribute name="VerifyCopy" type="java.lang.Boolean">true</attribute>
+<attribute name="RetryIntervals" type="java.lang.String">5x1m,12x5m,24x1h,7x1d</attribute>
+<attribute name="NotReadyDelay" type="java.lang.String">1m</attribute>
+<attribute name="Concurrency" type="java.lang.Integer">1</attribute>
+<attribute name="BufferSize" type="java.lang.Integer">8192</attribute>
+<attribute name="FetchSize" type="java.lang.Integer">50</attribute>
+<attribute name="QueueName" type="java.lang.String">FileCopy</attribute>
+<attribute name="StoreScpServiceName" type="javax.management.ObjectName">dcm4chee.archive:service=StoreScp</attribute>
+<attribute name="JMSServiceName" type="javax.management.ObjectName">dcm4chee.archive:service=JMS</attribute>
+<attribute name="QueryRetrieveScpServiceName" type="javax.management.ObjectName">dcm4chee.archive:service=QueryRetrieveScp</attribute>
+</attribute-list>

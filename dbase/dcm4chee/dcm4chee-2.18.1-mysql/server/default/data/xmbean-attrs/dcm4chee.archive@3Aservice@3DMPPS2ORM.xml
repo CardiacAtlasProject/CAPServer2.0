@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- automatically produced by XMLAttributePersistenceManager --><attribute-list date="20170714094004" id="dcm4chee.archive:service=MPPS2ORM">
+<attribute name="MPPSReceivedEnabled" type="java.lang.Boolean">false</attribute>
+<attribute name="ReceivingApplication" type="java.lang.String">DCM4CHEE</attribute>
+<attribute name="ReceivingFacility" type="java.lang.String">DCM4CHEE</attribute>
+<attribute name="SendingApplication" type="java.lang.String">DCM4CHEE</attribute>
+<attribute name="SendingFacility" type="java.lang.String">DCM4CHEE</attribute>
+<attribute name="MPPSLinkedEnabled" type="java.lang.Boolean">false</attribute>
+<attribute name="LinkedReceivingApplication" type="java.lang.String">DCM4CHEE</attribute>
+<attribute name="LinkedReceivingFacility" type="java.lang.String">DCM4CHEE</attribute>
+<attribute name="LinkedSendingApplication" type="java.lang.String">DCM4CHEE</attribute>
+<attribute name="LinkedSendingFacility" type="java.lang.String">DCM4CHEE</attribute>
+<attribute name="IgnoreUnscheduled" type="java.lang.Boolean">true</attribute>
+<attribute name="IgnoreInProgress" type="java.lang.Boolean">true</attribute>
+<attribute name="OneORMperSPS" type="java.lang.Boolean">true</attribute>
+<attribute name="LogXSLT" type="java.lang.Boolean">false</attribute>
+<attribute name="Stylesheet" type="java.lang.String">conf/dcm4chee-hl7/mpps2orm.xsl</attribute>
+<attribute name="MppsScpServiceName" type="javax.management.ObjectName">dcm4chee.archive:service=MPPSScp</attribute>
+<attribute name="Hl7SendServiceName" type="javax.management.ObjectName">dcm4chee.archive:service=HL7Send</attribute>
+<attribute name="TemplatesServiceName" type="javax.management.ObjectName">dcm4chee.archive:service=Templates</attribute>
+</attribute-list>

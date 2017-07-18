@@ -1,31 +1,201 @@
 
-<div>
-    <h2><span>Patient Info</span> {{vm.patientInfo.id}}</h2>
-    <hr>
-    <jhi-alert-error></jhi-alert-error>
-    <dl class="dl-horizontal jh-entity-details">
-        <dt><span>Patient Id</span></dt>
+<!-- <div> -->
+<head>
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <!-- THIS LINE -->
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+</head>
+<h2><span>{{vm.patientInfo.patientInfo.patient_id}}</span> -  Consolidated Patient Information</h2>
+<div id="menu">
+<div class="panel list-group">
+ <a href="#" onclick="return false;" class="list-group-item" data-toggle="collapse" data-target="#patientInfo" data-parent="#menu"><h3>Patient Info</h2> </a>
+ <div id="patientInfo" class="sublinks collapse">
+ <dl class="dl-vertical">
+ <a class="list-group-item small">
+    <dt><span data-translate="xpacswebApp.patientInfo.patient_id">Patient Id</span></dt>
+            <dd>
+                <span>{{vm.patientInfo.patientInfo.patient_id}}</span>
+            </dd>
+  </a>
+  <a class="list-group-item small">
+    <dt><span>Cohort</span></dt>
         <dd>
-            <span>{{vm.patientInfo.patientId}}</span>
+            <span>{{vm.patientInfo.patientInfo.cohort}}</span>
         </dd>
-        <dt><span>Cohort</span></dt>
+  </a>
+  <a class="list-group-item small">
+  <dt><span>Ethnicity</span></dt>
         <dd>
-            <span>{{vm.patientInfo.cohort}}</span>
+            <span>{{vm.patientInfo.patientInfo.ethnicity}}</span>
         </dd>
-        <dt><span>Ethnicity</span></dt>
+  </a>
+  <a class="list-group-item small">
+  <dt><span>Gender</span></dt>
         <dd>
-            <span>{{vm.patientInfo.ethnicity}}</span>
+            <!-- <span>{{vm.patientInfo.gender}}</span> -->
+            <span>{{vm.patientInfo.patientInfo.gender}}</span>
+
         </dd>
-        <dt><span>Gender</span></dt>
+  </a>
+  <a class="list-group-item small">
+        <dt><span data-translate="xpacswebApp.patientInfo.primary_diagnosis">Primary Diagnosis</span></dt>
         <dd>
-            <span>{{vm.patientInfo.gender}}</span>
+            <span>{{vm.patientInfo.patientInfo.primary_diagnosis}}</span>
         </dd>
-        <dt><span>Primary Diagnosis</span></dt>
+  </a>
+  </dl>
+ </div>
+ <a href="#" onclick="return false;" class="list-group-item" data-toggle="collapse" data-target="#clinicalNote" data-parent="#menu"><h3> Clinical Note </h2></a>
+ <div id="clinicalNote" class="sublinks collapse">
+ <dl class="dl-vertical jh-entity-details">
+  <a class="list-group-item small">
+      <dt><span data-translate="xpacswebApp.clinicalNote.assessment_date">Assessment Date</span></dt>
         <dd>
-            <span>{{vm.patientInfo.primaryDiagnosis}}</span>
+            <span>{{vm.patientInfo.clinicalNote.assessment_date | date:'mediumDate'}}</span>
         </dd>
     </dl>
 
+  </a>
+  <a class="list-group-item small">
+      <dt><span>Age</span></dt>
+        <dd>
+            <span>{{vm.patientInfo.clinicalNote.age}}</span>
+        </dd>
+  </a>
+
+  <a class="list-group-item small">
+      <dt><span>Height</span></dt>
+        <dd>
+            <span>{{vm.patientInfo.clinicalNote.height}}</span>
+        </dd>
+  </a>
+  <a class="list-group-item small">
+      <dt><span>Weight</span></dt>
+        <dd>
+            <span>{{vm.patientInfo.clinicalNote.weight}}</span>
+        </dd>
+  </a>
+  <a class="list-group-item small">
+      <dt><span>Diagnosis</span></dt>
+        <dd>
+            <span>{{vm.patientInfo.clinicalNote.diagnosis}}</span>
+        </dd>
+  </a>
+  <a class="list-group-item small">
+      <dt><span>Note</span></dt>
+        <dd>
+            <span>{{vm.patientInfo.clinicalNote.note}}</span>
+        </dd>
+  </a>
+
+  </dl>
+ </div>
+
+
+<a href="#" onclick="return false;" class="list-group-item" data-toggle="collapse" data-target="#baselineDiagnosis" data-parent="#menu"><h3> Baseline Diagnosis </h2></a>
+ <div id="baselineDiagnosis" class="sublinks collapse">
+ <dl class="dl-vertical jh-entity-details">
+
+
+    <a class="list-group-item small">
+      <dt><span data-translate="xpacswebApp.baselineDiagnosis.diagnosis_date">Diagnosis Date</span></dt>
+        <dd>
+            <span>{{vm.patientInfo.baselineDiagnosis.diagnosis_date | date:'mediumDate'}}</span>
+        </dd>
+    </a>
+    <a class="list-group-item small">
+        <dt><span>Age</span></dt>
+        <dd>
+            <span>{{vm.patientInfo.baselineDiagnosis.age}}</span>
+        </dd>
+    </a>
+    <a class="list-group-item small">
+        <dt><span>Height</span></dt>
+        <dd>
+            <span>{{vm.patientInfo.baselineDiagnosis.height}}</span>
+        </dd>
+    </a>
+    <a class="list-group-item small">
+        <dt><span>Weight</span></dt>
+        <dd>
+            <span>{{vm.patientInfo.baselineDiagnosis.weight}}</span>
+        </dd>
+    </a>
+    <a class="list-group-item small">
+        <dt><span data-translate="xpacswebApp.baselineDiagnosis.heart_rate">Heart Rate</span></dt>
+        <dd>
+            <span>{{vm.patientInfo.baselineDiagnosis.heart_rate}}</span>
+        </dd>
+    </a>
+    <a class="list-group-item small">
+        <dt><span>Dbp</span></dt>
+        <dd>
+            <span>{{vm.patientInfo.baselineDiagnosis.dbp}}</span>
+        </dd>
+    </a>
+    <a class="list-group-item small">
+        <dt><span>Sbp</span></dt>
+        <dd>
+            <span>{{vm.patientInfo.baselineDiagnosis.sbp}}</span>
+        </dd>
+    </a>
+    <a class="list-group-item small">
+        <dt><span data-translate="xpacswebApp.baselineDiagnosis.history_of_alcohol">History Of Alcohol</span></dt>
+        <dd>
+            <span>{{vm.patientInfo.baselineDiagnosis.history_of_alcohol}}</span>
+        </dd>
+    </a>
+    <a class="list-group-item small">
+        <dt><span data-translate="xpacswebApp.baselineDiagnosis.history_of_diabetes">History Of Diabetes</span></dt>
+        <dd>
+            <span>{{vm.patientInfo.baselineDiagnosis.history_of_diabetes}}</span>
+        </dd>
+    </a>
+    <a class="list-group-item small">
+        <dt><span data-translate="xpacswebApp.baselineDiagnosis.history_of_hypertension">History Of Hypertension</span></dt>
+        <dd>
+            <span>{{vm.patientInfo.baselineDiagnosis.history_of_hypertension}}</span>
+        </dd>
+    </a>
+    <a class="list-group-item small">
+        <dt><span data-translate="xpacswebApp.baselineDiagnosis.history_of_smoking">History Of Smoking</span></dt>
+        <dd>
+            <span>{{vm.patientInfo.baselineDiagnosis.history_of_smoking}}</span>
+        </dd>
+    </a>
+</dl>
+</div>
+    <a href="#" onclick="return false;" class="list-group-item" data-toggle="collapse" data-target="#auxFile" data-parent="#menu"><h3> Aux File </h2></a>
+     <div id="auxFile" class="sublinks collapse">
+     <dl class="dl-vertical jh-entity-details">
+
+
+    <a class="list-group-item small">
+      <dt><span data-translate="xpacswebApp.auxFile.creation_date">Creation Date</span></dt>
+        <dd>
+            <span>{{vm.patientInfo.auxFile.creation_date | date:'mediumDate'}}</span>
+        </dd>
+    </a>
+    <a class="list-group-item small">
+      <dt><span>Description</span></dt>
+        <dd>
+            <span>{{vm.patientInfo.auxFile.description}}</span>
+        </dd>
+    </a>
+    <a class="list-group-item small">
+      <dt><span>File</span></dt>
+
+            <div ng-if="vm.patientInfo.auxFile.file">
+                <a ng-click="vm.openFile(vm.patientInfo.auxFile.fileContentType, vm.patientInfo.auxFile.file)">open</a>
+                {{vm.patientInfo.auxFile.fileContentType}}, {{vm.patientInfo.byteSize(vm.patientInfo.auxFile.file)}}
+            </div>
+
+    </a>
+</dl>
+</div>
+</div>
+</div>
     <button type="submit"
             ui-sref="{{ vm.previousState }}"
             class="btn btn-info">

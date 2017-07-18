@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- automatically produced by XMLAttributePersistenceManager --><attribute-list date="20170714094005" id="dcm4chee.archive:service=XDS-I">
+<attribute name="SourceID" type="java.lang.String">1.3.6.1.4.1.21367.2009.1.2.134.54.1.30.1</attribute>
+<attribute name="AutoPublishSourceAETitles" type="java.lang.String">NONE</attribute>
+<attribute name="DocRepositoryURI" type="java.lang.String">http://localhost:8080/dcm4chee-xds/XDSRepository</attribute>
+<attribute name="DocRepositoryAET" type="java.lang.String">NONE</attribute>
+<attribute name="MetadataPropertyFile" type="java.lang.String">conf/dcm4chee-xdsi/metadata.conf</attribute>
+<attribute name="AutoPublishPropertyFile" type="java.lang.String">conf/dcm4chee-xdsi/nist/metadata.conf</attribute>
+<attribute name="AutoPublishXSLFile" type="java.lang.String">NONE</attribute>
+<attribute name="AutoPublishStudyDeletedPDFFile" type="java.lang.String">conf/dcm4chee-xdsi/study_deleted.pdf</attribute>
+<attribute name="AutoPublishInterval" type="java.lang.String">NEVER</attribute>
+<attribute name="AutoPublishSQL" type="java.lang.String">NONE</attribute>
+<attribute name="DisableStudyDeleteSQL" type="java.lang.Boolean">false</attribute>
+<attribute name="AfterDate" type="java.lang.String">NONE</attribute>
+<attribute name="BeforeDate" type="java.lang.String">NONE</attribute>
+<attribute name="OlderThan" type="java.lang.String">1d</attribute>
+<attribute name="NotOlderThan" type="java.lang.String">10w</attribute>
+<attribute name="MaxNumberOfStudiesByOneTask" type="java.lang.Integer">100</attribute>
+<attribute name="AddStudyInstanceUIDSlot" type="java.lang.Boolean">true</attribute>
+<attribute name="FetchSize" type="java.lang.Integer">50</attribute>
+<attribute name="AutoPublishDocTitle" type="java.lang.String">AutoPublish^Automatic XDS-I export of received images</attribute>
+<attribute name="RidURL" type="java.lang.String">http://localhost:8080/rid/IHERetrieveDocument?requestType=DOCUMENT&amp;preferredContentType=application/pdf&amp;documentUID=</attribute>
+<attribute name="LocalDomain" type="java.lang.String">NONE</attribute>
+<attribute name="AffinityDomain" type="java.lang.String">=?AffinityDomain</attribute>
+<attribute name="RemoveNamespaceID" type="java.lang.Boolean">false</attribute>
+<attribute name="LogSOAPMessage" type="java.lang.Boolean">true</attribute>
+<attribute name="IndentSOAPLog" type="java.lang.Boolean">true</attribute>
+<attribute name="LogITI15" type="java.lang.Boolean">true</attribute>
+<attribute name="PixQueryServiceName" type="javax.management.ObjectName">dcm4chee.archive:service=PIXQuery</attribute>
+<attribute name="IANScuServiceName" type="javax.management.ObjectName">dcm4chee.archive:service=IANScu</attribute>
+<attribute name="KeyObjectServiceName" type="javax.management.ObjectName">dcm4chee.archive:service=KeyObjectService</attribute>
+<attribute name="XdsHttpCfgServiceName" type="java.lang.String">NONE</attribute>
+<attribute name="UseXDSb" type="java.lang.Boolean">false</attribute>
+<attribute name="XdsbSourceServiceName" type="java.lang.String">NONE</attribute>
+<attribute name="XdsQueryServiceName" type="java.lang.String">NONE</attribute>
+<attribute name="TimerIDAutoPublish" type="java.lang.String">XdsAutoPublish</attribute>
+<attribute name="SchedulerServiceName" type="javax.management.ObjectName">dcm4chee.archive:service=Scheduler</attribute>
+<attribute name="TemplatesServiceName" type="javax.management.ObjectName">dcm4chee.archive:service=Templates</attribute>
+<attribute name="DocTitleCodeListFile" type="java.lang.String">conf/dcm4chee-xdsi/web2/docTitleCodes.txt</attribute>
+<attribute name="EventCodeListFile" type="java.lang.String">conf/dcm4chee-xdsi/web2/eventCodes.txt</attribute>
+<attribute name="ClassCodeListFile" type="java.lang.String">conf/dcm4chee-xdsi/web2/classCodes.txt</attribute>
+<attribute name="ContentTypeCodes" type="java.lang.String">conf/dcm4chee-xdsi/web2/contentTypeCodes.txt</attribute>
+<attribute name="HealthCareFacilityTypeCode" type="java.lang.String">conf/dcm4chee-xdsi/web2/healthCareFacilityTypeCodes.txt</attribute>
+<attribute name="ConfidentialityCodes" type="java.lang.String">cc1^confidentialityCode</attribute>
+<attribute name="AuthorPersonMapping" type="java.lang.String">DCM4CHEE^^^XDSITEST</attribute>
+<attribute name="AuthorRoles" type="java.lang.String">stdRole^Standard Role;adminRole^Admin Role</attribute>
+</attribute-list>

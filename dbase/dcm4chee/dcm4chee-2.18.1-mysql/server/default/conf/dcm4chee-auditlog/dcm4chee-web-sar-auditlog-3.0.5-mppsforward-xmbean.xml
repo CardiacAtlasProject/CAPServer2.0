@@ -1,0 +1,4 @@
+<mbean name="dcm4chee.web:service=MPPSForward">
+<attribute name="CallingAETitle"/>
+<attribute name="State"/>
+</mbean>

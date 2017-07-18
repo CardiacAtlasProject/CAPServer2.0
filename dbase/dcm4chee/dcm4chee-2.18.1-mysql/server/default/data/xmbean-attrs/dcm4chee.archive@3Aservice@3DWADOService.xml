@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- automatically produced by XMLAttributePersistenceManager --><attribute-list date="20170714094005" id="dcm4chee.archive:service=WADOService">
+<attribute name="CacheDataRootDirectory" type="java.lang.String">wadocachedata</attribute>
+<attribute name="CacheNumbersOfStudyBags" type="java.lang.String">1</attribute>
+<attribute name="CachJournalRootDirectory" type="java.lang.String">wadocachejournal</attribute>
+<attribute name="CacheJournalFilePathFormat" type="java.lang.String">yyyy/MM/dd/HH/mm</attribute>
+<attribute name="DisableCache" type="java.lang.Boolean">false</attribute>
+<attribute name="EnableClearCacheForReceivedSeries" type="java.lang.Boolean">false</attribute>
+<attribute name="DeleterThresholds" type="java.lang.String">7:10MB;19:100MB</attribute>
+<attribute name="FreeDiskSpaceInterval" type="java.lang.String">10m</attribute>
+<attribute name="ImageQuality" type="java.lang.String">75</attribute>
+<attribute name="ImageWriterClass" type="java.lang.String">com.sun.media.imageioimpl.plugins.jpeg.CLibJPEGImageWriter</attribute>
+<attribute name="JpgWriterSupportsByteColormap" type="java.lang.Boolean">true</attribute>
+<attribute name="JpgWriterSupportsShortColormap" type="java.lang.Boolean">false</attribute>
+<attribute name="PNGImageWriterClass" type="java.lang.String">com.sun.imageio.plugins.png.PNGImageWriter</attribute>
+<attribute name="useClientRedirect" type="java.lang.Boolean">false</attribute>
+<attribute name="useRedirectCaching" type="java.lang.Boolean">true</attribute>
+<attribute name="UseTransferSyntaxOfFileAsDefault" type="java.lang.Boolean">true</attribute>
+<attribute name="SRfixedImageRows" type="java.lang.String">NONE</attribute>
+<attribute name="HtmlXslURL" type="java.lang.String">conf/dcm4chee-wado/sr_html.xsl</attribute>
+<attribute name="XHtmlXslURL" type="java.lang.String">conf/dcm4chee-wado/sr_html.xsl</attribute>
+<attribute name="XmlXslURL" type="java.lang.String">conf/dcm4chee-wado/sr_xml_style.xsl</attribute>
+<attribute name="DicomXslURL" type="java.lang.String">NONE</attribute>
+<attribute name="ContentTypeDicomXML" type="java.lang.String">text/html</attribute>
+<attribute name="TextSopCuids" type="java.lang.String"/>
+<attribute name="VideoSopCuids" type="java.lang.String">VideoEndoscopicImageStorage;VideoMicroscopicImageStorage;VideoPhotographicImageStorage</attribute>
+<attribute name="EncapsulatedSopCuids" type="java.lang.String">EncapsulatedPDFStorage;Dcm4cheEncapsulatedDocumentStorage</attribute>
+<attribute name="DisabledAuditLogHosts" type="java.lang.String">NONE</attribute>
+<attribute name="DisableHostLookup" type="java.lang.Boolean">false</attribute>
+<attribute name="RenderOverlays" type="java.lang.Boolean">false</attribute>
+<attribute name="FetchDestinationAET" type="java.lang.String">DCM4CHEE</attribute>
+<attribute name="UseSeriesLevelFetch" type="java.lang.Boolean">false</attribute>
+<attribute name="FetchTimeout" type="java.lang.Long">10000</attribute>
+<attribute name="TimerID" type="java.lang.String">CheckFreeDiskSpaceWado</attribute>
+<attribute name="QueryRetrieveScpName" type="javax.management.ObjectName">dcm4chee.archive:service=QueryRetrieveScp</attribute>
+<attribute name="MoveScuServiceName" type="javax.management.ObjectName">dcm4chee.archive:service=MoveScu</attribute>
+<attribute name="StoreScpServiceName" type="javax.management.ObjectName">dcm4chee.archive:service=StoreScp</attribute>
+<attribute name="SchedulerServiceName" type="javax.management.ObjectName">dcm4chee.archive:service=Scheduler</attribute>
+</attribute-list>
