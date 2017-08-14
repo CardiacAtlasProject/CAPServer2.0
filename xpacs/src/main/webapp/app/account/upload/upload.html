@@ -3,11 +3,11 @@
         <div class="col-md-8 col-md-offset-2">
             <h2>Upload CSV file</h2>
 
-            <div class="alert alert-success" ng-show="vm.success">
+            <div id="successBanner" class="alert alert-success" style="display:none">
                 <strong>Database was successfully populated!
                 </strong>
             </div>
-            <div class="alert alert-danger" ng-show="vm.error" >
+            <div id="failBanner" class="alert alert-danger" style="display:none">
                 <strong>An error has occurred!</strong> Database could not be populated!
             </div>
            <jhi-alert-error></jhi-alert-error>
@@ -20,7 +20,7 @@
 	            <select class="form-control" name="upload_entity" ng-model="vm.upload_entity" id="upload_entity" required>
 	                <option value="patient_info">Patient Info</option>
 	                <option value="clinical_note">Clinical Note</option>
-	                <option value="aux_file">Aux File</option>
+	                <option value="baseline_diagnosis">Baseline_diagnosis</option>
 	            </select>
 	            <div ng-show="form.$invalid">
 	                <p class="help-block"

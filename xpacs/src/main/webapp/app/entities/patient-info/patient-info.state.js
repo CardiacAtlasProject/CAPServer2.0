@@ -101,6 +101,61 @@
                 });
             }]
         })
+        .state('patient-info-consolidated', {
+            parent: 'patient-info',
+            url: '/patient-info-consolidated/{id}',
+            data: {
+                authorities: ['ROLE_USER'],
+                pageTitle: 'PatientInfoConsolidated'
+            },
+            views: {
+                'content@': {
+                    templateUrl: 'app/entities/patient-info/patient-info-consolidated.html',
+                    controller: 'PatientInfoConsolidatedController',
+                    controllerAs: 'vm'
+                }
+            },
+            resolve: {
+                entity: ['$stateParams', 'PatientInfo', function($stateParams, PatientInfo) {
+                  
+                    return PatientInfo.get({id : $stateParams.id}).$promise;
+
+                }],
+                previousState: ["$state", function ($state) {
+                    var currentStateData = {
+                        name: $state.current.name || 'patient-info',
+                        params: $state.params,
+                        url: $state.href($state.current.name, $state.params)
+                    };
+                    return currentStateData;
+                }]
+            }
+        })
+        .state('patient-info-consolidated.edit', {
+            parent: 'patient-info-consolidated',
+            url: '/consolidated/edit',
+            data: {
+                authorities: ['ROLE_USER']
+            },
+            onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
+                $uibModal.open({
+                    templateUrl: 'app/entities/patient-info/patient-info-dialog.html',
+                    controller: 'PatientInfoDialogController',
+                    controllerAs: 'vm',
+                    backdrop: 'static',
+                    size: 'lg',
+                    resolve: {
+                        entity: ['PatientInfo', function(PatientInfo) {
+                            return PatientInfo.get({id : $stateParams.id}).$promise;
+                        }]
+                    }
+                }).result.then(function() {
+                    $state.go('^', {}, { reload: false });
+                }, function() {
+                    $state.go('^');
+                });
+            }]
+        })
         .state('patient-info.new', {
             parent: 'patient-info',
             url: '/new',
