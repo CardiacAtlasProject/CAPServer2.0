@@ -41,6 +41,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -64,14 +65,14 @@ public class UploadResource {
 	//Save the uploaded file to this folder
     private static String UPLOADED_FOLDER = "downloads/";
     private static String SCRIPTS_FOLDER = "scripts/";
-	@SuppressWarnings("deprecation")
+	@SuppressWarnings({ "deprecation", "unchecked" })
 	@PostMapping("/status")
     @Timed
   //Single file upload
     public ResponseEntity<?> uploadFile(
             @RequestParam("file") MultipartFile uploadfile,@RequestParam("UploadEntity") String UploadEntity) {
 
-        log.debug("Single file upload!");
+        
         log.debug("Uploading entity "+UploadEntity);
         if (uploadfile.isEmpty()) {
             return new ResponseEntity("please select a file!", HttpStatus.OK);
@@ -81,28 +82,29 @@ public class UploadResource {
 //        	return new ResponseEntity("please upload a csv file only!", HttpStatus.BAD_REQUEST);
 //        }
 
+        
         try {
-
             saveUploadedFiles(Arrays.asList(uploadfile));
-
+	        if(UploadEntity.equals("patient_info")){
+	            uploadPatientInfo(uploadfile.getOriginalFilename());
+	        }
+	        if(UploadEntity.equals("clinical_note")){
+	            uploadClinicalNoteInfo(uploadfile.getOriginalFilename());
+	        }
+	        if(UploadEntity.equals("baseline_diagnosis")){
+	            uploadBaselineDiagnosisInfo(uploadfile.getOriginalFilename());
+	        }
         } catch (IOException e) {
+        	new File(System.getProperty("user.dir")+"/downloads/"+uploadfile.getOriginalFilename()).delete();
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        if(UploadEntity.equals("patient_info")){
-            uploadPatientInfo(uploadfile.getOriginalFilename());
-        }
-        if(UploadEntity.equals("clinical_note")){
-            uploadClinicalNoteInfo(uploadfile.getOriginalFilename());
-        }
-        if(UploadEntity.equals("baseline_diagnosis")){
-            uploadBaselineDiagnosisInfo(uploadfile.getOriginalFilename());
-        }
+        new File(System.getProperty("user.dir")+"/downloads/"+uploadfile.getOriginalFilename()).delete();
         return new ResponseEntity("Successfully uploaded - " +
                 uploadfile.getOriginalFilename(), new HttpHeaders(), HttpStatus.OK);
 	}
 	
 	public boolean uploadPatientInfo(String filename){
-        log.debug("Write csv file to DB");
+        
         String s = null;
 		final String FILE_NAME = System.getProperty("user.dir")+"/downloads/"+filename;
 		BufferedReader br = null;
@@ -112,7 +114,13 @@ public class UploadResource {
             br = new BufferedReader(new FileReader(FILE_NAME));
             List<PatientInfo> patientInfos = new ArrayList<PatientInfo>();
             PatientInfo patientInfo;
+            int count=0;
             while ((line = br.readLine()) != null) {
+            	//skip reading first row
+            	if (count==0){
+            		count+=1;
+            		continue;
+            	}
             	patientInfo=new PatientInfo();
                 // use comma as separator
                 String[] info = line.split(cvsSplitBy);
@@ -153,7 +161,7 @@ public class UploadResource {
 	
 	
 	public boolean uploadClinicalNoteInfo(String filename){
-        log.debug("Write csv file to DB");
+        
         String s = null;
 		final String FILE_NAME = System.getProperty("user.dir")+"/downloads/"+filename;
 		BufferedReader br = null;
@@ -161,15 +169,19 @@ public class UploadResource {
         String cvsSplitBy = ",";
 	    try{
             br = new BufferedReader(new FileReader(FILE_NAME));
-            log.debug("Buffer read");
+            
             List<ClinicalNote> clinicalNotes = new ArrayList<ClinicalNote>();
             ClinicalNote clinicalNote;
+            int count=0;
             while ((line = br.readLine()) != null) {
-            	log.debug("Inside while loop");
+            	if (count==0){
+            		count+=1;
+            		continue;
+            	}
             	clinicalNote=new ClinicalNote();
                 // use comma as separator
                 String[] info = line.split(cvsSplitBy);
-                log.debug("Date is "+info[0]);
+                
                 final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("M/d/yyyy");
                 final LocalDate dt = LocalDate.parse(info[0],dtf);
                 
@@ -179,9 +191,9 @@ public class UploadResource {
                 clinicalNote.setWeight(info[3]);
                 clinicalNote.setDiagnosis(info[4]);
             	clinicalNote.setNote(info[5]);
-            	log.debug("Setting patient_info key");
+            	
             	Long id = patientInfoRepository.findID(info[6]);
-            	log.debug("ID returned is "+id);
+            	
             	clinicalNote.setPatientInfoFK(patientInfoRepository.findOne(id));
             	clinicalNotes.add(clinicalNote);
                 
@@ -213,7 +225,7 @@ public class UploadResource {
     }
 	
 	public boolean uploadBaselineDiagnosisInfo(String filename){
-        log.debug("Write csv file to DB");
+        
         String s = null;
 		final String FILE_NAME = System.getProperty("user.dir")+"/downloads/"+filename;
 		BufferedReader br = null;
@@ -221,15 +233,19 @@ public class UploadResource {
         String cvsSplitBy = ",";
 	    try{
             br = new BufferedReader(new FileReader(FILE_NAME));
-            log.debug("Buffer read");
+            
             List<BaselineDiagnosis> baselineDiagnosis = new ArrayList<BaselineDiagnosis>();
             BaselineDiagnosis baselineDiag;
+            int count=0;
             while ((line = br.readLine()) != null) {
-            	log.debug("Inside while loop");
+            	if (count==0){
+            		count+=1;
+            		continue;
+            	}
             	baselineDiag=new BaselineDiagnosis();
                 // use comma as separator
                 String[] info = line.split(cvsSplitBy);
-                log.debug("Date is "+info[0]);
+                
                 final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("M/d/yyyy");
                 final LocalDate dt = LocalDate.parse(info[0],dtf);
                 

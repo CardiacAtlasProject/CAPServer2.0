@@ -33,7 +33,7 @@
                 <tr ng-repeat="capModel in vm.capModels track by capModel.id">
 <!--                     <td><a ui-sref="cap-model-detail({id:capModel.id})">{{capModel.id}}</a></td> -->
                     <td>
-                        <a ui-sref="patient-info-detail({id:capModel.patientInfoFK.id})">{{capModel.patientInfoFK.patientId}}</a>
+                        <a ui-sref="patient-info-consolidated({id:capModel.patientInfoFK.id})">{{capModel.patientInfoFK.patientId}}</a>
                     </td>
                     <td><a ui-sref="cap-model-detail({id:capModel.id})">{{capModel.creationDate | date:'mediumDate'}}</a></td>
                     <td>{{capModel.name}}</td>

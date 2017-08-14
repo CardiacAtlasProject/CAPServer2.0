@@ -30,7 +30,7 @@
                 <tr ng-repeat="auxFile in vm.auxFiles track by auxFile.id">
 <!--                     <td><a ui-sref="aux-file-detail({id:auxFile.id})">{{auxFile.id}}</a></td> -->
                     <td>
-                        <a ui-sref="patient-info-detail({id:auxFile.patientInfoFK.id})">{{auxFile.patientInfoFK.patientId}}</a>
+                        <a ui-sref="patient-info-consolidated({id:auxFile.patientInfoFK.id})">{{auxFile.patientInfoFK.patientId}}</a>
                     </td>
                     <td><a ui-sref="aux-file-detail({id:auxFile.id})">{{auxFile.creationDate | date:'mediumDate'}}</a></td>
                     <td>{{auxFile.description}}</td>

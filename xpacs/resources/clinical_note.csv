@@ -1,0 +1,6 @@
+assessment_date,age,height,weight,diagnosis,note,patient_id
+7/22/2016,56,6.6,120,null,null,pat_id_1
+8/2/2006,80,5.2,150,null,null,pat_id_2
+2/12/2001,21,4.5,148,null,null,pat_id_3
+7/22/2016,23,5.3,175,null,null,pat_id_4
+11/28/2007,27,6,99,null,null,pat_id_5
