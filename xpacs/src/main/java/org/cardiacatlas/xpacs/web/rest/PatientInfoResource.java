@@ -49,11 +49,13 @@ public class PatientInfoResource {
     private final ClinicalNoteRepository clinicalNoteRepository;
     private final BaselineDiagnosisRepository baselineDiagnosisRepository;
     private final AuxFileRepository auxFileRepository;
-    public PatientInfoResource(PatientInfoRepository patientInfoRepository,ClinicalNoteRepository clinicalNoteRepository,BaselineDiagnosisRepository baselineDiagnosisRepository,AuxFileRepository auxFileRepository) {
+    private final CapModelRepository capModelRepository;
+    public PatientInfoResource(PatientInfoRepository patientInfoRepository,ClinicalNoteRepository clinicalNoteRepository,BaselineDiagnosisRepository baselineDiagnosisRepository,AuxFileRepository auxFileRepository,CapModelRepository capModelRepository) {
         this.patientInfoRepository = patientInfoRepository;
         this.clinicalNoteRepository = clinicalNoteRepository;
         this.baselineDiagnosisRepository =  baselineDiagnosisRepository;
         this.auxFileRepository= auxFileRepository;
+        this.capModelRepository = capModelRepository;
     }
 
     /**
@@ -145,11 +147,12 @@ public class PatientInfoResource {
         log.debug("REST request to get PatientInfo : {}", id);
         PatientInfo patientInfo = patientInfoRepository.findOne(id);
         
-		ClinicalNote clinicalNote = clinicalNoteRepository.findOne(id);
-		BaselineDiagnosis baselineDiagnosis = baselineDiagnosisRepository.findOne(id);
-		AuxFile auxFile = auxFileRepository.findOne(id) ;
-		ConsolidatedInfo consolidatedInfo = new ConsolidatedInfo(id,patientInfo,clinicalNote,baselineDiagnosis,auxFile);
-		
+		//ClinicalNote clinicalNote = clinicalNoteRepository.findOne(id);
+		List<ClinicalNote> clinicalNote = clinicalNoteRepository.findAllByID(id);
+		List<BaselineDiagnosis> baselineDiagnosis = baselineDiagnosisRepository.findAllByID(id);
+		List<AuxFile> auxFile = auxFileRepository.findAllByID(id);
+		List<CapModel> capModel = capModelRepository.findAllByID(id);
+		ConsolidatedInfo consolidatedInfo = new ConsolidatedInfo(id,patientInfo,clinicalNote,baselineDiagnosis,auxFile,capModel);
 		log.debug("REST is  ",clinicalNote);
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(consolidatedInfo));
     }

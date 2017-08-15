@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import org.springframework.data.jpa.repository.*;
 
+import java.util.List;
 
 /**
  * Spring Data JPA repository for the AuxFile entity.
@@ -13,4 +14,6 @@ import org.springframework.data.jpa.repository.*;
 @Repository
 public interface AuxFileRepository extends JpaRepository<AuxFile,Long> {
 
+	@Query("select c from AuxFile c INNER JOIN PatientInfo p on c.patientInfoFK = p.id where p.id = ?1")
+	List<AuxFile> findAllByID(Long id);
 }

@@ -15,5 +15,7 @@ import java.util.Optional;
 public interface PatientInfoRepository extends JpaRepository<PatientInfo,Long> {
 
 	Optional<PatientInfo> findOneByPatientId(String patientId);
-
+	
+    @Query("select p.id from PatientInfo p where p.patient_id = ?1")
+	Long findID(String patient_id);
 }

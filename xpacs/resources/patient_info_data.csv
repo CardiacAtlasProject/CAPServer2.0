@@ -1,0 +1,6 @@
+patient_id,cohort,ethnicity,gender,primary_diagnosis
+pat_id_1,cohort_1,eth_1,male,pimary_diag_1
+pat_id_2,cohort_2,eth_2,female,pimary_diag_2
+pat_id_3,cohort_3,eth_3,male,pimary_diag_3
+pat_id_4,cohort_4,eth_4,female,pimary_diag_4
+pat_id_5,cohort_5,eth_5,female,pimary_diag_5

@@ -38,7 +38,7 @@
                 <tr ng-repeat="baselineDiagnosis in vm.baselineDiagnoses track by baselineDiagnosis.id">
 <!--                     <td><a ui-sref="baseline-diagnosis-detail({id:baselineDiagnosis.id})">{{baselineDiagnosis.id}}</a></td> -->
                     <td>
-                        <a ui-sref="patient-info-detail({id:baselineDiagnosis.patientInfoFK.id})">{{baselineDiagnosis.patientInfoFK.patientId}}</a>
+                        <a ui-sref="patient-info-consolidated({id:baselineDiagnosis.patientInfoFK.id})">{{baselineDiagnosis.patientInfoFK.patientId}}</a>
                     </td>
                     <td><a ui-sref="baseline-diagnosis-detail({id:baselineDiagnosis.id})">{{baselineDiagnosis.diagnosisDate | date:'mediumDate'}}</a></td>
                     <td>{{baselineDiagnosis.age}}</td>

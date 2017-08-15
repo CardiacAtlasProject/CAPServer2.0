@@ -33,7 +33,7 @@
                 <tr ng-repeat="clinicalNote in vm.clinicalNotes track by clinicalNote.id">
 <!--                     <td><a ui-sref="clinical-note-detail({id:clinicalNote.id})">{{clinicalNote.id}}</a></td> -->
                     <td>
-                        <a ui-sref="patient-info-detail({id:clinicalNote.patientInfoFK.id})">{{clinicalNote.patientInfoFK.patientId}}</a>
+                        <a ui-sref="patient-info-consolidated({id:clinicalNote.patientInfoFK.id})">{{clinicalNote.patientInfoFK.patientId}}</a>
                     </td>
                     <td><a ui-sref="clinical-note-detail({id:clinicalNote.id})">{{clinicalNote.assessmentDate | date:'mediumDate'}}</a></td>
                     <td>{{clinicalNote.age}}</td>
