@@ -7,10 +7,12 @@ import org.cardiacatlas.xpacs.domain.BaselineDiagnosis;
 import org.cardiacatlas.xpacs.domain.ClinicalNote;
 import org.cardiacatlas.xpacs.domain.ConsolidatedInfo;
 import org.cardiacatlas.xpacs.domain.PatientInfo;
+import org.cardiacatlas.xpacs.domain.CapModel;
 import org.cardiacatlas.xpacs.repository.AuxFileRepository;
 import org.cardiacatlas.xpacs.repository.BaselineDiagnosisRepository;
 import org.cardiacatlas.xpacs.repository.ClinicalNoteRepository;
 import org.cardiacatlas.xpacs.repository.PatientInfoRepository;
+import org.cardiacatlas.xpacs.repository.CapModelRepository;
 import org.cardiacatlas.xpacs.web.rest.util.HeaderUtil;
 import org.cardiacatlas.xpacs.web.rest.util.PaginationUtil;
 import io.swagger.annotations.ApiParam;
@@ -44,7 +46,7 @@ public class PatientInfoResource {
     private final Logger log = LoggerFactory.getLogger(PatientInfoResource.class);
 
     private static final String ENTITY_NAME = "patientInfo";
-        
+
     private final PatientInfoRepository patientInfoRepository;
     private final ClinicalNoteRepository clinicalNoteRepository;
     private final BaselineDiagnosisRepository baselineDiagnosisRepository;
@@ -69,18 +71,18 @@ public class PatientInfoResource {
     @Timed
     public ResponseEntity<PatientInfo> createPatientInfo(@Valid @RequestBody PatientInfo patientInfo) throws URISyntaxException {
         log.debug("REST request to save PatientInfo : {}", patientInfo);
-        
+
         if (patientInfo.getId() != null) {
             return ResponseEntity.badRequest()
             		             .headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new patientInfo cannot already have an ID"))
             		             .body(null);
         } else if( patientInfoRepository.findOneByPatientId(patientInfo.getPatientId()).isPresent() ) {
-        	
+
         	// cannot create patient with the same PatientID
         	return ResponseEntity.badRequest()
                     .headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "Entity creation failed, PatientID already in use"))
                     .body(null);
-        	
+
         } else {
             PatientInfo result = patientInfoRepository.save(patientInfo);
             return ResponseEntity.created(new URI("/api/patient-infos/" + result.getId()))
@@ -146,7 +148,7 @@ public class PatientInfoResource {
     public ResponseEntity<ConsolidatedInfo> getPatientInfo(@PathVariable Long id) {
         log.debug("REST request to get PatientInfo : {}", id);
         PatientInfo patientInfo = patientInfoRepository.findOne(id);
-        
+
 		//ClinicalNote clinicalNote = clinicalNoteRepository.findOne(id);
 		List<ClinicalNote> clinicalNote = clinicalNoteRepository.findAllByID(id);
 		List<BaselineDiagnosis> baselineDiagnosis = baselineDiagnosisRepository.findAllByID(id);

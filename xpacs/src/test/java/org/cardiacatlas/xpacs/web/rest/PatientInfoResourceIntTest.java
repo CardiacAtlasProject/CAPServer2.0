@@ -75,7 +75,7 @@ public class PatientInfoResourceIntTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        PatientInfoResource patientInfoResource = new PatientInfoResource(patientInfoRepository, null, null, null);
+        PatientInfoResource patientInfoResource = new PatientInfoResource(patientInfoRepository, null, null, null, null);
         this.restPatientInfoMockMvc = MockMvcBuilders.standaloneSetup(patientInfoResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)
@@ -123,7 +123,7 @@ public class PatientInfoResourceIntTest {
         assertThat(testPatientInfo.getEthnicity()).isEqualTo(DEFAULT_ETHNICITY);
         assertThat(testPatientInfo.getGender()).isEqualTo(DEFAULT_GENDER);
         assertThat(testPatientInfo.getPrimaryDiagnosis()).isEqualTo(DEFAULT_PRIMARY_DIAGNOSIS);
-        
+
     }
 
     @Test
@@ -144,27 +144,27 @@ public class PatientInfoResourceIntTest {
         List<PatientInfo> patientInfoList = patientInfoRepository.findAll();
         assertThat(patientInfoList).hasSize(databaseSizeBeforeCreate);
     }
-    
+
     @Test
     @Transactional
     public void createPatientInfoWithExistingPatientId() throws Exception {
     	// InitalizeDatabase
     	patientInfoRepository.saveAndFlush(patientInfo);
     	List<PatientInfo> patientInfoListBeforeCreate = patientInfoRepository.findAll();
-    	
+
         PatientInfo newPatientInfo = new PatientInfo()
                 .patientId(DEFAULT_PATIENT_ID)         // this should already be there
                 .cohort(DEFAULT_COHORT)
                 .ethnicity(DEFAULT_ETHNICITY)
                 .gender(DEFAULT_GENDER)
                 .primaryDiagnosis(DEFAULT_PRIMARY_DIAGNOSIS);
-        
+
         // Create the User
         restPatientInfoMockMvc.perform(post("/api/patient-infos")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(newPatientInfo)))
         	.andExpect(status().isBadRequest());
-    	
+
         // Validate that the newPatientInfo is not inserted
         assertThat(patientInfoRepository.findAll()).isEqualTo(patientInfoListBeforeCreate);
     }

@@ -95,6 +95,14 @@
         <yarn.version>v0.24.4</yarn.version>
     </properties>
 
+    <repositories>
+      <repository>
+        <id>www.dcm4che.org</id>
+        <name>dcm4che Repository</name>
+        <url>http://www.dcm4che.org/maven2</url>
+      </repository>
+    </repositories>
+
     <dependencies>
         <dependency>
             <groupId>io.github.jhipster</groupId>

@@ -55,7 +55,7 @@ public class UploadResource {
 	private final PatientInfoRepository patientInfoRepository;
     private final ClinicalNoteRepository clinicalNoteRepository;
     private final BaselineDiagnosisRepository baselineDiagnosisRepository;
-    
+
     public UploadResource(PatientInfoRepository patientInfoRepository,ClinicalNoteRepository clinicalNoteRepository,BaselineDiagnosisRepository baselineDiagnosisRepository) {
         this.patientInfoRepository = patientInfoRepository;
         this.clinicalNoteRepository = clinicalNoteRepository;
@@ -72,17 +72,17 @@ public class UploadResource {
     public ResponseEntity<?> uploadFile(
             @RequestParam("file") MultipartFile uploadfile,@RequestParam("UploadEntity") String UploadEntity) {
 
-        
+
         log.debug("Uploading entity "+UploadEntity);
         if (uploadfile.isEmpty()) {
             return new ResponseEntity("please select a file!", HttpStatus.OK);
         }
-        
+
 //        if(!(uploadfile.getOriginalFilename().split(".")[1].equals("csv"))){
 //        	return new ResponseEntity("please upload a csv file only!", HttpStatus.BAD_REQUEST);
 //        }
 
-        
+
         try {
             saveUploadedFiles(Arrays.asList(uploadfile));
 	        if(UploadEntity.equals("patient_info")){
@@ -102,9 +102,9 @@ public class UploadResource {
         return new ResponseEntity("Successfully uploaded - " +
                 uploadfile.getOriginalFilename(), new HttpHeaders(), HttpStatus.OK);
 	}
-	
+
 	public boolean uploadPatientInfo(String filename){
-        
+
         String s = null;
 		final String FILE_NAME = System.getProperty("user.dir")+"/downloads/"+filename;
 		BufferedReader br = null;
@@ -124,7 +124,7 @@ public class UploadResource {
             	patientInfo=new PatientInfo();
                 // use comma as separator
                 String[] info = line.split(cvsSplitBy);
-                patientInfo.setPatient_id(info[0]);
+                patientInfo.setPatientId(info[0]);
                 patientInfo.setCohort(info[1]);
                 patientInfo.setEthnicity(info[2]);
                 String gender = info[3];
@@ -132,12 +132,12 @@ public class UploadResource {
                     patientInfo.setGender(GenderType.male);
             	else
             		patientInfo.setGender(GenderType.female);
-            	patientInfo.setPrimary_diagnosis(info[4]);
+            	patientInfo.setPrimaryDiagnosis(info[4]);
                 patientInfos.add(patientInfo);
-                
+
             }
-            
-			createPatientInfo(patientInfos); 
+
+			createPatientInfo(patientInfos);
         } catch (FileNotFoundException e) {
             log.debug(e.toString());
         } catch (IOException e) {
@@ -154,14 +154,14 @@ public class UploadResource {
                 }
             }
         }
-	    
+
         return true;
 
     }
-	
-	
+
+
 	public boolean uploadClinicalNoteInfo(String filename){
-        
+
         String s = null;
 		final String FILE_NAME = System.getProperty("user.dir")+"/downloads/"+filename;
 		BufferedReader br = null;
@@ -169,7 +169,7 @@ public class UploadResource {
         String cvsSplitBy = ",";
 	    try{
             br = new BufferedReader(new FileReader(FILE_NAME));
-            
+
             List<ClinicalNote> clinicalNotes = new ArrayList<ClinicalNote>();
             ClinicalNote clinicalNote;
             int count=0;
@@ -181,25 +181,25 @@ public class UploadResource {
             	clinicalNote=new ClinicalNote();
                 // use comma as separator
                 String[] info = line.split(cvsSplitBy);
-                
+
                 final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("M/d/yyyy");
                 final LocalDate dt = LocalDate.parse(info[0],dtf);
-                
-                clinicalNote.setAssessment_date(dt);
+
+                clinicalNote.setAssessmentDate(dt);
                 clinicalNote.setAge(Float.valueOf(info[1]));
                 clinicalNote.setHeight(info[2]);
                 clinicalNote.setWeight(info[3]);
                 clinicalNote.setDiagnosis(info[4]);
             	clinicalNote.setNote(info[5]);
-            	
+
             	Long id = patientInfoRepository.findID(info[6]);
-            	
+
             	clinicalNote.setPatientInfoFK(patientInfoRepository.findOne(id));
             	clinicalNotes.add(clinicalNote);
-                
+
             }
-            
-			createClinicalNote(clinicalNotes); 
+
+			createClinicalNote(clinicalNotes);
         } catch (FileNotFoundException e) {
             log.debug(e.toString());
         } catch (IOException e) {
@@ -219,13 +219,13 @@ public class UploadResource {
                 }
             }
         }
-	    
+
         return true;
 
     }
-	
+
 	public boolean uploadBaselineDiagnosisInfo(String filename){
-        
+
         String s = null;
 		final String FILE_NAME = System.getProperty("user.dir")+"/downloads/"+filename;
 		BufferedReader br = null;
@@ -233,7 +233,7 @@ public class UploadResource {
         String cvsSplitBy = ",";
 	    try{
             br = new BufferedReader(new FileReader(FILE_NAME));
-            
+
             List<BaselineDiagnosis> baselineDiagnosis = new ArrayList<BaselineDiagnosis>();
             BaselineDiagnosis baselineDiag;
             int count=0;
@@ -245,28 +245,28 @@ public class UploadResource {
             	baselineDiag=new BaselineDiagnosis();
                 // use comma as separator
                 String[] info = line.split(cvsSplitBy);
-                
+
                 final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("M/d/yyyy");
                 final LocalDate dt = LocalDate.parse(info[0],dtf);
-                
-                baselineDiag.setDiagnosis_date(dt);
+
+                baselineDiag.setDiagnosisDate(dt);
                 baselineDiag.setAge(Float.valueOf(info[1]));
                 baselineDiag.setHeight(info[2]);
                 baselineDiag.setWeight(info[3]);
-                baselineDiag.setHeart_rate(info[4]);
+                baselineDiag.setHeartRate(info[4]);
                 baselineDiag.setDbp(info[5]);
                 baselineDiag.setSbp(info[6]);
-                baselineDiag.setHistory_of_alcohol(info[7]);
-                baselineDiag.setHistory_of_diabetes(info[8]);
-                baselineDiag.setHistory_of_hypertension(info[9]);
-                baselineDiag.setHistory_of_smoking(info[10]);
+                baselineDiag.setHistoryOfAlcohol(info[7]);
+                baselineDiag.setHistoryOfDiabetes(info[8]);
+                baselineDiag.setHistoryOfHypertension(info[9]);
+                baselineDiag.setHistoryOfSmoking(info[10]);
             	Long id = patientInfoRepository.findID(info[11]);
             	baselineDiag.setPatientInfoFK(patientInfoRepository.findOne(id));
             	baselineDiagnosis.add(baselineDiag);
-                
+
             }
-            
-			createBaselineDiagnosis(baselineDiagnosis); 
+
+			createBaselineDiagnosis(baselineDiagnosis);
         } catch (FileNotFoundException e) {
             log.debug(e.toString());
         } catch (IOException e) {
@@ -286,11 +286,11 @@ public class UploadResource {
                 }
             }
         }
-	    
+
         return true;
 
     }
-	
+
 	public ResponseEntity<String> createPatientInfo(List<PatientInfo> patientInfo) throws URISyntaxException {
 		final String ENTITY_NAME = "patientInfo";
 		String result = "Success!";
@@ -308,7 +308,7 @@ public class UploadResource {
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result))
             .body(result);
     }
-	
+
 	public ResponseEntity<String> createClinicalNote(List<ClinicalNote> clinicalNotes) throws URISyntaxException {
 		final String ENTITY_NAME = "clinicalNote";
 		String result = "Success!";
@@ -320,13 +320,13 @@ public class UploadResource {
             	result = "Failed to upload the csv file! Make sure there are no duplicate patient IDs";
             	break;
             }
-	        
+
 		}
 		return ResponseEntity.created(new URI("/api/clinical-notes/"))
 	            .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result))
 	            .body(result);
     }
-	
+
 	public ResponseEntity<String> createBaselineDiagnosis(List<BaselineDiagnosis> baselineDiagnosis) throws URISyntaxException {
 		final String ENTITY_NAME = "baselineDiagnosis";
 		String result = "Success!";
@@ -338,20 +338,20 @@ public class UploadResource {
             	result = "Failed to upload the csv file! Make sure there are no duplicate patient IDs";
             	break;
             }
-	        
+
 		}
 		return ResponseEntity.created(new URI("/api/clinical-notes/"))
 	            .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result))
 	            .body(result);
     }
-	
+
 	//save file
     private void saveUploadedFiles(List<MultipartFile> files) throws IOException {
 
         for (MultipartFile file : files) {
 
             if (file.isEmpty()) {
-                continue; 
+                continue;
             }
 
             byte[] bytes = file.getBytes();
