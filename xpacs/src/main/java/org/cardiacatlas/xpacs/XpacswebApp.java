@@ -40,19 +40,16 @@ import java.util.Properties;
 import java.sql.*;
 
 
-
-
-
 @ComponentScan
 @EnableAutoConfiguration(exclude = { MetricFilterAutoConfiguration.class, MetricRepositoryAutoConfiguration.class })
 @EnableConfigurationProperties({ LiquibaseProperties.class, ApplicationProperties.class })
 public class XpacswebApp {
-	
+
 	private static void testDatabase(String url) throws SQLException {
 		Properties connectionProps = new Properties();
 	    connectionProps.put("user", "xpacsweb");
 	    Connection connection= DriverManager.getConnection(url, connectionProps);
-	    
+
 	    Statement s=connection.createStatement();
 	    try {
 	    s.execute("DROP ALL");
@@ -105,14 +102,16 @@ public class XpacswebApp {
 	 *             if the local host name could not be resolved into an address
 	 */
 	public static void main(String[] args) throws UnknownHostException {
-		
+
 		SpringApplication app = new SpringApplication(XpacswebApp.class);
 		DefaultProfileUtil.addDefaultProfile(app);
-		Environment env = app.run(args).getEnvironment();	
+		Environment env = app.run(args).getEnvironment();
 		String protocol = "http";
 		if (env.getProperty("server.ssl.key-store") != null) {
 			protocol = "https";
 		}
+
+		startDCM4CHEEServer(Boolean.parseBoolean(env.getProperty("application.pacsdb.init-start")));
 		log.info(
 				"\n----------------------------------------------------------\n\t"
 						+ "Application '{}' is running! Access URLs:\n\t" + "Local: \t\t{}://localhost:{}\n\t"
@@ -120,15 +119,14 @@ public class XpacswebApp {
 						+ "Profile(s): \t{}\n----------------------------------------------------------",
 				env.getProperty("spring.application.name"), protocol, env.getProperty("server.port"), protocol,
 				InetAddress.getLocalHost().getHostAddress(), env.getProperty("server.port"), env.getActiveProfiles());
-		
-		startDCM4CHEEServer(Boolean.parseBoolean(env.getProperty("server.rundcm4chee")));
+
 		/*
 
 		sendDicomFileTest();
 		recieveDicomFileTest();
-		
-		
-		
+
+
+
 		try {
 			testDatabase("jdbc:h2:mem:xpacsweb");
 		} catch (SQLException e) {
@@ -144,7 +142,7 @@ public class XpacswebApp {
 				public void run() {
 					try {
 						ProcessBuilder pb = new ProcessBuilder(
-								"/home/capdev/workspace/capdev/CAPServer2.0/dbase/dcm4chee/dcm4chee-2.18.1-mysql/bin/run.sh");
+								"~/dbase/dcm4chee/dcm4chee-2.18.1-mysql/bin/run.sh");
 						BufferedReader reader = new BufferedReader(new InputStreamReader(pb.start().getInputStream()));
 						String line = null;
 						while ((line = reader.readLine()) != null) {
@@ -156,10 +154,10 @@ public class XpacswebApp {
 					}
 				}
 			};
-			
+
 			dcm4cheeServer.setDaemon(true);
 			dcm4cheeServer.start();
-			
+
 			/*try{
 				dcm4cheeServer.join();
 			} catch (Exception e){
@@ -221,7 +219,7 @@ public class XpacswebApp {
 			dcmqr.close();
 			for (DicomObject d : result) {
 				log.info("DICOM OBJECT" + d.toString());
-				
+
 			}
 			log.info("Finish result found " + result.size() + " dicom objects.");
 		} catch (Exception e) {

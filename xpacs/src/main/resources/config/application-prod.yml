@@ -22,8 +22,8 @@ spring:
     datasource:
         type: com.zaxxer.hikari.HikariDataSource
         url: jdbc:mysql://localhost:3306/xpacsweb?useUnicode=true&characterEncoding=utf8&useSSL=false
-        username: root
-        password:
+        username: xpacs
+        password: xp@CS1234
         hikari:
             data-source-properties:
                 cachePrepStmts: true
@@ -126,4 +126,9 @@ jhipster:
 # https://jhipster.github.io/common-application-properties/
 # ===================================================================
 
+# Avan note:
+#    If you want to add new properties here, you must modify org.cardiacatlas.xpacs.config.ApplicationProperties.java class
+
 application:
+    pacsdb: # DCM4CHEE server configuration
+        init-start: false

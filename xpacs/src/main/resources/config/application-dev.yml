@@ -132,4 +132,9 @@ jhipster:
 # https://jhipster.github.io/common-application-properties/
 # ===================================================================
 
+# Avan note:
+#    If you want to add new properties here, you must modify org.cardiacatlas.xpacs.config.ApplicationProperties.java class
+
 application:
+    pacsdb: # DCM4CHEE server configuration
+        init-start: true
