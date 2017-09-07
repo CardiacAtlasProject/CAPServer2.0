@@ -1,3 +1,0 @@
-<mbean name="dcm4chee.archive:service=JMS">
-<attribute name="State"/>
-</mbean>

@@ -1,3 +1,0 @@
-<mbean name="dcm4chee.archive:service=Scheduler">
-<attribute name="State"/>
-</mbean>

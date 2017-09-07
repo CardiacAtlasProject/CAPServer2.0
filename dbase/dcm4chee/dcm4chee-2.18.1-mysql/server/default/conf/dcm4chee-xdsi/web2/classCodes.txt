@@ -1,2 +1,0 @@
-# ClassCodes (coarse classification)
-Education^Education

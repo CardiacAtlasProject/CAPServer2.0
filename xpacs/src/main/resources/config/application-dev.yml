@@ -137,4 +137,4 @@ jhipster:
 
 application:
     pacsdb: # DCM4CHEE server configuration
-        init-start: true
+        init-start: false

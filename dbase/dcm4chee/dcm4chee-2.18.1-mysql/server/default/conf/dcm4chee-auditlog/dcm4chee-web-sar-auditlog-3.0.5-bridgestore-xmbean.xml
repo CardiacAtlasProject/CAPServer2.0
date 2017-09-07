@@ -1,4 +1,0 @@
-<mbean name="dcm4chee.web:service=StoreBridge">
-<attribute name="StoreScpServiceName"/>
-<attribute name="State"/>
-</mbean>

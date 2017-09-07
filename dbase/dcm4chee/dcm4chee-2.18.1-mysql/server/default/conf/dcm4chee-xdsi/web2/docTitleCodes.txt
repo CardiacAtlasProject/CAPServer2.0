@@ -1,3 +1,0 @@
-# Document Title codes for KOS object
-cth1^CT of the head
-title_2^title2

@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- automatically produced by XMLAttributePersistenceManager --><attribute-list date="20170714094004" id="dcm4chee.archive:service=MD5CheckService">
-<attribute name="TaskInterval" type="java.lang.String">NEVER</attribute>
-<attribute name="MaxCheckedBefore" type="java.lang.String">1w</attribute>
-<attribute name="NumberOfFilesPerCheck" type="java.lang.Integer">1000</attribute>
-<attribute name="BufferSize" type="java.lang.Integer">8192</attribute>
-<attribute name="TimerIDCheckMD5" type="java.lang.String">CheckMD5</attribute>
-<attribute name="SchedulerServiceName" type="javax.management.ObjectName">dcm4chee.archive:service=Scheduler</attribute>
-</attribute-list>
