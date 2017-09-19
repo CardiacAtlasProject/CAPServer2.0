@@ -34,10 +34,14 @@ $ vagrant halt
 $ vagrant destroy
 ```
 
-## Install MySQL server
+## Install DCM4CHEE-ARC
 
-This should be done manually. Read [database documentation](dbase/README.md).
+The `xpacs` service needs [dcm4chee-arc](https://github.com/dcm4che/dcm4chee-arc-light/wiki) to work. Follow [installation notes for dcm4chee-arc with MySQL server on the same vagrant VM above](https://github.com/CardiacAtlasProject/dcm4chee-arc-notes) to install the dcm4chee server. Note that you do not have to setup vagrant again.
+
+## Install XPACS schema
+
+[Read this guideline](dbase)
 
 ## Build xpacs web interface
 
-Please read the [XPACS documentation](xpacs/README.md).
+[Read the XPACS documentation](xpacs).

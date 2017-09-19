@@ -22,14 +22,18 @@ Vagrant.configure("2") do |config|
   # Create a forwarded port mapping which allows access to a specific port
   # within the machine from a port on the host machine. In the example below,
   # accessing "localhost:8080" will access port 80 on the guest machine.
-  
+
   # dcm4chee
-  config.vm.network "forwarded_port", guest: 8080, host: 8080
-  config.vm.network "forwarded_port", guest: 9990, host: 9990
+  config.vm.network "forwarded_port", guest: 8585, host: 8585
   # mysql access
   config.vm.network "forwarded_port", guest: 3306, host: 3306
   # ldap access (localhost:3890) to the vm's 389 port
   config.vm.network "forwarded_port", guest: 389, host: 3890
+  # dicom 
+  config.vm.network "forwarded_port", guest: 11112, host: 11112
+  # xpacs webfront
+  config.vm.network "forwarded_port", guest: 8080, host: 8080
+
 
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.

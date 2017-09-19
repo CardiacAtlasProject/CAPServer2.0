@@ -7,7 +7,7 @@ The new CAP server consists of two separate databases:
 
 Installation is automatic through `vagrant up` command.
 
-1. Initializing root password
+1. Initializing root password (*if you have not done it*)
 
    During the installation process, a temporary password is generated for the MySQL root user. Locate it in the `mysqld.log` with this command:
    ```
@@ -21,7 +21,7 @@ Installation is automatic through `vagrant up` command.
 
    Enter a new 12-character password that contains at least one uppercase letter, one lowercase letter, one number and one special character. Re-enter it when prompted.
 
-2. Create **XPACS** and **PACS** databases
+2. Create **XPACS** database
 
     ```
     $ mysql -uroot -p
@@ -39,9 +39,3 @@ Installation is automatic through `vagrant up` command.
    mysql> GRANT ALL ON xpacs.* TO 'cap'@'%' IDENTIFIED BY 'SOME_PASSWORD';
    mysql> GRANT ALL ON pacs.* TO 'cap'@'%' IDENTIFIED BY 'SOME_PASSWORD';
    ```
-
-# Initializing the databases
-
-*TODO* **XPACS** schema initialization script. Currently, it is created when the application is started.
-
-**PACS** schema is created using `dcm4chee-arc-light` [installation procedure](dcm4chee-arc-light/README.md).
