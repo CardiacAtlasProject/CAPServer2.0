@@ -1,0 +1,27 @@
+<div class="table-responsive">
+	<h2>Patient List</h2>
+    <p class="lead">Filtered {{ filtered.length }} from {{ vm.patients.length }} patients.</p>
+
+    <span>Filter</span> <input type="text" ng-model="filter" class="form-control">
+
+    <table class="table table-condensed table-striped table-bordered">
+        <thead>
+        <tr title="click to order">
+            <th ng-click="predicate = 'patientID'; reverse=!reverse"><span>Patient ID</span></th>
+            <th ng-click="predicate = 'gender'; reverse=!reverse"><span>Gender</span></th>
+            <th ng-click="predicate = 'cohort'; reverse=!reverse"><span>Cohort</span></th>
+            <th ng-click="predicate = 'ethnicity'; reverse=!reverse"><span>Ethnicity</span></th>
+            <th ng-click="predicate = 'primaryDiagnosis'; reverse=!reverse"><span>Primary Diagnosis</span></th>
+        </tr>
+        </thead>
+
+        <tr ng-repeat="pat in filtered = (vm.patients  | filter:filter | orderBy:predicate:reverse)">
+            <td><small>{{pat.patientID | characters:20}}</small></td>
+            <td><small>{{pat.gender}}</small></td>
+            <td><small>{{pat.cohort}}</small></td>
+            <td><small>{{pat.ethnicity}}</small></td>
+            <td><small>{{pat.primaryDiagnosis | characters:140}}</small></td>
+        </tr>
+    </table>
+
+</div>
