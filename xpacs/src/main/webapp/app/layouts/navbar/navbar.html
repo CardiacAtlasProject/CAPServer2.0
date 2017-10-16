@@ -71,6 +71,24 @@
                         <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here -->
                     </ul>
                 </li>
+                <li uib-dropdown class="dropdown pointer" ng-switch-when="true" >
+                		<a class="dropdown-toggle" uib-dropdown-toggle href="" id="view-menu">
+                			<span>
+                				<span class="glyphicon glyphicon-eye-open"></span>
+                				<span class="hidden-sm">
+                					View
+                				</span>
+                				<b class="caret"></b>
+                			</span>
+                		</a>
+                		<ul class="dropdown-menu" uib-dropdown-menu>
+                			<li ui-sref-active="active">
+                            <a ui-sref="view-patients" ng-click="vm.collapseNavbar()">
+                                <span>List of patients</span>
+                            </a>
+                			</li>
+                		</ul>
+                </li>
                 <li ng-class="{active: vm.$state.includes('account')}" uib-dropdown class="dropdown pointer">
                     <a class="dropdown-toggle" uib-dropdown-toggle href="" id="account-menu">
                         <span>

@@ -25,6 +25,7 @@ Vagrant.configure("2") do |config|
 
   # wildfly for dcm4chee & xpacs webpages
   config.vm.network "forwarded_port", guest: 8080, host: 8080
+  config.vm.network "forwarded_port", guest: 8585, host: 8585
   # mysql access
   config.vm.network "forwarded_port", guest: 3306, host: 3306
   # ldap access (localhost:3890) to the vm's 389 port
@@ -49,6 +50,8 @@ Vagrant.configure("2") do |config|
   config.vm.synced_folder ".", "/vagrant", disabled: true
   config.vm.synced_folder "./dbase", "/home/vagrant/dbase"
   config.vm.synced_folder "./xpacs", "/home/vagrant/xpacs"
+
+  config.vm.synced_folder "./scratch", "/home/vagrant/scratch"
 
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.
