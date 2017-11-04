@@ -41,7 +41,7 @@ public class ApplicationProperties {
 	 *       private String name = "DefaultName";
 	 *       public String getName() { return this.name; }
 	 *       public void setName( String _name ) { this.name = _name; }
-   *    }
+     *    }
 	 * --------------------------------------------------------------
 	 *
 	 */
@@ -58,6 +58,8 @@ public class ApplicationProperties {
 	public static class Pacsdb {
 
 		private boolean initStart = false;
+		private String url;
+		private String aet;
 
 		public void setInitStart(boolean _initStart) {
 			this.initStart = _initStart;
@@ -66,6 +68,12 @@ public class ApplicationProperties {
 		public boolean getInitStart() {
 			return this.initStart;
 		}
+		
+		public void setUrl(String _url) { this.url = _url; }
+		public void setAet(String _aet) { this.aet = _aet; }
+		
+		public String getUrl() { return this.url; }
+		public String getAet() { return this.aet; }
 
 	}
 

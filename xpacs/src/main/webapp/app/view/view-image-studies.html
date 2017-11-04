@@ -1,0 +1,23 @@
+<div class="table-responsive">
+	<h2>Image Studies</h2>
+    <p class="lead">Filtered {{ filtered.length }} from {{ vm.studies.length }} patients.</p>
+
+    <span>Filter</span> <input type="text" ng-model="filter" class="form-control">
+    
+    <table class="table table-condensed table-striped table-bordered">
+    		<thead>
+        <tr title="click to order">
+            <th ng-click="predicate = 'patientID'; reverse=!reverse"><span>Patient ID</span></th>
+            <th ng-click="predicate = 'patientName'; reverse=!reverse"><span>Patient Name</span></th>
+            <th ng-click="predicate = 'birthDate'; reverse=!reverse"><span>Birth Date</span></th>
+        </tr>
+    		</thead>
+
+        <tr ng-repeat="std in filtered = (vm.studies  | filter:filter | orderBy:predicate:reverse)">
+            <td><small>{{std.patientID | characters:20}}</small></td>
+            <td><small>{{std.patientName}}</small></td>
+            <td><small>{{std.birthDate}}</small></td>
+        </tr>
+    </table>
+
+</div>

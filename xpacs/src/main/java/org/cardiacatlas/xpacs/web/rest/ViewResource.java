@@ -1,20 +1,27 @@
 package org.cardiacatlas.xpacs.web.rest;
 
-import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.cardiacatlas.xpacs.domain.PatientInfo;
+import org.cardiacatlas.xpacs.domain.dcm4che.DicomStudy;
 import org.cardiacatlas.xpacs.repository.PatientInfoRepository;
+import org.cardiacatlas.xpacs.web.rest.vm.ViewImageStudiesVM;
 import org.cardiacatlas.xpacs.web.rest.vm.ViewPatientInfoVM;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.data.domain.Pageable;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
-import io.swagger.annotations.ApiParam;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.core.type.TypeReference;
+
 
 
 /**
@@ -28,6 +35,15 @@ public class ViewResource {
 	
 	private final PatientInfoRepository patientInfoRepository;
 	
+	// URI & AET must have been set on the properties file or through configuration
+	@Value("${application.pacsdb.url}")
+	private String dicomHost;
+	@Value("${application.pacsdb.AET}") 
+	private String AET;
+	// ----------------------------------------------------------------------------
+	
+
+	
 	public ViewResource(PatientInfoRepository _patientInfoRepository) {
 		this.patientInfoRepository = _patientInfoRepository;
 	}
@@ -35,8 +51,7 @@ public class ViewResource {
     /**
      * GET  /view-patients : list all the patients.
      * 
-     * @param pageable the pagination information
-     * @return the ResponseEntity with status 200 (OK) and the list of patients in the body
+     * @return array of ViewPatientInfoVM objects
      */
 	@GetMapping("/view-patients")
 	public List<ViewPatientInfoVM> viewAllPatients() {
@@ -52,6 +67,31 @@ public class ViewResource {
 	}
 	
 	
-	
+	/**
+	 * GET /view-image-studies: list all available image studies from the DICOM server
+	 * 
+	 * @return json 
+	 */
+	@GetMapping("/view-image-studies")
+	public List<ViewImageStudiesVM> viewImageStudies() {
+		log.debug("REST request to view a list of image studies stored in the DICOM server.");
+		
+		// Using JDBC connector to query PACS database --> faster
+		// Using REST to from dcm4chee --> slower
+				
+		// REST request to DICOM server.
+		
+		Map<String,String> uriParams = new HashMap<String,String>();
+		uriParams.put("withoutstudies", "false");
+		
+		RestTemplate client = new RestTemplate();
+		DicomStudy[] studies = client.getForObject(this.dicomHost + "/dcm4chee-arc/aets/" + this.AET + "/rs/patients", DicomStudy[].class, uriParams);
+		
+		return Arrays.asList(studies)
+				.stream()
+				.map(ViewImageStudiesVM::new)
+				.collect(Collectors.toList());
+
+	}
 
 }

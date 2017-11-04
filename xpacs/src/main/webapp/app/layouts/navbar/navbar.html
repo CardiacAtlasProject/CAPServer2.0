@@ -87,6 +87,11 @@
                                 <span>List of patients</span>
                             </a>
                 			</li>
+                			<li ui-sref-active="active">
+                            <a ui-sref="view-image-studies" ng-click="vm.collapseNavbar()">
+                                <span>Image studies</span>
+                            </a>
+                			</li>
                 		</ul>
                 </li>
                 <li ng-class="{active: vm.$state.includes('account')}" uib-dropdown class="dropdown pointer">

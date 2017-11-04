@@ -24,6 +24,21 @@
     				}
     			}
     		})
+    		.state('view-image-studies', {
+    			parent: 'app',
+    			url: '/view-image-studies',
+    			data: {
+    				authorities: ['ROLE_USER'],
+    				pageTitle: 'List of image studies'
+    			},
+    			views: {
+    				'content@': {
+    					templateUrl: 'app/view/view-image-studies.html',
+    					controller: 'ViewImageStudiesController',
+    					controllerAs: 'vm'
+    				}
+    			}
+    		})
     }
     
 })();
