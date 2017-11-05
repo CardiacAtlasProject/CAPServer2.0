@@ -111,3 +111,7 @@ application:
         init-start: false
         url: http://localhost:8585
         AET: DCM4CHEE
+        jdbc-url: jdbc:mysql://localhost:3306/pacs?useUnicode=true&characterEncoding=utf8&useSSL=false
+        jdbc-username: pacs
+        jdbc-password: c@pP@CS1234
+        jdbc-driver: com.mysql.jdbc.Driver

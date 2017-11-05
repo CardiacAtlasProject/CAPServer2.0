@@ -3,15 +3,20 @@ package org.cardiacatlas.xpacs.web.rest;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 import org.cardiacatlas.xpacs.domain.ClinicalNote;
 import org.cardiacatlas.xpacs.domain.PatientInfo;
+import org.cardiacatlas.xpacs.domain.dcm4che.PacsJdbcTemplate;
 import org.cardiacatlas.xpacs.domain.enumeration.GenderType;
 import org.cardiacatlas.xpacs.repository.AuxFileRepository;
 import org.cardiacatlas.xpacs.repository.BaselineDiagnosisRepository;
 import org.cardiacatlas.xpacs.repository.CapModelRepository;
 import org.cardiacatlas.xpacs.repository.ClinicalNoteRepository;
 import org.cardiacatlas.xpacs.repository.PatientInfoRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,11 +25,15 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * 
  * Controller for special dev menu
+ * This REST functions do not show on the menu, but you can run these
+ * usinig Admin -> SWAGGER UI
  *
  */
 @RestController
 @RequestMapping("/api")
 public class DevResource {
+	
+	private static final Logger log = LoggerFactory.getLogger(DevResource.class);
 
     private final PatientInfoRepository patientInfoRepository;
     private final ClinicalNoteRepository clinicalNoteRepository;
@@ -65,6 +74,28 @@ public class DevResource {
 		
 		return ResponseEntity.created(new URI("/api/populate-tables"))
 				.body("Tables are populated with dummy data.");
+	}
+	
+	@Autowired
+	PacsJdbcTemplate pacsConn;
+	
+	
+	/**
+	 * GET /pacs-jdbc-connection: test SQL connection to the pacs database
+	 * 
+	 *  @return a string with status 201 (Created)
+	 */
+	@GetMapping("/pacs-jdbc-connection")
+	public ResponseEntity<String> pacsJdbcConnection() throws URISyntaxException {
+		
+		String tables = pacsConn.showTables()
+			.stream()
+			.collect(Collectors.joining(", "));
+
+		String content = "PACS table= " + tables;
+
+		return ResponseEntity.created(new URI("/api/pacs-jdbc-connection"))
+				.body(content);
 	}
 	
 }	

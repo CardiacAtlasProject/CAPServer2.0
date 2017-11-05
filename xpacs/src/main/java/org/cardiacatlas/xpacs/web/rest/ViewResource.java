@@ -35,11 +35,17 @@ public class ViewResource {
 	
 	private final PatientInfoRepository patientInfoRepository;
 	
-	// URI & AET must have been set on the properties file or through configuration
+	// properties from application.yml
 	@Value("${application.pacsdb.url}")
 	private String dicomHost;
 	@Value("${application.pacsdb.AET}") 
 	private String AET;
+	@Value("${application.pacsdb.jdbc-url}")
+	private String jdbcUrl;
+	@Value("${application.pacsdb.jdbc-username}")
+	private String jdbcUsername;
+	@Value("${application.pacsdb.jdbc-password}")
+	private String jdbcPassword;
 	// ----------------------------------------------------------------------------
 	
 

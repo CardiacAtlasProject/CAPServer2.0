@@ -60,6 +60,10 @@ public class ApplicationProperties {
 		private boolean initStart = false;
 		private String url;
 		private String aet;
+		private String jdbcUrl;
+		private String jdbcUsername;
+		private String jdbcPassword;
+		private String jdbcDriver;
 
 		public void setInitStart(boolean _initStart) {
 			this.initStart = _initStart;
@@ -71,9 +75,17 @@ public class ApplicationProperties {
 		
 		public void setUrl(String _url) { this.url = _url; }
 		public void setAet(String _aet) { this.aet = _aet; }
+		public void setJdbcUrl(String _url) { this.jdbcUrl = _url; }
+		public void setJdbcUsername(String _username) { this.jdbcUsername = _username; }
+		public void setJdbcPassword(String _password) { this.jdbcPassword = _password; }
+		public void setJdbcDriver(String _driver) { this.jdbcDriver = _driver; }
 		
 		public String getUrl() { return this.url; }
 		public String getAet() { return this.aet; }
+		public String getJdbcUrl() { return this.jdbcUrl; }
+		public String getJdbcUsername() { return this.jdbcUsername; }
+		public String getJdbcPassword() { return this.jdbcPassword; }
+		public String getJdbcDriver() { return this.jdbcDriver; }
 
 	}
 
