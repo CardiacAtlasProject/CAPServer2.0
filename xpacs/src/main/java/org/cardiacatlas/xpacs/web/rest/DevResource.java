@@ -65,9 +65,19 @@ public class DevResource {
 				.gender(GenderType.male)
 				.primaryDiagnosis("Diagnosed with HEFrEF"));
 		newPats.add(new PatientInfo()
+				.patientId("SCD0003001")
+				.cohort("Sunnybrook Cardiac Data")
+				.ethnicity("UNKNOWN")
+				.gender(GenderType.unknown)
+				.primaryDiagnosis("Myocardial infarction"));
+		newPats.add(new PatientInfo()
 				.patientId("PAT003")
 				.cohort("GROUP XX")
 				.ethnicity("Asian")
+				.gender(GenderType.male));
+		newPats.add(new PatientInfo()
+				.patientId("SCD0003401")
+				.cohort("Sunnybrook Cardiac Data")
 				.gender(GenderType.male));
 		patientInfoRepository.save(newPats);
 		

@@ -1,47 +1,28 @@
 package org.cardiacatlas.xpacs.web.rest.vm;
 
-import org.cardiacatlas.xpacs.domain.dcm4che.DicomStudy;
-
-import com.fasterxml.jackson.annotation.JsonCreator;
-
-import lombok.Setter;
-
-/**
-* View Model object to view image studies
-*
-* @author Avan Suinesiaputra - 2017
-* 
-**/
 public class ViewImageStudiesVM {
 	
-	@Setter private String patientID;
-	@Setter private String patientName;
-	@Setter private String birthDate;
+	private String patientId;
+	private String studyIuid = "";
+	private String studyDate = "";
+	private String studyDesc = "";
 	
-	@JsonCreator
-	public ViewImageStudiesVM() {
-		// Empty public constructor used by Jackson
-	}
+	public ViewImageStudiesVM patientId(String _patientId) { this.patientId = _patientId; return this; }
+	public ViewImageStudiesVM studyIuid(String _studyIuid) { this.studyIuid = _studyIuid; return this; }
+	public ViewImageStudiesVM studyDate(String _studyDate) { this.studyDate = _studyDate; return this; }
+	public ViewImageStudiesVM studyDesc(String _studyDesc) { this.studyDesc = _studyDesc; return this; }
 	
-	public ViewImageStudiesVM(DicomStudy ds) {
-		this.patientID = ds.getPatientId().toString();
-		this.patientName = ds.getPatientName().toString();
-		this.birthDate = ds.getBirthDate().toString();
-	}
-		
-	
-	public String getPatientID() { return this.patientID; }
-	public String getPatientName() { return this.patientName; }
-	public String getBirthDate() { return this.birthDate; }
+	public String getPatientId() { return this.patientId; }
+	public String getStudyIuid() { return this.studyIuid; }
+	public String getStudyDate() { return this.studyDate; }
+	public String getStudyDesc() { return this.studyDesc; }
 	
 	@Override
 	public String toString() {
-		return "ViewImageStudiesVM{" +
-				"patientID='" + patientID + '\'' +
-				"patientName='" + patientName + '\'' +
-				"birthDate='" + birthDate + '\'' + 
-				'}';
+		return "[PatientId = '" + this.patientId + "', " +
+				"StudyIUID = '" + this.studyIuid + "', " + 
+				"StudyDate = '" + this.studyDate + "', " +
+				"StudyDesc = '" + this.studyDesc + "']";
 	}
-	
 
 }
