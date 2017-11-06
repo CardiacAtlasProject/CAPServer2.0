@@ -3,7 +3,8 @@
     <p class="lead">Filtered {{ filtered.length }} from {{ vm.studies.length }} patients.</p>
 
     <span>Filter</span> <input type="text" ng-model="filter" class="form-control">
-    <table class="table table-condensed table-striped table-bordered">
+    <div class="table-responsive">
+    <table class="jh-table table table-condensed table-striped table-bordered">
     		<thead>
         <tr title="click to order">
             <th ng-click="predicate = 'patientId'; reverse=!reverse"><span>Patient ID</span></th>
@@ -18,7 +19,18 @@
             <td><small>{{std.studyIuid}}</small></td>
             <td><small>{{std.studyDate}}</small></td>
             <td><small>{{std.studyDesc}}</small></td>
+            <td class="text-right">
+            		<div ng-if="std.studyIuid" class="btn-group flex-btn-group-container">
+                		<button type="submit"
+                    			ui-sref="patient-info-detail({id:patientInfo.id})"
+                             class="btn btn-primary btn-sm">
+                     	<span class="glyphicon glyphicon-save"></span>
+                         <span class="hidden-sm-down"></span>
+					</button>
+            		</div>
+            </td>
         </tr>
     </table>
+    </div>
  
 </div>

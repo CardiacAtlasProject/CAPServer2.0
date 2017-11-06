@@ -30,7 +30,7 @@
             <tbody>
                 <tr ng-repeat="patientInfo in vm.patientInfos track by patientInfo.id">
 <!--                    <td><a ui-sref="patient-info-detail({id:patientInfo.id})">{{patientInfo.id}}</a></td>-->
-                    <td><a ui-sref="patient-info-consolidated({id:patientInfo.id})">{{patientInfo.patientId}}</a></td>
+                    <td><a ui-sref="patient-info-detail({id:patientInfo.id})">{{patientInfo.patientId}}</a></td>
                     <td>{{patientInfo.cohort}}</td>
                     <td>{{patientInfo.ethnicity}}</td>
                     <td>{{patientInfo.gender}}</td>

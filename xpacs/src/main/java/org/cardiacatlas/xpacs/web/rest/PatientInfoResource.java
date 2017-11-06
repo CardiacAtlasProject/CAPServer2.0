@@ -48,18 +48,11 @@ public class PatientInfoResource {
     private static final String ENTITY_NAME = "patientInfo";
 
     private final PatientInfoRepository patientInfoRepository;
-    private final ClinicalNoteRepository clinicalNoteRepository;
-    private final BaselineDiagnosisRepository baselineDiagnosisRepository;
-    private final AuxFileRepository auxFileRepository;
-    private final CapModelRepository capModelRepository;
-    public PatientInfoResource(PatientInfoRepository patientInfoRepository,ClinicalNoteRepository clinicalNoteRepository,BaselineDiagnosisRepository baselineDiagnosisRepository,AuxFileRepository auxFileRepository,CapModelRepository capModelRepository) {
-        this.patientInfoRepository = patientInfoRepository;
-        this.clinicalNoteRepository = clinicalNoteRepository;
-        this.baselineDiagnosisRepository =  baselineDiagnosisRepository;
-        this.auxFileRepository= auxFileRepository;
-        this.capModelRepository = capModelRepository;
+    
+    public PatientInfoResource(PatientInfoRepository patientInfoRepository) {
+    		this.patientInfoRepository = patientInfoRepository;
     }
-
+    
     /**
      * POST  /patient-infos : Create a new patientInfo.
      *
@@ -134,7 +127,6 @@ public class PatientInfoResource {
      * @param id the id of the patientInfo to retrieve
      * @return the ResponseEntity with status 200 (OK) and with body the patientInfo, or with status 404 (Not Found)
      */
-    /*
     @GetMapping("/patient-infos/{id}")
     @Timed
     public ResponseEntity<PatientInfo> getPatientInfo(@PathVariable Long id) {
@@ -142,22 +134,7 @@ public class PatientInfoResource {
         PatientInfo patientInfo = patientInfoRepository.findOne(id);
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(patientInfo));
     }
-    */
-    @GetMapping("/patient-infos/{id}")
-    @Timed
-    public ResponseEntity<ConsolidatedInfo> getPatientInfo(@PathVariable Long id) {
-        log.debug("REST request to get PatientInfo : {}", id);
-        PatientInfo patientInfo = patientInfoRepository.findOne(id);
-
-		//ClinicalNote clinicalNote = clinicalNoteRepository.findOne(id);
-		List<ClinicalNote> clinicalNote = clinicalNoteRepository.findAllByID(id);
-		List<BaselineDiagnosis> baselineDiagnosis = baselineDiagnosisRepository.findAllByID(id);
-		List<AuxFile> auxFile = auxFileRepository.findAllByID(id);
-		List<CapModel> capModel = capModelRepository.findAllByID(id);
-		ConsolidatedInfo consolidatedInfo = new ConsolidatedInfo(id,patientInfo,clinicalNote,baselineDiagnosis,auxFile,capModel);
-		log.debug("REST is  ",clinicalNote);
-        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(consolidatedInfo));
-    }
+    
 
     /**
      * DELETE  /patient-infos/:id : delete the "id" patientInfo.
