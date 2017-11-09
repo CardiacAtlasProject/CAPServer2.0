@@ -1,47 +1,40 @@
 # CAPServer2.0
 
-## Setting up the development environment
-
 Requirements for development:
 * [Oracle VM VirtualBox](https://www.virtualbox.org/)
 * [Vagrant](https://www.vagrantup.com/)
 * [Spring suite IDE](http://spring.io/) (can be Eclipse with STS plugin)
 
-Running up:
+
+## Quick start up
+
+Fresh installation using vagrant:
 ```
 $ cd CAPServer2.0
 $ vagrant plugin install vagrant-vbguest
 $ vagrant up
-```
-
-Your VM is ready. To go to the vm do:
-```
 $ vagrant ssh
-[vagrant@localhost ~]$
+[vagrant@localhost ~]$ cd xpacs
+[vagrant@localhost ~]$ mvn -N io.takari:maven:wrapper
+[vagrant@localhost ~]$ ./mvnw
 ```
 
-Both `xpacs` and `dbase` folders are shared to the corresponding VMs. You can modify the source codes using Spring IDE natively, then run the web service from the vm. The port forwarding, and all other configurations, are written in `Vagrantfile` file.
+Open http://localhost:8080, you should see the XPACSWEB interface:
 
-Read [Vagrant documentation](https://www.vagrantup.com/docs/) for more details and commands. Common commands:
+![xpacs-interface](.img/xpacsweb-interface.png)
 
-* Stopping the VM:
-```
-$ vagrant halt
-```
+## Configuring the vagrant vm
 
-* Destroy the VM:
-```
-$ vagrant destroy
-```
+Read [Vagrant documentation](https://www.vagrantup.com/docs/) for more details on configurations and custom commands. You can modify the `Vagrantfile` configuration file to customize your development environment. Examples are creating a scratch folder for your testing, or setting port forwarding on some services.
 
-## Install DCM4CHEE-ARC
+## Install DCM4CHEE-ARC database
 
-The `xpacs` service needs [dcm4chee-arc](https://github.com/dcm4che/dcm4chee-arc-light/wiki) to work. Follow [installation notes for dcm4chee-arc with MySQL server on the same vagrant VM above](https://github.com/CardiacAtlasProject/dcm4chee-arc-notes) to install the dcm4chee server. Note that you do not have to setup vagrant again.
+The XPACS-WEB application needs to connect to a PACS database to retrieve patients' image information. You need to install DCM4CHEE-ARC separately on your vagrant VM.
 
-## Install XPACS schema
+Follow [installation notes for dcm4chee-arc with MySQL server on the same vagrant VM above](https://github.com/CardiacAtlasProject/dcm4chee-arc-notes) to install the dcm4chee server.
 
-[Read this guideline](dbase)
+**Note that you do not have to setup vagrant again.**
 
-## Build xpacs web interface
+## Production mode
 
-[Read the XPACS documentation](xpacs).
+For the production mode, you need to setup a database called `xpacsweb` and how to access it.

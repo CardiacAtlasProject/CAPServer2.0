@@ -1,5 +1,6 @@
 package org.cardiacatlas.xpacs.web.rest;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -73,7 +74,7 @@ public class ViewResource {
 	 * @return array of ViewImageInfoVM objects
 	 */
 	@GetMapping("/view-image-studies")
-	public List<ViewImageStudiesVM> viewImageStudies() {
+	public List<ViewImageStudiesVM> viewImageStudies() throws SQLException {
 		
 		log.debug("Request to search available image studies");
 		

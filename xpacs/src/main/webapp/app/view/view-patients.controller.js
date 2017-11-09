@@ -11,7 +11,7 @@
     function ViewPatientsController($resource) {
     		var vm = this;
     		
-    		vm.patients = $resource('api/view-patients').query(); // query is the default GET with return array 
+    		vm.patients = $resource('api/view-patients').query(); // query is the default GET with return array    		
     }
 
 })();

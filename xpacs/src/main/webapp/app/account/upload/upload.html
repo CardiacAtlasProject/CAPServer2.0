@@ -16,15 +16,14 @@
 
                 <div class="form-group fileinput fileinput-new">
                     
-	            <label class="control-label" for="field_gender">Select the entity yo want to upload</label>
+	            <label class="control-label" for="field_gender">Select the entity you want to upload</label>
 	            <select class="form-control" name="upload_entity" ng-model="vm.upload_entity" id="upload_entity" required>
 	                <option value="patient_info">Patient Info</option>
 	                <option value="clinical_note">Clinical Note</option>
 	                <option value="baseline_diagnosis">Baseline_diagnosis</option>
 	            </select>
 	            <div ng-show="form.$invalid">
-	                <p class="help-block"
-	                    
+	                <p class="help-block">
 	                    This field is required.
 	                </p>
 	            </div>

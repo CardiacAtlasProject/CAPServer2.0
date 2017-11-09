@@ -21,7 +21,7 @@ Installation is automatic through `vagrant up` command.
 
    Enter a new 12-character password that contains at least one uppercase letter, one lowercase letter, one number and one special character. Re-enter it when prompted.
 
-2. Create **XPACS** database
+2. Create **XPACS** database (only need for production mode)
 
     ```
     $ mysql -uroot -p
@@ -29,7 +29,7 @@ Installation is automatic through `vagrant up` command.
     mysql> CREATE DATABASE pacs;
     ```
 
-3. Create user **`cap`**
+3. Create user **`cap`** (only need in production mode)
 
    This user will be used in the code to connect to both XPACS and PACS database. It is recommended that you use the same password and privileges for both database.
 
