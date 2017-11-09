@@ -51,8 +51,6 @@ Vagrant.configure("2") do |config|
   config.vm.synced_folder "./dbase", "/home/vagrant/dbase"
   config.vm.synced_folder "./xpacs", "/home/vagrant/xpacs"
 
-  config.vm.synced_folder "./scratch", "/home/vagrant/scratch"
-
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.
   # Example for VirtualBox:
