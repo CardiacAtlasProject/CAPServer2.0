@@ -21,9 +21,9 @@ spring:
             enabled: false
     datasource:
         type: com.zaxxer.hikari.HikariDataSource
-        url: jdbc:mysql://localhost:3306/xpacsweb?useUnicode=true&characterEncoding=utf8&useSSL=false
-        username: xpacs
-        password: xp@CS1234
+        url: jdbc:mysql://localhost:3306/<XPACS_DATABASE_NAME>?useUnicode=true&characterEncoding=utf8&useSSL=false
+        username: <MYSQL_USERNAME>
+        password: <MYSQL_USER_PASSWORD>
         hikari:
             data-source-properties:
                 cachePrepStmts: true
@@ -130,4 +130,3 @@ jhipster:
 #    If you want to add new properties here, you must modify org.cardiacatlas.xpacs.config.ApplicationProperties.java class
 
 application:
-
