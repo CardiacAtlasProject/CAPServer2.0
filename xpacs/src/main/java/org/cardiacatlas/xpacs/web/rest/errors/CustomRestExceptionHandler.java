@@ -14,7 +14,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 public class CustomRestExceptionHandler extends ResponseEntityExceptionHandler {
 	
 	private final Logger log = LoggerFactory.getLogger(ViewResource.class);
-
+	
     // 500: INTERNAL SERVER ERROR
     @ExceptionHandler({ Exception.class })
     public ResponseEntity<Object> handleInternalServerError(final Exception ex) {
@@ -22,7 +22,7 @@ public class CustomRestExceptionHandler extends ResponseEntityExceptionHandler {
         log.error("error", ex);
         
         //
-        final ApiError apiError = new ApiError(HttpStatus.INTERNAL_SERVER_ERROR, ex.getLocalizedMessage(), "error occurred");
+        final ApiError apiError = new ApiError(HttpStatus.INTERNAL_SERVER_ERROR, ex.getLocalizedMessage(), "server error");
         return new ResponseEntity<Object>(apiError, new HttpHeaders(), apiError.getStatus());
     }	
 }

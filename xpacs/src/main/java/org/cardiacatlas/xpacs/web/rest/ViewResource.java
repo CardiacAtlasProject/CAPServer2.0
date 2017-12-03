@@ -27,6 +27,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.codahale.metrics.annotation.Timed;
+
 
 
 /**
@@ -39,6 +41,7 @@ public class ViewResource {
 	private final Logger log = LoggerFactory.getLogger(ViewResource.class);
 	
 	private final PatientInfoRepository patientInfoRepository;
+	private int imageCounter;
 	
 	@Autowired
 	PacsJdbcTemplate pacsJdbc;
@@ -110,6 +113,60 @@ public class ViewResource {
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
         
 	}
+
+    /**
+     * GET /studies/download?studyUid=[studyUid]&status=[start|continue|stop]
+     * 
+     * @param studyUid and status ('start', 'continue' or 'stop')
+     * @return a JSON object { currentImageNumber: [number], totalImages: [number] }
+     *         if an error occurs, it returns a error message in the Http body.
+     */
+    @GetMapping("/view-image-studies/download")
+    @Timed
+    public ResponseEntity downloadStudies(String studyUid, String status) {
+    	
+    		int totalNumberOfImages = 20;
+    	
+		HashMap<String,Object> result = new HashMap<String,Object>(2);
+		result.put("currentImageNumber", null);
+		result.put("totalImages", totalNumberOfImages);		
+    		
+		switch(status.toLowerCase()) {
+		case "start":
+			this.imageCounter = 0;
+			break;
+
+		case "continue":
+			this.imageCounter++;
+			break;
+
+		case "stop":
+			// this is where files to be removed
+			break;
+
+		default:			
+			result.put("error", "Unknown request status = " + status);
+			return ResponseEntity
+					.badRequest()
+					.body(result);
+		}
+    	
+    		log.debug("Current image counter = " + this.imageCounter);
+    		
+    		result.put("currentImageNumber", this.imageCounter);
+    		
+    		// do the get image here
+    		try {
+    			Thread.sleep(500);
+    		} catch(Exception e) {
+    			
+    		}
+    		
+    		return ResponseEntity
+    				.ok()
+    				.body(result);
+
+    }
 	
 
 }
