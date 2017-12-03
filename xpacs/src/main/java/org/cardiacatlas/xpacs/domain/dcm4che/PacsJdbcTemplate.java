@@ -7,8 +7,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.cardiacatlas.xpacs.web.rest.vm.ViewImageStudiesVM;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -22,8 +20,6 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
  */
 @Configuration
 public class PacsJdbcTemplate {
-	
-	private static final Logger log = LoggerFactory.getLogger(PacsJdbcTemplate.class);
 	
 	private JdbcTemplate jdbcTemplate;
     private DriverManagerDataSource dataSource;

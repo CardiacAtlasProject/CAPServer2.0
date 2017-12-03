@@ -37,6 +37,9 @@
     					controller: 'ViewImageStudiesController',
     					controllerAs: 'vm'
     				}
+    			},
+    			params: {
+    				error: null
     			}
     		})
     }
