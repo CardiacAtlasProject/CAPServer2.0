@@ -74,6 +74,7 @@ public class ViewResource {
 	 * 
 	 * @return array of ViewImageInfoVM objects
 	 */
+	@SuppressWarnings("rawtypes")
 	@GetMapping("/view-image-studies")
 	public ResponseEntity viewImageStudies(Pageable pageable) throws SQLException {
 		
@@ -121,7 +122,8 @@ public class ViewResource {
      * @return a JSON object { currentImageNumber: [number], totalImages: [number] }
      *         if an error occurs, it returns a error message in the Http body.
      */
-    @GetMapping("/view-image-studies/download")
+    @SuppressWarnings("rawtypes")
+	@GetMapping("/view-image-studies/download")
     @Timed
     public ResponseEntity downloadStudies(String studyUid, String status) {
     	
