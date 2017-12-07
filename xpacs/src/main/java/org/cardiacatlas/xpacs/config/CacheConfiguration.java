@@ -48,7 +48,6 @@ public class CacheConfiguration {
             cm.createCache(org.cardiacatlas.xpacs.domain.AuxFile.class.getName(), jcacheConfiguration);
             cm.createCache(org.cardiacatlas.xpacs.domain.CapModel.class.getName(), jcacheConfiguration);
             cm.createCache(org.cardiacatlas.xpacs.domain.BaselineDiagnosis.class.getName(), jcacheConfiguration);
-            cm.createCache(org.cardiacatlas.xpacs.domain.DICOM.class.getName(), jcacheConfiguration);
             // jhipster-needle-ehcache-add-entry
         };
     }
