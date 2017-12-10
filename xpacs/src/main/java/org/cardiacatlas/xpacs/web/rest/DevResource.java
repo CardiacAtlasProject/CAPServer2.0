@@ -108,10 +108,4 @@ public class DevResource {
 				.body(content);
 	}
 	
-	/**
-	 * GET /pacs-dcm4chee-connection: test DICOM connection (C-ECHO)
-	 * 
-	 * @return 200 with message of C-ECHO as json
-	 */
-	
 }	

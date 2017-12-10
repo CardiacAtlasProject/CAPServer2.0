@@ -37,34 +37,7 @@
     					controller: 'ViewImageStudiesController',
     					controllerAs: 'vm'
     				}
-    			},
-    			params: {
-    				error: null
     			}
-    		})
-    		.state('download-study', {
-    			parent: 'view-image-studies',
-    			url: '/view-image-studies/download',
-    			data: {
-    				authorities: ['ROLE_USER']
-    			},
-    			params: {
-    				studyUid: null
-    			},
-    			onEnter: ['$state', '$uibModal', function($state, $uibModal) {
-    				$uibModal.open({
-    					templateUrl: 'app/view/download-study-dialog.html',
-    					controller: 'DownloadStudyController',
-    					controllerAs: 'vm',
-        				backdrop: 'static',
-        				size: 'md',
-        				keyboard: false
-    				}).result.then(function() {
-    					$state.go('^')
-    				}, function(reason) {
-    					$state.go('^', { error: reason })
-    				})
-    			}]
     		})
     }
     

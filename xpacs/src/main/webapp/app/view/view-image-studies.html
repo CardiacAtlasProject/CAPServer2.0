@@ -1,11 +1,11 @@
 <div class="table-responsive">
 	<h2>Image Studies</h2>
-	<jhi-alert></jhi-alert>
+	<jhi-alert-error></jhi-alert-error>
     <p class="lead">Filtered {{ filtered.length }} from {{ vm.studies.length }} patients.</p>
 
     <span>Filter</span> <input type="text" ng-model="filter" class="form-control">
     <div class="table-responsive">
-    <table class="jh-table table table-striped table-bordered">
+    <table class="jh-table table table-condensed table-striped table-bordered">
     		<thead>
         <tr title="click to order">
             <th ng-click="predicate = 'patientId'; reverse=!reverse"><span>Patient ID</span></th>
@@ -14,27 +14,23 @@
             <th ng-click="predicate = 'studyDesc'; reverse=!reverse"><span>Study Description</span></th>
         </tr>
     		</thead>
-    		
-    		<tbody infinite-scroll="vm.loadPage(vm.page + 1)" infinite-scroll-disabled="vm.page >= vm.links['last']">
-        		<tr ng-repeat="std in filtered = (vm.studies  | filter:filter | orderBy:predicate:reverse)">
-            		<td>{{std.patientId | characters:20}}</small></td>
-            		<td>{{std.studyIuid}}</td>
-            		<td>{{std.studyDate}}</td>
-            		<td>{{std.studyDesc}}</td>
-            		<td class="text-right">
-            			<div ng-if="std.studyIuid" class="btn-group flex-btn-group-container">
-                			<button type="submit"
-                    				ui-sref="download-study({studyUid:std.studyIuid})"
-                             	class="btn btn-primary btn-sm">
-                     	<span class="glyphicon glyphicon-download-alt"></span>
+
+        <tr ng-repeat="std in filtered = (vm.studies  | filter:filter | orderBy:predicate:reverse)">
+            <td><small>{{std.patientId | characters:20}}</small></td>
+            <td><small>{{std.studyIuid}}</small></td>
+            <td><small>{{std.studyDate}}</small></td>
+            <td><small>{{std.studyDesc}}</small></td>
+            <td class="text-right">
+            		<div ng-if="std.studyIuid" class="btn-group flex-btn-group-container">
+                		<button type="submit"
+                    			ui-sref="patient-info-detail({id:patientInfo.id})"
+                             class="btn btn-primary btn-sm">
+                     	<span class="glyphicon glyphicon-save"></span>
                          <span class="hidden-sm-down"></span>
-						</button>
-            			</div>
-            		</td>
+					</button>
+            		</div>
+            </td>
         </tr>
-    		</tbody>
-        
-        
     </table>
     </div>
  

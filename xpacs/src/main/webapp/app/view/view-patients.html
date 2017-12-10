@@ -16,11 +16,11 @@
         </thead>
 
         <tr ng-repeat="pat in filtered = (vm.patients  | filter:filter | orderBy:predicate:reverse)">
-            <td>{{pat.patientID | characters:20}}</small></td>
-            <td>{{pat.gender}}</td>
-            <td>{{pat.cohort}}</td>
-            <td>{{pat.ethnicity}}</td>
-            <td>{{pat.primaryDiagnosis | characters:140}}</td>
+            <td><small>{{pat.patientID | characters:20}}</small></td>
+            <td><small>{{pat.gender}}</small></td>
+            <td><small>{{pat.cohort}}</small></td>
+            <td><small>{{pat.ethnicity}}</small></td>
+            <td><small>{{pat.primaryDiagnosis | characters:140}}</small></td>
         </tr>
     </table>
 
