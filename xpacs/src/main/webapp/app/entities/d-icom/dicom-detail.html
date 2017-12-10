@@ -1,0 +1,35 @@
+
+<div>
+    <h2><span>DICOM</span> {{vm.dICOM.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span>Dicom File</span></dt>
+        <dd>
+            <div ng-if="vm.dICOM.dicomFile">
+                <a ng-click="vm.openFile(vm.dICOM.dicomFileContentType, vm.dICOM.dicomFile)">open</a>
+                {{vm.dICOM.dicomFileContentType}}, {{vm.byteSize(vm.dICOM.dicomFile)}}
+            </div>
+        </dd>
+        <dt><span>Image</span></dt>
+        <dd>
+            <div ng-if="vm.dICOM.image">
+                <a ng-click="vm.openFile(vm.dICOM.imageContentType, vm.dICOM.image)">
+                    <img data-ng-src="{{'data:' + vm.dICOM.imageContentType + ';base64,' + vm.dICOM.image}}" style="max-width: 100%;" alt="dICOM image"/>
+                </a>
+                {{vm.dICOM.imageContentType}}, {{vm.byteSize(vm.dICOM.image)}}
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button" ui-sref="dicom-detail.edit({id:vm.dICOM.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down"> Edit</span>
+    </button>
+</div>
