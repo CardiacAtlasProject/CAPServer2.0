@@ -5,7 +5,7 @@
         .module('xpacswebApp')
         .controller('ViewImageStudiesController', ViewImageStudiesController);
 
-    ViewImageStudiesController.$inject = ['$resource','AlertService'];
+    ViewImageStudiesController.$inject = ['$resource','AlertService', '$stateParams'];
 
     function ViewImageStudiesController($resource, AlertService) {
         var vm = this;

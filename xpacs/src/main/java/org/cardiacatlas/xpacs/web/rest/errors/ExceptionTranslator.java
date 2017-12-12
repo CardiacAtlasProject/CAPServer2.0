@@ -50,6 +50,13 @@ public class ExceptionTranslator {
     public ParameterizedErrorVM processParameterizedValidationError(CustomParameterizedException ex) {
         return ex.getErrorVM();
     }
+    
+    @ExceptionHandler(DicomTransferException.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ResponseBody
+    public ErrorVM processDicomTransferError(DicomTransferException ex) {
+    		return ex.getErrorVM();
+    }
 
     @ExceptionHandler(AccessDeniedException.class)
     @ResponseStatus(HttpStatus.FORBIDDEN)

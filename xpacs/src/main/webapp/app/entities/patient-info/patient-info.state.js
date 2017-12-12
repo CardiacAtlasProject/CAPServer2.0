@@ -43,7 +43,7 @@
                         ascending: PaginationUtil.parseAscending($stateParams.sort),
                         search: $stateParams.search
                     };
-                }],
+                }]
             }
         })
         .state('patient-info-detail', {
@@ -62,7 +62,6 @@
             },
             resolve: {
                 entity: ['$stateParams', 'PatientInfo', function($stateParams, PatientInfo) {
-                  console.log("lol"+PatientInfo.get({id : $stateParams.id}).$promise);
                     return PatientInfo.get({id : $stateParams.id}).$promise;
 
                 }],

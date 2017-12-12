@@ -11,7 +11,7 @@
 
     <groupId>org.cardiacatlas.xpacs</groupId>
     <artifactId>xpacsweb</artifactId>
-    <version>0.1.2-SNAPSHOT</version>
+    <version>0.3.0-SNAPSHOT</version>
     <packaging>war</packaging>
     <name>XPACS-WEB</name>
 
@@ -379,10 +379,16 @@
         </dependency>
         <!-- jhipster-needle-maven-add-dependency -->
 		<dependency>
-		<groupId>org.projectlombok</groupId>
-		<artifactId>lombok</artifactId>
-		<version>1.16.18</version>
-		<scope>provided</scope>
+			<groupId>org.dcm4che.tool</groupId>
+			<artifactId>dcm4che-tool-all</artifactId>
+			<version>3.3.8</version>
+			<type>pom</type>
+		</dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.16.18</version>
+			<scope>provided</scope>
 		</dependency>        
     </dependencies>
     <build>

@@ -39,6 +39,26 @@
     				}
     			}
     		})
+    		.state('download-study', {
+    			parent: 'view-image-studies',
+    			url: '/download-study',
+    			data: {
+    				authorities: ['ROLE_USER']
+    			},
+    			onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
+    				$uibModal.open({
+    					templateUrl: 'app/view/download-dialog.html',
+    					controller: 'DialogStudyController',
+    					controllerAs: 'vm',
+    					backdrop: 'static',
+    					size: 'md'
+    				}).result.then(function() {
+    					$state.go('^', {}, { reload: false });
+    				}, function() {
+    					$state.go('^');
+    				});
+    			}]
+    		})
     }
     
 })();

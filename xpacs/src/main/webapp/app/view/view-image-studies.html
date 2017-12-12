@@ -21,15 +21,16 @@
             <td><small>{{std.studyDate}}</small></td>
             <td><small>{{std.studyDesc}}</small></td>
             <td class="text-right">
-            		<div ng-if="std.studyIuid" class="btn-group flex-btn-group-container">
-                		<button type="submit"
-                    			ui-sref="patient-info-detail({id:patientInfo.id})"
-                             class="btn btn-primary btn-sm">
-                     	<span class="glyphicon glyphicon-save"></span>
-                         <span class="hidden-sm-down"></span>
-					</button>
-            		</div>
-            </td>
+					<div ng-if="std.studyIuid"
+						class="btn-group flex-btn-group-container">
+						<button type="submit"
+							ui-sref="download-study({patientId:std.patientId, studyUid:std.studyIuid})"
+							class="btn btn-primary btn-sm">
+							<span class="glyphicon glyphicon-save"></span> <span
+								class="hidden-sm-down"></span>
+						</button>
+					</div>
+				</td>
         </tr>
     </table>
     </div>
