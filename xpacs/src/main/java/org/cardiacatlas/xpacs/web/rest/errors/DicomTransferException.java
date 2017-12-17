@@ -28,16 +28,14 @@ public class DicomTransferException extends RuntimeException {
     }
     
     private final ExceptionType type;
-    private final String description;
     
     public DicomTransferException(ExceptionType _type, String _msg) {
     		super(_msg);
     		this.type = _type;
-    		this.description = _msg;
     }
     
     public ErrorVM getErrorVM() {
-    		return new ErrorVM(type.getTypeMsg(), description);
+    		return new ErrorVM(this.getMessage(), this.type.getTypeMsg());
     }
     
     // -- Factory

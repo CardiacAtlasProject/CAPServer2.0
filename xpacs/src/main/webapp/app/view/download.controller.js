@@ -3,26 +3,39 @@
 
     angular
         .module('xpacswebApp')
-        .controller('DialogStudyController', DialogStudyController);
+        .controller('DownloadStudyController', DownloadStudyController);
 
-    DialogStudyController.$inject = ['$stateParams','AlertService','$uibModalInstance'];
+    DownloadStudyController.$inject = ['$stateParams','$uibModalInstance', '$http'];
 
-    function DialogStudyController($stateParams, AlertService, $uibModalInstance) {
+    function DownloadStudyController($stateParams, $uibModalInstance, $http) {
         var vm = this;
-        
-        console.log($stateParams);
         
         vm.studyUid = $stateParams.studyUid;
         vm.patientId = $stateParams.patientId;
         vm.cancel = cancel;
+        vm.isPreparing = true;
         
-        function onError(error) {
-            AlertService.error(error.data.message);
+        function cancel(reason) {
+        		$uibModalInstance.dismiss('User cancelled.');
         }
-        
-        function cancel() {
-        		$uibModalInstance.dismiss('cancel');
-        }
+                
+        $http({
+        		method: 'GET',
+        		url: '/api/dicom/study',
+        		params: {
+        			patientId: vm.patientId,
+        			studyInstanceUid: vm.studyUid
+        		}
+        })
+        .success( function(data) {
+        		$uibModalInstance.close({ folder: data.folder, id: vm.studyUid });
+        })
+        .error( function(error) {
+        		if( error )
+        			$uibModalInstance.dismiss(error.message);
+        		else
+        			$uibModalInstance.dismiss('Unknown error');
+        });
         
     }
 })();
