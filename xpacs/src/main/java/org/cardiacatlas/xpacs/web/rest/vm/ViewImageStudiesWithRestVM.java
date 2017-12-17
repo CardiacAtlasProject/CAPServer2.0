@@ -1,6 +1,6 @@
 package org.cardiacatlas.xpacs.web.rest.vm;
 
-import org.cardiacatlas.xpacs.domain.dcm4che.DicomStudy;
+import org.cardiacatlas.xpacs.dicom.DicomStudy;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 

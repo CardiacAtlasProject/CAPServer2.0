@@ -1,4 +1,4 @@
-package org.cardiacatlas.xpacs.domain.dcm4che;
+package org.cardiacatlas.xpacs.dicom;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;

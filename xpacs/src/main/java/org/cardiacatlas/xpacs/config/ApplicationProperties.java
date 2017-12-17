@@ -59,7 +59,10 @@ public class ApplicationProperties {
 
 		private boolean initStart = false;
 		private String url;
-		private String aet;
+		private String pacsAet;
+		private String pacsHostname;
+		private int pacsPort;
+		private String tmpDir;
 		private String jdbcUrl;
 		private String jdbcUsername;
 		private String jdbcPassword;
@@ -74,18 +77,24 @@ public class ApplicationProperties {
 		}
 		
 		public void setUrl(String _url) { this.url = _url; }
-		public void setAet(String _aet) { this.aet = _aet; }
+		public void setPacsAet(String _aet) { this.pacsAet = _aet; }
+		public void setPacsHostname(String _hostname) { this.pacsHostname = _hostname; }
+		public void setPacsPort(int _port) { this.pacsPort = _port; }
 		public void setJdbcUrl(String _url) { this.jdbcUrl = _url; }
 		public void setJdbcUsername(String _username) { this.jdbcUsername = _username; }
 		public void setJdbcPassword(String _password) { this.jdbcPassword = _password; }
 		public void setJdbcDriver(String _driver) { this.jdbcDriver = _driver; }
+		public void setTmpDir(String _dir) { this.tmpDir = _dir; }
 		
 		public String getUrl() { return this.url; }
-		public String getAet() { return this.aet; }
+		public String getPacsAet() { return this.pacsAet; }
+		public String getPacsHostname() { return this.pacsHostname; }
+		public int getPacsPort() { return this.pacsPort; }
 		public String getJdbcUrl() { return this.jdbcUrl; }
 		public String getJdbcUsername() { return this.jdbcUsername; }
 		public String getJdbcPassword() { return this.jdbcPassword; }
 		public String getJdbcDriver() { return this.jdbcDriver; }
+		public String getTmpDir() { return this.tmpDir; }
 
 	}
 

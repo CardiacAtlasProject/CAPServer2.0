@@ -5,9 +5,9 @@ import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
+import org.cardiacatlas.xpacs.dicom.PacsJdbcTemplate;
 import org.cardiacatlas.xpacs.domain.ClinicalNote;
 import org.cardiacatlas.xpacs.domain.PatientInfo;
-import org.cardiacatlas.xpacs.domain.dcm4che.PacsJdbcTemplate;
 import org.cardiacatlas.xpacs.domain.enumeration.GenderType;
 import org.cardiacatlas.xpacs.repository.AuxFileRepository;
 import org.cardiacatlas.xpacs.repository.BaselineDiagnosisRepository;

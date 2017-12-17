@@ -31,6 +31,10 @@
     				authorities: ['ROLE_USER'],
     				pageTitle: 'List of image studies'
     			},
+    			params: {
+    				fileToDownload: null,
+    				error: null
+    			},
     			views: {
     				'content@': {
     					templateUrl: 'app/view/view-image-studies.html',
@@ -38,6 +42,32 @@
     					controllerAs: 'vm'
     				}
     			}
+    		})
+    		.state('download-study', {
+    			parent: 'view-image-studies',
+    			url: '/download-study',
+    			data: {
+    				authorities: ['ROLE_USER']
+    			},
+    			params: {
+    				studyUid: null,
+    				patientId: null
+    			},
+    			onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
+    				$uibModal.open({
+    					templateUrl: 'app/view/download-dialog.html',
+    					controller: 'DownloadStudyController',
+    					controllerAs: 'vm',
+    					backdrop: 'static',
+    					size: 'md'
+    				}).result.then(function(data) {
+    					$state.go('^', { 
+    						fileToDownload: data, 
+    						error: null }, { reload: true });
+    				}, function(error) {
+    					$state.go('^', { error: error }, { reload: true });
+    				});
+    			}]
     		})
     }
     
