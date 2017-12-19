@@ -10,7 +10,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
@@ -22,14 +21,12 @@ import org.cardiacatlas.xpacs.web.rest.errors.DicomTransferException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.ResponseEntity;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import io.github.jhipster.web.util.ResponseUtil;
 
 /**
  * Controller for query/retrieve to dcm4chee server using DICOM transfer syntax
@@ -77,7 +74,7 @@ public class DicomResource {
 	private Path startDicomTransfer(String patientId, String studyInstanceUid, Path downloadStudyPath) {
 		// the result zip file
 		Path zipFile = Paths.get(downloadStudyPath.toString() + ".zip");		
-		log.info("Output file will be " + zipFile.toString());
+		log.debug("Output file will be " + zipFile.toString());
 		
 		try {
 			DicomRetrieve ret = new DicomRetrieve()
@@ -198,92 +195,5 @@ public class DicomResource {
 		}
  	}
 
-//	
-//	/**
-//	 * GET /dicom-download-study?PatientID=[patientId]&StudyInstanceUID=[studyInstanceUID]
-//	 * 
-//	 * @throws IOException, Exception
-//	 * @return absolute path to the zip file ready to download (note: it's an external to the project)
-//	 */
-//	@GetMapping("/dicom/download-study-OBSOLETE")
-//	public Map<String,Object> dicomDownloadStudyOBSOLETE(String patientId, String studyInstanceUid)  {
-//		
-//		log.info("Request to download study [PatientID={}, StudyInstanceUID={}]", patientId, studyInstanceUid);
-//		
-//		if( patientId==null || studyInstanceUid==null )
-//			throw DicomTransferException.raiseMissingUriParameters("Required PatientID and StudyInstanceUID in the URI.");
-//		
-//		// prepare result
-//		HashMap<String, Object> result = new HashMap<String, Object>();
-//		result.put("filename", "");
-//		result.put("size", 0L);
-//		
-//		// create a new directory under tmpDir with random alphabet
-//		String rndDir = RandomStringUtils.randomAlphabetic(8);
-//		while( Files.isDirectory(Paths.get(tmpDir,rndDir)) )
-//			rndDir = RandomStringUtils.randomAlphabetic(8);
-//		
-//		// create directory
-//		Path downloadStudyPath = Paths.get(tmpDir, rndDir, studyInstanceUid);
-//		try {
-//			Files.createDirectories(downloadStudyPath);
-//		} catch( IOException e ) {
-//			throw DicomTransferException.raiseFileSystemIO("Cannot create directory: " + downloadStudyPath.toString());
-//		}
-//		
-//		// the result zip file
-//		Path zipFile = Paths.get(downloadStudyPath.toString() + ".zip");		
-//		log.info("Output file will be " + zipFile.toString());
-//
-//		try {
-//			
-//			DicomRetrieve ret = new DicomRetrieve()
-//					.setCalledAET(aet)
-//					.setHostname(hostname)
-//					.setPort(port)
-//					.addMatchingKey("PatientID", patientId)
-//					.addMatchingKey("StudyInstanceUID", studyInstanceUid);
-//			
-//			ret.setStorageDirectory(downloadStudyPath.toFile());
-//			ret.execute();
-//			
-//			// compress the directory
-//			ZipOutputStream zs = new ZipOutputStream(Files.newOutputStream(zipFile));
-//			
-//			// compress while deleting the file
-//			Files.walk(downloadStudyPath)
-//				.filter(p -> !Files.isDirectory(p))
-//				.forEach(p -> {
-//					ZipEntry zipEntry = new ZipEntry(downloadStudyPath.relativize(p).toString());
-//					try {
-//						zs.putNextEntry(zipEntry);
-//						Files.copy(p, zs);
-//						zs.closeEntry();
-//						
-//						// delete the file
-//						Files.delete(p);
-//					} catch (IOException e) {
-//						log.error(e.getMessage());
-//					}
-//					
-//				});
-//			
-//			zs.close();
-//			
-//			// delete directory
-//			Files.delete(downloadStudyPath);
-//
-//			// prepare the result
-//			result.replace("filename", Paths.get(rndDir,studyInstanceUid + ".zip").toString());
-//			result.replace("size", Files.size(zipFile));
-//			
-//		} catch( IOException e ) {
-//			throw DicomTransferException.raiseConnectionFailed(e.getMessage());
-//		} catch( Exception e ) {
-//			throw DicomTransferException.raiseGeneralTransferFailed(e.getMessage());
-//		}
-//		
-//		return result;
-//	}
-//		
+
 }

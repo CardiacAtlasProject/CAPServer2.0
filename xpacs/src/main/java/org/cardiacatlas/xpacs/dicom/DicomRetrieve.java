@@ -22,8 +22,6 @@ public class DicomRetrieve extends GetSCU {
 		super();
 		setDefaultConnectionConfiguration();
 		setDefaultServiceClass();
-		
-		System.out.println(this.getRemoteConnection().toString());
 	}
 	
 	private void setDefaultConnectionConfiguration() {
